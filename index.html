@@ -143,10 +143,17 @@ p{font-size:17px;line-height:1.55;color:var(--muted)}
 .skill-step .tag{display:inline-flex;margin-bottom:18px;padding:5px 8px;border:1px solid var(--line);background:#f8fafc;color:#475467;font-size:12px;font-weight:950}
 .skill-step b{display:block;font-size:22px;color:#101828;margin-bottom:12px}
 .skill-step span{display:block;font-size:16px;color:#475467;line-height:1.42}
-.skill-step.focal{background:#edf6ff;box-shadow:inset 0 4px 0 var(--deep-blue)}
-.skill-step.focal .tag{background:#fff;color:#344054;border-color:#d0d5dd}
-.skill-step.focal b{color:#101828}
-.cover{padding:0;background:#f7f9fb;color:var(--forest)}
+	.skill-step.focal{background:#edf6ff;box-shadow:inset 0 4px 0 var(--deep-blue)}
+	.skill-step.focal .tag{background:#fff;color:#344054;border-color:#d0d5dd}
+	.skill-step.focal b{color:#101828}
+	.video-layout{width:100%;display:grid;grid-template-columns:1.12fr .88fr;gap:24px;align-items:stretch}
+	.video-frame{background:#0b1220;border:1px solid #c7d4e4;border-top:4px solid var(--agent,var(--deep-blue));padding:10px}
+	.video-frame video{display:block;width:100%;height:510px;object-fit:contain;background:#0b1220}
+	.video-notes{display:grid;gap:12px;align-content:start}
+	.video-note{background:#fff;border:1px solid var(--agent-line,#d8dee9);border-left:4px solid var(--agent,var(--deep-blue));padding:18px 20px}
+	.video-note b{display:block;color:var(--agent,var(--deep-blue));font-size:18px;margin-bottom:8px}
+	.video-note span{display:block;color:#475467;font-size:16px;line-height:1.42;font-weight:720}
+	.cover{padding:0;background:#f7f9fb;color:var(--forest)}
 .cover-inner{height:100%;display:grid;grid-template-columns:1.03fr .97fr;gap:0;align-items:stretch}
 .cover-copy{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:62px 52px 58px 82px;background:#f7f9fb}
 .cover-copy:before{content:"";position:absolute;left:64px;top:64px;width:92%;height:1px;background:#9aa9bb}
@@ -1273,12 +1280,27 @@ p{font-size:17px;line-height:1.55;color:var(--muted)}
 - 장소별 선택 이유
 - 예상 비용
 - Plan B
-- 상대방에게 보낼 메시지</div>
-</section>
-
-<section class="slide agent-course">
-  <div class="eyebrow">Agent 03 · Output</div>
-  <h2>출력 예시는 이렇게 받습니다</h2>
+	- 상대방에게 보낼 메시지</div>
+	</section>
+	
+	<section class="slide agent-course">
+	  <div class="eyebrow">Agent 03 · Execution Demo</div>
+	  <h2>취향 코스 Agent는 기준을 적용해 실행 가능한 결과로 바꿉니다</h2>
+	  <div class="video-layout mt34">
+	    <div class="video-frame">
+	      <video src="assets/taste_course_agent_demo.mp4" controls muted loop playsinline preload="metadata"></video>
+	    </div>
+	    <div class="video-notes">
+	      <div class="video-note"><b>입력</b><span>지역, 시간, 예산, 후보 장소처럼 이번 작업에서만 쓰는 조건을 먼저 읽습니다.</span></div>
+	      <div class="video-note"><b>기준</b><span>선호보다 비선호, 이동 부담, 운영시간, 날씨, 예산을 우선 적용합니다.</span></div>
+	      <div class="video-note"><b>산출물</b><span>장소 추천 목록이 아니라 시간대별 일정, Plan B, 공유 메시지로 끝냅니다.</span></div>
+	    </div>
+	  </div>
+	</section>
+	
+	<section class="slide agent-course">
+	  <div class="eyebrow">Agent 03 · Output</div>
+	  <h2>출력 예시는 이렇게 받습니다</h2>
   <div class="timeline mt34">
     <div><b>14:00</b><span>카페 도착 · 대화하기 좋은 좌석 중심, 웨이팅 긴 곳 제외</span></div>
     <div><b>15:30</b><span>근처 산책 · 사진 찍기 좋은 거리 위주, 도보 15분 이내</span></div>
@@ -1468,6 +1490,13 @@ function showSlide(i){
   current=Math.max(0,Math.min(slides.length-1,i));
   slides.forEach((slide,index)=>slide.classList.toggle('active',index===current));
   document.getElementById('progress').style.width=((current+1)/slides.length*100)+'%';
+  document.querySelectorAll('video').forEach(video=>{
+    if(video.closest('.slide')===slides[current]){
+      video.play().catch(()=>{});
+    }else{
+      video.pause();
+    }
+  });
 }
 function nextSlide(){showSlide(current+1)}
 function prevSlide(){showSlide(current-1)}
