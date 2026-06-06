@@ -1,0 +1,1445 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>내 업무 속 AI 부캐 Agent 만들기</title>
+<style>
+:root{
+  --bg:#f8fafc; --ink:#111827; --muted:#64748b; --line:#d7dee8; --card:#fff;
+  --blue:#315f8a; --navy:#101a2f; --teal:#1f8a6d; --orange:#b65f3d; --red:#a4433d;
+  --soft-blue:#eef6ff; --soft-teal:#eefaf5; --soft-orange:#fff2ec; --shadow:none;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#111827;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",Arial,sans-serif;letter-spacing:0;word-break:keep-all}
+.deck{position:relative;width:100vw;height:100vh}
+.slide{position:absolute;inset:0;display:none;padding:54px 64px;background:var(--bg);overflow:hidden}
+.slide.active{display:flex;flex-direction:column;justify-content:center}
+.slide.active:not(.cover):not(.chapter):not(.dark){gap:0}
+.slide.active:not(.cover):not(.chapter):not(.dark)::before{content:"";position:absolute;left:64px;top:42px;width:42px;height:3px;background:var(--agent,var(--blue))}
+.slide.active:not(.cover):not(.chapter):not(.dark) > :not(.slide-no){width:100%}
+.cover.active{display:block}
+.slide.center.active{display:flex;align-items:center;justify-content:center;text-align:center}
+.slide.dark{background:#08111f;color:#fff}
+.slide.dark p,.slide.dark .muted{color:#cbd5e1}
+.progress{position:fixed;left:0;bottom:0;height:4px;background:var(--blue);z-index:20;transition:width .2s}
+.slide-no{position:absolute;right:34px;bottom:24px;color:#98a2b3;font-size:13px;font-weight:800}
+.eyebrow{margin:0 0 14px;color:var(--blue);font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+h1,h2,h3,p{margin:0}
+h1{font-size:56px;line-height:1.08;font-weight:900}
+h2{font-size:36px;line-height:1.14;font-weight:880;max-width:1120px}
+h3{font-size:20px;line-height:1.25;font-weight:850}
+p{font-size:17px;line-height:1.55;color:var(--muted)}
+.lead{margin-top:18px;font-size:22px;line-height:1.42;max-width:880px;color:#475467}
+.muted{color:var(--muted)}
+.grid{display:grid;gap:18px;width:100%}
+.two{grid-template-columns:1fr 1fr}
+.three{grid-template-columns:repeat(3,1fr)}
+.four{grid-template-columns:repeat(4,1fr)}
+.mt18{margin-top:18px}.mt26{margin-top:26px}.mt34{margin-top:34px}
+.card{background:var(--card);border:1px solid var(--line);border-top:2px solid var(--line);border-radius:2px;padding:20px;box-shadow:none;min-height:124px}
+.card p,.card li{font-size:16px;line-height:1.48;color:#475467}
+.card ul{margin:12px 0 0;padding-left:18px}.card li{margin:7px 0}
+.difficulty{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid #e8edf3;color:#687387;font-size:13px;font-weight:900}
+.difficulty .stars{color:#344256;letter-spacing:.06em}
+.chapter-difficulty{margin-top:22px;display:inline-flex;align-items:center;gap:10px;border:1px solid var(--agent-line,#d8dee9);border-left:4px solid var(--agent,var(--blue));background:#fff;padding:10px 14px;color:#475467;font-size:15px;font-weight:900}
+.chapter-difficulty .stars{color:var(--agent,#344054);letter-spacing:.06em}
+.badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;padding:5px 8px;border-radius:2px;background:#fff;color:#344054;border:1px solid var(--line);font-size:12px;font-weight:900}
+.badge:before{content:"";width:7px;height:7px;border-radius:0;background:currentColor}
+.bad{background:#fff;border-color:#e6c1bc}.bad h3{color:var(--red)}
+.good{background:#fff;border-color:#d4d7d2}.good h3{color:#111827}
+.warn{background:#fff;border-color:#e9c9ba}.warn h3{color:var(--orange)}
+.agent-card-content{border-color:#e6bfae;border-top-color:#b65f3d;background:#fffaf7}
+.agent-card-lecture{border-color:#bfd4e8;border-top-color:#315f8a;background:#f7fbff}
+.agent-card-course{border-color:#b9ddcf;border-top-color:#1f8a6d;background:#f7fffb}
+.agent-card-content h3{color:#a24f34}
+.agent-card-lecture h3{color:#315f8a}
+.agent-card-course h3{color:#19765e}
+.agent-card-content .difficulty{border-top-color:#f0d3c6}.agent-card-content .difficulty .stars{color:#a24f34}
+.agent-card-lecture .difficulty{border-top-color:#d3e3f3}.agent-card-lecture .difficulty .stars{color:#315f8a}
+.agent-card-course .difficulty{border-top-color:#cfeadf}.agent-card-course .difficulty .stars{color:#19765e}
+.quote{width:100%;padding:30px 34px;border-radius:2px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--agent,var(--blue));box-shadow:none;font-size:28px;line-height:1.38;font-weight:800;color:#1f2937}
+.insight{margin-top:20px;padding:20px 24px;border-radius:2px;background:#111827;color:#fff;box-shadow:none}
+.insight .label{margin-bottom:8px;color:#cbd5e1;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.insight strong{font-size:22px;line-height:1.4}
+.closing-lines{margin:34px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1080px;text-align:left}
+.closing-line{border:1px solid #334155;border-left:3px solid #64748b;background:#0b1220;padding:18px 20px;min-height:128px}
+.closing-line b{display:block;color:#cbd5e1;font-size:13px;font-weight:950;letter-spacing:.08em;margin-bottom:10px}
+.closing-line span{display:block;color:#f8fafc;font-size:21px;line-height:1.36;font-weight:900}
+.system-board{width:100%;display:grid;grid-template-columns:.9fr 1.1fr;gap:22px;align-items:stretch}
+.system-left{background:#111827;color:#fff;border:1px solid #111827;border-left:5px solid var(--blue);border-radius:2px;padding:28px}
+.system-left h3{font-size:27px;line-height:1.28;color:#fff}
+.system-left p{margin-top:18px;color:#cbd5e1;font-size:18px;line-height:1.55}
+.system-left .mini-quote{margin-top:24px;padding-top:20px;border-top:1px solid #334155;color:#fff;font-size:24px;line-height:1.35;font-weight:900}
+.system-stack{display:grid;gap:12px}
+.system-item{display:grid;grid-template-columns:132px 1fr;background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:2px;overflow:hidden}
+.system-item b{display:flex;align-items:center;padding:16px 18px;background:#f2f4f7;color:#344054;font-size:17px}
+.system-item span{padding:16px 18px;color:#344054;font-size:17px;line-height:1.42;font-weight:720}
+.agent-cycle{width:100%;display:grid;grid-template-columns:250px 1fr;gap:22px;align-items:stretch}
+.agent-cycle-left{display:grid;grid-template-rows:1fr auto 1fr;gap:12px;align-items:center}
+.cycle-actor{background:#fff;border:1px solid var(--line);border-left:4px solid var(--blue);padding:18px 20px;min-height:120px}
+.cycle-actor b{display:block;color:#101828;font-size:21px;margin-bottom:8px}
+.cycle-actor span{display:block;color:#475467;font-size:16px;line-height:1.45;font-weight:720}
+.cycle-arrow{display:flex;align-items:center;justify-content:center;color:#475467;font-size:28px;font-weight:950}
+.agent-cycle-board{background:#fff;border:1px solid var(--line);border-top:3px solid var(--blue);padding:22px;display:grid;gap:16px}
+.cycle-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);overflow:hidden}
+.cycle-step{position:relative;min-height:255px;padding:22px 18px;border-right:1px solid var(--line);background:#fff}
+.cycle-step:last-child{border-right:0}
+.cycle-step:after{content:"";position:absolute;right:-8px;top:50%;width:16px;height:16px;background:#fff;border-top:1px solid var(--line);border-right:1px solid var(--line);transform:translateY(-50%) rotate(45deg);z-index:2}
+.cycle-step:last-child:after{content:none}
+.cycle-step .num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid var(--line);background:#f2f4f7;color:#344054;font-size:13px;font-weight:950;margin-bottom:16px}
+.cycle-step h3{font-size:24px;color:#101828;margin-bottom:10px}
+.cycle-step p{font-size:15px;line-height:1.46;color:#475467}
+.cycle-step.focal{background:#eef6ff;box-shadow:inset 0 4px 0 var(--blue)}
+.cycle-loop{border:1px solid #cfe0f0;background:#f2f8ff;padding:16px 18px;display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center}
+.cycle-loop b{font-size:18px;color:#344054}
+.cycle-loop span{font-size:17px;line-height:1.45;color:#475467;font-weight:760}
+.pillars-wrap{width:100%;display:grid;grid-template-columns:.95fr 1.05fr;gap:26px;align-items:center}
+.pillars-copy .lead{max-width:520px}
+.pillar-notes{margin-top:26px;display:grid;gap:10px}
+.pillar-note{display:grid;grid-template-columns:92px 1fr;border:1px solid var(--line);background:#fff}
+.pillar-note b{padding:12px 14px;background:#f2f7fb;color:#315f8a;font-size:15px}
+.pillar-note span{padding:12px 14px;color:#475467;font-size:15px;line-height:1.4;font-weight:720}
+.venn{position:relative;height:520px;background:#fff;border:1px solid var(--line);overflow:hidden}
+.venn-circle{position:absolute;width:330px;height:330px;border-radius:50%;border:1px solid rgba(52,66,86,.2);display:block;text-align:center}
+.venn-circle h3{position:absolute;font-size:34px;color:#101828;margin:0}
+.venn-circle ul{display:none}
+.venn-context{left:56px;top:72px;background:rgba(79,164,232,.44)}
+.venn-context h3{left:78px;top:100px}
+.venn-cognition{right:56px;top:72px;background:rgba(245,214,82,.5)}
+.venn-cognition h3{right:78px;top:100px}
+.venn-action{left:50%;bottom:38px;transform:translateX(-50%);background:rgba(232,103,160,.38)}
+.venn-action h3{left:50%;bottom:88px;transform:translateX(-50%)}
+.venn-label{position:absolute;color:#101828;font-size:15px;line-height:1.25;font-weight:900;text-align:center}
+.venn-label.context-mind{left:50%;top:204px;transform:translateX(-50%);width:126px}
+.venn-label.cognition-action{right:170px;top:350px;width:122px}
+.venn-label.action-context{left:170px;top:350px;width:122px}
+.venn-label.smart{left:50%;top:286px;transform:translateX(-50%);width:116px;font-size:18px;color:#344054}
+.layer-diagram{width:100%;display:grid;grid-template-columns:170px 1fr;gap:18px;align-items:stretch}
+.layer-axis{display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--line);padding:12px 18px 12px 0;color:#667085;font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.08em}
+.layer-axis span{display:block;line-height:1.35;text-align:right}
+.layer-axis span:first-child{color:#344054}
+.layer-stack{display:grid;border:1px solid var(--line);border-radius:2px;background:#fff;overflow:hidden}
+.layer-row{display:grid;grid-template-columns:90px 230px 1fr;align-items:center;min-height:74px;border-bottom:1px solid var(--line)}
+.layer-row:last-child{border-bottom:0}
+.layer-row .tag{height:100%;display:flex;align-items:center;justify-content:center;background:#f1f5f9;color:#475467;font-size:12px;font-weight:950;letter-spacing:.08em}
+.layer-row b{font-size:22px;color:#101828}
+.layer-row span{font-size:17px;line-height:1.42;color:#475467;font-weight:720;padding-right:24px}
+.layer-row.focal{background:#f2f4f7;box-shadow:inset 5px 0 0 var(--blue)}
+.layer-row.focal .tag{background:#e5e7eb;color:#344054}
+.layer-row.focal b{color:#101828}
+.diagram-caption{margin-top:16px;color:#475467;font-size:17px;font-weight:780;line-height:1.45}
+.skill-diagram{width:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--line);border-radius:2px;overflow:hidden;background:#fff}
+.skill-step{position:relative;min-height:218px;padding:22px 18px;border-right:1px solid var(--line)}
+.skill-step:last-child{border-right:0}
+.skill-step:after{content:"";position:absolute;right:-8px;top:50%;width:16px;height:16px;background:#fff;border-top:1px solid var(--line);border-right:1px solid var(--line);transform:translateY(-50%) rotate(45deg);z-index:2}
+.skill-step:last-child:after{content:none}
+.skill-step .tag{display:inline-flex;margin-bottom:18px;padding:5px 8px;border:1px solid var(--line);background:#f8fafc;color:#475467;font-size:12px;font-weight:950}
+.skill-step b{display:block;font-size:22px;color:#101828;margin-bottom:12px}
+.skill-step span{display:block;font-size:16px;color:#475467;line-height:1.42}
+.skill-step.focal{background:#f2f4f7;box-shadow:inset 0 4px 0 var(--blue)}
+.skill-step.focal .tag{background:#fff;color:#344054;border-color:#d0d5dd}
+.skill-step.focal b{color:#101828}
+.cover{padding:0;background:#060b14;color:#fff}
+.cover-inner{height:100%;display:grid;grid-template-columns:1.22fr .78fr;gap:0;align-items:stretch}
+.cover-copy{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:64px 72px 64px 82px;background:#060b14}
+.cover-copy:before{content:"";position:absolute;left:64px;top:64px;width:44px;height:3px;background:#7b8ba0}
+.cover h1{color:#fff;font-size:58px;line-height:1.08;letter-spacing:0;max-width:840px}
+.cover h1 .title-main{display:block}
+.cover h1 .title-accent{display:block;margin-top:8px;font-size:66px;line-height:1.04;white-space:nowrap}
+.cover h1 .title-end{display:block;margin-top:8px}
+.cover .eyebrow{color:#cbd5e1}
+.cover .lead{color:#cbd5e1}
+.cover-statement{margin-top:24px;padding:22px 0 0;border-top:1px solid #334155;max-width:820px}
+.cover-statement b{display:block;color:#f8fafc;font-size:24px;line-height:1.3}
+.cover-statement span{display:block;margin-top:10px;color:#94a3b8;font-size:18px;line-height:1.45;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.cover .chip{padding:8px 10px;border-radius:2px;border:1px solid #334155;background:#0b1220;color:#e2e8f0;font-weight:850;font-size:13px}
+.meta{margin-top:34px;color:#667085;font-size:16px;font-weight:800}
+.cover .meta{color:#94a3b8}
+.cover-media{position:relative;min-height:100%;overflow:hidden;background:#020617}
+.cover-media img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.78) contrast(1.04) brightness(.82)}
+.cover-media:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#060b14 0%,rgba(6,11,20,.74) 20%,rgba(6,11,20,.34) 58%,rgba(6,11,20,.3) 100%)}
+.cover-kicker{margin-top:28px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;max-width:680px}
+.cover-kicker div{border-left:3px solid #7b8ba0;padding-left:12px}
+.cover-kicker b{display:block;color:#f8fafc;font-size:13px}
+.cover-kicker span{display:block;margin-top:4px;color:#94a3b8;font-size:13px;line-height:1.3;font-weight:700}
+.visual{height:520px;border-radius:2px;background:#fff;border:1px solid #cfd7e6;box-shadow:none;padding:22px;display:grid;grid-template-rows:auto 1fr auto;gap:14px}
+.visual-title{font-weight:900;color:#111827;font-size:18px}
+.node-map{display:grid;grid-template-columns:1fr;gap:10px}
+.node{border:1px solid #d8dee9;background:#fff;border-radius:2px;padding:13px 15px;display:grid;grid-template-columns:112px 1fr;gap:14px;align-items:center}
+.node b{font-size:18px;color:#101828}.node span{font-size:15px;color:#667085;line-height:1.35}
+.node.primary{background:#f2f4f7;border-color:#cbd5e1}
+.cover-output{border-top:1px solid #d8dee9;padding-top:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.cover-output div{border-left:3px solid #7b8ba0;padding-left:10px}
+.cover-output b{display:block;font-size:13px;color:#101828}
+.cover-output span{display:block;margin-top:3px;font-size:12px;line-height:1.3;color:#667085;font-weight:700}
+.chapter{background:#fff}
+.chapter-wrap{height:100%;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
+.chapter h1{color:#101828;font-size:50px}
+.mini-board{background:#fff;border:1px solid var(--line);border-top:3px solid var(--agent,var(--blue));border-radius:2px;padding:18px;display:grid;gap:12px;box-shadow:none}
+.mini-row{display:grid;grid-template-columns:104px 1fr;gap:10px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:2px;padding:13px 14px}
+.mini-row b{color:#344054}.mini-row span{color:#475467;font-size:16px;line-height:1.35}
+.matrix{width:100%;display:grid;grid-template-columns:1fr 1.2fr 1.2fr 1.2fr;border:1px solid var(--line);border-top:3px solid var(--agent,#111827);border-radius:2px;overflow:hidden;background:#fff;box-shadow:none}
+.matrix div{padding:15px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);font-size:16px;line-height:1.45;color:#475467}
+.matrix div:nth-child(4n){border-right:0}.matrix div:nth-last-child(-n+4){border-bottom:0}
+.matrix .head{background:#1f2937;color:#fff;font-weight:900}
+.flow{width:100%;display:flex;flex-direction:column;gap:12px;max-width:none}
+.flow-item{display:grid;grid-template-columns:230px 1fr;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--agent,var(--blue));border-radius:2px;padding:18px 20px;box-shadow:none}
+.flow-item b{font-size:19px;color:#344054}.flow-item span{font-size:19px;color:#344054;line-height:1.45}
+.folder-layout{width:100%;display:grid;grid-template-columns:.95fr 1.05fr;gap:20px;align-items:stretch}
+.folder-layout .code{margin-top:0;height:100%;max-height:560px;font-size:11px;line-height:1.27}
+.folder-layout .folder-tree{margin-top:0;height:100%;max-height:560px;background:#fff;color:#344054;border:1px solid var(--agent-line,#d8dee9);border-top:4px solid var(--agent,var(--blue));border-radius:2px;padding:18px 20px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;line-height:1.34;white-space:pre-wrap;overflow:hidden;box-shadow:none}
+.folder-guide{display:grid;gap:10px}
+.folder-guide-item{display:grid;grid-template-columns:118px 1fr;background:#fff;border:1px solid var(--agent-line,#d8dee9);border-left:4px solid var(--agent,var(--blue));border-radius:2px;overflow:hidden;min-height:84px}
+.folder-guide-item b{display:flex;align-items:center;padding:14px 15px;background:var(--agent-soft,#f2f4f7);color:var(--agent,#344054);font-size:15px;line-height:1.15}
+.folder-guide-item span{display:block;padding:13px 15px;color:#344054;font-size:15px;line-height:1.42;font-weight:720}
+.folder-guide-item em{display:block;margin-top:4px;color:#667085;font-size:13px;font-style:normal;font-weight:650}
+.thinking-map{width:100%;display:grid;grid-template-columns:1fr;gap:14px}
+.thinking-step{display:grid;grid-template-columns:86px 1fr 1.05fr;gap:0;background:#fff;border:1px solid var(--agent-line,#d8dee9);border-left:5px solid var(--agent,var(--blue));border-radius:2px;overflow:hidden}
+.thinking-step .num{display:flex;align-items:center;justify-content:center;background:var(--agent-soft,#f2f4f7);color:var(--agent,#344054);font-size:20px;font-weight:950}
+.thinking-step .think,.thinking-step .make{padding:17px 20px}
+.thinking-step .think{border-right:1px solid var(--line)}
+.thinking-step small{display:block;margin-bottom:6px;color:var(--agent,#344054);font-size:12px;font-weight:950;text-transform:uppercase;letter-spacing:.04em}
+.thinking-step b{display:block;font-size:19px;color:#101828;margin-bottom:5px}
+.thinking-step span{display:block;font-size:16px;color:#475467;line-height:1.42}
+.thinking-note{margin-top:18px;border:1px solid var(--agent-line,#d8dee9);border-top:3px solid var(--agent,var(--blue));background:#fff;padding:20px 24px;display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:center}
+.thinking-note b{font-size:20px;color:var(--agent,#344054)}
+.thinking-note span{font-size:20px;line-height:1.45;color:#101828;font-weight:850}
+.code{width:100%;white-space:pre-wrap;background:#111827;color:#e5e7eb;border-radius:2px;padding:16px 20px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;line-height:1.32;max-height:660px;overflow:hidden;box-shadow:none}
+.checklist{width:100%;background:#fff;border:1px solid var(--line);border-top:3px solid var(--agent,var(--blue));border-radius:2px;padding:28px 32px;box-shadow:none}
+.checklist div{font-size:23px;line-height:1.75;border-bottom:1px solid #eef2f7;color:#344054;font-weight:740;padding:5px 0}
+.checklist div:last-child{border-bottom:0}
+.timeline{width:100%;display:flex;flex-direction:column;gap:12px}
+.timeline div{display:grid;grid-template-columns:150px 1fr;gap:16px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--agent,var(--blue));border-radius:2px;padding:17px 20px;align-items:center;box-shadow:none}
+.timeline b{font-size:18px;color:#344054}.timeline span{font-size:18px;color:#475467;line-height:1.45}
+.storyline{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:2px;overflow:hidden;background:#fff}
+.story-step{position:relative;padding:28px 26px;min-height:330px;border-right:1px solid var(--line)}
+.story-step:last-child{border-right:0}
+.story-step .tag{display:inline-flex;margin-bottom:18px;padding:5px 8px;border:1px solid var(--line);background:#f8fafc;color:#475467;font-size:12px;font-weight:950;letter-spacing:.04em}
+.story-step h3{font-size:25px;margin-bottom:16px}
+.story-step p{font-size:18px;line-height:1.5;color:#475467}
+.story-step strong{display:block;margin-top:22px;color:#101828;font-size:20px;line-height:1.38}
+.story-step.focal{background:#f2f4f7;box-shadow:inset 0 4px 0 var(--blue)}
+.story-step.focal .tag{background:#fff;color:#344054;border-color:#d0d5dd}
+.agent-translation{width:100%;display:grid;grid-template-columns:1fr 72px 1fr;gap:0;align-items:stretch}
+.translation-side{background:#fff;border:1px solid var(--line);border-radius:2px;overflow:hidden}
+.translation-head{padding:16px 20px;background:#111827;color:#fff;font-weight:950;font-size:18px}
+.translation-row{display:grid;grid-template-columns:150px 1fr;min-height:76px;border-bottom:1px solid var(--line);align-items:center}
+.translation-row:last-child{border-bottom:0}
+.translation-row b{height:100%;display:flex;align-items:center;padding:0 18px;background:#f1f5f9;color:#344054;font-size:16px}
+.translation-row span{padding:14px 18px;color:#344054;font-size:17px;line-height:1.42;font-weight:720}
+.translation-arrow{display:flex;align-items:center;justify-content:center;color:#475467;font-size:32px;font-weight:950}
+.closing{background:#08111f}
+.ide-slide{background:#f7f8fa}
+.ide-slide h2{text-align:center;max-width:none;font-size:44px}
+.ide-slide h2 .blue{color:#101828}.ide-slide h2 .green{color:#475467}
+.ide-sub{margin:12px auto 0;text-align:center;font-size:20px;color:#475467;max-width:940px}
+.ide-stage{margin-top:28px;display:grid;grid-template-columns:220px 1fr 230px;gap:18px;align-items:center;width:100%}
+.ide-callout{background:#fff;border:1px solid #d8dde5;border-left:4px solid #7b8ba0;padding:18px 20px;min-height:128px}
+.ide-callout.green{border-color:#d8dde5;border-left-color:#7b8ba0}
+.ide-callout b{display:block;font-size:20px;color:#344054;margin-bottom:8px}.ide-callout.green b{color:#344054}
+.ide-callout p{font-size:16px;line-height:1.45;color:#475467}
+.ide-laptop{background:#0b1220;border:8px solid #111827;padding:18px;border-radius:8px;min-height:330px;display:grid;grid-template-columns:.85fr 1.1fr .95fr;gap:10px}
+.ide-panel{background:#fff;border:1px solid #d8dee9;border-radius:4px;overflow:hidden}
+.ide-panel-title{padding:10px 12px;border-bottom:1px solid #e5e7eb;color:#101828;font-weight:900;font-size:14px}
+.ide-file{padding:8px 12px;color:#475467;font-size:13px;border-bottom:1px solid #f1f5f9}.ide-file.active{background:#f2f4f7;color:#344054;font-weight:900}
+.ide-code{padding:16px 18px}
+.ide-code div{height:7px;background:#cbd5e1;margin:13px 0;border-radius:0}.ide-code div:nth-child(2),.ide-code div:nth-child(5){width:74%;background:#d0d5dd}.ide-code div:nth-child(3){width:48%;background:#e5e7eb}.ide-code div:nth-child(4){width:86%;background:#cbd5e1}.ide-code div:nth-child(6){width:58%}
+.ide-chat{padding:14px;display:grid;gap:10px}
+.bubble{padding:11px 12px;border-radius:4px;font-size:13px;line-height:1.35}
+.bubble.ai{background:#f2f4f7;color:#1f2937}.bubble.me{background:#ecf0f3;color:#344054;margin-left:26px}
+.ide-bottom{margin-top:22px;background:#fff;border:1px solid #d8dee9;border-top:3px solid #7b8ba0;padding:18px 22px;display:grid;grid-template-columns:150px repeat(4,1fr);gap:16px;align-items:center}
+.ide-bottom b{font-size:22px;color:#344054}
+.ide-bottom span{font-size:15px;color:#344054;font-weight:800;line-height:1.35}
+
+/* Agent color system */
+.slide.agent-content{--agent:#8e5847;--agent-soft:#f7f1ee;--agent-line:#dec8c0;background:#f7f8fa}
+.slide.agent-lecture{--agent:#455d7a;--agent-soft:#f0f4f8;--agent-line:#cad5e2;background:#f7f8fa}
+.slide.agent-course{--agent:#536f5c;--agent-soft:#f0f5f1;--agent-line:#ccdcca;background:#f7f8fa}
+.slide.agent-content .eyebrow,.slide.agent-lecture .eyebrow,.slide.agent-course .eyebrow{color:var(--agent)}
+.slide.agent-content .badge,.slide.agent-lecture .badge,.slide.agent-course .badge{background:var(--agent-soft);color:var(--agent);border:1px solid var(--agent-line)}
+.slide.agent-content .card,.slide.agent-lecture .card,.slide.agent-course .card,
+.slide.agent-content .mini-board,.slide.agent-lecture .mini-board,.slide.agent-course .mini-board,
+.slide.agent-content .quote,.slide.agent-lecture .quote,.slide.agent-course .quote,
+.slide.agent-content .code,.slide.agent-lecture .code,.slide.agent-course .code,
+.slide.agent-content .checklist,.slide.agent-lecture .checklist,.slide.agent-course .checklist{
+  border-color:var(--agent-line);
+}
+.slide.agent-content .card h3,.slide.agent-lecture .card h3,.slide.agent-course .card h3,
+.slide.agent-content .mini-row b,.slide.agent-lecture .mini-row b,.slide.agent-course .mini-row b,
+.slide.agent-content .timeline b,.slide.agent-lecture .timeline b,.slide.agent-course .timeline b{color:var(--agent)}
+.slide.agent-content .insight,.slide.agent-lecture .insight,.slide.agent-course .insight{
+  background:#111827;
+  border-left:4px solid var(--agent);
+}
+.slide.agent-content .matrix .head,.slide.agent-lecture .matrix .head,.slide.agent-course .matrix .head{background:var(--agent);color:#fff}
+.slide.agent-content .flow-item,.slide.agent-lecture .flow-item,.slide.agent-course .flow-item{
+  border-left:4px solid var(--agent);
+  background:#fff;
+}
+.slide.agent-content .code,.slide.agent-lecture .code,.slide.agent-course .code{box-shadow:var(--shadow)}
+.slide.agent-content .chapter-wrap,.slide.agent-lecture .chapter-wrap,.slide.agent-course .chapter-wrap{position:relative}
+.slide.agent-content .chapter-wrap:after,.slide.agent-lecture .chapter-wrap:after,.slide.agent-course .chapter-wrap:after{
+  content:"";position:absolute;left:0;bottom:38px;width:180px;height:3px;background:var(--agent);opacity:.75;border-radius:0;
+}
+.slide.agent-course .chapter-wrap:before{content:none}
+@media(max-width:640px){
+  .slide{padding:34px 24px;overflow:auto} h1{font-size:42px} h2{font-size:32px}.lead{font-size:20px}
+  .cover-inner,.chapter-wrap,.two,.three,.four,.system-board,.system-item,.agent-cycle,.cycle-flow,.cycle-loop,.pillars-wrap,.layer-diagram,.layer-row,.skill-diagram,.storyline,.agent-translation,.translation-row,.folder-layout,.folder-guide-item{grid-template-columns:1fr}.visual{height:auto;min-height:360px}.matrix{grid-template-columns:1fr}.matrix div{border-right:0!important}.flow-item,.mini-row,.timeline div,.thinking-step,.thinking-note{grid-template-columns:1fr}.thinking-step .think{border-right:0;border-bottom:1px solid var(--line)}.layer-axis{display:none}.skill-step,.cycle-step{border-right:0;border-bottom:1px solid var(--line)}.skill-step:after,.cycle-step:after{content:none}.story-step{border-right:0;border-bottom:1px solid var(--line)}.translation-arrow{display:none}
+}
+</style>
+</head>
+<body>
+<div class="deck">
+<div id="progress" class="progress"></div>
+
+<section class="slide cover active">
+  <div class="cover-inner">
+    <div class="cover-copy">
+      <div class="eyebrow">LIKELION 3기 · Week 3</div>
+      <h1><span class="title-main">내 업무 속</span><span class="title-accent">AI 부캐 Agent</span><span class="title-end">만들기</span></h1>
+      <div class="cover-statement">
+        <b>문제정의에서 끝내지 않고, 실제로 작동하는 폴더와 Skill까지 만듭니다.</b>
+        <span>콘텐츠 편집장 · 멘토링 피드백 OS · 취향 코스 매니저 사례로 배우는 Agent 구조화 실습</span>
+      </div>
+      <div class="chips">
+        <span class="chip">Problem Definition</span>
+        <span class="chip">Folder System</span>
+        <span class="chip">Skill File</span>
+        <span class="chip">Guardrail</span>
+      </div>
+      <div class="cover-kicker">
+        <div><b>Output 1</b><span>Agent 설계서</span></div>
+        <div><b>Output 2</b><span>폴더 구조</span></div>
+        <div><b>Output 3</b><span>첫 Skill 파일</span></div>
+      </div>
+      <div class="meta">이유진 멘토 · 멋쟁이사자처럼 3기 강의자료</div>
+    </div>
+    <div class="cover-media">
+      <img src="assets/ai_agent_cover.png" alt="">
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Opening</div>
+  <h2>매번 같은 설명을 다시 하고 있지 않나요?</h2>
+  <div class="quote mt34">“이거 내 말투로 해줘.”<br>“아까 말한 양식으로 해줘.”<br>“예시는 유지하고, 최종본은 따로 정리해줘.”</div>
+  <div class="grid three mt34">
+    <div class="card bad"><h3>문제 1</h3><p>매번 맥락을 새로 설명합니다.</p></div>
+    <div class="card bad"><h3>문제 2</h3><p>기준이 대화 안에서 흩어집니다.</p></div>
+    <div class="card bad"><h3>문제 3</h3><p>결과물이 매번 다른 모양으로 나옵니다.</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Reference Insight</div>
+  <h2>Claude를 잘 쓰는 사람은 “맥락이 준비되는 작업 구조”를 만듭니다</h2>
+  <div class="system-board mt34">
+    <div class="system-left">
+      <h3>Anthropic 엔지니어가 말한 핵심</h3>
+      <p>프롬프트를 매번 잘 쓰는 것보다, Claude가 필요한 맥락과 기준을 읽고 바로 실행할 수 있는 작업 환경을 만드는 것이 더 중요합니다.</p>
+      <div class="mini-quote">계속 설명하는 사람이 아니라,<br>Claude가 읽을 기준을 먼저 정리하는 사람</div>
+    </div>
+    <div class="system-stack">
+      <div class="system-item"><b>CLAUDE.md</b><span>매 세션마다 반복 설명하지 않을 프로젝트 규칙, 말투, 기준, 금지선을 남깁니다.</span></div>
+      <div class="system-item"><b>플러그인</b><span>검색, 파일 관리, 코드 실행처럼 반복되는 도구 사용을 작업 흐름 안에 붙입니다.</span></div>
+      <div class="system-item"><b>자동 워크플로</b><span>입력 확인 → 작업 실행 → 결과 검수 → 수정 반영의 순서를 매번 같은 방식으로 이어 붙입니다.</span></div>
+      <div class="system-item"><b>작업 구조</b><span>세션이 바뀌어도 Input, Reference, Skill, Output 위치가 유지되게 폴더화합니다.</span></div>
+    </div>
+  </div>
+  <div class="insight"><div class="label">오늘 강의와 연결</div><strong>우리가 만드는 Agent도 결국 “긴 프롬프트”가 아니라, 반복 기준을 읽고 같은 순서로 실행하게 만드는 작업 구조입니다.</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Story Bridge</div>
+  <h2>지난 흐름은 오늘 Agent 설계로 이어집니다</h2>
+  <div class="storyline mt34">
+    <div class="story-step">
+      <div class="tag">1주차 · 멘탈모델</div>
+      <h3>생각의 틀을 바꿨습니다</h3>
+      <p>도구처럼 시키는 방식에서 벗어나, 맥락을 공유하고 함께 일하는 동료로 바라봤습니다.</p>
+      <strong>도구 → 동료<br>톱니 → 시스템 설계자<br>암묵지 → 형식지</strong>
+    </div>
+    <div class="story-step">
+      <div class="tag">1주차 숙제 · AI 코치</div>
+      <h3>과제 방향을 잡아왔습니다</h3>
+      <p>“무엇을 자동화할까?”가 아니라 “나는 어떤 의사결정을 더 잘해야 하나?”에서 과제를 정의했습니다.</p>
+      <strong>의사결정 → 데이터 → 액션 → 통제<br>한 문장 과제 정의</strong>
+    </div>
+    <div class="story-step focal">
+      <div class="tag">첫 특강 · Agent 구조화</div>
+      <h3>이제 구조로 만듭니다</h3>
+      <p>숙제로 가져온 과제 정의를 폴더, 기준, Skill, 검수 흐름으로 바꿔 반복 실행되게 만듭니다.</p>
+      <strong>Input → Reference → Skill → Output → Check</strong>
+    </div>
+  </div>
+  <div class="insight"><div class="label">오늘의 위치</div><strong>숙제가 “내가 만들 Agent의 방향”을 정했다면, 오늘 특강은 그 방향을 실제 작업 구조로 바꾸는 시간입니다.</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Pre-work to Lecture</div>
+  <h2>숙제 결과 리포트는 오늘의 설계 재료입니다</h2>
+  <div class="matrix mt34">
+    <div class="head">숙제에서 가져온 것</div><div class="head">의미</div><div class="head">오늘 바꿀 것</div><div class="head">결과물</div>
+    <div>의사결정 1건</div><div>내가 더 잘 내리고 싶은 판단의 출발점</div><div>Agent의 Role과 업무 경계</div><div>Agent 설계서</div>
+    <div>참고 데이터</div><div>결정할 때 실제로 보는 자료</div><div>01_input에 넣을 이번 자료</div><div>입력 폴더</div>
+    <div>판단 기준</div><div>내 머릿속 암묵지를 문장으로 꺼낸 것</div><div>02_reference와 Rule / Guardrail</div><div>기준 파일</div>
+    <div>액션과 통제</div><div>실행할 일과 사람이 확인할 지점</div><div>03_skills의 작업 순서와 Check 기준</div><div>첫 Skill 파일</div>
+  </div>
+  <div class="insight"><div class="label">강의 시작 멘트</div><strong>오늘은 숙제를 다시 하는 시간이 아니라, 여러분이 가져온 한 문장 과제 정의를 실행 가능한 Agent 구조로 번역하는 시간입니다.</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Problem Definition to Agent</div>
+  <h2>숙제 문제정의는 Agent 설계의 뼈대가 됩니다</h2>
+  <div class="agent-translation mt34">
+    <div class="translation-side">
+      <div class="translation-head">숙제 문제정의 4요소</div>
+      <div class="translation-row"><b>Decision</b><span>내가 더 잘 내리고 싶은 결정 1건</span></div>
+      <div class="translation-row"><b>Data</b><span>그 결정을 할 때 보는 자료와 나의 판단 기준</span></div>
+      <div class="translation-row"><b>Action</b><span>판단을 실행으로 잇는 활동과 결과물</span></div>
+      <div class="translation-row"><b>Control</b><span>사람이 검토하고 승인해야 하는 지점</span></div>
+    </div>
+    <div class="translation-arrow">→</div>
+    <div class="translation-side">
+      <div class="translation-head">오늘 만드는 Agent 구조</div>
+      <div class="translation-row"><b>Role</b><span>Agent의 반복 업무와 역할 경계</span></div>
+      <div class="translation-row"><b>Input / Reference</b><span>이번 자료와 계속 따라갈 기준을 분리한 폴더</span></div>
+      <div class="translation-row"><b>Skill / Output</b><span>읽기, 판단, 만들기, 변환, 검수의 실행 절차와 산출물</span></div>
+      <div class="translation-row"><b>Guardrail / Check</b><span>넘으면 안 되는 선과 사람이 확인할 검수 기준</span></div>
+    </div>
+  </div>
+  <div class="insight"><div class="label">핵심 전환</div><strong>문제정의가 “무엇을 만들까”를 정했다면, Agent 설계는 “어떤 기준과 순서로 반복하게 할까”를 정합니다.</strong></div>
+</section>
+
+<section class="slide ide-slide">
+  <div class="eyebrow">Workspace Basics</div>
+  <h2>IDE는 <span class="green">AI와 함께 일하는</span> <span class="blue">작업 공간</span></h2>
+  <p class="ide-sub">코드 작성, 파일 관리, 실행, AI 대화까지 한 화면에서 연결되는 작업실입니다.</p>
+  <div class="ide-stage">
+    <div class="ide-callout">
+      <b>파일과 폴더 관리</b>
+      <p>프로젝트의 모든 파일을 정리하고, AI가 어디를 고쳤는지 눈으로 확인합니다.</p>
+    </div>
+    <div class="ide-laptop">
+      <div class="ide-panel">
+        <div class="ide-panel-title">프로젝트 탐색기</div>
+        <div class="ide-file">my-agent-project</div>
+        <div class="ide-file active">01_input</div>
+        <div class="ide-file">02_reference</div>
+        <div class="ide-file">03_skills</div>
+        <div class="ide-file">04_output</div>
+        <div class="ide-file">README.md</div>
+      </div>
+      <div class="ide-panel">
+        <div class="ide-panel-title">skill.md</div>
+        <div class="ide-code"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      </div>
+      <div class="ide-panel">
+        <div class="ide-panel-title">AI 채팅</div>
+        <div class="ide-chat">
+          <div class="bubble ai">무엇을 도와드릴까요?</div>
+          <div class="bubble me">이 Skill이 하는 일을 설명해줘</div>
+          <div class="bubble ai">입력 자료를 읽고 기준에 맞춰 결과물을 만드는 역할입니다.</div>
+        </div>
+      </div>
+    </div>
+    <div class="ide-callout green">
+      <b>AI와 대화하며 작업</b>
+      <p>코드 설명, 오류 해결, 기능 구성, Agent 설계를 AI와 같이 진행합니다.</p>
+    </div>
+  </div>
+  <div class="ide-bottom">
+    <b>핵심 포인트</b>
+    <span>파일을 열고 정리하고</span>
+    <span>코드를 작성하고 실행하고</span>
+    <span>AI와 대화하며 문제를 해결하고</span>
+    <span>터미널에서 CLI 명령도 함께 쓴다</span>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Core Message</div>
+  <h2>프롬프트보다 강한 건 업무 구조입니다</h2>
+  <div class="layer-diagram mt34">
+    <div class="layer-axis">
+      <span>작업 구조</span>
+      <span>일회성 요청</span>
+    </div>
+    <div class="layer-stack">
+      <div class="layer-row">
+        <div class="tag">L4</div><b>Agent Flow</b><span>여러 Skill을 순서대로 연결해 하나의 담당자처럼 움직입니다.</span>
+      </div>
+      <div class="layer-row focal">
+        <div class="tag">L3</div><b>Skill</b><span>반복 업무 하나를 처리하는 작업 순서입니다. 오늘 가장 구체적으로 만들 부분입니다.</span>
+      </div>
+      <div class="layer-row">
+        <div class="tag">L2</div><b>Instruction</b><span>말투, 금지사항, 산출물 기준처럼 판단할 규칙을 적습니다.</span>
+      </div>
+      <div class="layer-row">
+        <div class="tag">L1</div><b>Folder</b><span>원본, 참고, 작업, 최종본의 위치를 정해 매번 같은 곳을 읽게 합니다.</span>
+      </div>
+      <div class="layer-row">
+        <div class="tag">L0</div><b>Prompt</b><span>마지막에는 짧은 실행 요청만 남습니다. 긴 설명은 구조 안으로 들어갑니다.</span>
+      </div>
+    </div>
+  </div>
+  <p class="diagram-caption">이 장표의 초점은 “더 많이 설명하기”가 아니라, 반복 설명을 구조 안으로 내려보내는 것입니다.</p>
+  <div class="insight"><div class="label">Mentor Insight</div><strong>잘 쓰는 사람은 질문을 길게 쓰는 사람이 아니라, 기준과 작업 환경을 먼저 만들어둡니다.</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Agent Concept</div>
+  <h2>AI Agent는 네 단계로 문제를 해결합니다</h2>
+  <div class="agent-cycle mt34">
+    <div class="agent-cycle-left">
+      <div class="cycle-actor"><b>사용자 요청</b><span>자연어로 목표, 조건, 원하는 결과를 전달합니다.</span></div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-actor"><b>AI Agent</b><span>자료를 읽고 판단하고 도구를 실행하며 결과를 남깁니다.</span></div>
+    </div>
+    <div class="agent-cycle-board">
+      <div class="cycle-flow">
+        <div class="cycle-step">
+          <div class="num">01</div>
+          <h3>인식</h3>
+          <p>대화, 문서, 데이터베이스, 웹 검색, 소셜 미디어 등에서 필요한 정보를 수집하고 현재 상황을 파악합니다.</p>
+        </div>
+        <div class="cycle-step focal">
+          <div class="num">02</div>
+          <h3>추론</h3>
+          <p>수집한 정보를 기준과 목표에 맞춰 해석합니다. 필요하면 검색 보강 생성(RAG)처럼 외부 지식을 함께 활용합니다.</p>
+        </div>
+        <div class="cycle-step">
+          <div class="num">03</div>
+          <h3>행동</h3>
+          <p>정해진 권한 범위 안에서 파일 작성, 도구 실행, 시스템 연동, 사람에게 넘기기 같은 작업을 수행합니다.</p>
+        </div>
+        <div class="cycle-step">
+          <div class="num">04</div>
+          <h3>학습</h3>
+          <p>실행 결과와 피드백을 기록해 다음 작업의 기준을 업데이트하고, 반복될수록 더 안정적인 결과를 만듭니다.</p>
+        </div>
+      </div>
+      <div class="cycle-loop"><b>강의에서의 해석</b><span>오늘 만드는 폴더와 Skill은 Agent가 인식할 자료, 추론할 기준, 행동할 절차, 학습할 기록을 남기는 장치입니다.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">AI Agent Pillars</div>
+  <div class="pillars-wrap">
+    <div class="pillars-copy">
+      <h2>AI Agent의 세 기둥은 맥락, 사고, 행동입니다</h2>
+      <p class="lead">Agent가 똑똑해 보이는 이유는 답변을 잘해서가 아니라, 맥락을 읽고 사고한 뒤 실제 행동으로 옮기는 구조를 갖기 때문입니다.</p>
+      <div class="pillar-notes">
+        <div class="pillar-note"><b>맥락</b><span>정적 맥락, 동적 맥락, 대화 맥락을 읽어 지금 무엇이 중요한지 파악합니다.</span></div>
+        <div class="pillar-note"><b>사고</b><span>분석적 추론, 전략적 계획, 적응형 학습으로 무엇을 할지 결정합니다.</span></div>
+        <div class="pillar-note"><b>행동</b><span>데이터 조작, 시스템 연동, 사람과의 상호작용으로 결과를 실제로 만듭니다.</span></div>
+      </div>
+    </div>
+    <div class="venn" aria-label="AI Agent의 세 기둥 다이어그램">
+      <div class="venn-circle venn-context">
+        <div><h3>맥락</h3><ul><li>정적 맥락</li><li>동적 맥락</li><li>대화 맥락</li></ul></div>
+      </div>
+      <div class="venn-circle venn-cognition">
+        <div><h3>사고</h3><ul><li>분석적 추론</li><li>전략적 계획</li><li>적응형 학습</li></ul></div>
+      </div>
+      <div class="venn-circle venn-action">
+        <div><h3>행동</h3><ul><li>데이터 조작</li><li>시스템 연동</li><li>사람과의 상호작용</li></ul></div>
+      </div>
+      <div class="venn-label context-mind">맥락은<br>사고를 돕고</div>
+      <div class="venn-label cognition-action">사고는<br>행동을 이끌고</div>
+      <div class="venn-label action-context">행동은<br>맥락을 바꿉니다</div>
+      <div class="venn-label smart">작동하는<br>Agent</div>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Today</div>
+  <h2>오늘은 세 명의 AI 부캐를 만들어봅니다</h2>
+  <div class="grid three mt34">
+    <div class="card agent-card-content"><h3>01 콘텐츠 편집장 Agent</h3><p>블로그, 인스타, 릴스, 첫댓글, 해시태그를 발행 패키지로 정리합니다.</p><div class="difficulty">난이도 <span class="stars">★★☆☆☆</span></div></div>
+    <div class="card agent-card-lecture"><h3>02 멘토링 피드백 OS Agent</h3><p>수강생 제출물과 대화 기록을 기준화된 피드백과 다음 액션으로 바꿉니다.</p><div class="difficulty">난이도 <span class="stars">★★★★☆</span></div></div>
+    <div class="card agent-card-course"><h3>03 취향 코스 매니저 Agent</h3><p>데이트, 약속, 주말 일정을 취향·동선·예산 기준으로 설계합니다.</p><div class="difficulty">난이도 <span class="stars">★☆☆☆☆</span></div></div>
+  </div>
+  <div class="insight"><div class="label">오늘 끝나고 남길 산출물</div><strong>내가 반복해서 맡기고 싶은 업무를 하나의 AI 부캐 Agent 설계서로 정리합니다.</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Agenda</div>
+  <h2>60분 강의 운영안</h2>
+  <div class="timeline mt34">
+    <div><b>0:00~0:06</b><span>오프닝: 매번 같은 설명을 반복하는 이유</span></div>
+    <div><b>0:06~0:13</b><span>지난 흐름 연결: 멘탈모델 → 1주차 숙제 결과 리포트 → Agent 구조화</span></div>
+    <div><b>0:13~0:17</b><span>작업 환경 이해: IDE는 작업실, CLI는 명령창</span></div>
+    <div><b>0:17~0:23</b><span>핵심 개념: Agent 설계 6요소와 Guardrail</span></div>
+    <div><b>0:23~0:36</b><span>멘토 사례 1: 콘텐츠 편집장 Agent</span></div>
+    <div><b>0:36~0:49</b><span>멘토 사례 2: 멘토링 피드백 OS Agent</span></div>
+    <div><b>0:49~0:55</b><span>멘토 사례 3: 취향 코스 매니저 Agent</span></div>
+    <div><b>0:55~1:00</b><span>실습: 내 업무 부캐 Agent 설계서 작성</span></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Intro Insight</div>
+  <h2>AI 부캐는 새로운 툴이 아니라 업무 구조입니다</h2>
+  <div class="grid three mt34">
+    <div class="card bad"><h3>채팅창 방식</h3><p>매번 긴 설명을 붙이고, 결과가 흔들리면 다시 수정 요청합니다.</p></div>
+    <div class="card good"><h3>부캐 방식</h3><p>자료 위치, 판단 기준, 출력 형식을 미리 정해 반복 업무를 안정화합니다.</p></div>
+    <div class="card good"><h3>Agent 방식</h3><p>여러 Skill을 순서대로 연결해 하나의 담당자처럼 일하게 합니다.</p></div>
+  </div>
+  <div class="insight"><div class="label">오늘의 전환</div><strong>오늘은 이 구조가 콘텐츠, 멘토링 피드백, 취향 코스라는 세 가지 사례에서 어떻게 작동하는지 봅니다.</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Intro Framework</div>
+  <h2>잘하는 사람의 Agent는 여섯 가지를 먼저 고정합니다</h2>
+  <div class="grid three mt34">
+    <div class="card"><span class="badge">Input</span><h3>무엇을 읽나</h3><p>실제로 확인할 원본 자료입니다.</p></div>
+    <div class="card"><span class="badge">Reference</span><h3>무엇을 따라가나</h3><p>말투, 취향, 좋은 예시, 과거 결과물입니다.</p></div>
+    <div class="card"><span class="badge">Rule</span><h3>어떻게 판단하나</h3><p>금지사항, 우선순위, 검수 기준입니다.</p></div>
+    <div class="card"><span class="badge">Output</span><h3>무엇으로 끝나나</h3><p>바로 쓸 수 있는 최종 패키지입니다.</p></div>
+    <div class="card"><span class="badge">Skill</span><h3>어떤 순서로 일하나</h3><p>분석, 작성, 변환, 검수처럼 반복되는 작업 절차입니다.</p></div>
+    <div class="card"><span class="badge">Check</span><h3>무엇으로 검수하나</h3><p>사람이 결과물을 확인할 기준과 실패 조건입니다.</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Agent Fit</div>
+  <h2>모든 일을 Agent로 만들 필요는 없습니다</h2>
+  <div class="grid two mt34">
+    <div class="card good"><h3>Agent로 만들기 좋은 업무</h3><ul><li>반복해서 맡기는 일</li><li>자료를 읽고 판단해야 하는 일</li><li>매번 비슷한 수정 요청이 나오는 일</li><li>결과물을 사람이 검수할 수 있는 일</li><li>좋은 예시와 실패 예시가 쌓이는 일</li></ul></div>
+    <div class="card warn"><h3>아직 Agent로 만들기 애매한 업무</h3><ul><li>한 번만 하고 끝나는 일</li><li>판단 기준이 전혀 없는 일</li><li>결과물을 검수하기 어려운 일</li><li>최종 책임을 넘기면 안 되는 의사결정</li><li>입력 자료가 계속 바뀌는데 기준은 없는 일</li></ul></div>
+  </div>
+  <div class="insight"><div class="label">선정 기준</div><strong>“자주 하고, 기준이 있고, 결과물을 확인할 수 있는 일”부터 Agent로 만듭니다.</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Input vs Reference</div>
+  <h2>이번 재료와 따라야 할 기준을 섞지 않습니다</h2>
+  <div class="grid two mt34">
+    <div class="card"><span class="badge">Input</span><h3>이번 작업에서만 쓰는 자료</h3><ul><li>이번 업체 가이드라인</li><li>이번 방문 후기 메모</li><li>이번 고객사 요청사항</li><li>이번 후보 장소와 일정 조건</li></ul></div>
+    <div class="card"><span class="badge">Reference</span><h3>앞으로도 반복해서 따라갈 기준</h3><ul><li>내 기존 말투와 좋은 제목 예시</li><li>이전 강의 톤과 실습 예시</li><li>좋았던 코스와 실패했던 코스</li><li>검수 체크리스트와 금지사항</li></ul></div>
+  </div>
+  <div class="insight"><div class="label">강의 포인트</div><strong>자료를 한 번에 다 던지는 것이 아니라, 이번 재료와 반복 기준을 분리해야 결과가 안정됩니다.</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Skill Design</div>
+  <h2>Skill은 긴 프롬프트가 아니라 작업 절차입니다</h2>
+  <div class="skill-diagram mt34">
+    <div class="skill-step">
+      <div class="tag">01 READ</div>
+      <b>읽기</b>
+      <span>입력 자료에서 이번 작업에 필요한 조건과 제약을 추출합니다.</span>
+    </div>
+    <div class="skill-step">
+      <div class="tag">02 JUDGE</div>
+      <b>판단하기</b>
+      <span>Reference와 Rule을 기준으로 무엇을 반영하고 버릴지 고릅니다.</span>
+    </div>
+    <div class="skill-step focal">
+      <div class="tag">03 MAKE</div>
+      <b>만들기</b>
+      <span>정해진 Output 형식에 맞춰 사람이 바로 검수할 수 있는 초안을 만듭니다.</span>
+    </div>
+    <div class="skill-step">
+      <div class="tag">04 CONVERT</div>
+      <b>변환하기</b>
+      <span>블로그에서 인스타, 제출물에서 피드백 카드처럼 용도별 결과물로 바꿉니다.</span>
+    </div>
+    <div class="skill-step">
+      <div class="tag">05 CHECK</div>
+      <b>검수하기</b>
+      <span>금지사항, 누락 조건, 출력 형식을 마지막으로 확인합니다.</span>
+    </div>
+  </div>
+  <div class="insight"><div class="label">Skill 작성 기준</div><strong>좋은 Skill은 “멋진 문장”이 아니라 매번 같은 순서로 따라 할 수 있는 작은 워크플로입니다.</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Guardrail</div>
+  <h2>일을 맡길수록 “하면 안 되는 일”이 중요해집니다</h2>
+  <div class="grid three mt34">
+    <div class="card bad"><h3>콘텐츠 편집장</h3><p>방문하지 않은 경험을 만들지 않는다. 업체 정보와 개인 후기를 섞어 사실처럼 쓰지 않는다.</p></div>
+    <div class="card bad"><h3>멘토링 피드백 OS</h3><p>사람을 평가하듯 단정하지 않는다. 근거 없는 칭찬이나 실행 불가능한 조언만 남기지 않는다.</p></div>
+    <div class="card bad"><h3>취향 코스 매니저</h3><p>운영시간과 동선이 불확실한 장소를 확정처럼 말하지 않는다. 예산과 웨이팅 조건을 무시하지 않는다.</p></div>
+  </div>
+  <div class="insight"><div class="label">운영 기준</div><strong>좋은 Agent는 잘하는 일만 적힌 것이 아니라, 넘으면 안 되는 선까지 적혀 있습니다.</strong></div>
+</section>
+
+<section class="slide chapter">
+  <div class="chapter-wrap">
+    <div>
+      <div class="eyebrow">Part 2 · Mentor Cases</div>
+      <h1>그럼 잘하는 사람은<br>어떻게 Agent를 만들까?</h1>
+      <p class="lead">이제부터는 멘토가 실제로 쓰는 3가지 부캐 Agent를 보면서, 문제정의가 폴더 구조·Skill 파일·실행 프롬프트로 바뀌는 과정을 봅니다.</p>
+    </div>
+    <div class="mini-board">
+      <div class="mini-row"><b>01</b><span>콘텐츠 편집장 Agent: 내 말투를 지키며 채널별 콘텐츠로 변환</span></div>
+      <div class="mini-row"><b>02</b><span>멘토링 피드백 OS Agent: 제출물을 기준화된 피드백과 다음 액션으로 전환</span></div>
+      <div class="mini-row"><b>03</b><span>취향 코스 매니저 Agent: 취향, 동선, 예산을 반복 적용해 일정 설계</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Build Method</div>
+  <h2>나만의 Agent는 다섯 단계로 만듭니다</h2>
+  <div class="flow mt34">
+    <div class="flow-item"><b>1. 반복 업무 고르기</b><span>자주 시키고, 기준이 반복되고, 결과물을 검수할 수 있는 일을 하나 고릅니다.</span></div>
+    <div class="flow-item"><b>2. 문제정의 쓰기</b><span>“무엇을 입력으로 받아, 어떤 기준으로, 무엇을 만든다” 한 문장으로 고정합니다.</span></div>
+    <div class="flow-item"><b>3. 폴더화하기</b><span>00_admin, 01_input, 02_reference, 03_skills, 04_output으로 자료 위치를 나눕니다.</span></div>
+    <div class="flow-item"><b>4. Skill 작성하기</b><span>매번 말하던 작업 순서, 판단 기준, 금지사항, 출력 형식을 파일로 남깁니다.</span></div>
+    <div class="flow-item"><b>5. 실행하고 검수하기</b><span>짧은 프롬프트로 실행한 뒤 Check 기준으로 결과를 고치고 기준 파일에 다시 쌓습니다.</span></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">3 Mentor Agents</div>
+  <h2>세 사례는 서로 다른 Agent 설계 감각을 보여줍니다</h2>
+  <div class="matrix mt34">
+    <div class="head">부캐 Agent</div><div class="head">난이도</div><div class="head">얻는 산출물</div><div class="head">핵심 기준</div>
+    <div>콘텐츠 편집장</div><div>★★☆☆☆<br>말투·채널 기준</div><div>블로그, 인스타, 첫댓글, 해시태그, 검수표</div><div>사실성, 말투, 채널 적합성</div>
+    <div>멘토링 피드백 OS</div><div>★★★★☆<br>근거·기준 설계</div><div>피드백 카드, 개선 우선순위, 다음 액션, 멘토링 로그</div><div>근거, 기준, 톤, 실행가능성</div>
+    <div>취향 코스 매니저</div><div>★☆☆☆☆<br>생활형 기준 적용</div><div>일정표, 장소 이유, 예상 비용, Plan B, 공유 메시지</div><div>비선호, 동선, 예산, 날씨</div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Problem Definition</div>
+  <h2>문제정의는 “잘해줘”가 아니라 역할의 경계선을 긋는 일입니다</h2>
+  <div class="grid three mt34">
+    <div class="card"><span class="badge">대상</span><h3>누구의 어떤 반복 업무인가</h3><p>업무 이름이 아니라 반복되는 상황과 사용자를 먼저 씁니다.</p></div>
+    <div class="card"><span class="badge">입력</span><h3>무엇을 읽고 시작하나</h3><p>이번 작업의 원본 자료와 계속 따라갈 기준을 분리합니다.</p></div>
+    <div class="card"><span class="badge">판단</span><h3>어떤 기준으로 고르나</h3><p>사람이 평소에 하던 선택 기준, 우선순위, 예외 조건을 적습니다.</p></div>
+    <div class="card"><span class="badge">금지선</span><h3>무엇을 하면 안 되나</h3><p>임의로 만들거나 확정하면 안 되는 영역을 먼저 막습니다.</p></div>
+    <div class="card"><span class="badge">산출물</span><h3>무엇이 나오면 끝인가</h3><p>사람이 바로 검수하거나 사용할 수 있는 형태로 끝냅니다.</p></div>
+    <div class="card"><span class="badge">재사용</span><h3>다음번에도 쓸 수 있나</h3><p>한 번의 답변이 아니라 다음 작업에도 남는 기준으로 만듭니다.</p></div>
+  </div>
+</section>
+
+<section class="slide chapter agent-content">
+  <div class="chapter-wrap">
+    <div>
+      <div class="eyebrow">Mentor Agent 01</div>
+      <h1>콘텐츠 편집장 Agent</h1>
+      <p class="lead">블로그 글 하나를 새로 써주는 도구가 아니라, 내 경험과 말투를 유지하면서 채널별 발행 패키지로 정리하는 편집장입니다.</p>
+      <div class="chapter-difficulty">난이도 <span class="stars">★★☆☆☆</span><span>말투와 채널 기준을 분리하는 연습</span></div>
+    </div>
+    <div class="mini-board">
+      <div class="mini-row"><b>Input</b><span>업체 가이드라인, 방문 후기 메모, 사진 목록</span></div>
+      <div class="mini-row"><b>Reference</b><span>기존 블로그 말투, 잘 된 제목 예시, 채널별 문법</span></div>
+      <div class="mini-row"><b>Output</b><span>블로그 원고, 인스타 캡션, 첫댓글, 해시태그, 검수표</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">Agent 01 · Template Logic</div>
+  <h2>콘텐츠 편집장 Agent의 사고 흐름</h2>
+  <div class="thinking-map mt34">
+    <div class="thinking-step">
+      <div class="num">01</div>
+      <div class="think"><small>Human Thinking</small><b>왜 이 문구가 필요한가?</b><span>리뷰 작성이 목적이 아니라 검색 신뢰도, 클릭, 신청 전환을 만드는 발행물이 필요합니다.</span></div>
+      <div class="make"><small>Agent Design</small><b>목표를 “발행 성과”로 고정</b><span>제목 3개, 본문 1개, 인스타 캡션, 첫댓글, 해시태그, 검수표까지 Output을 고정합니다.</span></div>
+    </div>
+    <div class="thinking-step">
+      <div class="num">02</div>
+      <div class="think"><small>Human Thinking</small><b>무엇을 사실로 볼 것인가?</b><span>업체 조건, 실제 경험, 사진으로 확인 가능한 장면, 개인 감상을 서로 섞지 않고 분리합니다.</span></div>
+      <div class="make"><small>Agent Design</small><b>Input과 Reference를 분리</b><span>01_input에는 이번 재료를, 02_reference에는 내 말투와 잘 된 제목 패턴을 넣습니다.</span></div>
+    </div>
+    <div class="thinking-step">
+      <div class="num">03</div>
+      <div class="think"><small>Human Thinking</small><b>좋은 결과의 기준은 무엇인가?</b><span>과장 없이 실제 후기처럼 읽히고, 블로그와 인스타의 문법이 각각 살아야 합니다.</span></div>
+      <div class="make"><small>Agent Design</small><b>Rule과 Guardrail 작성</b><span>없는 경험 생성 금지, 광고문 과다 금지, 필수 키워드 누락 금지를 Check 기준으로 남깁니다.</span></div>
+    </div>
+    <div class="thinking-step">
+      <div class="num">04</div>
+      <div class="think"><small>Human Thinking</small><b>어떤 순서로 반복할 것인가?</b><span>조건 분리 → 후기 추출 → 말투 적용 → 채널 변환 → 발행 전 검수 순서로 매번 편집합니다.</span></div>
+      <div class="make"><small>Agent Design</small><b>Skill 파일로 절차화</b><span>03_skills/채널별_발행패키지_만들기.md에 반복 실행할 판단 순서를 씁니다.</span></div>
+    </div>
+  </div>
+  <div class="thinking-note">
+    <b>핵심 전환</b>
+    <span>“문구 써줘”가 아니라 “발행 가능한 콘텐츠 패키지를 같은 기준으로 편집해줘”로 문제를 정의합니다.</span>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">Agent 01 · Why</div>
+  <h2>그냥 “블로그 글 써줘”라고 하면 생기는 문제</h2>
+  <div class="grid three mt34">
+    <div class="card bad"><h3>광고문처럼 변함</h3><p>실제 다녀온 후기보다 홍보 문구처럼 보입니다. 검색자는 오히려 신뢰하지 않습니다.</p></div>
+    <div class="card bad"><h3>내 말투가 사라짐</h3><p>평소 문단 리듬, 감탄사, 자연스러운 표현이 너무 정돈된 홍보 문장으로 바뀝니다.</p></div>
+    <div class="card bad"><h3>채널 문법이 섞임</h3><p>블로그 긴 글, 인스타 짧은 캡션, 첫댓글, 해시태그가 한 톤으로 섞여 나옵니다.</p></div>
+  </div>
+  <div class="insight"><div class="label">Mentor Insight</div><strong>콘텐츠 Agent의 역할은 대필자가 아니라 편집장에 가까워야 안정적입니다. 내가 가진 재료를 발행 가능한 형태로 정리하게 만듭니다.</strong></div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">Agent 01 · Problem Definition</div>
+  <h2>콘텐츠 편집장 Agent의 문제정의</h2>
+  <div class="quote mt34">업체가 요구한 조건과 내가 실제로 경험한 후기를 분리해서 읽고, 내 기존 말투와 채널 문법을 기준으로 과장 없이 발행 가능한 콘텐츠 패키지를 만든다.</div>
+  <div class="grid three mt34">
+    <div class="card"><span class="badge">대상</span><h3>체험/리뷰 콘텐츠 발행</h3><p>새 글을 창작하는 것이 아니라, 이미 가진 후기 재료를 발행 가능한 상태로 편집합니다.</p></div>
+    <div class="card"><span class="badge">Input</span><h3>이번 글의 원본 재료</h3><p>업체 조건, 방문 후기 메모, 제품 정보, 사진 목록을 사실 자료로 봅니다.</p></div>
+    <div class="card"><span class="badge">Reference</span><h3>계속 유지할 나의 기준</h3><p>기존 블로그 말투, 제목 패턴, 인스타 피드 문법을 따라갑니다.</p></div>
+    <div class="card"><span class="badge">Rule</span><h3>편집 판단 기준</h3><p>업체 필수 조건은 반영하되 개인 경험과 광고 문구를 섞지 않습니다.</p></div>
+    <div class="card"><span class="badge">Guardrail</span><h3>넘으면 안 되는 선</h3><p>방문하지 않은 장면, 느끼지 않은 감정, 확인되지 않은 효과를 만들지 않습니다.</p></div>
+    <div class="card"><span class="badge">Output</span><h3>발행 패키지</h3><p>블로그 원고, 제목 후보, 인스타 캡션, 첫댓글, 해시태그, 검수표로 끝냅니다.</p></div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">Agent 01 · Folder</div>
+  <h2>콘텐츠 작업 폴더 구조</h2>
+  <div class="folder-layout mt34">
+  <div class="folder-tree">content-editor-agent/
+├── 00_admin/
+│   ├── 콘텐츠_운영_기준.md
+│   └── 채널별_톤앤매너.md
+├── 01_input/
+│   ├── 업체_가이드라인.md
+│   ├── 방문_후기_메모.md
+│   ├── 제품_정보.md
+│   └── 사진_목록.md
+├── 02_reference/
+│   ├── 기존_블로그_말투.md
+│   ├── 잘_터진_제목_예시.md
+│   └── 인스타_피드_예시.md
+├── 03_skills/
+│   ├── 업체조건_분리하기.md
+│   ├── 후기_말투_적용하기.md
+│   └── 채널별_발행패키지_만들기.md
+└── 04_output/
+    ├── 최종_블로그_원고.md
+    ├── 최종_인스타_캡션.md
+    └── 첫댓글_해시태그.md</div>
+    <div class="folder-guide">
+      <div class="folder-guide-item"><b>00_admin</b><span>이번 콘텐츠 작업의 운영 기준을 둡니다.<em>예: 광고 표기, 필수 키워드, 채널별 금지 표현</em></span></div>
+      <div class="folder-guide-item"><b>01_input</b><span>이번 글에서만 쓰는 원본 재료를 넣습니다.<em>예: 업체 가이드라인, 방문 후기, 사진 목록</em></span></div>
+      <div class="folder-guide-item"><b>02_reference</b><span>앞으로도 계속 유지할 내 기준을 모읍니다.<em>예: 기존 말투, 잘 된 제목, 인스타 문법</em></span></div>
+      <div class="folder-guide-item"><b>03_skills</b><span>반복할 편집 순서를 파일로 남깁니다.<em>예: 조건 분리 → 후기 추출 → 채널 변환</em></span></div>
+      <div class="folder-guide-item"><b>04_output</b><span>복사해서 바로 발행하거나 검수할 최종본을 저장합니다.<em>예: 블로그 원고, 캡션, 첫댓글, 해시태그</em></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">Agent 01 · Skill Flow</div>
+  <h2>콘텐츠 편집장 Agent의 Skill 흐름</h2>
+  <div class="flow mt34">
+    <div class="flow-item"><b>업체 조건 분리</b><span>필수 키워드, 금지 표현, 제공 정보, 업로드 조건을 원본 후기와 분리합니다.</span></div>
+    <div class="flow-item"><b>실제 후기 추출</b><span>내가 본 것, 느낀 것, 사진으로 증명 가능한 것, 추측하면 안 되는 것을 나눕니다.</span></div>
+    <div class="flow-item"><b>말투 적용</b><span>기존 블로그의 문장 길이, 문단 리듬, 자주 쓰는 표현을 기준으로 초안을 다듬습니다.</span></div>
+    <div class="flow-item"><b>채널 변환</b><span>블로그는 검색형 문장, 인스타는 관계형 문장, 첫댓글은 정보형 문장으로 바꿉니다.</span></div>
+    <div class="flow-item"><b>발행 전 검수</b><span>없는 경험 생성, 광고문 과다, 필수 조건 누락, 채널별 출력 형식을 확인합니다.</span></div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">Agent 01 · Skill File</div>
+  <h2>Skill 파일에는 “반복 실행할 편집 순서”를 씁니다</h2>
+  <div class="code mt34">03_skills/채널별_발행패키지_만들기.md
+
+목표:
+- 업체 조건과 실제 후기를 분리해 읽고, 내 말투와 채널 문법을 유지한 발행 패키지로 변환한다.
+
+반드시 읽을 파일:
+- 01_input/업체_가이드라인.md
+- 01_input/방문_후기_메모.md
+- 02_reference/기존_블로그_말투.md
+- 02_reference/인스타_피드_예시.md
+
+작업 순서:
+1. 업체 필수 조건과 개인 경험을 분리한다.
+2. 실제 경험으로 확인되지 않는 표현, 감정, 효과는 삭제한다.
+3. 기존 말투를 기준으로 문장 길이와 표현 강도를 맞춘다.
+4. 블로그는 검색형 문장, 인스타는 관계형 문장, 첫댓글은 정보형 문장으로 쓴다.
+5. 마지막에 누락/과장/없는 경험 생성 여부를 표로 검수한다.
+
+출력:
+- 블로그 제목 후보 5개
+- 블로그 본문 보완안
+- 인스타 캡션
+- 첫댓글
+- 해시태그 묶음
+- 발행 전 검수표</div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">Agent 01 · Prompt</div>
+  <h2>실제 요청 프롬프트는 이렇게 짧아집니다</h2>
+  <div class="code mt34">콘텐츠 편집장 Agent처럼 작업해줘.
+
+01_input의 업체 가이드라인, 방문 후기 메모, 사진 목록을 보고
+02_reference의 기존 블로그 말투를 유지해줘.
+
+원고를 새로 갈아엎지 말고 아래만 보완해줘.
+
+1. 제목 후보 5개
+2. 본문에서 부족한 정보
+3. 사진 삽입 위치
+4. 인스타 피드용 캡션
+5. 첫댓글
+6. 해시태그 묶음
+7. 필수 조건 검수표</div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">Agent 01 · Quality</div>
+  <h2>콘텐츠 편집장 Agent의 검수 기준</h2>
+  <div class="checklist mt34">
+    <div>□ 필수 키워드가 자연스럽게 들어갔는가?</div>
+    <div>□ 실제 경험과 업체 정보가 섞이지 않았는가?</div>
+    <div>□ 방문하지 않은 경험을 새로 만들지 않았는가?</div>
+    <div>□ 블로그와 인스타 문장이 서로 다른 채널 문법을 따르는가?</div>
+    <div>□ 최종본이 바로 복사해서 발행할 수 있는가?</div>
+  </div>
+</section>
+
+<section class="slide chapter agent-lecture">
+  <div class="chapter-wrap">
+    <div>
+      <div class="eyebrow">Mentor Agent 02</div>
+      <h1>멘토링 피드백 OS Agent</h1>
+      <p class="lead">수강생 제출물을 감으로 훑고 코멘트하는 것이 아니라, 같은 기준으로 읽고 다음 행동까지 남기는 피드백 운영체계입니다.</p>
+      <div class="chapter-difficulty">난이도 <span class="stars">★★★★☆</span><span>근거·기준·톤을 함께 설계</span></div>
+    </div>
+    <div class="mini-board">
+      <div class="mini-row"><b>Input</b><span>수강생 제출물, 과제 의도, 멘토링 대화 메모</span></div>
+      <div class="mini-row"><b>Reference</b><span>좋은 답안 예시, 피드백 톤, 평가 루브릭</span></div>
+      <div class="mini-row"><b>Output</b><span>피드백 카드, 개선 우선순위, 다음 액션, 멘토링 로그</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide agent-lecture">
+  <div class="eyebrow">Agent 02 · Template Logic</div>
+  <h2>멘토링 피드백 OS Agent의 사고 흐름</h2>
+  <div class="thinking-map mt34">
+    <div class="thinking-step">
+      <div class="num">01</div>
+      <div class="think"><small>Human Thinking</small><b>왜 피드백이 필요한가?</b><span>잘했다/아쉽다를 말하려는 것이 아니라, 다음 제출물에서 무엇을 고칠지 보이게 해야 합니다.</span></div>
+      <div class="make"><small>Agent Design</small><b>목표를 “다음 행동”으로 고정</b><span>피드백 카드, 우선순위, 다음 액션, 참고 예시, 멘토링 로그까지 Output으로 정합니다.</span></div>
+    </div>
+    <div class="thinking-step">
+      <div class="num">02</div>
+      <div class="think"><small>Human Thinking</small><b>무엇을 근거로 볼 것인가?</b><span>제출물 내용, 과제 의도, 이전 피드백, 수강생이 막힌 지점을 서로 분리해 읽습니다.</span></div>
+      <div class="make"><small>Agent Design</small><b>Input과 Reference를 분리</b><span>01_input에는 이번 제출물을, 02_reference에는 루브릭·좋은 예시·피드백 톤을 둡니다.</span></div>
+    </div>
+    <div class="thinking-step">
+      <div class="num">03</div>
+      <div class="think"><small>Human Thinking</small><b>좋은 피드백의 기준은 무엇인가?</b><span>칭찬과 지적이 모두 근거를 가져야 하고, 한 번에 고칠 수 있는 액션으로 끝나야 합니다.</span></div>
+      <div class="make"><small>Agent Design</small><b>Rule과 Guardrail 작성</b><span>인신평가 금지, 근거 없는 칭찬 금지, 추상 조언 금지를 Check 기준으로 둡니다.</span></div>
+    </div>
+    <div class="thinking-step">
+      <div class="num">04</div>
+      <div class="think"><small>Human Thinking</small><b>어떤 순서로 반복할 것인가?</b><span>제출물 읽기 → 루브릭 매칭 → 강점/보완점 분리 → 우선순위 결정 → 다음 액션 제안 순서로 봅니다.</span></div>
+      <div class="make"><small>Agent Design</small><b>Skill 파일로 절차화</b><span>03_skills/제출물_피드백카드_만들기.md에 반복할 피드백 순서를 씁니다.</span></div>
+    </div>
+  </div>
+  <div class="thinking-note">
+    <b>핵심 전환</b>
+    <span>“피드백 줘”가 아니라 “근거 있는 피드백과 다음 액션을 같은 형식으로 남겨줘”로 문제를 정의합니다.</span>
+  </div>
+</section>
+
+<section class="slide agent-lecture">
+  <div class="eyebrow">Agent 02 · Why</div>
+  <h2>그냥 “피드백 줘”라고 하면 부족한 이유</h2>
+  <div class="grid three mt34">
+    <div class="card bad"><h3>좋은 말만 남음</h3><p>“잘했어요, 더 구체화해보세요”처럼 기분은 좋지만 다음 행동이 보이지 않습니다.</p></div>
+    <div class="card bad"><h3>기준이 흔들림</h3><p>멘토의 컨디션이나 제출 순서에 따라 어떤 사람은 자세히, 어떤 사람은 짧게 봐주게 됩니다.</p></div>
+    <div class="card bad"><h3>히스토리가 안 남음</h3><p>지난번에 무엇을 지적했고 이번에 얼마나 나아졌는지 추적되지 않습니다.</p></div>
+  </div>
+  <div class="insight"><div class="label">Mentor Insight</div><strong>멘토링 피드백은 코멘트가 아니라 성장 로그입니다. 같은 기준으로 읽고, 다음 행동이 남아야 합니다.</strong></div>
+</section>
+
+<section class="slide agent-lecture">
+  <div class="eyebrow">Agent 02 · Problem Definition</div>
+  <h2>멘토링 피드백 OS Agent의 문제정의</h2>
+  <div class="quote mt34">수강생 제출물과 이전 피드백을 근거로 읽고, 루브릭과 피드백 톤을 기준으로 강점·보완점·우선순위·다음 액션을 같은 형식으로 남긴다.</div>
+  <div class="grid three mt34">
+    <div class="card"><span class="badge">대상</span><h3>멘토링 피드백 운영</h3><p>한 번의 코멘트가 아니라, 여러 수강생의 성장을 같은 기준으로 추적합니다.</p></div>
+    <div class="card"><span class="badge">Input</span><h3>이번 피드백의 근거</h3><p>제출물, 과제 의도, 이전 피드백, 멘토링 대화 메모를 원본으로 봅니다.</p></div>
+    <div class="card"><span class="badge">Reference</span><h3>반복 유지할 기준</h3><p>좋은 답안 예시, 평가 루브릭, 피드백 톤, 금지 표현을 따라갑니다.</p></div>
+    <div class="card"><span class="badge">Rule</span><h3>피드백 판단 기준</h3><p>강점은 근거와 함께, 보완점은 우선순위와 함께, 조언은 행동 단위로 씁니다.</p></div>
+    <div class="card"><span class="badge">Guardrail</span><h3>넘으면 안 되는 선</h3><p>사람 자체를 평가하지 않고, 제출물에서 확인한 사실과 개선 행동만 다룹니다.</p></div>
+    <div class="card"><span class="badge">Output</span><h3>피드백 패키지</h3><p>피드백 카드, 개선 우선순위, 다음 액션, 참고 예시, 멘토링 로그로 끝냅니다.</p></div>
+  </div>
+</section>
+
+<section class="slide agent-lecture">
+  <div class="eyebrow">Agent 02 · Folder</div>
+  <h2>멘토링 피드백 OS 폴더 구조</h2>
+  <div class="folder-layout mt34">
+  <div class="folder-tree">mentoring-feedback-os-agent/
+├── 00_admin/
+│   ├── 피드백_운영원칙.md
+│   ├── 평가_루브릭.md
+│   ├── 피드백_톤앤매너.md
+│   └── 금지표현_가이드.md
+├── 01_input/
+│   ├── 수강생_제출물.md
+│   ├── 과제_요구사항.md
+│   ├── 이전_피드백.md
+│   └── 멘토링_대화메모.md
+├── 02_reference/
+│   ├── 좋은_답안_예시.md
+│   ├── 피드백_샘플.md
+│   └── 단계별_성장기준.md
+├── 03_skills/
+│   ├── 제출물_근거추출하기.md
+│   ├── 루브릭으로_판단하기.md
+│   ├── 피드백카드_만들기.md
+│   └── 다음액션_정리하기.md
+└── 04_output/
+    ├── 개인별_피드백카드.md
+    ├── 다음액션_체크리스트.md
+    └── 멘토링_로그.md</div>
+    <div class="folder-guide">
+      <div class="folder-guide-item"><b>00_admin</b><span>피드백의 기준과 금지선을 먼저 고정합니다.<em>예: 루브릭, 톤앤매너, 금지 표현</em></span></div>
+      <div class="folder-guide-item"><b>01_input</b><span>이번에 읽을 수강생별 원본 자료입니다.<em>예: 제출물, 과제 요구사항, 이전 피드백</em></span></div>
+      <div class="folder-guide-item"><b>02_reference</b><span>앞으로도 반복 적용할 좋은 피드백 기준입니다.<em>예: 좋은 답안, 피드백 샘플, 성장 단계</em></span></div>
+      <div class="folder-guide-item"><b>03_skills</b><span>제출물을 피드백 카드로 바꾸는 작업 순서입니다.<em>예: 근거 추출 → 루브릭 판단 → 다음 액션</em></span></div>
+      <div class="folder-guide-item"><b>04_output</b><span>수강생에게 전달하거나 멘토가 추적할 산출물입니다.<em>예: 피드백 카드, 액션 체크리스트, 멘토링 로그</em></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide agent-lecture">
+  <div class="eyebrow">Agent 02 · Skill Flow</div>
+  <h2>멘토링 피드백 OS Agent의 Skill 흐름</h2>
+  <div class="flow mt34">
+    <div class="flow-item"><b>제출물 근거 추출</b><span>수강생이 실제로 쓴 문장, 만든 구조, 빠뜨린 조건을 근거 문장으로 뽑습니다.</span></div>
+    <div class="flow-item"><b>루브릭 매칭</b><span>문제정의, 기준 명확성, 산출물 구체성, 실행 가능성 기준으로 현재 상태를 봅니다.</span></div>
+    <div class="flow-item"><b>강점/보완점 분리</b><span>잘한 점은 재현 가능한 기준으로, 아쉬운 점은 고칠 수 있는 단위로 씁니다.</span></div>
+    <div class="flow-item"><b>우선순위 결정</b><span>한 번에 다 고치게 하지 않고, 다음 제출 전 가장 먼저 고칠 1~3개를 고릅니다.</span></div>
+    <div class="flow-item"><b>다음 액션 작성</b><span>수강생이 바로 실행할 수 있는 질문, 수정 문장, 체크리스트로 끝냅니다.</span></div>
+  </div>
+</section>
+
+<section class="slide agent-lecture">
+  <div class="eyebrow">Agent 02 · Skill File</div>
+  <h2>Skill 파일에는 “피드백을 남기는 순서”를 씁니다</h2>
+  <div class="code mt34">03_skills/피드백카드_만들기.md
+
+목표:
+- 수강생 제출물을 근거로 읽고, 루브릭에 맞춰 강점·보완점·다음 액션을 같은 형식으로 남긴다.
+
+반드시 읽을 파일:
+- 00_admin/평가_루브릭.md
+- 00_admin/피드백_톤앤매너.md
+- 01_input/수강생_제출물.md
+- 01_input/과제_요구사항.md
+- 01_input/이전_피드백.md
+- 02_reference/좋은_답안_예시.md
+
+작업 순서:
+1. 제출물에서 실제 근거 문장을 먼저 뽑는다.
+2. 과제 요구사항과 루브릭 기준에 맞춰 현재 상태를 판단한다.
+3. 강점 2개는 “왜 좋은지”와 함께 쓴다.
+4. 보완점은 최대 3개까지만, 우선순위 순서로 쓴다.
+5. 각 보완점마다 바로 실행할 다음 액션을 붙인다.
+6. 사람 자체를 평가하는 표현, 근거 없는 칭찬, 추상 조언은 삭제한다.
+
+출력:
+- 한 줄 총평
+- 근거 기반 강점
+- 우선순위 보완점
+- 다음 액션 체크리스트
+- 다음 멘토링에서 확인할 질문</div>
+</section>
+
+<section class="slide agent-lecture">
+  <div class="eyebrow">Agent 02 · Prompt</div>
+  <h2>실제 요청 프롬프트</h2>
+  <div class="code mt34">멘토링 피드백 OS Agent처럼 작업해줘.
+
+1. 00_admin의 평가 루브릭과 피드백 톤앤매너를 먼저 읽고
+2. 01_input의 수강생 제출물, 과제 요구사항, 이전 피드백을 확인한 뒤
+3. 02_reference의 좋은 답안 예시를 기준으로
+4. 개인별 피드백 카드를 만들어줘.
+
+반드시 포함할 것:
+- 한 줄 총평
+- 근거가 있는 강점 2개
+- 우선순위 보완점 최대 3개
+- 바로 고칠 수 있는 다음 액션
+- 다음 멘토링에서 확인할 질문</div>
+</section>
+
+<section class="slide agent-lecture">
+  <div class="eyebrow">Agent 02 · Output</div>
+  <h2>출력물은 코멘트 하나가 아니라 피드백 패키지입니다</h2>
+  <div class="grid three mt34">
+    <div class="card"><h3>개인별 피드백 카드</h3><ul><li>한 줄 총평</li><li>근거 기반 강점</li><li>우선순위 보완점</li><li>수정 방향</li></ul></div>
+    <div class="card"><h3>다음 액션 패키지</h3><ul><li>이번 주 수정 과제</li><li>바로 고칠 문장</li><li>확인 질문</li><li>제출 전 체크리스트</li></ul></div>
+    <div class="card"><h3>멘토링 운영 로그</h3><ul><li>이전 피드백 반영 여부</li><li>반복되는 막힘</li><li>성장 포인트</li><li>다음 멘토링 확인 항목</li></ul></div>
+  </div>
+</section>
+
+<section class="slide agent-lecture">
+  <div class="eyebrow">Agent 02 · Quality</div>
+  <h2>멘토링 피드백 OS Agent의 검수 기준</h2>
+  <div class="checklist mt34">
+    <div>□ 모든 피드백이 제출물의 실제 근거와 연결되는가?</div>
+    <div>□ 강점과 보완점이 루브릭 기준으로 설명되는가?</div>
+    <div>□ 보완점이 너무 많지 않고 우선순위가 보이는가?</div>
+    <div>□ 다음 액션이 수강생이 바로 실행할 수 있는 단위인가?</div>
+    <div>□ 사람 자체를 평가하는 표현이나 근거 없는 칭찬이 없는가?</div>
+  </div>
+</section>
+
+<section class="slide chapter agent-course">
+  <div class="chapter-wrap">
+    <div>
+      <div class="eyebrow">Mentor Agent 03</div>
+      <h1>취향 코스 매니저 Agent</h1>
+      <p class="lead">업무 사례만으로는 Agent가 어렵게 느껴질 수 있습니다. 생활형 사례로 “기준을 반복 적용하는 구조”가 Agent의 본질임을 보여줍니다.</p>
+      <div class="chapter-difficulty">난이도 <span class="stars">★☆☆☆☆</span><span>취향 기준을 현실 조건에 적용</span></div>
+    </div>
+    <div class="mini-board">
+      <div class="mini-row"><b>Input</b><span>지역, 시간, 예산, 후보 장소, 날씨</span></div>
+      <div class="mini-row"><b>Reference</b><span>좋았던 코스, 실패했던 코스, 선호/비선호 기준</span></div>
+      <div class="mini-row"><b>Output</b><span>시간대별 일정, 장소별 이유, Plan B, 공유 메시지</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide agent-course">
+  <div class="eyebrow">Agent 03 · Template Logic</div>
+  <h2>취향 코스 매니저 Agent의 사고 흐름</h2>
+  <div class="thinking-map mt34">
+    <div class="thinking-step">
+      <div class="num">01</div>
+      <div class="think"><small>Human Thinking</small><b>왜 추천만으로 부족한가?</b><span>좋아 보이는 장소 목록보다 실제로 갈 수 있고 상대방에게 보낼 수 있는 일정이 필요합니다.</span></div>
+      <div class="make"><small>Agent Design</small><b>목표를 “실행 가능성”으로 고정</b><span>시간대별 일정, 장소별 이유, 예상 비용, Plan B, 공유 메시지를 Output으로 정합니다.</span></div>
+    </div>
+    <div class="thinking-step">
+      <div class="num">02</div>
+      <div class="think"><small>Human Thinking</small><b>무엇을 기준으로 걸러낼 것인가?</b><span>선호보다 비선호, 이동 부담, 예산, 웨이팅, 날씨, 상대방 취향을 먼저 봅니다.</span></div>
+      <div class="make"><small>Agent Design</small><b>조건 파일을 먼저 둠</b><span>00_admin에 예산/이동/금지조건을 두고, 02_reference에 좋았던 코스와 실패했던 코스를 둡니다.</span></div>
+    </div>
+    <div class="thinking-step">
+      <div class="num">03</div>
+      <div class="think"><small>Human Thinking</small><b>좋은 코스의 기준은 무엇인가?</b><span>동선이 무리 없고, 선택지가 있으며, 불확실한 장소는 확정처럼 말하지 않아야 합니다.</span></div>
+      <div class="make"><small>Agent Design</small><b>Rule과 Guardrail 작성</b><span>도보 15분, 예산 준수, 웨이팅 긴 곳 제외, 운영시간 미확인 장소 확정 금지를 남깁니다.</span></div>
+    </div>
+    <div class="thinking-step">
+      <div class="num">04</div>
+      <div class="think"><small>Human Thinking</small><b>어떤 순서로 반복할 것인가?</b><span>선호/비선호 정리 → 후보 분류 → 현실 조건 검수 → 일정표 작성 → 공유 메시지 순서로 만듭니다.</span></div>
+      <div class="make"><small>Agent Design</small><b>Skill 파일로 절차화</b><span>03_skills/동선_현실성_검수하기.md에 개인화 기준을 반복 적용하는 순서를 씁니다.</span></div>
+    </div>
+  </div>
+  <div class="thinking-note">
+    <b>핵심 전환</b>
+    <span>“장소 추천해줘”가 아니라 “내 기준으로 걸러서 실행 가능한 일정으로 만들어줘”로 문제를 정의합니다.</span>
+  </div>
+</section>
+
+<section class="slide agent-course">
+  <div class="eyebrow">Agent 03 · Why</div>
+  <h2>그냥 “성수 데이트 코스 추천해줘”의 한계</h2>
+  <div class="grid three mt34">
+    <div class="card bad"><h3>내 취향을 모름</h3><p>사진 찍기 좋은 곳인지, 조용한 곳인지, 웨이팅을 싫어하는지 모릅니다.</p></div>
+    <div class="card bad"><h3>동선이 불편함</h3><p>장소는 좋아 보여도 실제 이동하면 피곤한 일정이 됩니다.</p></div>
+    <div class="card bad"><h3>현실 조건이 빠짐</h3><p>예산, 운영시간, 날씨, 상대방 취향, 플랜 B가 빠지기 쉽습니다.</p></div>
+  </div>
+  <div class="insight"><div class="label">Mentor Insight</div><strong>추천의 퀄리티는 장소 데이터보다 조건의 품질에서 나옵니다. 내가 싫어하는 조건까지 적어야 진짜 쓸 수 있는 코스가 나옵니다.</strong></div>
+</section>
+
+<section class="slide agent-course">
+  <div class="eyebrow">Agent 03 · Problem Definition</div>
+  <h2>취향 코스 매니저 Agent의 문제정의</h2>
+  <div class="quote mt34">이번 지역·시간·예산 조건을 읽고, 선호보다 비선호와 현실 제약을 우선 적용해 실제로 실행 가능한 시간대별 코스와 Plan B, 공유 메시지를 만든다.</div>
+  <div class="grid three mt34">
+    <div class="card"><span class="badge">대상</span><h3>개인화 일정 추천</h3><p>유명 장소를 나열하는 것이 아니라, 내 기준에 맞는 실행 가능한 일정을 만듭니다.</p></div>
+    <div class="card"><span class="badge">Input</span><h3>이번 일정의 조건</h3><p>지역, 시간, 예산, 후보 장소, 날씨, 운영시간을 이번 작업의 원본으로 봅니다.</p></div>
+    <div class="card"><span class="badge">Reference</span><h3>반복 적용할 취향 기준</h3><p>좋았던 코스, 실패했던 코스, 선호/비선호 기준을 계속 따라갑니다.</p></div>
+    <div class="card"><span class="badge">Rule</span><h3>추천 판단 기준</h3><p>도보 15분 이내, 웨이팅 긴 곳 제외, 1인 예산 준수, 너무 빡빡한 일정 금지를 적용합니다.</p></div>
+    <div class="card"><span class="badge">Guardrail</span><h3>넘으면 안 되는 선</h3><p>확인 안 된 운영시간을 확정하지 않고, 불확실한 장소는 후보나 Plan B로 남깁니다.</p></div>
+    <div class="card"><span class="badge">Output</span><h3>공유 가능한 일정</h3><p>시간대별 일정표, 장소별 이유, 예상 비용, Plan B, 상대방에게 보낼 메시지로 끝냅니다.</p></div>
+  </div>
+</section>
+
+<section class="slide agent-course">
+  <div class="eyebrow">Agent 03 · Folder</div>
+  <h2>취향 코스 매니저 폴더 구조</h2>
+  <div class="folder-layout mt34">
+  <div class="folder-tree">taste-course-agent/
+├── 00_admin/
+│   ├── 코스_운영_기준.md
+│   ├── 예산_이동_제약.md
+│   └── 금지조건.md
+├── 01_input/
+│   ├── 이번_지역_시간_예산.md
+│   ├── 후보_장소_목록.md
+│   └── 날씨_운영시간_메모.md
+├── 02_reference/
+│   ├── 좋았던_코스.md
+│   ├── 실패했던_코스.md
+│   └── 선호_비선호_기준.md
+├── 03_skills/
+│   ├── 취향조건_정리하기.md
+│   ├── 동선_현실성_검수하기.md
+│   └── 공유메시지_작성하기.md
+└── 04_output/
+    ├── 최종_일정표.md
+    ├── PlanB.md
+    └── 공유용_메시지.md</div>
+    <div class="folder-guide">
+      <div class="folder-guide-item"><b>00_admin</b><span>일정 추천의 기본 제약과 금지선을 둡니다.<em>예: 예산, 이동 거리, 웨이팅 허용 범위</em></span></div>
+      <div class="folder-guide-item"><b>01_input</b><span>이번 약속에서만 쓰는 조건과 후보입니다.<em>예: 지역, 시간, 후보 장소, 날씨, 운영시간</em></span></div>
+      <div class="folder-guide-item"><b>02_reference</b><span>내 취향과 실패 경험을 반복 기준으로 남깁니다.<em>예: 좋았던 코스, 실패했던 코스, 비선호 조건</em></span></div>
+      <div class="folder-guide-item"><b>03_skills</b><span>추천을 실제 일정으로 바꾸는 판단 순서입니다.<em>예: 후보 분류 → 동선 검수 → Plan B 작성</em></span></div>
+      <div class="folder-guide-item"><b>04_output</b><span>상대방에게 바로 보여줄 결과물을 둡니다.<em>예: 일정표, 대안, 공유용 메시지</em></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide agent-course">
+  <div class="eyebrow">Agent 03 · Skill Flow</div>
+  <h2>취향 코스 매니저 Agent의 Skill 흐름</h2>
+  <div class="flow mt34">
+    <div class="flow-item"><b>선호/비선호 정리</b><span>좋아하는 분위기보다 피해야 할 상황, 장소 유형, 상대방 취향을 먼저 정리합니다.</span></div>
+    <div class="flow-item"><b>후보 장소 분류</b><span>식사, 카페, 산책, 전시, 쇼핑 후보를 목적별로 나눕니다.</span></div>
+    <div class="flow-item"><b>현실 조건 검수</b><span>이동 시간, 운영시간, 웨이팅 가능성, 날씨, 예산을 확인합니다.</span></div>
+    <div class="flow-item"><b>일정표 작성</b><span>시간대별 흐름, 장소별 이유, 예상 비용, Plan B를 함께 정리합니다.</span></div>
+    <div class="flow-item"><b>공유 메시지</b><span>너무 계획표처럼 보이지 않게 상대방이 선택할 여지를 남겨 요약합니다.</span></div>
+  </div>
+</section>
+
+<section class="slide agent-course">
+  <div class="eyebrow">Agent 03 · Skill File</div>
+  <h2>Skill 파일에는 “개인화 기준을 적용하는 순서”를 씁니다</h2>
+  <div class="code mt34">03_skills/동선_현실성_검수하기.md
+
+목표:
+- 후보 장소를 취향보다 비선호, 이동, 예산, 날씨 기준으로 먼저 걸러 실제 실행 가능한 일정으로 만든다.
+
+반드시 읽을 파일:
+- 00_admin/예산_이동_제약.md
+- 00_admin/금지조건.md
+- 01_input/이번_지역_시간_예산.md
+- 01_input/후보_장소_목록.md
+- 02_reference/선호_비선호_기준.md
+
+작업 순서:
+1. 좋아하는 조건보다 피해야 할 조건을 먼저 적용한다.
+2. 도보 이동 시간과 체력 부담을 기준으로 순서를 조정한다.
+3. 웨이팅, 운영시간, 날씨, 예산을 현실 조건으로 검수한다.
+4. 불확실한 장소는 확정처럼 말하지 말고 후보나 대안으로 남긴다.
+5. 비/웨이팅/체력 변수에 대한 Plan B와 공유 메시지를 만든다.
+
+출력:
+- 시간대별 일정표
+- 장소별 선택 이유
+- 예상 비용
+- Plan B
+- 상대방에게 보낼 메시지</div>
+</section>
+
+<section class="slide agent-course">
+  <div class="eyebrow">Agent 03 · Output</div>
+  <h2>출력 예시는 이렇게 받습니다</h2>
+  <div class="timeline mt34">
+    <div><b>14:00</b><span>카페 도착 · 대화하기 좋은 좌석 중심, 웨이팅 긴 곳 제외</span></div>
+    <div><b>15:30</b><span>근처 산책 · 사진 찍기 좋은 거리 위주, 도보 15분 이내</span></div>
+    <div><b>17:30</b><span>저녁 식사 · 예약 가능하거나 웨이팅 적은 곳 우선</span></div>
+    <div><b>19:30</b><span>디저트 또는 소품샵 · 체력과 날씨에 따라 조정</span></div>
+    <div><b>Plan B</b><span>비 올 경우 실내 카페 + 전시 후보로 전환</span></div>
+  </div>
+</section>
+
+<section class="slide agent-course">
+  <div class="eyebrow">Agent 03 · Share Message</div>
+  <h2>상대방에게 보낼 메시지까지 만들 수 있습니다</h2>
+  <div class="code mt34">이번 주말 성수 쪽으로 가볍게 다녀오는 코스로 짜봤어 ㅎㅎ
+
+처음엔 카페에서 천천히 있다가, 근처 산책하고 저녁 먹는 흐름이야.
+너무 이동 많지 않게 잡았고, 비 오면 실내 위주로 바꿀 수 있게 Plan B도 생각해뒀어.
+
+괜찮으면 내가 예약 가능한 곳 먼저 확인해볼게!</div>
+  <div class="insight"><div class="label">생활형 사례의 역할</div><strong>업무가 아니어도 Agent의 본질은 같습니다. 기준을 문서화하고, 그 기준을 반복 적용하게 만드는 것입니다.</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Synthesis</div>
+  <h2>세 멘토 Agent의 공통 구조</h2>
+  <div class="matrix mt34">
+    <div class="head">구분</div><div class="head">콘텐츠 편집장</div><div class="head">멘토링 피드백 OS</div><div class="head">취향 코스 매니저</div>
+    <div>문제정의</div><div>업체 조건과 실제 후기를 분리해 발행 패키지로 편집</div><div>제출물과 이전 피드백을 근거로 다음 액션까지 정리</div><div>취향보다 제약을 먼저 적용해 실행 가능한 일정 설계</div>
+    <div>기준</div><div>내 말투, 채널 문법, 과장 금지</div><div>루브릭, 근거, 피드백 톤, 실행 가능성</div><div>비선호, 동선, 예산, 날씨, 웨이팅</div>
+    <div>Skill</div><div>조건 분리, 후기 추출, 채널 변환, 검수</div><div>근거 추출, 루브릭 판단, 우선순위, 다음 액션</div><div>조건 정리, 현실성 검수, Plan B, 공유 메시지</div>
+    <div>Check</div><div>없는 경험, 광고문 과다, 조건 누락</div><div>근거 연결, 인신평가 금지, 실행 가능성</div><div>불확실한 장소 확정, 무리한 동선, 예산 초과</div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Your Agent</div>
+  <h2>이제 수강생은 사례를 자기 업무로 바꾸면 됩니다</h2>
+  <div class="matrix mt34">
+    <div class="head">질문</div><div class="head">콘텐츠 편집장</div><div class="head">멘토링 피드백 OS</div><div class="head">내 Agent에 적용</div>
+    <div>반복 업무</div><div>발행 패키지 만들기</div><div>피드백 카드와 다음 액션 만들기</div><div>내가 매주 반복하는 일은?</div>
+    <div>Input</div><div>업체 조건, 후기 메모</div><div>제출물, 과제 요구사항, 이전 피드백</div><div>이번 작업에서 읽을 원본은?</div>
+    <div>Reference</div><div>내 말투, 채널 문법</div><div>루브릭, 좋은 답안, 피드백 톤</div><div>앞으로도 따라갈 기준은?</div>
+    <div>Skill</div><div>조건 분리 → 말투 적용 → 변환</div><div>근거 추출 → 루브릭 판단 → 다음 액션</div><div>처음으로 파일화할 작업 순서는?</div>
+    <div>Check</div><div>없는 경험, 과장, 누락 검수</div><div>근거, 톤, 실행 가능성 검수</div><div>사람이 마지막에 확인할 기준은?</div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">What Good Looks Like</div>
+  <h2>잘하는 사람의 Agent는 결과물이 아니라 기준이 쌓입니다</h2>
+  <div class="grid three mt34">
+    <div class="card good"><h3>처음 한 번</h3><p>문제정의, 폴더, CLAUDE.md, 첫 Skill을 만듭니다. 이때는 조금 느립니다.</p></div>
+    <div class="card good"><h3>두 번째부터</h3><p>자료만 넣고 짧은 프롬프트로 실행합니다. 기준이 이미 쌓여 있어 결과가 안정됩니다.</p></div>
+    <div class="card good"><h3>쌓일수록</h3><p>좋은 예시, 실패 예시, 검수 기준이 reference가 되어 Agent가 점점 내 방식에 가까워집니다.</p></div>
+  </div>
+  <div class="insight"><div class="label">Final Mentor Insight</div><strong>잘 쓰는 사람은 매번 프롬프트를 잘 쓰는 사람이 아니라, 다시 따라 할 수 있는 기준을 남기는 사람입니다.</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Folder Mapping</div>
+  <h2>문제정의 요소는 폴더 위치로 바로 바뀝니다</h2>
+  <div class="matrix mt34">
+    <div class="head">문제정의 요소</div><div class="head">폴더</div><div class="head">넣을 파일</div><div class="head">예시</div>
+    <div>목적/제약</div><div>00_admin</div><div>문제정의, 운영 기준, 금지사항</div><div>“출처 없는 원인 단정 금지”</div>
+    <div>입력 자료</div><div>01_input</div><div>원본 메모, 요청사항, 후보 자료</div><div>방문_후기_메모.md</div>
+    <div>판단 기준</div><div>02_reference</div><div>과거 결과물, 분류 기준, 좋은 예시</div><div>이전 보고서 예시.md</div>
+    <div>중간 작업</div><div>03_working</div><div>분석 초안, 비교표, 임시 결과</div><div>반복패턴_초안.md</div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Good Definition</div>
+  <h2>나쁜 설계는 역할이 흐리고, 좋은 설계는 기준이 보입니다</h2>
+  <div class="grid two mt34">
+    <div class="card bad"><h3>나쁜 설계</h3><ul><li>블로그 잘 써주는 Agent</li><li>피드백 잘해주는 Agent</li><li>데이트 코스 추천해주는 Agent</li><li>자료 조사 잘해주는 Agent</li></ul></div>
+    <div class="card good"><h3>좋은 설계</h3><ul><li>업체 조건과 방문 후기를 분리해 내 말투로 발행 패키지를 만드는 Agent</li><li>제출물과 이전 피드백을 근거로 강점, 보완점, 다음 액션을 남기는 Agent</li><li>선호/비선호와 현실 제약을 기준으로 시간대별 코스와 Plan B를 만드는 Agent</li><li>출처와 판단 기준을 남기며 비교표와 요약본을 만드는 Agent</li></ul></div>
+  </div>
+  <div class="insight"><div class="label">판단 기준</div><strong>좋은 Agent 이름에는 “무엇을 읽고, 어떤 기준으로, 무엇을 만드는지”가 드러납니다.</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Agent Blueprint</div>
+  <h2>좋은 Agent 설계서는 한 장으로 설명됩니다</h2>
+  <div class="matrix mt34">
+    <div class="head">항목</div><div class="head">작성 질문</div><div class="head">콘텐츠 편집장 예시</div><div class="head">멘토링 피드백 OS 예시</div>
+    <div>Role</div><div>어떤 부캐인가?</div><div>내 말투를 지키는 발행 편집장</div><div>성장 로그를 남기는 피드백 운영자</div>
+    <div>Problem</div><div>무엇을 어떤 기준으로 바꾸나?</div><div>조건과 후기를 분리해 발행 패키지로 바꿈</div><div>제출물을 루브릭 기준의 다음 액션으로 바꿈</div>
+    <div>Reference</div><div>무엇을 따라가나?</div><div>기존 말투, 제목 예시, 채널 문법</div><div>루브릭, 좋은 답안, 피드백 톤</div>
+    <div>Guardrail</div><div>무엇을 하면 안 되나?</div><div>없는 경험, 과장, 사실 단정 금지</div><div>인신평가, 근거 없는 칭찬, 추상 조언 금지</div>
+    <div>Output</div><div>무엇으로 끝나나?</div><div>원고, 캡션, 첫댓글, 해시태그, 검수표</div><div>피드백 카드, 우선순위, 다음 액션, 멘토링 로그</div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Review Rubric</div>
+  <h2>멘토 피드백 기준</h2>
+  <div class="matrix mt34">
+    <div class="head">점검 항목</div><div class="head">좋음</div><div class="head">보완 필요</div><div class="head">피드백 문장</div>
+    <div>Input</div><div>파일명과 출처가 명확함</div><div>“자료들”처럼 뭉뚱그림</div><div>처음 읽을 파일을 하나로 지정해보세요</div>
+    <div>Reference</div><div>따라야 할 예시와 기준이 분리됨</div><div>원본 자료와 좋은 예시가 섞여 있음</div><div>이번 자료와 앞으로 반복할 기준을 나눠보세요</div>
+    <div>Rule</div><div>판단 기준과 예외가 있음</div><div>기준 없이 알아서 판단해야 함</div><div>사람이 하던 기준 3개를 먼저 적어보세요</div>
+    <div>Skill</div><div>읽기, 판단, 만들기, 검수 순서가 보임</div><div>최종본까지 한 번에 감</div><div>이번 주에는 첫 Skill 하나만 작게 쪼개보세요</div>
+    <div>Output</div><div>표, 목록, 초안 등 확인 가능</div><div>“좋은 결과”처럼 추상적</div><div>결과물을 사람이 검수할 형태로 바꿔보세요</div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Practice Template</div>
+  <h2>실습은 “설계서 → 폴더 → Skill” 순서로 만듭니다</h2>
+  <div class="code mt34">1. Agent 설계서
+- 이름:
+- 반복 업무:
+- 문제정의 한 문장: 무엇을 읽고, 어떤 기준으로, 무엇을 만드는가
+- Input:
+- Reference:
+- Rule / Guardrail:
+- Output:
+- Check:
+
+2. 폴더 구조
+- 00_admin: 문제정의, 운영 기준, 금지조건
+- 01_input: 이번 작업의 원본 자료
+- 02_reference: 계속 따라갈 기준과 예시
+- 03_skills: 반복 실행할 작업 절차
+- 04_output: 최종 결과물
+
+3. 첫 Skill 파일
+- 목표:
+- 반드시 읽을 파일:
+- 작업 순서 1~5:
+- 하면 안 되는 일:
+- 출력 형식:</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Next Action</div>
+  <h2>수강생에게 남길 과제</h2>
+  <div class="grid two mt34">
+    <div class="card"><h3>필수 제출</h3><ul><li>내 업무 부캐 Agent 설계서</li><li>00_admin~04_output 폴더 구조</li><li>Input / Reference 샘플 파일 각 1개</li><li>첫 Skill 파일 1개</li><li>실행 프롬프트와 Check 기준</li></ul></div>
+    <div class="card"><h3>선택 제출</h3><ul><li>폴더 구조 스크린샷</li><li>CLAUDE.md 초안</li><li>실제 샘플 데이터 5~10행</li><li>Agent로 실행해본 결과</li><li>결과를 보고 고친 Rule / Skill 변경점</li></ul></div>
+  </div>
+  <div class="insight"><div class="label">마무리 멘트</div><strong>“오늘 과제의 핵심은 완벽한 자동화가 아니라, 내 업무 기준이 폴더와 Skill 파일로 남아 있는지입니다.”</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Final Summary</div>
+  <h2>3주차 핵심 정리</h2>
+  <div class="grid four mt34">
+    <div class="card"><h3>1. 인트로 인사이트</h3><p>Agent가 막히는 이유는 대개 도구가 아니라 문제정의, 범위, 기준 부재에 있습니다.</p></div>
+    <div class="card"><h3>2. 멘토 사례로 학습</h3><p>잘하는 사람은 콘텐츠, 피드백, 일정 같은 반복 업무를 기준과 흐름으로 바꿉니다.</p></div>
+    <div class="card"><h3>3. 기준은 문서화</h3><p>Input, Reference, Rule, Skill, Output, Check를 분리해야 결과가 안정됩니다.</p></div>
+    <div class="card"><h3>4. 첫 Skill부터 시작</h3><p>폴더를 만들고, 첫 Skill 파일 하나를 쓰고, 실행 후 기준을 고치는 것이 시작입니다.</p></div>
+  </div>
+</section>
+
+<section class="slide dark center closing">
+  <div>
+    <div class="eyebrow">Closing</div>
+    <h1>잘하는 사람은<br>기준을 남깁니다</h1>
+    <p class="lead muted">오늘 가져가야 할 핵심 문장 3개입니다.</p>
+    <div class="closing-lines">
+      <div class="closing-line"><b>01</b><span>Agent는 프롬프트가 아니라 반복 가능한 업무 구조입니다.</span></div>
+      <div class="closing-line"><b>02</b><span>좋은 문제정의는 무엇을 읽고, 어떤 기준으로, 무엇을 만들지 드러냅니다.</span></div>
+      <div class="closing-line"><b>03</b><span>잘하는 사람은 매번 설명하지 않고 폴더와 Skill에 기준을 남깁니다.</span></div>
+    </div>
+    <div class="meta" style="color:#cbd5e1">Thank you</div>
+  </div>
+</section>
+
+</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let current=0;
+slides.forEach((slide,index)=>{
+  const no=document.createElement('div');
+  no.className='slide-no';
+  no.textContent=`${index+1} / ${slides.length}`;
+  slide.appendChild(no);
+});
+function showSlide(i){
+  current=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((slide,index)=>slide.classList.toggle('active',index===current));
+  document.getElementById('progress').style.width=((current+1)/slides.length*100)+'%';
+}
+function nextSlide(){showSlide(current+1)}
+function prevSlide(){showSlide(current-1)}
+document.addEventListener('keydown',event=>{
+  if(['ArrowRight','PageDown',' '].includes(event.key)){event.preventDefault();nextSlide();}
+  if(['ArrowLeft','PageUp'].includes(event.key)){event.preventDefault();prevSlide();}
+  if(event.key==='Home')showSlide(0);
+  if(event.key==='End')showSlide(slides.length-1);
+});
+showSlide(0);
+</script>
+</body>
+</html>
