@@ -8,6 +8,6 @@
 
 ## 보기
 
+- [강의자료 바로 보기](https://leeyoojinwork-pm.github.io/likelion-gwangra-3-agent-lecture/)
 - `index.html`
 - `멋사3기_3주차_문제정의_AI부캐Agent_QA수정.html`
-
