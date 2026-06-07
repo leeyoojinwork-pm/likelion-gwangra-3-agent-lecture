@@ -2927,6 +2927,337 @@ h2{
   .slide{padding:34px 24px;overflow:auto} h1{font-size:42px} h2{font-size:32px}.lead{font-size:20px}
   .cover-inner,.chapter-wrap,.two,.three,.four,.system-board,.system-item,.agent-cycle,.cycle-flow,.cycle-loop,.pillars-wrap,.layer-diagram,.layer-row,.skill-diagram,.storyline,.agent-translation,.translation-row,.folder-layout,.folder-guide-item{grid-template-columns:1fr}.visual{height:auto;min-height:360px}.matrix{grid-template-columns:1fr}.matrix div{border-right:0!important}.flow-item,.mini-row,.timeline div,.thinking-step,.thinking-note{grid-template-columns:1fr}.thinking-step .think{border-right:0;border-bottom:1px solid var(--line)}.layer-axis{display:none}.skill-step,.cycle-step{border-right:0;border-bottom:1px solid var(--line)}.skill-step:after,.cycle-step:after{content:none}.story-step{border-right:0;border-bottom:1px solid var(--line)}.translation-arrow{display:none}
 }
+
+/* ===== DIAGRAM ENHANCEMENT SYSTEM ===== */
+
+/* Staggered entry for cards & diagram children */
+.slide.active .grid>.card,
+.slide.active .problem-grid>.card,
+.slide.active .folder-template>.folder-template-card,
+.slide.active .quality-rules>.quality-rule,
+.slide.active .glossary-grid>.glossary-card,
+.slide.active .synthesis-flow>.synthesis-step,
+.slide.active .checkpoint-grid>.checkpoint-card,
+.slide.active .vt-item{
+  opacity:0;animation:flowIn .4s ease forwards;
+}
+.slide.active .grid>.card:nth-child(1),
+.slide.active .glossary-grid>.glossary-card:nth-child(1),
+.slide.active .synthesis-flow>.synthesis-step:nth-child(1),
+.slide.active .checkpoint-grid>.checkpoint-card:nth-child(1),
+.slide.active .vt-item:nth-child(1){animation-delay:.06s}
+.slide.active .grid>.card:nth-child(2),
+.slide.active .glossary-grid>.glossary-card:nth-child(2),
+.slide.active .synthesis-flow>.synthesis-step:nth-child(2),
+.slide.active .checkpoint-grid>.checkpoint-card:nth-child(2),
+.slide.active .vt-item:nth-child(2){animation-delay:.14s}
+.slide.active .grid>.card:nth-child(3),
+.slide.active .glossary-grid>.glossary-card:nth-child(3),
+.slide.active .synthesis-flow>.synthesis-step:nth-child(3),
+.slide.active .checkpoint-grid>.checkpoint-card:nth-child(3),
+.slide.active .vt-item:nth-child(3){animation-delay:.22s}
+.slide.active .grid>.card:nth-child(4),
+.slide.active .synthesis-flow>.synthesis-step:nth-child(4),
+.slide.active .vt-item:nth-child(4){animation-delay:.30s}
+.slide.active .grid>.card:nth-child(5),
+.slide.active .vt-item:nth-child(5){animation-delay:.38s}
+.slide.active .grid>.card:nth-child(6){animation-delay:.46s}
+.slide.active .problem-grid>.card:nth-child(1){animation-delay:.06s}
+.slide.active .problem-grid>.card:nth-child(2){animation-delay:.12s}
+.slide.active .problem-grid>.card:nth-child(3){animation-delay:.18s}
+.slide.active .problem-grid>.card:nth-child(4){animation-delay:.24s}
+.slide.active .problem-grid>.card:nth-child(5){animation-delay:.30s}
+.slide.active .problem-grid>.card:nth-child(6){animation-delay:.36s}
+.slide.active .folder-template>.folder-template-card:nth-child(1){animation-delay:.06s}
+.slide.active .folder-template>.folder-template-card:nth-child(2){animation-delay:.14s}
+.slide.active .folder-template>.folder-template-card:nth-child(3){animation-delay:.22s}
+.slide.active .folder-template>.folder-template-card:nth-child(4){animation-delay:.30s}
+.slide.active .folder-template>.folder-template-card:nth-child(5){animation-delay:.38s}
+.slide.active .quality-rules>.quality-rule:nth-child(1){animation-delay:.08s}
+.slide.active .quality-rules>.quality-rule:nth-child(2){animation-delay:.16s}
+.slide.active .quality-rules>.quality-rule:nth-child(3){animation-delay:.24s}
+.slide.active .quality-rules>.quality-rule:nth-child(4){animation-delay:.32s}
+.slide.active .quality-rules>.quality-rule:nth-child(5){animation-delay:.40s}
+
+/* Container-level stagger for multi-panel diagrams */
+.slide.active .opening-structure>*,
+.slide.active .misconception-map>*,
+.slide.active .structure-map>*,
+.slide.active .os-architecture>*,
+.slide.active .quality-system>*,
+.slide.active .as-is-to-be>*,
+.slide.active .layer-architecture>*,
+.slide.active .agent-basics-grid>*,
+.slide.active .why-shift>*,
+.slide.active .bridge-clean>*{
+  opacity:0;animation:flowIn .44s ease forwards;
+}
+.slide.active .opening-structure>:nth-child(1),
+.slide.active .why-shift>:nth-child(1),
+.slide.active .as-is-to-be>:nth-child(1),
+.slide.active .bridge-clean>:nth-child(1){animation-delay:.08s}
+.slide.active .opening-structure>:nth-child(2),
+.slide.active .why-shift>:nth-child(2),
+.slide.active .as-is-to-be>:nth-child(2),
+.slide.active .bridge-clean>:nth-child(2){animation-delay:.22s}
+.slide.active .opening-structure>:nth-child(3),
+.slide.active .why-shift>:nth-child(3),
+.slide.active .as-is-to-be>:nth-child(3),
+.slide.active .bridge-clean>:nth-child(3){animation-delay:.36s}
+.slide.active .why-shift>:nth-child(4){animation-delay:.44s}
+.slide.active .why-shift>:nth-child(5){animation-delay:.52s}
+
+/* Focal element pulse (transform-based, avoids box-shadow) */
+@keyframes focalPulse{
+  0%,100%{transform:scale(1);filter:brightness(1)}
+  50%{transform:scale(1.018);filter:brightness(1.05)}
+}
+.slide.active .agent-center-label,
+.slide.active .ia-root,
+.slide.active .workspace-folder,
+.slide.active .six-center,
+.slide.active .no-mark{
+  animation:focalPulse 2.6s ease-in-out .7s infinite!important;
+}
+.slide.active .os-engine{
+  animation:focalPulse 3s ease-in-out .5s infinite!important;
+}
+.slide.active .opening-to-be{
+  animation:focalPulse 3.2s ease-in-out .4s infinite!important;
+}
+
+/* Connector arrow entry animation */
+@keyframes arrowSlide{
+  from{opacity:0;transform:translateX(-8px)}
+  to{opacity:1;transform:translateX(0)}
+}
+.slide.active .role-step:not(:last-child):after,
+.slide.active .method-step:not(:last-child):after,
+.slide.active .workflow-row .flow-item:not(:last-child):after,
+.slide.active .synthesis-flow .synthesis-step:not(:last-child):after{
+  animation:arrowSlide .35s ease .5s both!important;
+}
+
+/* ===== NEW COMPONENT STYLES ===== */
+
+/* Visual Timeline (Agenda) */
+.visual-timeline{
+  margin-top:34px;
+  position:relative;
+  padding-left:52px;
+}
+.visual-timeline::before{
+  content:"";
+  position:absolute;
+  left:20px;
+  top:8px;
+  bottom:8px;
+  width:3px;
+  background:linear-gradient(180deg,#244497,#6d85bd,#9baeda)!important;
+}
+.vt-item{
+  position:relative;
+  display:grid;
+  grid-template-columns:90px 1fr;
+  gap:18px;
+  align-items:center;
+  padding:18px 24px;
+  margin-bottom:14px;
+  background:#fff!important;
+  border:1px solid #c4d1e3!important;
+  border-left:0!important;
+}
+.vt-item::before{
+  content:"";
+  position:absolute;
+  left:-40px;top:50%;
+  transform:translateY(-50%);
+  width:16px;height:16px;
+  background:#244497!important;
+  border:3px solid #f7f9fc;
+  outline:2px solid #244497;
+}
+.vt-item:nth-child(2){border-top:4px solid #244497!important}
+.vt-item:nth-child(2)::before{width:20px;height:20px;left:-42px}
+.vt-item:nth-child(4){border-top:4px solid #3760b5!important}
+.vt-item:nth-child(4)::before{width:20px;height:20px;left:-42px}
+.vt-item b{
+  color:#244497!important;
+  font-size:24px!important;
+  text-align:center;
+}
+.vt-item span{
+  color:#334155!important;
+  font-size:20px!important;
+  line-height:1.36!important;
+}
+
+/* Glossary icon cards */
+.glossary-grid{
+  margin-top:34px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.glossary-card{
+  border:1px solid #c4d1e3!important;
+  border-top:5px solid #244497!important;
+  background:#fff!important;
+  padding:24px 22px;
+  min-height:185px;
+}
+.glossary-card .term{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+}
+.glossary-card .term .icon-dot{
+  width:38px;height:38px;min-width:38px;
+  background:#244497!important;
+  color:#fff!important;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px!important;font-weight:700!important;
+}
+.glossary-card .term b{
+  color:#122348!important;
+  font-size:26px!important;
+}
+.glossary-card .desc{
+  color:#334155!important;
+  font-size:18px!important;
+  line-height:1.42!important;
+  margin-bottom:10px;
+}
+.glossary-card .analogy{
+  padding-top:10px;
+  border-top:1px solid #e2e8f0;
+  color:#244497!important;
+  font-size:16px!important;
+  font-style:italic;
+}
+.glossary-grid>.glossary-card:nth-child(2n){border-top-color:#3760b5!important}
+.glossary-grid>.glossary-card:nth-child(3n){border-top-color:#6d85bd!important}
+
+/* Synthesis flow diagram */
+.synthesis-flow{
+  margin-top:34px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border:1px solid #c4d1e3;
+}
+.synthesis-step{
+  position:relative;
+  padding:26px 22px;
+  min-height:250px;
+  border-right:1px solid #c4d1e3;
+  background:#fff!important;
+}
+.synthesis-step:last-child{border-right:0}
+.synthesis-step:not(:last-child)::after{
+  content:"";
+  position:absolute;
+  right:-15px;top:50%;
+  width:28px;height:4px;
+  background:#244497!important;
+  z-index:2;
+}
+.synthesis-step .syn-num{
+  display:inline-flex;
+  width:34px;height:34px;
+  align-items:center;justify-content:center;
+  background:#244497!important;
+  color:#fff!important;
+  font-size:15px!important;font-weight:700!important;
+  margin-bottom:16px;
+}
+.synthesis-step h3{margin-bottom:12px}
+.synthesis-step:last-child{
+  background:#eaf1ff!important;
+  border-top:5px solid #244497;
+}
+
+/* Checkpoint interactive cards */
+.checkpoint-grid{
+  margin-top:34px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.checkpoint-card{
+  border:2px dashed #b8c8df!important;
+  background:#fafcff!important;
+  padding:28px 24px;
+  min-height:220px;
+  position:relative;
+}
+.checkpoint-card::before{
+  content:"?";
+  position:absolute;
+  right:16px;top:14px;
+  width:36px;height:36px;
+  background:#244497!important;
+  color:#fff!important;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px!important;font-weight:700!important;
+}
+.checkpoint-card h3{
+  color:#244497!important;
+  margin-bottom:14px;
+  padding-right:44px;
+}
+.checkpoint-card p{
+  font-size:20px!important;
+  line-height:1.42!important;
+}
+.checkpoint-card .write-line{
+  margin-top:18px;
+  padding-top:14px;
+  border-top:2px dashed #cfd9e8;
+  min-height:28px;
+  color:#94a3b8!important;
+  font-size:16px!important;
+  font-style:italic;
+}
+
+/* Input vs Reference VS badge */
+.comparison-vs{position:relative}
+.comparison-vs::after{
+  content:"VS";
+  position:absolute;
+  left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  width:52px;height:52px;
+  background:#244497!important;
+  color:#fff!important;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px!important;font-weight:900!important;
+  letter-spacing:.04em;
+  z-index:3;
+}
+
+/* Code block line highlights */
+.code .hl{
+  background:rgba(36,68,151,.15);
+  display:block;
+  margin:0 -20px;
+  padding:0 20px;
+}
+
+/* Chapter slide cleanup */
+.slide.chapter.active::after{content:none!important}
+
+@media(max-width:640px){
+  .visual-timeline{padding-left:32px}
+  .visual-timeline::before{left:10px}
+  .vt-item{grid-template-columns:1fr}
+  .vt-item::before{left:-22px;width:10px;height:10px}
+  .glossary-grid,.synthesis-flow,.checkpoint-grid{grid-template-columns:1fr}
+  .synthesis-step{border-right:0;border-bottom:1px solid #c4d1e3}
+  .synthesis-step:not(:last-child)::after{content:none}
+  .comparison-vs::after{display:none}
+}
 </style>
 </head>
 <body>
@@ -3069,12 +3400,12 @@ h2{
   <div class="eyebrow">Agenda</div>
   <h2>오늘은 하나의 Agent가 완성되는 순서대로 갑니다</h2>
   <p class="lead">숙제에서 가져온 과제 정의를 바로 실행할 수 있는 Agent 구조로 바꾸는 시간입니다.</p>
-  <div class="timeline mt34">
-    <div><b>10분</b><span>Agent 기초 — 착각 버리기, 온보딩 관점, Input과 Reference 분리</span></div>
-    <div><b>30분</b><span>메인 케이스 — 콘텐츠 편집장 Agent를 문제정의부터 검수까지 완주</span></div>
-    <div><b>5분</b><span>데모 — 실제 Claude 실행 화면 확인</span></div>
-    <div><b>30분</b><span>실습 — 내 업무 Agent 온보딩 문서, 폴더, 첫 Skill 작성</span></div>
-    <div><b>5분</b><span>마무리 — 핵심 정리와 과제 안내</span></div>
+  <div class="visual-timeline">
+    <div class="vt-item"><b>10분</b><span>Agent 기초 — 착각 버리기, 온보딩 관점, Input과 Reference 분리</span></div>
+    <div class="vt-item"><b>30분</b><span>메인 케이스 — 콘텐츠 편집장 Agent를 문제정의부터 검수까지 완주</span></div>
+    <div class="vt-item"><b>5분</b><span>데모 — 실제 Claude 실행 화면 확인</span></div>
+    <div class="vt-item"><b>30분</b><span>실습 — 내 업무 Agent 온보딩 문서, 폴더, 첫 Skill 작성</span></div>
+    <div class="vt-item"><b>5분</b><span>마무리 — 핵심 정리와 과제 안내</span></div>
   </div>
 </section>
 
@@ -3136,7 +3467,7 @@ h2{
 <section class="slide">
   <div class="eyebrow">Input vs Reference</div>
   <h2>결과가 흔들리는 순간은<br>이번 재료와 반복 기준이 섞일 때입니다</h2>
-  <div class="grid two mt34">
+  <div class="grid two mt34 comparison-vs">
     <div class="card"><span class="badge">Input</span><h3>이번 작업에서만 쓰는 자료</h3><ul><li>이번 업체 가이드라인</li><li>이번 방문 후기 메모</li><li>이번 사진 목록</li><li>이번 필수 포함 요청사항</li></ul></div>
     <div class="card"><span class="badge">Reference</span><h3>앞으로도 반복해서 따라갈 기준</h3><ul><li>내 기존 블로그 말투</li><li>잘 된 제목 예시</li><li>인스타 피드 문법</li><li>검수 체크리스트와 금지사항</li></ul></div>
   </div>
@@ -3310,12 +3641,11 @@ h2{
 <section class="slide agent-content">
   <div class="eyebrow">Agent 01 · Skill File</div>
   <h2>Skill 파일 하나가<br>매번 설명하던 편집 순서를 대신합니다</h2>
-  <div class="code mt34">03_skills/채널별_발행패키지_만들기.md
-
-목표:
+  <div class="code mt34"><span class="hl">03_skills/채널별_발행패키지_만들기.md</span>
+<span class="hl">목표:</span>
 - 업체 조건과 실제 후기를 분리해 읽고, 내 말투와 채널 문법을 유지한 발행 패키지로 변환한다.
 
-반드시 읽을 파일:
+<span class="hl">반드시 읽을 파일:</span>
 - 00_admin/편집장_역할지침.md
 - 00_admin/절대_하지_말_것.md
 - 01_input/업체_가이드라인.md
@@ -3323,15 +3653,15 @@ h2{
 - 02_reference/기존_블로그_말투.md
 - 02_reference/인스타_피드_예시.md
 
-작업 순서:
+<span class="hl">작업 순서:</span>
 1. 타겟 독자, 목적, 핵심 메시지를 한 줄로 정한다.
 2. 업체 필수 조건과 개인 경험을 분리한다.
-3. 실제 경험으로 확인되지 않는 표현, 감정, 효과는 삭제한다.
+<span class="hl">3. 실제 경험으로 확인되지 않는 표현, 감정, 효과는 삭제한다.</span>
 4. 기존 말투를 기준으로 문장 길이와 표현 강도를 맞춘다.
 5. 블로그는 검색형 문장, 인스타는 관계형 문장, 첫댓글은 정보형 문장으로 쓴다.
-6. 마지막에 SEO 키워드, 누락, 과장, 없는 경험 생성 여부를 표로 검수한다.
+<span class="hl">6. 마지막에 SEO 키워드, 누락, 과장, 없는 경험 생성 여부를 표로 검수한다.</span>
 
-출력:
+<span class="hl">출력:</span>
 - 블로그 제목 후보 5개
 - 블로그 본문 보완안
 - 인스타 캡션
@@ -3405,25 +3735,24 @@ h2{
 <section class="slide">
   <div class="eyebrow">Synthesis</div>
   <h2>결국 콘텐츠 편집장 Agent는<br>이 한 흐름으로 반복됩니다</h2>
-  <div class="grid four mt34">
-    <div class="card"><span class="badge">문제정의</span><h3>조건과 후기를 분리</h3><p>업체 조건은 반영하고, 실제 경험은 따로 살립니다.</p></div>
-    <div class="card"><span class="badge">기준</span><h3>내 말투 유지</h3><p>문장 길이, 표현 강도, 제목 패턴을 맞춥니다.</p></div>
-    <div class="card"><span class="badge">Skill</span><h3>채널별 변환</h3><p>블로그, 인스타, 첫댓글을 각각 다르게 씁니다.</p></div>
-    <div class="card good"><span class="badge">Check</span><h3>발행 전 검수</h3><p>없는 경험, 과장, 조건 누락을 마지막에 확인합니다.</p></div>
+  <div class="synthesis-flow">
+    <div class="synthesis-step"><span class="syn-num">1</span><span class="badge">문제정의</span><h3>조건과 후기를 분리</h3><p>업체 조건은 반영하고, 실제 경험은 따로 살립니다.</p></div>
+    <div class="synthesis-step"><span class="syn-num">2</span><span class="badge">기준</span><h3>내 말투 유지</h3><p>문장 길이, 표현 강도, 제목 패턴을 맞춥니다.</p></div>
+    <div class="synthesis-step"><span class="syn-num">3</span><span class="badge">Skill</span><h3>채널별 변환</h3><p>블로그, 인스타, 첫댓글을 각각 다르게 씁니다.</p></div>
+    <div class="synthesis-step"><span class="syn-num">4</span><span class="badge">Check</span><h3>발행 전 검수</h3><p>없는 경험, 과장, 조건 누락을 마지막에 확인합니다.</p></div>
   </div>
 </section>
 
 <section class="slide">
   <div class="eyebrow">Glossary</div>
   <h2>용어가 헷갈리면<br>이 기준으로만 구분하면 됩니다</h2>
-  <div class="matrix mt34">
-    <div class="head">용어</div><div class="head">한 줄 설명</div><div class="head">비유</div>
-    <div>Input</div><div>이번 작업에서만 쓰는 원본 자료</div><div>오늘의 재료</div>
-    <div>Reference</div><div>앞으로도 반복 적용할 기준과 예시</div><div>레시피북</div>
-    <div>Skill</div><div>읽기→판단→만들기→검수 순서를 적은 파일</div><div>업무 매뉴얼</div>
-    <div>Guardrail</div><div>Agent가 절대 넘으면 안 되는 금지선</div><div>안전 울타리</div>
-    <div>Output</div><div>사람이 바로 확인·사용할 수 있는 최종 결과물</div><div>완성품</div>
-    <div>Check</div><div>결과물이 기준에 맞는지 확인하는 검수 기준</div><div>품질 검사표</div>
+  <div class="glossary-grid">
+    <div class="glossary-card"><div class="term"><span class="icon-dot">I</span><b>Input</b></div><p class="desc">이번 작업에서만 쓰는 원본 자료</p><div class="analogy">비유: 오늘의 재료</div></div>
+    <div class="glossary-card"><div class="term"><span class="icon-dot">R</span><b>Reference</b></div><p class="desc">앞으로도 반복 적용할 기준과 예시</p><div class="analogy">비유: 레시피북</div></div>
+    <div class="glossary-card"><div class="term"><span class="icon-dot">S</span><b>Skill</b></div><p class="desc">읽기→판단→만들기→검수 순서를 적은 파일</p><div class="analogy">비유: 업무 매뉴얼</div></div>
+    <div class="glossary-card"><div class="term"><span class="icon-dot">G</span><b>Guardrail</b></div><p class="desc">Agent가 절대 넘으면 안 되는 금지선</p><div class="analogy">비유: 안전 울타리</div></div>
+    <div class="glossary-card"><div class="term"><span class="icon-dot">O</span><b>Output</b></div><p class="desc">사람이 바로 확인·사용할 수 있는 최종 결과물</p><div class="analogy">비유: 완성품</div></div>
+    <div class="glossary-card"><div class="term"><span class="icon-dot">C</span><b>Check</b></div><p class="desc">결과물이 기준에 맞는지 확인하는 검수 기준</p><div class="analogy">비유: 품질 검사표</div></div>
   </div>
 </section>
 
@@ -3507,10 +3836,10 @@ h2{
 <section class="slide">
   <div class="eyebrow">Checkpoint</div>
   <h2>30초만 대입해보면<br>내 업무 Agent가 보입니다</h2>
-  <div class="grid three mt34">
-    <div class="card"><h3>Input은 무엇인가요?</h3><p>내 업무에서 매번 바뀌는 원본 자료는 무엇인가요?</p></div>
-    <div class="card"><h3>Reference는 무엇인가요?</h3><p>다음에도 똑같이 적용할 기준이나 예시가 있나요?</p></div>
-    <div class="card"><h3>Guardrail은 무엇인가요?</h3><p>Agent가 절대 하면 안 되는 것은 무엇인가요?</p></div>
+  <div class="checkpoint-grid">
+    <div class="checkpoint-card"><h3>Input은 무엇인가요?</h3><p>내 업무에서 매번 바뀌는 원본 자료는 무엇인가요?</p><div class="write-line">여기에 적어보세요…</div></div>
+    <div class="checkpoint-card"><h3>Reference는 무엇인가요?</h3><p>다음에도 똑같이 적용할 기준이나 예시가 있나요?</p><div class="write-line">여기에 적어보세요…</div></div>
+    <div class="checkpoint-card"><h3>Guardrail은 무엇인가요?</h3><p>Agent가 절대 하면 안 되는 것은 무엇인가요?</p><div class="write-line">여기에 적어보세요…</div></div>
   </div>
   <div class="insight"><div class="label">진행 안내</div><strong>옆 사람과 30초만 이야기해보세요. 답이 나오면 실습 준비가 된 것입니다.</strong></div>
 </section>
