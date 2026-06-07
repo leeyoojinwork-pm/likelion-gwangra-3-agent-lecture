@@ -850,6 +850,43 @@ p,.card p,.card li{
   line-height:1.42;
   font-weight:720;
 }
+.reference-slide{
+  padding-top:40px!important;
+}
+.reference-slide h2{
+  font-size:40px!important;
+  line-height:1.08!important;
+}
+.reference-slide .reference-layout{
+  margin-top:22px;
+  grid-template-columns:.96fr 1.04fr;
+  gap:24px;
+}
+.reference-slide .reference-photo{
+  min-height:360px;
+  max-height:400px;
+}
+.reference-slide .reference-quote{
+  padding:28px 32px;
+}
+.reference-slide .reference-quote blockquote{
+  font-size:30px;
+  line-height:1.13;
+}
+.reference-slide .reference-quote .translation{
+  margin-top:16px;
+  padding-top:14px;
+  font-size:19px;
+  line-height:1.34;
+}
+.reference-slide .reference-takeaway{
+  margin-top:14px;
+  padding:14px 18px;
+}
+.reference-slide .reference-takeaway span{
+  font-size:19px;
+  line-height:1.3;
+}
 .bridge-clean{
   margin-top:30px;
   display:grid;
@@ -2530,6 +2567,9 @@ h2{
   font-size:24px!important;
   font-weight:520!important;
 }
+.key-red{
+  color:#c2413a!important;
+}
 .opening-structure{
   margin-top:34px;
   display:grid;
@@ -2950,7 +2990,7 @@ h2{
   </div>
 </section>
 
-<section class="slide">
+<section class="slide reference-slide">
   <div class="eyebrow">Reference Insight</div>
   <h2>Claude를 잘 쓰는 사람은<br>맥락이 준비되는 작업 구조를 만듭니다</h2>
   <div class="reference-layout">
@@ -3011,20 +3051,23 @@ h2{
 <section class="slide">
   <div class="eyebrow">Story Bridge</div>
   <h2>지난 흐름은 오늘 Agent 설계로 이어집니다</h2>
-  <div class="storyline mt34">
-    <div class="story-step">
+  <div class="bridge-clean">
+    <div class="bridge-card">
+      <span class="num">01</span>
       <div class="tag">이전 주차</div>
       <h3>생각의 틀을 바꿨습니다</h3>
       <p>도구처럼 시키는 방식에서 벗어나, 맥락을 공유하고 함께 일하는 방식으로 바라봤습니다.</p>
       <strong>도구 → 동료<br>지시 → 협업<br>암묵지 → 형식지</strong>
     </div>
-    <div class="story-step">
+    <div class="bridge-card">
+      <span class="num">02</span>
       <div class="tag">숙제</div>
       <h3>과제 방향을 잡아왔습니다</h3>
       <p>무엇을 자동화할까가 아니라, 내가 어떤 판단을 더 잘하고 싶은지 한 문장으로 정리했습니다.</p>
       <strong>의사결정<br>참고 자료<br>결과물과 검수 기준</strong>
     </div>
-    <div class="story-step focal">
+    <div class="bridge-card current">
+      <span class="num">03</span>
       <div class="tag">오늘</div>
       <h3>이제 구조로 만듭니다</h3>
       <p>가져온 과제 정의를 폴더, 기준, Skill, 검수 흐름으로 바꿔 반복 실행되게 만듭니다.</p>
@@ -3170,12 +3213,16 @@ h2{
 <section class="slide">
   <div class="eyebrow">Today</div>
   <h2>오늘 메인은 콘텐츠 편집장 Agent 하나입니다</h2>
-  <div class="today-focus mt34">
-    <div class="card agent-card-content today-main">
+  <div class="today-showcase">
+    <div class="today-copy">
       <span class="badge">Main Case</span>
       <h3>콘텐츠 편집장 Agent</h3>
       <p>개인 경험과 말투를 유지하면서 블로그, 인스타, 첫댓글, 해시태그, 검수표까지 발행 패키지로 정리합니다.</p>
       <div class="today-path"><span>필요성</span><span>문제정의</span><span>Skill</span><span>폴더</span><span>실행</span><span>검수</span></div>
+    </div>
+    <div class="editor-visual">
+      <img src="assets/content-editor-arms-crossed.png" alt="팔짱을 낀 콘텐츠 편집장 이미지">
+      <div class="editor-label"><b>Editor Agent</b><span>경험과 기준을 발행 패키지로 변환</span></div>
     </div>
   </div>
   <div class="insight"><div class="label">오늘 볼 순서</div><strong>필요성 → 문제정의 → Skill → 폴더 → 실행 프롬프트 → 검수 기준</strong></div>
@@ -3199,15 +3246,15 @@ h2{
   <h2>콘텐츠 편집장 Agent 하나만<br>이 여섯 칸으로 설계합니다</h2>
 	  <div class="six-map">
 	    <div class="six-col">
-	      <div class="six-node"><svg class="deck-icon small"><use href="#icon-file"></use></svg><b>Input</b><h3>이번 원본</h3><p>업체 조건, 후기 메모, 사진 목록</p></div>
-	      <div class="six-node"><svg class="deck-icon small"><use href="#icon-book"></use></svg><b>Reference</b><h3>내 기준</h3><p>기존 말투, 제목 패턴, 채널 문법</p></div>
-	      <div class="six-node"><svg class="deck-icon small"><use href="#icon-guard"></use></svg><b>Rule</b><h3>편집 규칙</h3><p>조건과 실제 경험을 분리하기</p></div>
+	      <div class="six-node"><b>Input</b><h3>이번 원본</h3><p>업체 조건, 후기 메모, 사진 목록</p></div>
+	      <div class="six-node"><b>Reference</b><h3>내 기준</h3><p>기존 말투, 제목 패턴, 채널 문법</p></div>
+	      <div class="six-node"><b>Rule</b><h3>편집 규칙</h3><p>조건과 실제 경험을 분리하기</p></div>
 	    </div>
 	    <div class="six-center"><b>콘텐츠<br>편집장</b><span>한 사례로 끝까지</span></div>
 	    <div class="six-col">
-	      <div class="six-node"><svg class="deck-icon small"><use href="#icon-list"></use></svg><b>Skill</b><h3>작업 순서</h3><p>기획 → 리서치 → 작성 → 검수</p></div>
-	      <div class="six-node"><svg class="deck-icon small"><use href="#icon-output"></use></svg><b>Output</b><h3>발행 패키지</h3><p>원고, 캡션, 첫댓글, 해시태그</p></div>
-	      <div class="six-node"><svg class="deck-icon small"><use href="#icon-check"></use></svg><b>Check</b><h3>검수 기준</h3><p>없는 경험, 과장, 누락 확인</p></div>
+	      <div class="six-node"><b>Skill</b><h3>작업 순서</h3><p>기획 → 리서치 → 작성 → 검수</p></div>
+	      <div class="six-node"><b>Output</b><h3>발행 패키지</h3><p>원고, 캡션, 첫댓글, 해시태그</p></div>
+	      <div class="six-node"><b>Check</b><h3>검수 기준</h3><p>없는 경험, 과장, 누락 확인</p></div>
     </div>
   </div>
 </section>

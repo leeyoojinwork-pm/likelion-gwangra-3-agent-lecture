@@ -643,12 +643,12 @@ p,.card p,.card li{
 .flow-item b{color:var(--agent,var(--accent));font-weight:950}
 .flow-item span{color:#4f5868}
 .cover{
-  background:#f6f4ee;
+  background:#f7f9fc;
   color:#171b22;
 }
 .cover-inner{
   grid-template-columns:1.02fr .98fr;
-  background:linear-gradient(90deg,#f6f4ee 0%,#f6f4ee 58%,#ebeef4 100%);
+  background:linear-gradient(90deg,#f7f9fc 0%,#f7f9fc 58%,#ebeef4 100%);
 }
 .cover-copy{
   padding:56px 72px 52px 82px;
@@ -850,6 +850,43 @@ p,.card p,.card li{
   line-height:1.42;
   font-weight:720;
 }
+.reference-slide{
+  padding-top:40px!important;
+}
+.reference-slide h2{
+  font-size:40px!important;
+  line-height:1.08!important;
+}
+.reference-slide .reference-layout{
+  margin-top:22px;
+  grid-template-columns:.96fr 1.04fr;
+  gap:24px;
+}
+.reference-slide .reference-photo{
+  min-height:360px;
+  max-height:400px;
+}
+.reference-slide .reference-quote{
+  padding:28px 32px;
+}
+.reference-slide .reference-quote blockquote{
+  font-size:30px;
+  line-height:1.13;
+}
+.reference-slide .reference-quote .translation{
+  margin-top:16px;
+  padding-top:14px;
+  font-size:19px;
+  line-height:1.34;
+}
+.reference-slide .reference-takeaway{
+  margin-top:14px;
+  padding:14px 18px;
+}
+.reference-slide .reference-takeaway span{
+  font-size:19px;
+  line-height:1.3;
+}
 .bridge-clean{
   margin-top:30px;
   display:grid;
@@ -935,7 +972,7 @@ p,.card p,.card li{
   font-weight:850;
 }
 .chapter{
-  background:#f6f4ee;
+  background:#f7f9fc;
   color:#171b22;
 }
 .chapter h1,.chapter h2{color:#171b22}
@@ -1072,6 +1109,54 @@ p,.card p,.card li{
   box-shadow:0 14px 36px rgba(28,34,46,.08);
 }
 .closing-line b,.closing-line span{color:#151922}
+.closing-system{
+  margin:36px auto 0;
+  display:grid;
+  grid-template-columns:1fr 70px 1fr 70px 1fr;
+  gap:0;
+  align-items:stretch;
+  max-width:1120px;
+}
+.closing-system div:not(.closing-arrow){
+  min-height:170px;
+  border:1px solid #344154;
+  background:#fff;
+  color:#111827;
+  padding:28px 26px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:left;
+}
+.closing-system b{
+  color:#244497!important;
+  font-size:17px;
+  letter-spacing:.08em;
+  margin-bottom:16px;
+}
+.closing-system span{
+  color:#111827!important;
+  font-size:30px;
+  line-height:1.18;
+}
+.closing-arrow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:44px;
+}
+.closing-final{
+  margin:30px auto 0;
+  max-width:1120px;
+  color:#f8fafc;
+  font-size:28px;
+  line-height:1.34;
+  font-weight:650;
+  text-align:left;
+  border-top:1px solid #344154;
+  padding-top:22px;
+}
 
 /* Flat lecture edit pass: no app-style icons, no decorative shadows */
 *{box-shadow:none!important}
@@ -1282,6 +1367,127 @@ p,.card p,.card li{
   line-height:1.4;
   font-weight:720;
 }
+.os-architecture{
+  margin-top:28px;
+  display:grid;
+  grid-template-columns:220px 1fr 220px;
+  grid-template-rows:150px 150px 82px;
+  gap:16px 24px;
+  align-items:stretch;
+}
+.os-inputs,
+.os-reference,
+.os-output{
+  border:1px solid #c4d1e3;
+  background:#fff;
+  padding:22px 24px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.os-inputs{grid-column:1;grid-row:1}
+.os-reference{grid-column:1;grid-row:2}
+.os-output{grid-column:3;grid-row:1 / span 2;background:#122348;color:#fff}
+.os-inputs b,
+.os-reference b,
+.os-output b{
+  display:block;
+  color:#244497;
+  font-size:23px;
+  margin-bottom:12px;
+}
+.os-output b{color:#dbe8ff}
+.os-inputs span,
+.os-reference span,
+.os-output span{
+  display:block;
+  color:#334155;
+  font-size:22px;
+  line-height:1.45;
+}
+.os-output span{color:#fff}
+.os-engine{
+  grid-column:2;
+  grid-row:1 / span 2;
+  position:relative;
+  border:3px solid #244497;
+  background:#eaf1ff;
+  padding:34px 36px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.os-engine:before,
+.os-engine:after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:25px;
+  height:3px;
+  background:#244497;
+}
+.os-engine:before{left:-27px}
+.os-engine:after{right:-27px}
+.engine-label{
+  color:#244497;
+  font-size:15px;
+  letter-spacing:.08em;
+  font-weight:760;
+  margin-bottom:12px;
+}
+.os-engine h3{
+  color:#122348!important;
+  font-size:40px!important;
+  line-height:1.1!important;
+  margin-bottom:22px;
+}
+.engine-flow{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-bottom:22px;
+}
+.engine-flow span{
+  background:#244497;
+  color:#fff;
+  padding:13px 8px;
+  text-align:center;
+  font-size:21px;
+  font-weight:650!important;
+}
+.os-engine p{
+  color:#334155!important;
+  font-size:22px!important;
+  line-height:1.36!important;
+}
+.os-checkbar{
+  grid-column:1 / span 3;
+  grid-row:3;
+  border:1px solid #c4d1e3;
+  background:#fff;
+  display:grid;
+  grid-template-columns:150px repeat(4,1fr);
+  align-items:center;
+}
+.os-checkbar b{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#244497;
+  color:#fff;
+  font-size:24px;
+}
+.os-checkbar span{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-right:1px solid #c4d1e3;
+  color:#334155;
+  font-size:20px;
+}
+.os-checkbar span:last-child{border-right:0}
 .insight,
 .slide.agent-content .insight,
 .slide.agent-lecture .insight,
@@ -1680,6 +1886,82 @@ h2{
   grid-template-columns:1fr;
   gap:18px;
 }
+.today-showcase{
+  margin-top:34px;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:28px;
+  align-items:stretch;
+  min-height:360px;
+}
+.today-copy{
+  border:1px solid #c4d1e3;
+  border-top:5px solid #244497;
+  background:#fff;
+  padding:30px 34px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.today-copy h3{
+  color:#122348!important;
+  font-size:36px!important;
+  line-height:1.12!important;
+  margin-bottom:12px;
+}
+.today-copy p{
+  color:#334155!important;
+  font-size:23px!important;
+  line-height:1.38!important;
+}
+.editor-visual{
+  position:relative;
+  min-height:360px;
+  background:#eef3fb;
+  border:1px solid #c4d1e3;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+.editor-visual:before{
+  content:"";
+  position:absolute;
+  inset:38px 42px 0;
+  border:1px solid #c4d1e3;
+  background:#fff;
+}
+.editor-visual img{
+  position:relative;
+  z-index:1;
+  height:420px;
+  max-height:calc(100% + 20px);
+  width:auto;
+  max-width:96%;
+  object-fit:contain;
+  object-position:center bottom;
+  display:block;
+}
+.editor-label{
+  position:absolute;
+  z-index:2;
+  left:28px;
+  bottom:28px;
+  background:#122348;
+  color:#fff;
+  padding:16px 18px;
+  max-width:280px;
+}
+.editor-label b{
+  display:block;
+  font-size:20px;
+  margin-bottom:6px;
+}
+.editor-label span{
+  color:#dbe8ff;
+  font-size:16px;
+  line-height:1.32;
+}
 .today-main{
   min-height:240px!important;
 }
@@ -1970,6 +2252,60 @@ h2{
   font-size:42px;
   font-weight:950;
 }
+.as-is-to-be{
+  display:grid;
+  grid-template-columns:1fr 74px 1fr;
+  gap:0;
+  align-items:stretch;
+}
+.as-card{
+  min-height:330px;
+  padding:34px 36px;
+  border:1px solid #c4d1e3;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.as-card b{
+  display:block;
+  color:#244497;
+  font-size:17px;
+  letter-spacing:.08em;
+  margin-bottom:18px;
+}
+.as-card h3{
+  color:#122348!important;
+  font-size:35px!important;
+  line-height:1.17!important;
+  margin-bottom:18px;
+}
+.as-card p{
+  color:#334155!important;
+  font-size:22px!important;
+  line-height:1.38!important;
+}
+.as-card span{
+  display:block;
+  margin-top:24px;
+  padding-top:18px;
+  border-top:1px solid #c4d1e3;
+  color:#244497;
+  font-size:22px;
+  line-height:1.34;
+}
+.as-card.good{
+  background:#eaf1ff!important;
+  border-color:#244497!important;
+}
+.as-arrow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#244497;
+  font-size:48px;
+  font-weight:650;
+}
 .problem-statement{
   max-width:1120px!important;
   margin:30px auto 0!important;
@@ -2231,27 +2567,333 @@ h2{
   font-size:24px!important;
   font-weight:520!important;
 }
+.key-red{
+  color:#c2413a!important;
+}
+.opening-structure{
+  margin-top:34px;
+  display:grid;
+  grid-template-columns:1fr 80px 1.04fr 1.05fr;
+  gap:18px;
+  align-items:center;
+}
+.opening-as-is,
+.opening-issues,
+.opening-to-be{
+  min-height:360px;
+}
+.opening-as-is{
+  position:relative;
+  padding-top:34px;
+}
+.asis-label{
+  color:#244497;
+  font-size:16px;
+  letter-spacing:.08em;
+  font-weight:760;
+  margin-bottom:14px;
+}
+.opening-structure .speech-bubble{
+  position:relative;
+  left:auto!important;
+  top:auto!important;
+  width:100%;
+  margin:0 0 18px;
+  padding:19px 22px;
+  box-shadow:none!important;
+  font-size:23px;
+}
+.opening-structure .speech-bubble:nth-of-type(3){
+  margin-left:34px;
+}
+.opening-structure .speech-bubble:nth-of-type(4){
+  margin-left:68px;
+}
+.opening-arrow{
+  color:#244497;
+  font-size:54px;
+  font-weight:650;
+  text-align:center;
+}
+.opening-issues{
+  border-left:1px solid #c7d4e4;
+  border-right:1px solid #c7d4e4;
+  display:grid;
+  grid-template-rows:repeat(3,1fr);
+  background:#fff;
+}
+.issue-row{
+  display:grid;
+  grid-template-columns:74px 1fr;
+  align-items:center;
+  border-bottom:1px solid #dbe3ef;
+}
+.issue-row:last-child{border-bottom:0}
+.issue-row b{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f1f5fb;
+  color:#244497;
+  font-size:25px;
+}
+.issue-row span{
+  padding:0 24px;
+  color:#1f2a3d;
+  font-size:25px;
+  line-height:1.28;
+}
+.opening-to-be{
+  background:#122348;
+  color:#fff;
+  padding:34px 32px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.opening-to-be .asis-label{color:#bdd0f6}
+.opening-to-be strong{
+  display:block;
+  color:#fff;
+  font-size:32px;
+  line-height:1.22;
+}
+.opening-to-be span{
+  display:block;
+  margin-top:22px;
+  color:#dbe8ff;
+  font-size:22px;
+  line-height:1.36;
+}
+.reference-takeaway{
+  margin-top:22px;
+  border:1px solid #d7dce5;
+  border-left:5px solid #c2413a;
+  background:#fff;
+  padding:18px 20px;
+}
+.reference-takeaway b{
+  display:block;
+  color:#c2413a;
+  font-size:15px;
+  letter-spacing:.08em;
+  margin-bottom:8px;
+}
+.reference-takeaway span{
+  color:#171b22;
+  font-size:23px;
+  line-height:1.35;
+}
+.reference-quote blockquote .quote-core{
+  color:#c2413a!important;
+}
+.layer-architecture{
+  margin-top:34px;
+  display:grid;
+  gap:16px;
+}
+.layer-top,
+.layer-bottom{
+  border:1px solid #c4d1e3;
+  background:#fff;
+  padding:22px 28px;
+  display:grid;
+  grid-template-columns:240px 1fr;
+  align-items:center;
+}
+.layer-top b,
+.layer-bottom b{
+  color:#244497;
+  font-size:26px;
+}
+.layer-top span,
+.layer-bottom span{
+  color:#334155;
+  font-size:24px;
+  line-height:1.32;
+}
+.layer-core-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  position:relative;
+}
+.layer-core-grid:before,
+.layer-core-grid:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  width:3px;
+  height:16px;
+  background:#244497;
+  transform:translateX(-50%);
+}
+.layer-core-grid:before{top:-16px}
+.layer-core-grid:after{bottom:-16px}
+.layer-core-grid div{
+  background:#eaf1ff;
+  border:2px solid #244497;
+  min-height:190px;
+  padding:28px 26px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.layer-core-grid b{
+  color:#122348;
+  font-size:34px;
+  margin-bottom:14px;
+}
+.layer-core-grid span{
+  color:#334155;
+  font-size:22px;
+  line-height:1.36;
+}
+.ia-map{
+  margin-top:36px;
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:26px;
+  align-items:center;
+}
+.ia-root{
+  height:250px;
+  background:#244497;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-size:38px;
+  line-height:1.1;
+  font-weight:700;
+}
+.ia-branches{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border-top:3px solid #244497;
+}
+.ia-branch{
+  position:relative;
+  min-height:250px;
+  padding:28px 20px;
+  border-right:1px solid #c4d1e3;
+  border-bottom:1px solid #c4d1e3;
+  background:#fff;
+}
+.ia-branch:first-child{border-left:1px solid #c4d1e3}
+.ia-branch:before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-34px;
+  width:1px;
+  height:34px;
+  background:#244497;
+}
+.ia-branch b{
+  display:block;
+  color:#244497;
+  font-size:23px;
+  margin-bottom:16px;
+}
+.ia-branch span{
+  display:block;
+  color:#122348;
+  font-size:30px;
+  line-height:1.15;
+  margin-bottom:16px;
+}
+.ia-branch small{
+  display:block;
+  color:#334155;
+  font-size:18px;
+  line-height:1.4;
+  font-weight:520;
+}
+.ia-branch.focal{
+  background:#eaf1ff;
+}
+.onboarding-diagram{
+  margin-top:38px;
+  display:grid;
+  grid-template-columns:1fr 54px 1fr 54px 1fr 54px 1.1fr;
+  gap:0;
+  align-items:center;
+}
+.onboarding-node,
+.onboarding-agent{
+  min-height:210px;
+  border:1px solid #c4d1e3;
+  background:#fff;
+  padding:30px 26px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
+}
+.onboarding-node b,
+.onboarding-agent b{
+  display:block;
+  color:#122348;
+  font-size:30px;
+  line-height:1.16;
+  margin-bottom:14px;
+}
+.onboarding-node span,
+.onboarding-agent span{
+  color:#334155;
+  font-size:21px;
+  line-height:1.35;
+}
+.onboarding-agent{
+  background:#122348;
+  border-color:#122348;
+}
+.onboarding-agent b,
+.onboarding-agent span{
+  color:#fff;
+}
+.onboarding-arrow{
+  color:#244497;
+  font-size:36px;
+  text-align:center;
+  font-weight:650;
+}
 @keyframes flowIn{
   from{opacity:0;transform:translateY(14px)}
   to{opacity:1;transform:translateY(0)}
 }
 .slide.active .workflow-row .flow-item,
 .slide.active .stair-step,
-.slide.active .layer-flow-row{
+.slide.active .layer-flow-row,
+.slide.active .ia-branch,
+.slide.active .onboarding-node,
+.slide.active .onboarding-agent{
   opacity:0;
   animation:flowIn .42s ease forwards;
 }
 .slide.active .workflow-row .flow-item:nth-child(1),
 .slide.active .stair-step:nth-child(1),
-.slide.active .layer-flow-row:nth-child(1){animation-delay:.08s}
+.slide.active .layer-flow-row:nth-child(1),
+.slide.active .ia-branch:nth-child(1),
+.slide.active .onboarding-node:nth-child(1){animation-delay:.08s}
 .slide.active .workflow-row .flow-item:nth-child(2),
 .slide.active .stair-step:nth-child(2),
-.slide.active .layer-flow-row:nth-child(2){animation-delay:.22s}
+.slide.active .layer-flow-row:nth-child(2),
+.slide.active .ia-branch:nth-child(2),
+.slide.active .onboarding-node:nth-child(3){animation-delay:.22s}
 .slide.active .workflow-row .flow-item:nth-child(3),
 .slide.active .stair-step:nth-child(3),
-.slide.active .layer-flow-row:nth-child(3){animation-delay:.36s}
+.slide.active .layer-flow-row:nth-child(3),
+.slide.active .ia-branch:nth-child(3),
+.slide.active .onboarding-node:nth-child(5){animation-delay:.36s}
 .slide.active .workflow-row .flow-item:nth-child(4),
-.slide.active .layer-flow-row:nth-child(4){animation-delay:.50s}
+.slide.active .layer-flow-row:nth-child(4),
+.slide.active .ia-branch:nth-child(4),
+.slide.active .onboarding-agent{animation-delay:.50s}
 .slide.active .workflow-row .flow-item:nth-child(5){animation-delay:.64s}
 @media(max-width:640px){
   .slide{padding:34px 24px;overflow:auto} h1{font-size:42px} h2{font-size:32px}.lead{font-size:20px}
@@ -2300,17 +2942,14 @@ h2{
         <div class="cover-window">
           <div class="window-top"><span></span><span></span><span></span></div>
           <div class="agent-mini-card">
-            <svg class="deck-icon small"><use href="#icon-file"></use></svg>
             <b>콘텐츠 편집장</b>
             <span>후기 / 말투 / 채널 변환</span>
           </div>
           <div class="agent-mini-card">
-            <svg class="deck-icon small"><use href="#icon-book"></use></svg>
             <b>온보딩 문서</b>
             <span>역할 / 기준 / 금지선</span>
           </div>
           <div class="agent-mini-card">
-            <svg class="deck-icon small"><use href="#icon-list"></use></svg>
             <b>업무 레시피</b>
             <span>기획 / 리서치 / 작성 / 검수</span>
           </div>
@@ -2330,21 +2969,28 @@ h2{
 <section class="slide">
   <div class="eyebrow">Opening</div>
   <h2>매번 같은 설명을 다시 하고 있지 않나요?</h2>
-  <div class="problem-visual">
-    <div class="speech-stack">
+  <div class="opening-structure">
+    <div class="opening-as-is">
+      <div class="asis-label">AS IS</div>
       <div class="speech-bubble">이거 내 말투로 해줘.</div>
       <div class="speech-bubble">아까 말한 양식으로 해줘.</div>
       <div class="speech-bubble">예시는 유지하고, 최종본은 따로 정리해줘.</div>
     </div>
-    <div class="problem-crack">
-      <div class="problem-line"><b><svg class="deck-icon small"><use href="#icon-file"></use></svg>01</b><span>매번 맥락을 새로 설명합니다.</span></div>
-      <div class="problem-line"><b><svg class="deck-icon small"><use href="#icon-book"></use></svg>02</b><span>기준이 대화 안에서 흩어집니다.</span></div>
-      <div class="problem-line"><b><svg class="deck-icon small"><use href="#icon-output"></use></svg>03</b><span>결과물이 매번 다른 모양으로 나옵니다.</span></div>
+    <div class="opening-arrow">→</div>
+    <div class="opening-issues">
+      <div class="issue-row"><b>01</b><span>맥락을 매번 다시 설명합니다.</span></div>
+      <div class="issue-row"><b>02</b><span>기준이 대화 안에서 흩어집니다.</span></div>
+      <div class="issue-row"><b>03</b><span>결과물이 매번 다른 모양으로 나옵니다.</span></div>
+    </div>
+    <div class="opening-to-be">
+      <div class="asis-label">TO BE</div>
+      <strong>설명 반복을 줄이는 방법은<br>프롬프트가 아니라 구조입니다.</strong>
+      <span>맥락, 기준, 결과 형식을 폴더와 Skill에 남깁니다.</span>
     </div>
   </div>
 </section>
 
-<section class="slide">
+<section class="slide reference-slide">
   <div class="eyebrow">Reference Insight</div>
   <h2>Claude를 잘 쓰는 사람은<br>맥락이 준비되는 작업 구조를 만듭니다</h2>
   <div class="reference-layout">
@@ -2362,21 +3008,10 @@ h2{
         오늘 만드는 Agent도 긴 요청문이 아니라<br>
         기준, 자료, 실행 순서를 갖춘 작업 구조입니다.
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Reference Visual</div>
-  <h2>Agent는 한 번의 답변이 아니라<br>운영 가능한 작업 시스템으로 설계됩니다</h2>
-  <div class="reference-image-card">
-    <div class="image-panel">
-      <img src="assets/proactive-agent-workflow.webp" alt="Code with Claude 발표 현장">
-    </div>
-    <div class="note-panel">
-      <div class="note"><b>프롬프트</b><span>한 번의 요청문이 아니라 작업을 시작시키는 트리거입니다.</span></div>
-      <div class="note"><b>시스템</b><span>Agent가 읽을 자료, 기준, 실행 순서를 미리 준비합니다.</span></div>
-      <div class="note"><b>운영</b><span>결과를 검수하고 기준을 다시 폴더와 Skill에 남깁니다.</span></div>
+      <div class="reference-takeaway">
+        <b>핵심 문장</b>
+        <span>Agent는 한 번의 답변이 아니라, 운영 가능한 작업 시스템으로 설계됩니다.</span>
+      </div>
     </div>
   </div>
 </section>
@@ -2416,20 +3051,23 @@ h2{
 <section class="slide">
   <div class="eyebrow">Story Bridge</div>
   <h2>지난 흐름은 오늘 Agent 설계로 이어집니다</h2>
-  <div class="storyline mt34">
-    <div class="story-step">
+  <div class="bridge-clean">
+    <div class="bridge-card">
+      <span class="num">01</span>
       <div class="tag">이전 주차</div>
       <h3>생각의 틀을 바꿨습니다</h3>
       <p>도구처럼 시키는 방식에서 벗어나, 맥락을 공유하고 함께 일하는 방식으로 바라봤습니다.</p>
       <strong>도구 → 동료<br>지시 → 협업<br>암묵지 → 형식지</strong>
     </div>
-    <div class="story-step">
+    <div class="bridge-card">
+      <span class="num">02</span>
       <div class="tag">숙제</div>
       <h3>과제 방향을 잡아왔습니다</h3>
       <p>무엇을 자동화할까가 아니라, 내가 어떤 판단을 더 잘하고 싶은지 한 문장으로 정리했습니다.</p>
       <strong>의사결정<br>참고 자료<br>결과물과 검수 기준</strong>
     </div>
-    <div class="story-step focal">
+    <div class="bridge-card current">
+      <span class="num">03</span>
       <div class="tag">오늘</div>
       <h3>이제 구조로 만듭니다</h3>
       <p>가져온 과제 정의를 폴더, 기준, Skill, 검수 흐름으로 바꿔 반복 실행되게 만듭니다.</p>
@@ -2485,11 +3123,20 @@ h2{
 <section class="slide">
   <div class="eyebrow">Core Message</div>
   <h2>프롬프트보다 강한 건 업무 구조입니다</h2>
-  <div class="layer-flow">
-    <div class="layer-flow-row"><div class="level">L3</div><b>Skill</b><span>반복 업무 하나를 처리하는 작업 순서입니다.</span></div>
-    <div class="layer-flow-row level-skill"><div class="level">L2</div><b>Reference</b><span>말투, 예시, 금지선처럼 계속 따라갈 기준입니다.</span></div>
-    <div class="layer-flow-row"><div class="level">L1</div><b>Folder</b><span>원본, 참고, 작업, 최종본의 위치를 나눕니다.</span></div>
-    <div class="layer-flow-row"><div class="level">L0</div><b>Prompt</b><span>마지막에는 짧은 실행 요청만 남습니다.</span></div>
+  <div class="layer-architecture">
+    <div class="layer-top">
+      <b>짧은 실행 요청</b>
+      <span>“콘텐츠 편집장 Skill 실행해줘”</span>
+    </div>
+    <div class="layer-core-grid">
+      <div><b>Folder</b><span>원본 / 참고 / 작업 / 최종본 위치</span></div>
+      <div><b>Reference</b><span>말투 / 예시 / 금지선 / 판단 기준</span></div>
+      <div><b>Skill</b><span>읽기 → 판단 → 만들기 → 검수 순서</span></div>
+    </div>
+    <div class="layer-bottom">
+      <b>반복 가능한 업무 구조</b>
+      <span>프롬프트가 길어지는 대신, Agent가 읽을 기준과 순서가 남습니다.</span>
+    </div>
   </div>
   <div class="insight"><div class="label">핵심</div><strong>잘 쓰는 사람은 질문을 길게 쓰는 사람이 아니라, <span class="key-red">기준을 남기는 사람</span>입니다.</strong></div>
 </section>
@@ -2497,25 +3144,30 @@ h2{
 	<section class="slide">
 	  <div class="eyebrow">Next Step</div>
 	  <h2>그렇다면 어떻게 해야 할까요?</h2>
-	  <div class="stair-flow">
-	    <div class="stair-step">
-	      <svg class="deck-icon"><use href="#icon-folder"></use></svg>
-	      <span class="num">01</span>
-	      <h3>자료를 나눕니다</h3>
-	      <p>이번에만 쓰는 원본과 계속 따라갈 기준을 분리합니다.</p>
+	  <div class="ia-map">
+	    <div class="ia-root">Agent OS</div>
+	    <div class="ia-branches">
+	      <div class="ia-branch">
+	        <b>01_input</b>
+	        <span>이번 원본</span>
+	        <small>업체 조건 · 후기 메모 · 사진 목록</small>
+	      </div>
+	      <div class="ia-branch">
+	        <b>02_reference</b>
+	        <span>반복 기준</span>
+	        <small>말투 · 좋은 예시 · 금지선</small>
+	      </div>
+	      <div class="ia-branch focal">
+	        <b>03_skills</b>
+	        <span>실행 순서</span>
+	        <small>읽기 → 판단 → 작성 → 검수</small>
+	      </div>
+	      <div class="ia-branch">
+	        <b>04_output</b>
+	        <span>확인 결과</span>
+	        <small>최종본 · 검수표 · 수정 로그</small>
+	      </div>
 	    </div>
-	    <div class="stair-step">
-	      <svg class="deck-icon"><use href="#icon-list"></use></svg>
-	      <span class="num">02</span>
-	      <h3>순서를 적습니다</h3>
-	      <p>읽기, 판단, 만들기, 검수 순서를 짧게 고정합니다.</p>
-	    </div>
-	    <div class="stair-step">
-	      <svg class="deck-icon"><use href="#icon-check"></use></svg>
-	      <span class="num">03</span>
-	      <h3>검수 기준을 남깁니다</h3>
-	      <p>다음 결과물도 같은 기준으로 확인할 수 있게 만듭니다.</p>
-    </div>
   </div>
   <div class="insight"><div class="label">비유</div><strong>새 담당자에게 일을 알려주듯이, Agent에게도 자료 서랍과 업무 매뉴얼을 만들어줍니다.</strong></div>
 </section>
@@ -2523,31 +3175,14 @@ h2{
 	<section class="slide">
 	  <div class="eyebrow">Onboarding Analogy</div>
 	  <h2>Agent 만들기는 새 담당자에게 일을 알려주는 과정입니다</h2>
-	  <div class="grid four mt34">
-	    <div class="card">
-	      <span class="badge">Folder</span>
-	      <svg class="deck-icon"><use href="#icon-folder"></use></svg>
-	      <h3>자료 서랍</h3>
-	      <p>신입이 매번 어디서 자료를 찾을지 정해둡니다.</p>
-	    </div>
-	    <div class="card">
-	      <span class="badge">Reference</span>
-	      <svg class="deck-icon"><use href="#icon-book"></use></svg>
-	      <h3>온보딩 매뉴얼</h3>
-	      <p>우리 팀 말투, 기준, 좋은 예시를 알려줍니다.</p>
-	    </div>
-	    <div class="card">
-	      <span class="badge">Skill</span>
-	      <svg class="deck-icon"><use href="#icon-list"></use></svg>
-	      <h3>업무 레시피</h3>
-	      <p>일을 어떤 순서로 처리할지 적은 체크리스트입니다.</p>
-	    </div>
-	    <div class="card good">
-	      <span class="badge">Agent</span>
-	      <svg class="deck-icon"><use href="#icon-user"></use></svg>
-	      <h3>온보딩된 담당자</h3>
-	      <p>서랍, 매뉴얼, 레시피를 보고 결과물을 만듭니다.</p>
-    </div>
+	  <div class="onboarding-diagram">
+	    <div class="onboarding-node"><b>자료 서랍</b><span>어디서 자료를 찾을지</span></div>
+	    <div class="onboarding-arrow">→</div>
+	    <div class="onboarding-node"><b>온보딩 매뉴얼</b><span>말투, 기준, 좋은 예시</span></div>
+	    <div class="onboarding-arrow">→</div>
+	    <div class="onboarding-node"><b>업무 레시피</b><span>일을 처리하는 순서</span></div>
+	    <div class="onboarding-arrow">→</div>
+	    <div class="onboarding-agent"><b>Agent</b><span>같은 기준으로 반복 실행하는 담당자</span></div>
   </div>
   <div class="insight"><div class="label">한 줄 정리</div><strong><span class="key-red">Skill은 업무 방법서</span>이고, <span class="key-red">Agent는 그 방법서를 따라 일하는 담당자</span>입니다.</strong></div>
 </section>
@@ -2557,10 +3192,10 @@ h2{
 	  <h2>Agent는 자료를 읽고, 기준에 맞춰 일하고, 사람이 확인합니다</h2>
 	  <div class="agent-basics-grid mt34">
 	    <div class="agent-basics-flow">
-	      <div class="agent-basics-step"><svg class="deck-icon"><use href="#icon-file"></use></svg><span>01</span><b>읽기</b><p>필요한 자료와 기준 파일을 확인합니다.</p></div>
-	      <div class="agent-basics-step"><svg class="deck-icon"><use href="#icon-book"></use></svg><span>02</span><b>판단</b><p>정해둔 기준으로 무엇을 만들지 결정합니다.</p></div>
-	      <div class="agent-basics-step"><svg class="deck-icon"><use href="#icon-output"></use></svg><span>03</span><b>실행</b><p>원고, 피드백, 일정표 같은 결과물을 만듭니다.</p></div>
-	      <div class="agent-basics-step"><svg class="deck-icon"><use href="#icon-check"></use></svg><span>04</span><b>확인</b><p>사람이 마지막 기준으로 검수합니다.</p></div>
+	      <div class="agent-basics-step"><span>01</span><b>읽기</b><p>필요한 자료와 기준 파일을 확인합니다.</p></div>
+	      <div class="agent-basics-step"><span>02</span><b>판단</b><p>정해둔 기준으로 무엇을 만들지 결정합니다.</p></div>
+	      <div class="agent-basics-step"><span>03</span><b>실행</b><p>원고, 캡션, 검수표 같은 결과물을 만듭니다.</p></div>
+	      <div class="agent-basics-step"><span>04</span><b>확인</b><p>사람이 마지막 기준으로 검수합니다.</p></div>
     </div>
     <div class="agent-basics-pillars">
       <h3>안정적인 Agent의 세 요소</h3>
@@ -2578,12 +3213,16 @@ h2{
 <section class="slide">
   <div class="eyebrow">Today</div>
   <h2>오늘 메인은 콘텐츠 편집장 Agent 하나입니다</h2>
-  <div class="today-focus mt34">
-    <div class="card agent-card-content today-main">
+  <div class="today-showcase">
+    <div class="today-copy">
       <span class="badge">Main Case</span>
       <h3>콘텐츠 편집장 Agent</h3>
       <p>개인 경험과 말투를 유지하면서 블로그, 인스타, 첫댓글, 해시태그, 검수표까지 발행 패키지로 정리합니다.</p>
       <div class="today-path"><span>필요성</span><span>문제정의</span><span>Skill</span><span>폴더</span><span>실행</span><span>검수</span></div>
+    </div>
+    <div class="editor-visual">
+      <img src="assets/content-editor-arms-crossed.png" alt="팔짱을 낀 콘텐츠 편집장 이미지">
+      <div class="editor-label"><b>Editor Agent</b><span>경험과 기준을 발행 패키지로 변환</span></div>
     </div>
   </div>
   <div class="insight"><div class="label">오늘 볼 순서</div><strong>필요성 → 문제정의 → Skill → 폴더 → 실행 프롬프트 → 검수 기준</strong></div>
@@ -2607,15 +3246,15 @@ h2{
   <h2>콘텐츠 편집장 Agent 하나만<br>이 여섯 칸으로 설계합니다</h2>
 	  <div class="six-map">
 	    <div class="six-col">
-	      <div class="six-node"><svg class="deck-icon small"><use href="#icon-file"></use></svg><b>Input</b><h3>이번 원본</h3><p>업체 조건, 후기 메모, 사진 목록</p></div>
-	      <div class="six-node"><svg class="deck-icon small"><use href="#icon-book"></use></svg><b>Reference</b><h3>내 기준</h3><p>기존 말투, 제목 패턴, 채널 문법</p></div>
-	      <div class="six-node"><svg class="deck-icon small"><use href="#icon-guard"></use></svg><b>Rule</b><h3>편집 규칙</h3><p>조건과 실제 경험을 분리하기</p></div>
+	      <div class="six-node"><b>Input</b><h3>이번 원본</h3><p>업체 조건, 후기 메모, 사진 목록</p></div>
+	      <div class="six-node"><b>Reference</b><h3>내 기준</h3><p>기존 말투, 제목 패턴, 채널 문법</p></div>
+	      <div class="six-node"><b>Rule</b><h3>편집 규칙</h3><p>조건과 실제 경험을 분리하기</p></div>
 	    </div>
 	    <div class="six-center"><b>콘텐츠<br>편집장</b><span>한 사례로 끝까지</span></div>
 	    <div class="six-col">
-	      <div class="six-node"><svg class="deck-icon small"><use href="#icon-list"></use></svg><b>Skill</b><h3>작업 순서</h3><p>기획 → 리서치 → 작성 → 검수</p></div>
-	      <div class="six-node"><svg class="deck-icon small"><use href="#icon-output"></use></svg><b>Output</b><h3>발행 패키지</h3><p>원고, 캡션, 첫댓글, 해시태그</p></div>
-	      <div class="six-node"><svg class="deck-icon small"><use href="#icon-check"></use></svg><b>Check</b><h3>검수 기준</h3><p>없는 경험, 과장, 누락 확인</p></div>
+	      <div class="six-node"><b>Skill</b><h3>작업 순서</h3><p>기획 → 리서치 → 작성 → 검수</p></div>
+	      <div class="six-node"><b>Output</b><h3>발행 패키지</h3><p>원고, 캡션, 첫댓글, 해시태그</p></div>
+	      <div class="six-node"><b>Check</b><h3>검수 기준</h3><p>없는 경험, 과장, 누락 확인</p></div>
     </div>
   </div>
 </section>
@@ -2739,35 +3378,33 @@ h2{
   <div class="eyebrow">Architect</div>
   <h2>콘텐츠 편집장 OS 아키텍처</h2>
   <p class="os-sub">개인 경험과 업체 조건을 분리해 읽고, 내 말투와 채널 문법으로 발행 패키지를 만드는 구조입니다.</p>
-  <div class="content-os-board">
-    <div class="content-os-row">
-      <div class="content-os-label">업무 흐름</div>
-      <div class="content-os-flow">
-        <div class="content-os-step"><b>01 입력 수집</b><span>업체 가이드라인, 방문 후기, 사진 목록</span></div>
-        <div class="content-os-step"><b>02 기준 읽기</b><span>기존 말투, 좋은 제목, 금지 표현</span></div>
-        <div class="content-os-step"><b>03 콘텐츠 변환</b><span>블로그, 인스타, 첫댓글로 나눠 작성</span></div>
-        <div class="content-os-step"><b>04 편집 검수</b><span>과장, 누락, 없는 경험 생성 여부 확인</span></div>
-        <div class="content-os-step"><b>05 발행 패키지</b><span>제목, 본문, 캡션, 해시태그, 검수표</span></div>
-      </div>
+  <div class="os-architecture">
+    <div class="os-inputs">
+      <b>01_input</b>
+      <span>업체 조건<br>후기 메모<br>사진 목록</span>
     </div>
-    <div class="content-os-row">
-      <div class="content-os-label">폴더 구조</div>
-      <div class="content-os-folders">
-        <div class="content-os-folder"><b>00_admin</b><span>편집장 역할, 금지선, 운영 원칙</span></div>
-        <div class="content-os-folder"><b>01_input</b><span>이번 업체 조건, 후기 메모, 사진 목록</span></div>
-        <div class="content-os-folder"><b>02_reference</b><span>내 말투, 채널 예시, 제목 패턴</span></div>
-        <div class="content-os-folder"><b>03_skills</b><span>기획, 분리, 작성, 검수 순서</span></div>
-        <div class="content-os-folder"><b>04_output</b><span>최종본, 검수표, 수정 로그</span></div>
-      </div>
+    <div class="os-reference">
+      <b>02_reference</b>
+      <span>내 말투<br>채널 문법<br>금지 표현</span>
     </div>
-    <div class="content-os-row">
-      <div class="content-os-label">검수 기준</div>
-      <div class="content-os-checks">
-        <div class="content-os-check"><b>사실성</b><span>방문하지 않은 경험을 만들지 않았는가</span></div>
-        <div class="content-os-check"><b>말투</b><span>내 기존 문장 길이와 표현 강도를 유지했는가</span></div>
-        <div class="content-os-check"><b>채널 문법</b><span>블로그와 인스타 문장이 다르게 설계됐는가</span></div>
-        <div class="content-os-check"><b>발행 가능성</b><span>복사해서 바로 쓸 수 있는 패키지인가</span></div>
+    <div class="os-engine">
+      <div class="engine-label">03_skills</div>
+      <h3>콘텐츠 변환 엔진</h3>
+      <div class="engine-flow">
+        <span>분리</span><span>기획</span><span>작성</span><span>검수</span>
       </div>
+      <p>조건과 실제 경험을 분리하고, 블로그·인스타·첫댓글 문법으로 다시 씁니다.</p>
+    </div>
+    <div class="os-output">
+      <b>04_output</b>
+      <span>블로그 원고<br>인스타 캡션<br>첫댓글 · 해시태그<br>검수표</span>
+    </div>
+    <div class="os-checkbar">
+      <b>Check</b>
+      <span>없는 경험 금지</span>
+      <span>과장 표현 점검</span>
+      <span>말투 유지</span>
+      <span>발행 가능성</span>
     </div>
   </div>
 </section>
@@ -3099,10 +3736,21 @@ h2{
 
 <section class="slide">
   <div class="eyebrow">Good Definition</div>
-  <h2>나쁜 설계는 역할이 흐리고, 좋은 설계는 기준이 보입니다</h2>
-  <div class="grid two mt34">
-    <div class="card bad"><h3>나쁜 설계</h3><ul><li>블로그 잘 써주는 Agent</li><li>피드백 잘해주는 Agent</li><li>데이트 코스 추천해주는 Agent</li><li>자료 조사 잘해주는 Agent</li></ul></div>
-    <div class="card good"><h3>좋은 설계</h3><ul><li>업체 조건과 방문 후기를 분리해 내 말투로 발행 패키지를 만드는 Agent</li><li>제출물과 이전 피드백을 근거로 강점, 보완점, 다음 액션을 남기는 Agent</li><li>선호/비선호와 현실 제약을 기준으로 시간대별 코스와 Plan B를 만드는 Agent</li><li>출처와 판단 기준을 남기며 비교표와 요약본을 만드는 Agent</li></ul></div>
+  <h2>콘텐츠 편집장 Agent는<br>막연한 자동화가 아니라 기준 있는 편집 구조입니다</h2>
+  <div class="as-is-to-be mt34">
+    <div class="as-card bad">
+      <b>AS IS</b>
+      <h3>블로그 잘 써줘</h3>
+      <p>말투, 후기, 업체 조건, 금지 표현이 한 대화 안에 섞입니다.</p>
+      <span>결과: 매번 수정하고 다시 설명합니다.</span>
+    </div>
+    <div class="as-arrow">→</div>
+    <div class="as-card good">
+      <b>TO BE</b>
+      <h3>조건과 후기를 분리해<br>내 말투로 발행 패키지를 만드는 Agent</h3>
+      <p>Input, Reference, Skill, Output, Check가 나뉘어 같은 기준으로 반복됩니다.</p>
+      <span>결과: 짧게 실행하고 기준으로 검수합니다.</span>
+    </div>
   </div>
   <div class="insight"><div class="label">판단 기준</div><strong>좋은 Agent 이름에는 무엇을 읽고, 어떤 기준으로, 무엇을 만드는지가 드러납니다.</strong></div>
 </section>
@@ -3184,14 +3832,16 @@ h2{
 <section class="slide dark center closing">
   <div>
     <div class="eyebrow">Closing</div>
-    <h1>Agent를 잘 만드는 사람은<br>기준을 남깁니다</h1>
-    <p class="lead muted">오늘 가져갈 문장 3개입니다.</p>
-    <div class="closing-lines">
-      <div class="closing-line"><b>01</b><span>Agent는 긴 프롬프트가 아니라 다시 쓸 수 있는 업무 방식입니다.</span></div>
-      <div class="closing-line"><b>02</b><span>문제정의에는 읽을 자료, 판단 기준, 최종 결과물이 보여야 합니다.</span></div>
-      <div class="closing-line"><b>03</b><span>매번 설명하지 말고 폴더와 Skill에 기준을 남깁니다.</span></div>
+    <h1>Agent화의 목적은<br>일을 없애는 것이 아닙니다</h1>
+    <p class="lead muted">나만의 반복 업무가 같은 기준과 순서로 실행되게 만드는 것입니다.</p>
+    <div class="closing-system">
+      <div><b>AS IS</b><span>매번 설명한다</span></div>
+      <div class="closing-arrow">→</div>
+      <div><b>STRUCTURE</b><span>기준을 남긴다</span></div>
+      <div class="closing-arrow">→</div>
+      <div><b>TO BE</b><span>짧게 실행하고 검수한다</span></div>
     </div>
-    <div class="meta" style="color:#cbd5e1">Thank you</div>
+    <div class="closing-final">오늘 만든 콘텐츠 편집장 Agent처럼, 내 업무도 먼저 구조화하면 됩니다.</div>
   </div>
 </section>
 
