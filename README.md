@@ -4,7 +4,7 @@
 
 - 주제: 내 업무 속 AI 부캐 Agent 만들기
 - 핵심: 문제정의, 폴더 구조, Skill 파일, Guardrail
-- 사례: 콘텐츠 편집장 Agent, 멘토링 피드백 OS Agent, 취향 코스 매니저 Agent
+- 사례: 콘텐츠 편집장 Agent
 
 ## 보기
 
