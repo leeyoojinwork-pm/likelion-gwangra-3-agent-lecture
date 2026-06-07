@@ -2571,24 +2571,27 @@ h2{
   color:#c2413a!important;
 }
 .opening-structure{
-  margin-top:34px;
+  margin-top:30px;
   display:grid;
-  grid-template-columns:1fr 80px 1.04fr 1.05fr;
-  gap:18px;
-  align-items:center;
+  grid-template-columns:.92fr 1.08fr 1.04fr;
+  gap:24px;
+  align-items:stretch;
 }
 .opening-as-is,
 .opening-issues,
 .opening-to-be{
-  min-height:360px;
+  min-height:390px;
 }
 .opening-as-is{
   position:relative;
-  padding-top:34px;
+  padding:26px 0 0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 .asis-label{
   color:#244497;
-  font-size:16px;
+  font-size:15px;
   letter-spacing:.08em;
   font-weight:760;
   margin-bottom:14px;
@@ -2598,33 +2601,34 @@ h2{
   left:auto!important;
   top:auto!important;
   width:100%;
-  margin:0 0 18px;
-  padding:19px 22px;
+  margin:0 0 14px;
+  padding:17px 20px;
   box-shadow:none!important;
-  font-size:23px;
+  font-size:21px;
+  background:#fff;
+  border-color:#ccd8e8;
+  border-left-width:4px;
+  color:#243247;
 }
 .opening-structure .speech-bubble:nth-of-type(3){
-  margin-left:34px;
+  margin-left:24px;
 }
 .opening-structure .speech-bubble:nth-of-type(4){
-  margin-left:68px;
+  margin-left:48px;
 }
 .opening-arrow{
-  color:#244497;
-  font-size:54px;
-  font-weight:650;
-  text-align:center;
+  display:none;
 }
 .opening-issues{
-  border-left:1px solid #c7d4e4;
-  border-right:1px solid #c7d4e4;
+  border:1px solid #c7d4e4;
+  border-top:5px solid #244497;
   display:grid;
   grid-template-rows:repeat(3,1fr);
   background:#fff;
 }
 .issue-row{
   display:grid;
-  grid-template-columns:74px 1fr;
+  grid-template-columns:82px 1fr;
   align-items:center;
   border-bottom:1px solid #dbe3ef;
 }
@@ -2636,28 +2640,29 @@ h2{
   justify-content:center;
   background:#f1f5fb;
   color:#244497;
-  font-size:25px;
+  font-size:28px;
 }
 .issue-row span{
-  padding:0 24px;
-  color:#1f2a3d;
-  font-size:25px;
+  padding:0 28px;
+  color:#17233d;
+  font-size:26px;
   line-height:1.28;
 }
 .opening-to-be{
   background:#122348;
   color:#fff;
-  padding:34px 32px;
+  padding:36px 34px;
   display:flex;
   flex-direction:column;
   justify-content:center;
+  box-shadow:18px 18px 0 #dfe8f5;
 }
 .opening-to-be .asis-label{color:#bdd0f6}
 .opening-to-be strong{
   display:block;
   color:#fff;
-  font-size:32px;
-  line-height:1.22;
+  font-size:38px;
+  line-height:1.16;
 }
 .opening-to-be span{
   display:block;
@@ -2665,6 +2670,16 @@ h2{
   color:#dbe8ff;
   font-size:22px;
   line-height:1.36;
+}
+.opening-to-be .to-be-core{
+  display:block;
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1px solid rgba(219,232,255,.42);
+  color:#fff;
+  font-size:25px;
+  line-height:1.28;
+  font-weight:820;
 }
 .reference-takeaway{
   margin-top:22px;
@@ -2968,24 +2983,24 @@ h2{
 
 <section class="slide">
   <div class="eyebrow">Opening</div>
-  <h2>매번 같은 설명을 다시 하고 있지 않나요?</h2>
+  <h2>문제는 프롬프트가 짧은 게 아니라<br>기준이 매번 사라진다는 것입니다</h2>
   <div class="opening-structure">
     <div class="opening-as-is">
-      <div class="asis-label">AS IS</div>
+      <div class="asis-label">반복되는 요청</div>
       <div class="speech-bubble">이거 내 말투로 해줘.</div>
       <div class="speech-bubble">아까 말한 양식으로 해줘.</div>
       <div class="speech-bubble">예시는 유지하고, 최종본은 따로 정리해줘.</div>
     </div>
-    <div class="opening-arrow">→</div>
     <div class="opening-issues">
-      <div class="issue-row"><b>01</b><span>맥락을 매번 다시 설명합니다.</span></div>
-      <div class="issue-row"><b>02</b><span>기준이 대화 안에서 흩어집니다.</span></div>
-      <div class="issue-row"><b>03</b><span>결과물이 매번 다른 모양으로 나옵니다.</span></div>
+      <div class="issue-row"><b>01</b><span>맥락을<br>다시 설명합니다.</span></div>
+      <div class="issue-row"><b>02</b><span>기준이<br>대화 안에서 흩어집니다.</span></div>
+      <div class="issue-row"><b>03</b><span>결과물이<br>매번 다른 모양으로 나옵니다.</span></div>
     </div>
     <div class="opening-to-be">
-      <div class="asis-label">TO BE</div>
-      <strong>설명 반복을 줄이는 방법은<br>프롬프트가 아니라 구조입니다.</strong>
-      <span>맥락, 기준, 결과 형식을 폴더와 Skill에 남깁니다.</span>
+      <div class="asis-label">오늘의 전환</div>
+      <strong>반복 설명을<br>구조로 바꿉니다.</strong>
+      <span>맥락, 기준, 결과 형식을 대화창이 아니라 폴더와 Skill에 남깁니다.</span>
+      <em class="to-be-core">프롬프트를 잘 쓰는 사람이 아니라,<br>Agent가 읽을 구조를 만드는 사람.</em>
     </div>
   </div>
 </section>
