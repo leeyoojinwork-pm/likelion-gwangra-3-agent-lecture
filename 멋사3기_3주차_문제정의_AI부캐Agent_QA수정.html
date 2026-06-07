@@ -3,7 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>업무 기준을 남기는 법</title>
+<title>업무 기준을 남기는 법 — 멋쟁이사자처럼 3기 Agent 설계</title>
+<meta name="description" content="반복 업무에 기준을 남기는 Agent 설계. 콘텐츠 편집장 Agent로 배우는 기준·폴더·Skill 구조화 실습.">
+<meta property="og:title" content="반복 업무에 기준을 남기는 Agent 설계">
+<meta property="og:description" content="콘텐츠 편집장 Agent로 배우는 기준·폴더·Skill 구조화 실습 — 멋쟁이사자처럼 3기 Week 3">
+<meta property="og:image" content="https://leeyoojinwork-pm.github.io/likelion-gwangra-3-agent-lecture/assets/ai_agent_cover.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://leeyoojinwork-pm.github.io/likelion-gwangra-3-agent-lecture/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦁</text></svg>">
 <style>
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 :root{
@@ -422,12 +430,18 @@ p{font-size:17px;line-height:1.55;color:var(--muted)}
 .slide.active .intro-step:nth-child(3){animation-delay:.32s}
 .slide.active .intro-arrow:nth-child(4){animation-delay:.44s}
 .slide.active .intro-step:nth-child(5){animation-delay:.56s}
-.three-circle-agent{position:relative;height:300px;background:#fff;border:1px solid #c7d4e4}
-.agent-circle{position:absolute;width:178px;height:178px;border-radius:50%;border:2px solid #244497;background:rgba(36,68,151,.08);display:flex;align-items:center;justify-content:center;text-align:center;color:#17233d;font-size:24px;font-weight:650!important;line-height:1.2}
-.agent-circle.context{left:72px;top:42px}
-.agent-circle.rule{right:72px;top:42px}
-.agent-circle.action{left:50%;bottom:34px;transform:translateX(-50%)}
-.agent-center-label{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:118px;height:118px;border-radius:50%;background:#244497;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-size:24px;font-weight:680!important;line-height:1.16}
+.three-circle-agent{position:relative;height:300px;background:#fff;border:1px solid #c7d4e4;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:center;padding:34px 22px 76px}
+.agent-circle{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;width:112px;height:112px;border-radius:50%;border:2px solid #244497;background:rgba(36,68,151,.08);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#17233d;font-size:25px;font-weight:650!important;line-height:1.1;margin:0 auto}
+.agent-circle b{display:block;color:#17233d;font-size:25px;line-height:1.1}
+.agent-circle.context{grid-column:1;grid-row:1}
+.agent-circle.rule{grid-column:2;grid-row:1}
+.agent-circle.action{grid-column:3;grid-row:1}
+.agent-circle small{display:none}
+.agent-center-label{position:absolute;left:22px;right:22px;bottom:18px;height:44px;background:#244497;color:#fff;display:flex;align-items:center;justify-content:center;text-align:center;font-size:22px;font-weight:680!important;line-height:1.16}
+.review-slide h2{font-size:40px!important;line-height:1.08!important}
+.review-slide .matrix{margin-top:24px!important}
+.review-slide .matrix div{padding:12px 16px!important;font-size:16px!important;line-height:1.28!important}
+.review-slide .matrix .head{font-size:16px!important}
 .agent-translation{width:100%;display:grid;grid-template-columns:1fr 72px 1fr;gap:0;align-items:stretch}
 .translation-side{background:#fff;border:1px solid var(--line);border-radius:2px;overflow:hidden}
 .translation-head{padding:16px 20px;background:#111827;color:#fff;font-weight:950;font-size:18px}
@@ -436,15 +450,14 @@ p{font-size:17px;line-height:1.55;color:var(--muted)}
 .translation-row b{height:100%;display:flex;align-items:center;padding:0 18px;background:#f1f5f9;color:#344054;font-size:16px}
 .translation-row span{padding:14px 18px;color:#344054;font-size:17px;line-height:1.42;font-weight:720}
 .translation-arrow{display:flex;align-items:center;justify-content:center;color:#475467;font-size:32px;font-weight:950}
-.slide.dark.closing{background:#f7f9fb;color:var(--forest)}
-.slide.dark.closing p,.slide.dark.closing .muted{color:#41536b}
-.closing{background:#f7f9fb}
-.closing h1{color:var(--forest)}
-.closing .lead{color:#41536b}
+.slide.dark.closing{background:#08111f!important;color:#fff}
+.slide.dark.closing p,.slide.dark.closing .muted{color:#cbd5e1}
+.closing h1{color:#fff!important}
+.closing .lead{color:#cbd5e1!important}
 .closing-line{border:1px solid #c7d4e4;border-left:3px solid var(--deep-blue);background:rgba(255,255,255,.88);padding:18px 20px;min-height:128px}
 .closing-line b{color:var(--deep-blue)}
 .closing-line span{color:var(--deep-blue)}
-.closing .meta{color:#41536b!important}
+.closing .meta{color:#94a3b8!important}
 .ide-slide{background:#f7f8fa}
 .ide-slide h2{text-align:center;max-width:none;font-size:44px}
 .ide-slide h2 .blue{color:#101828}.ide-slide h2 .muted{color:#475467}
@@ -1120,8 +1133,8 @@ p,.card p,.card li{
 .closing-system div:not(.closing-arrow){
   min-height:170px;
   border:1px solid #344154;
-  background:#fff;
-  color:#111827;
+  background:rgba(255,255,255,.06);
+  color:#f8fafc;
   padding:28px 26px;
   display:flex;
   flex-direction:column;
@@ -1135,7 +1148,7 @@ p,.card p,.card li{
   margin-bottom:16px;
 }
 .closing-system span{
-  color:#111827!important;
+  color:#f8fafc!important;
   font-size:30px;
   line-height:1.18;
 }
@@ -3031,91 +3044,38 @@ h2{
   </div>
 </section>
 
-<section class="slide ide-slide">
-  <div class="eyebrow">Workspace Basics</div>
-  <h2>작업 공간에서는<br>자료, 기준, 결과가 한곳에 보입니다</h2>
-  <p class="ide-sub">오늘은 복잡한 개발 도구를 배우는 시간이 아니라, 내 업무 자료를 정리하는 방식을 익히는 시간입니다.</p>
-  <div class="workspace-map">
-    <div class="workspace-side">
-      <div class="workspace-node">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 10h8M8 14h5"/></svg></div>
-        <div><b>자료</b><span>이번 작업에서 읽을 원본</span></div>
-      </div>
-      <div class="workspace-node">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
-        <div><b>기준</b><span>말투, 좋은 예시, 금지사항</span></div>
-      </div>
-    </div>
-    <div class="workspace-core">
-      <div class="workspace-folder"><b>Agent<br>Workspace</b><span>폴더로 나눈 작업 구조</span></div>
-    </div>
-    <div class="workspace-side">
-      <div class="workspace-node">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 7h4v4H4zM4 15h4v4H4zM16 7h4v4h-4zM16 15h4v4h-4z"/><path d="M8 9h8M8 17h8"/></svg></div>
-        <div><b>순서</b><span>읽기, 판단, 만들기, 검수</span></div>
-      </div>
-      <div class="workspace-node">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></div>
-        <div><b>결과</b><span>사람이 바로 확인할 최종본</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="insight"><div class="label">핵심 포인트</div><strong>화면을 예쁘게 쓰는 것이 아니라, Agent가 헷갈리지 않게 읽을 위치와 기준을 나누는 것이 중요합니다.</strong></div>
-</section>
-
 <section class="slide">
-  <div class="eyebrow">Story Bridge</div>
-  <h2>지난 흐름은 오늘 Agent 설계로 이어집니다</h2>
-  <div class="bridge-clean">
-    <div class="bridge-card">
-      <span class="num">01</span>
-      <div class="tag">이전 주차</div>
-      <h3>생각의 틀을 바꿨습니다</h3>
-      <p>도구처럼 시키는 방식에서 벗어나, 맥락을 공유하고 함께 일하는 방식으로 바라봤습니다.</p>
-      <strong>도구 → 동료<br>지시 → 협업<br>암묵지 → 형식지</strong>
+  <div class="eyebrow">Core Message</div>
+  <h2>프롬프트보다 강한 건 업무 구조입니다</h2>
+  <div class="layer-architecture">
+    <div class="layer-top">
+      <b>짧은 실행 요청</b>
+      <span>“콘텐츠 편집장 Skill 실행해줘”</span>
     </div>
-    <div class="bridge-card">
-      <span class="num">02</span>
-      <div class="tag">숙제</div>
-      <h3>과제 방향을 잡아왔습니다</h3>
-      <p>무엇을 자동화할까가 아니라, 내가 어떤 판단을 더 잘하고 싶은지 한 문장으로 정리했습니다.</p>
-      <strong>의사결정<br>참고 자료<br>결과물과 검수 기준</strong>
+    <div class="layer-core-grid">
+      <div><b>Folder</b><span>원본 / 참고 / 작업 / 최종본 위치</span></div>
+      <div><b>Reference</b><span>말투 / 예시 / 금지선 / 판단 기준</span></div>
+      <div><b>Skill</b><span>읽기 → 판단 → 만들기 → 검수 순서</span></div>
     </div>
-    <div class="bridge-card current">
-      <span class="num">03</span>
-      <div class="tag">오늘</div>
-      <h3>이제 구조로 만듭니다</h3>
-      <p>가져온 과제 정의를 폴더, 기준, Skill, 검수 흐름으로 바꿔 반복 실행되게 만듭니다.</p>
-      <strong>Input → Reference → Skill → Output → Check</strong>
+    <div class="layer-bottom">
+      <b>반복 가능한 업무 구조</b>
+      <span>프롬프트가 길어지는 대신, Agent가 읽을 기준과 순서가 남습니다.</span>
     </div>
   </div>
-  <div class="insight"><div class="label">오늘의 위치</div><strong>숙제가 내가 만들 Agent의 방향을 정했다면, 오늘은 그 방향을 실제 작업 구조로 바꾸는 시간입니다.</strong></div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Pre-work to Lecture</div>
-  <h2>숙제 결과 리포트는 오늘의 설계 재료입니다</h2>
-  <div class="matrix mt34">
-    <div class="head">숙제에서 가져온 것</div><div class="head">의미</div><div class="head">오늘 바꿀 것</div><div class="head">결과물</div>
-    <div>의사결정 1건</div><div>내가 더 잘 내리고 싶은 판단의 출발점</div><div>Agent의 역할과 업무 경계</div><div>Agent 설계서</div>
-    <div>참고 자료</div><div>판단할 때 실제로 보는 자료</div><div>01_input에 넣을 이번 자료</div><div>입력 폴더</div>
-    <div>판단 기준</div><div>내 머릿속 기준을 문장으로 꺼낸 것</div><div>02_reference와 Rule / Guardrail</div><div>기준 파일</div>
-    <div>결과물과 검수</div><div>무엇이 나오면 끝인지 확인하는 기준</div><div>03_skills의 작업 순서와 Check 기준</div><div>첫 Skill 파일</div>
-  </div>
-  <div class="insight"><div class="label">강의 시작 멘트</div><strong>오늘은 숙제를 다시 하는 시간이 아닙니다. 가져온 과제 정의를 바로 실행할 수 있는 Agent 구조로 바꾸는 시간입니다.</strong></div>
+  <div class="insight"><div class="label">핵심</div><strong>잘 쓰는 사람은 질문을 길게 쓰는 사람이 아니라, <span class="key-red">업무 구조를 만드는 사람</span>입니다.</strong></div>
 </section>
 
 <section class="slide">
   <div class="eyebrow">Agenda</div>
-  <h2>오늘 강의 목차</h2>
+  <h2>오늘은 하나의 Agent가 완성되는 순서대로 갑니다</h2>
+  <p class="lead">숙제에서 가져온 과제 정의를 바로 실행할 수 있는 Agent 구조로 바꾸는 시간입니다.</p>
   <div class="timeline mt34">
-    <div><b>01</b><span>숙제 결과 리포트에서 반복 업무와 기준을 찾습니다.</span></div>
-    <div><b>02</b><span>온보딩 관점으로 Agent 구조를 이해합니다.</span></div>
-    <div><b>03</b><span>콘텐츠 편집장 Agent를 예시로 Skill과 폴더를 만듭니다.</span></div>
-    <div><b>04</b><span>콘텐츠 편집장 Agent를 실행하고 결과를 검수합니다.</span></div>
-    <div><b>05</b><span>내 업무 Agent 문서와 첫 Skill을 작성합니다.</span></div>
+    <div><b>10분</b><span>Agent 기초 — 착각 버리기, 온보딩 관점, Input과 Reference 분리</span></div>
+    <div><b>30분</b><span>메인 케이스 — 콘텐츠 편집장 Agent를 문제정의부터 검수까지 완주</span></div>
+    <div><b>5분</b><span>데모 — 실제 Claude 실행 화면 확인</span></div>
+    <div><b>30분</b><span>실습 — 내 업무 Agent 온보딩 문서, 폴더, 첫 Skill 작성</span></div>
+    <div><b>5분</b><span>마무리 — 핵심 정리와 과제 안내</span></div>
   </div>
-  <div class="insight"><div class="label">오늘 강의의 핵심</div><strong>숙제를 다시 하는 시간이 아니라, 가져온 과제 정의를 바탕으로 바로 실행할 수 있는 Agent 구조를 만드는 시간입니다.</strong></div>
 </section>
 
 <section class="slide">
@@ -3136,60 +3096,8 @@ h2{
 </section>
 
 <section class="slide">
-  <div class="eyebrow">Core Message</div>
-  <h2>프롬프트보다 강한 건 업무 구조입니다</h2>
-  <div class="layer-architecture">
-    <div class="layer-top">
-      <b>짧은 실행 요청</b>
-      <span>“콘텐츠 편집장 Skill 실행해줘”</span>
-    </div>
-    <div class="layer-core-grid">
-      <div><b>Folder</b><span>원본 / 참고 / 작업 / 최종본 위치</span></div>
-      <div><b>Reference</b><span>말투 / 예시 / 금지선 / 판단 기준</span></div>
-      <div><b>Skill</b><span>읽기 → 판단 → 만들기 → 검수 순서</span></div>
-    </div>
-    <div class="layer-bottom">
-      <b>반복 가능한 업무 구조</b>
-      <span>프롬프트가 길어지는 대신, Agent가 읽을 기준과 순서가 남습니다.</span>
-    </div>
-  </div>
-  <div class="insight"><div class="label">핵심</div><strong>잘 쓰는 사람은 질문을 길게 쓰는 사람이 아니라, <span class="key-red">기준을 남기는 사람</span>입니다.</strong></div>
-</section>
-
-	<section class="slide">
-	  <div class="eyebrow">Next Step</div>
-	  <h2>그렇다면 어떻게 해야 할까요?</h2>
-	  <div class="ia-map">
-	    <div class="ia-root">Agent OS</div>
-	    <div class="ia-branches">
-	      <div class="ia-branch">
-	        <b>01_input</b>
-	        <span>이번 원본</span>
-	        <small>업체 조건 · 후기 메모 · 사진 목록</small>
-	      </div>
-	      <div class="ia-branch">
-	        <b>02_reference</b>
-	        <span>반복 기준</span>
-	        <small>말투 · 좋은 예시 · 금지선</small>
-	      </div>
-	      <div class="ia-branch focal">
-	        <b>03_skills</b>
-	        <span>실행 순서</span>
-	        <small>읽기 → 판단 → 작성 → 검수</small>
-	      </div>
-	      <div class="ia-branch">
-	        <b>04_output</b>
-	        <span>확인 결과</span>
-	        <small>최종본 · 검수표 · 수정 로그</small>
-	      </div>
-	    </div>
-  </div>
-  <div class="insight"><div class="label">비유</div><strong>새 담당자에게 일을 알려주듯이, Agent에게도 자료 서랍과 업무 매뉴얼을 만들어줍니다.</strong></div>
-</section>
-
-	<section class="slide">
 	  <div class="eyebrow">Onboarding Analogy</div>
-	  <h2>Agent 만들기는 새 담당자에게 일을 알려주는 과정입니다</h2>
+	  <h2>Agent를 만든다는 건<br>새 담당자를 온보딩하는 일입니다</h2>
 	  <div class="onboarding-diagram">
 	    <div class="onboarding-node"><b>자료 서랍</b><span>어디서 자료를 찾을지</span></div>
 	    <div class="onboarding-arrow">→</div>
@@ -3202,9 +3110,9 @@ h2{
   <div class="insight"><div class="label">한 줄 정리</div><strong><span class="key-red">Skill은 업무 방법서</span>이고, <span class="key-red">Agent는 그 방법서를 따라 일하는 담당자</span>입니다.</strong></div>
 </section>
 
-	<section class="slide">
+<section class="slide">
 	  <div class="eyebrow">Agent Basics</div>
-	  <h2>Agent는 자료를 읽고, 기준에 맞춰 일하고, 사람이 확인합니다</h2>
+	  <h2>좋은 Agent는 세 가지를 압니다<br>무엇을 읽고, 어떻게 판단하고, 어디까지 할지</h2>
 	  <div class="agent-basics-grid mt34">
 	    <div class="agent-basics-flow">
 	      <div class="agent-basics-step"><span>01</span><b>읽기</b><p>필요한 자료와 기준 파일을 확인합니다.</p></div>
@@ -3215,9 +3123,9 @@ h2{
     <div class="agent-basics-pillars">
       <h3>안정적인 Agent의 세 요소</h3>
       <div class="three-circle-agent">
-        <div class="agent-circle context">맥락<br><small>무엇을 읽을지</small></div>
-        <div class="agent-circle rule">기준<br><small>어떤 원칙으로 볼지</small></div>
-        <div class="agent-circle action">행동<br><small>무엇을 만들지</small></div>
+        <div class="agent-circle context"><b>맥락</b><small>무엇을 읽을지</small></div>
+        <div class="agent-circle rule"><b>기준</b><small>어떤 원칙으로 볼지</small></div>
+        <div class="agent-circle action"><b>행동</b><small>무엇을 만들지</small></div>
         <div class="agent-center-label">Agent</div>
       </div>
     </div>
@@ -3226,81 +3134,8 @@ h2{
 </section>
 
 <section class="slide">
-  <div class="eyebrow">Today</div>
-  <h2>오늘 메인은 콘텐츠 편집장 Agent 하나입니다</h2>
-  <div class="today-showcase">
-    <div class="today-copy">
-      <span class="badge">Main Case</span>
-      <h3>콘텐츠 편집장 Agent</h3>
-      <p>개인 경험과 말투를 유지하면서 블로그, 인스타, 첫댓글, 해시태그, 검수표까지 발행 패키지로 정리합니다.</p>
-      <div class="today-path"><span>필요성</span><span>문제정의</span><span>Skill</span><span>폴더</span><span>실행</span><span>검수</span></div>
-    </div>
-    <div class="editor-visual">
-      <img src="assets/content-editor-arms-crossed.png" alt="팔짱을 낀 콘텐츠 편집장 이미지">
-      <div class="editor-label"><b>Editor Agent</b><span>경험과 기준을 발행 패키지로 변환</span></div>
-    </div>
-  </div>
-  <div class="insight"><div class="label">오늘 볼 순서</div><strong>필요성 → 문제정의 → Skill → 폴더 → 실행 프롬프트 → 검수 기준</strong></div>
-</section>
-
-	<section class="slide">
-	  <div class="eyebrow">Intro Insight</div>
-	  <h2>Agent는 도구를 하나 더 배우는 게 아니라<br>업무 방식을 정리하는 일입니다</h2>
-	  <div class="intro-flow">
-	    <div class="intro-step"><span class="step-label">Step 1</span><h3>Skill</h3><p>반복 순서를 씁니다.</p></div>
-	    <div class="intro-arrow">→</div>
-	    <div class="intro-step"><span class="step-label">Step 2</span><h3>Folder</h3><p>읽을 위치를 나눕니다.</p></div>
-	    <div class="intro-arrow">→</div>
-	    <div class="intro-step"><span class="step-label">Step 3</span><h3>Agent</h3><p>역할과 검수 기준을 붙입니다.</p></div>
-  </div>
-  <div class="insight"><div class="label">오늘의 전환</div><strong>사례를 보는 목적은 예시 암기가 아니라, 반복해서 따라 할 업무 기준을 남기는 것입니다.</strong></div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Intro Framework</div>
-  <h2>콘텐츠 편집장 Agent 하나만<br>이 여섯 칸으로 설계합니다</h2>
-	  <div class="six-map">
-	    <div class="six-col">
-	      <div class="six-node"><b>Input</b><h3>이번 원본</h3><p>업체 조건, 후기 메모, 사진 목록</p></div>
-	      <div class="six-node"><b>Reference</b><h3>내 기준</h3><p>기존 말투, 제목 패턴, 채널 문법</p></div>
-	      <div class="six-node"><b>Rule</b><h3>편집 규칙</h3><p>조건과 실제 경험을 분리하기</p></div>
-	    </div>
-	    <div class="six-center"><b>콘텐츠<br>편집장</b><span>한 사례로 끝까지</span></div>
-	    <div class="six-col">
-	      <div class="six-node"><b>Skill</b><h3>작업 순서</h3><p>기획 → 리서치 → 작성 → 검수</p></div>
-	      <div class="six-node"><b>Output</b><h3>발행 패키지</h3><p>원고, 캡션, 첫댓글, 해시태그</p></div>
-	      <div class="six-node"><b>Check</b><h3>검수 기준</h3><p>없는 경험, 과장, 누락 확인</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Agent Fit</div>
-  <h2>오늘은 이 하나만 끝까지 만듭니다</h2>
-  <p class="lead">여러 Agent를 비교하지 않고, 콘텐츠 편집장 Agent 하나가 완성되는 흐름만 따라갑니다.</p>
-  <div class="grid three mt34">
-    <div class="card">
-      <span class="badge">Why</span>
-      <h3>반복 업무가 분명합니다</h3>
-      <p>후기 재료를 발행 가능한 콘텐츠로 바꾸는 일이 계속 반복됩니다.</p>
-    </div>
-    <div class="card">
-      <span class="badge">How</span>
-      <h3>기준을 남기기 좋습니다</h3>
-      <p>말투, 제목 패턴, 채널 문법, 금지 표현을 파일로 분리할 수 있습니다.</p>
-    </div>
-    <div class="card good">
-      <span class="badge">Output</span>
-      <h3>결과가 바로 보입니다</h3>
-      <p>원고, 캡션, 첫댓글, 해시태그, 검수표로 끝나서 확인하기 쉽습니다.</p>
-    </div>
-  </div>
-  <div class="insight"><div class="label">진행 방식</div><strong>콘텐츠 편집장 사례 하나로 문제정의, 폴더, Skill, 실행 프롬프트, 검수 기준까지 연결합니다.</strong></div>
-</section>
-
-<section class="slide">
   <div class="eyebrow">Input vs Reference</div>
-  <h2>이번 재료와 따라야 할 기준을 섞지 않습니다</h2>
+  <h2>결과가 흔들리는 순간은<br>이번 재료와 반복 기준이 섞일 때입니다</h2>
   <div class="grid two mt34">
     <div class="card"><span class="badge">Input</span><h3>이번 작업에서만 쓰는 자료</h3><ul><li>이번 업체 가이드라인</li><li>이번 방문 후기 메모</li><li>이번 사진 목록</li><li>이번 필수 포함 요청사항</li></ul></div>
     <div class="card"><span class="badge">Reference</span><h3>앞으로도 반복해서 따라갈 기준</h3><ul><li>내 기존 블로그 말투</li><li>잘 된 제목 예시</li><li>인스타 피드 문법</li><li>검수 체크리스트와 금지사항</li></ul></div>
@@ -3310,7 +3145,7 @@ h2{
 
 <section class="slide">
   <div class="eyebrow">Skill Design</div>
-  <h2>첫 Skill은 업무 레시피 네 줄로 시작합니다</h2>
+  <h2>첫 Skill은 거창한 자동화가 아니라<br>업무 레시피 네 줄에서 시작합니다</h2>
   <p class="lead">처음 온 신입에게 “이 자료를 읽고, 이 기준으로 판단하고, 이 순서로 결과물을 만들어줘”라고 알려주는 과정입니다.</p>
   <div class="skill-method">
     <div class="skill-recipe">
@@ -3342,56 +3177,66 @@ h2{
   </div>
 </section>
 
-<section class="slide">
-  <div class="eyebrow">Structure Map</div>
-  <h2>Agent 구조화는 자료, 기준, 실행 순서를 연결하는 일입니다</h2>
-  <p class="lead">신입에게 일을 맡길 때도 “자료 서랍 → 업무 매뉴얼 → 작업 순서 → 결과물 → 검수” 순서로 알려줍니다.</p>
-  <div class="structure-map">
-    <div class="structure-stack">
-      <div class="structure-node"><b>01_input</b><span>이번 작업에서만 읽는 원본 자료</span></div>
-      <div class="structure-node"><b>02_reference</b><span>계속 따라갈 말투, 예시, 기준</span></div>
-    </div>
-    <div class="structure-core">
-      <h3>03_skills</h3>
-      <p>무엇을 먼저 읽고, 어떤 기준으로 판단하고, 어떤 순서로 결과물을 만들지 적은 업무 레시피</p>
-    </div>
-    <div class="structure-output">
-      <h3>04_output + Check</h3>
-      <div>최종 결과물</div>
-      <div>검수표</div>
-      <div>수정 로그</div>
-      <div>다음 작업에 남길 기준</div>
-    </div>
-  </div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Guardrail</div>
-  <h2>일을 맡길수록 하면 안 되는 일이 중요해집니다</h2>
-  <div class="grid three mt34">
-    <div class="card bad"><h3>없는 경험 금지</h3><p>방문하지 않은 장면이나 직접 느끼지 않은 감정을 만들지 않습니다.</p></div>
-    <div class="card bad"><h3>사실과 후기 분리</h3><p>업체 조건과 개인 후기를 섞어 실제 경험처럼 쓰지 않습니다.</p></div>
-    <div class="card bad"><h3>과장 표현 점검</h3><p>확인되지 않은 효과, 단정적인 표현, 광고문처럼 보이는 문장을 검수합니다.</p></div>
-  </div>
-  <div class="insight"><div class="label">운영 기준</div><strong>좋은 Agent는 잘하는 일만 적힌 것이 아니라, 넘으면 안 되는 선까지 적혀 있습니다.</strong></div>
-</section>
-
-<section class="slide chapter">
+<section class="slide chapter agent-content">
   <div class="chapter-wrap">
     <div>
       <div class="eyebrow">Part 2 · Main Case</div>
-      <h1>콘텐츠 편집장으로<br>끝까지 만들어봅니다</h1>
-      <p class="lead">메인 사례 하나에서 문제정의가 폴더 구조·Skill 파일·실행 프롬프트로 바뀌는 과정을 완주합니다.</p>
+      <h1>콘텐츠 편집장 Agent를<br>끝까지 완성해봅니다</h1>
+      <p class="lead">하나의 사례로 문제정의 → 폴더 → Skill → 실행 → 검수까지 완주합니다.</p>
+      <div class="chapter-difficulty">난이도 <span class="stars">★★☆☆☆</span><span>작업 흐름을 조율하는 편집장 설계</span></div>
     </div>
     <div class="mini-board">
-      <div class="mini-row"><b>Main</b><span>콘텐츠 편집장 Agent: 사람의 경험과 맥락을 채널별 콘텐츠로 변환</span></div>
+      <div class="mini-row"><b>역할</b><span>콘텐츠 팀장 — 기획·리서치·작성·SEO·검수를 조율</span></div>
+      <div class="mini-row"><b>Output</b><span>기획안, 원고, 캡션, 첫댓글, 해시태그, 검수표</span></div>
     </div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">Agent 01 · Editor Role</div>
+  <h2>편집장은 글을 대신 쓰는 사람이 아니라<br>작업 흐름을 조율하는 사람입니다</h2>
+  <div class="role-process">
+    <div class="role-step"><span class="num">01</span><b>기획</b><span><strong>타겟 독자</strong>, 목적, 톤앤매너, 필수 메시지를 먼저 정합니다.</span></div>
+    <div class="role-step"><span class="num">02</span><b>리서치</b><span>업체 조건, 실제 후기, 사진, 키워드를 <strong>사실 자료</strong>로 분리합니다.</span></div>
+    <div class="role-step"><span class="num">03</span><b>작성</b><span>블로그, 인스타, 첫댓글을 <strong>채널 문법</strong>에 맞춰 변환합니다.</span></div>
+    <div class="role-step"><span class="num">04</span><b>검수</b><span><strong>과장, 누락, 말투 이탈</strong>을 잡고 발행 가능한 최종본으로 만듭니다.</span></div>
+  </div>
+  <div class="thinking-note">
+    <b>핵심 전환</b>
+    <span>글 하나 써줘가 아니라 기획 → 리서치 → 작성 → 검수 흐름을 같은 기준으로 운영해줘, 라고 문제를 정의합니다.</span>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">Agent 01 · Why</div>
+  <h2>콘텐츠 제작이 쉬워질수록<br>사람의 기준이 더 중요해집니다</h2>
+  <div class="why-shift">
+    <div class="why-panel"><b>역설</b><h3>만들기 쉬워졌습니다</h3><p>이미지, 카피, 블로그 초안을 누구나 빠르게 만들 수 있습니다. 그래서 <span class="key-red">정보만 있는 콘텐츠</span>는 더 빨리 평범해집니다.</p></div>
+    <div class="why-arrow">→</div>
+    <div class="why-panel"><b>가치</b><h3>사람의 맥락이 남아야 합니다</h3><p>어디를 갔는지가 아니라 <span class="key-red">왜 좋았는지</span>, 어떤 고민에서 선택했는지가 차이를 만듭니다.</p></div>
+    <div class="why-arrow">→</div>
+    <div class="why-panel"><b>Agent</b><h3>기준을 반복 적용합니다</h3><p>개인 경험, 말투, 금지선, 채널 문법을 읽고 매번 <span class="key-red">맥락이 살아 있는 결과물</span>로 다듬습니다.</p></div>
+  </div>
+  <div class="insight"><div class="label">Mentor Insight</div><strong>콘텐츠 Agent가 필요한 이유는 글을 대신 쓰기 위해서가 아니라, 경험과 맥락을 콘텐츠로 전달하는 기준을 유지하기 위해서입니다.</strong></div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">Agent 01 · Problem Definition</div>
+  <h2>이 Agent는 무엇을 읽고<br>어떤 기준으로 무엇을 만들까요?</h2>
+  <div class="quote problem-statement">업체 조건과 실제 후기를 분리해 읽고,<br>내 말투와 채널 문법으로 발행 패키지를 만든다.</div>
+  <div class="problem-grid">
+    <div class="card"><span class="badge">대상</span><h3>체험/리뷰 발행</h3><p><span class="key-red">새 글 창작</span>이 아니라 후기 재료를 발행 가능한 상태로 편집합니다.</p></div>
+    <div class="card"><span class="badge">Input</span><h3>이번 원본 재료</h3><p><span class="key-red">업체 조건, 후기 메모, 사진 목록</span>을 사실 자료로 봅니다.</p></div>
+    <div class="card"><span class="badge">Reference</span><h3>유지할 나의 기준</h3><p><span class="key-red">기존 말투, 제목 패턴, 채널 문법</span>을 따라갑니다.</p></div>
+    <div class="card"><span class="badge">Rule</span><h3>편집 판단 기준</h3><p><span class="key-red">업체 조건</span>은 반영하되 개인 경험과 광고 문구를 섞지 않습니다.</p></div>
+    <div class="card"><span class="badge">Guardrail</span><h3>넘으면 안 되는 선</h3><p><span class="key-red">방문하지 않은 장면, 확인 안 된 효과</span>를 만들지 않습니다.</p></div>
+    <div class="card"><span class="badge">Output</span><h3>발행 패키지</h3><p><span class="key-red">원고, 제목, 캡션, 첫댓글, 해시태그, 검수표</span>로 끝냅니다.</p></div>
   </div>
 </section>
 
 <section class="slide content-os">
   <div class="eyebrow">Architect</div>
-  <h2>콘텐츠 편집장 OS 아키텍처</h2>
+  <h2>콘텐츠 편집장 Agent는<br>이 구조 안에서 움직입니다</h2>
   <p class="os-sub">개인 경험과 업체 조건을 분리해 읽고, 내 말투와 채널 문법으로 발행 패키지를 만드는 구조입니다.</p>
   <div class="os-architecture">
     <div class="os-inputs">
@@ -3424,117 +3269,9 @@ h2{
   </div>
 </section>
 
-<section class="slide">
-  <div class="eyebrow">Build Method</div>
-  <h2>나만의 Agent는 다섯 단계로 만듭니다</h2>
-  <div class="method-steps">
-    <div class="method-step">
-      <div class="num">1</div>
-      <h3>반복 업무</h3>
-      <p>자주 시키고 결과를 확인할 수 있는 일을 고릅니다.</p>
-      <strong>업무 1개</strong>
-    </div>
-    <div class="method-step">
-      <div class="num">2</div>
-      <h3>문제정의</h3>
-      <p>무엇을 읽고, 어떤 기준으로, 무엇을 만들지 씁니다.</p>
-      <strong>한 문장</strong>
-    </div>
-    <div class="method-step">
-      <div class="num">3</div>
-      <h3>폴더화</h3>
-      <p>Input, Reference, Skill, Output 위치를 나눕니다.</p>
-      <strong>읽을 위치</strong>
-    </div>
-    <div class="method-step focal">
-      <div class="num">4</div>
-      <h3>Skill화</h3>
-      <p>매번 말하던 작업 순서를 파일로 고정합니다.</p>
-      <strong>읽기 → 판단 → 만들기 → 검수</strong>
-    </div>
-    <div class="method-step">
-      <div class="num">5</div>
-      <h3>실행/수정</h3>
-      <p>짧게 실행하고 결과를 보며 기준을 보강합니다.</p>
-      <strong>기준 업데이트</strong>
-    </div>
-  </div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Problem Definition</div>
-  <h2>문제정의는 잘해줘가 아니라 역할의 경계선을 긋는 일입니다</h2>
-  <div class="grid three mt34">
-    <div class="card"><span class="badge">대상</span><h3>누구의 어떤 반복 업무인가</h3><p>업무 이름이 아니라 반복되는 상황과 사용자를 먼저 씁니다.</p></div>
-    <div class="card"><span class="badge">입력</span><h3>무엇을 읽고 시작하나</h3><p>이번 작업의 원본 자료와 계속 따라갈 기준을 분리합니다.</p></div>
-    <div class="card"><span class="badge">판단</span><h3>어떤 기준으로 고르나</h3><p>사람이 평소에 하던 선택 기준, 우선순위, 예외 조건을 적습니다.</p></div>
-    <div class="card"><span class="badge">금지선</span><h3>무엇을 하면 안 되나</h3><p>임의로 만들거나 확정하면 안 되는 영역을 먼저 막습니다.</p></div>
-    <div class="card"><span class="badge">산출물</span><h3>무엇이 나오면 끝인가</h3><p>사람이 바로 검수하거나 사용할 수 있는 형태로 끝냅니다.</p></div>
-    <div class="card"><span class="badge">재사용</span><h3>다음번에도 쓸 수 있나</h3><p>한 번의 답변이 아니라 다음 작업에도 남는 기준으로 만듭니다.</p></div>
-  </div>
-</section>
-
-<section class="slide chapter agent-content">
-  <div class="chapter-wrap">
-    <div>
-      <div class="eyebrow">Mentor Agent 01</div>
-      <h1>콘텐츠 편집장 Agent</h1>
-      <p class="lead">기획, 리서치, 원고 작성, 교정, 채널 최적화까지 콘텐츠 제작 흐름을 총괄하는 편집 워크플로우입니다.</p>
-      <div class="chapter-difficulty">난이도 <span class="stars">★★☆☆☆</span><span>작업 흐름을 조율하는 편집장 설계</span></div>
-    </div>
-    <div class="mini-board">
-      <div class="mini-row"><b>역할</b><span>단순 글쓰기 도구가 아니라 콘텐츠 팀장</span></div>
-      <div class="mini-row"><b>관리</b><span>기획, 리서치, 작성, SEO, 검수를 순서대로 조율</span></div>
-      <div class="mini-row"><b>Output</b><span>기획안, 원고, 캡션, 첫댓글, 해시태그, 검수표</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="slide agent-content">
-  <div class="eyebrow">Agent 01 · Editor Role</div>
-  <h2>편집장은 직접 다 쓰는 사람이 아니라<br>작업 흐름을 조율하는 사람입니다</h2>
-  <div class="role-process">
-    <div class="role-step"><span class="num">01</span><b>기획</b><span><strong>타겟 독자</strong>, 목적, 톤앤매너, 필수 메시지를 먼저 정합니다.</span></div>
-    <div class="role-step"><span class="num">02</span><b>리서치</b><span>업체 조건, 실제 후기, 사진, 키워드를 <strong>사실 자료</strong>로 분리합니다.</span></div>
-    <div class="role-step"><span class="num">03</span><b>작성</b><span>블로그, 인스타, 첫댓글을 <strong>채널 문법</strong>에 맞춰 변환합니다.</span></div>
-    <div class="role-step"><span class="num">04</span><b>검수</b><span><strong>과장, 누락, 말투 이탈</strong>을 잡고 발행 가능한 최종본으로 만듭니다.</span></div>
-  </div>
-  <div class="thinking-note">
-    <b>핵심 전환</b>
-    <span>글 하나 써줘가 아니라 기획 → 리서치 → 작성 → 검수 흐름을 같은 기준으로 운영해줘, 라고 문제를 정의합니다.</span>
-  </div>
-</section>
-
-<section class="slide agent-content">
-  <div class="eyebrow">Agent 01 · Why</div>
-  <h2>콘텐츠 제작이 쉬워질수록<br>편집장의 기준이 더 중요해집니다</h2>
-  <div class="why-shift">
-    <div class="why-panel"><b>역설</b><h3>만들기 쉬워졌습니다</h3><p>이미지, 카피, 블로그 초안을 누구나 빠르게 만들 수 있습니다. 그래서 <span class="key-red">정보만 있는 콘텐츠</span>는 더 빨리 평범해집니다.</p></div>
-    <div class="why-arrow">→</div>
-    <div class="why-panel"><b>가치</b><h3>사람의 맥락이 남아야 합니다</h3><p>어디를 갔는지가 아니라 <span class="key-red">왜 좋았는지</span>, 어떤 고민에서 선택했는지가 차이를 만듭니다.</p></div>
-    <div class="why-arrow">→</div>
-    <div class="why-panel"><b>Agent</b><h3>기준을 반복 적용합니다</h3><p>개인 경험, 말투, 금지선, 채널 문법을 읽고 매번 <span class="key-red">맥락이 살아 있는 결과물</span>로 다듬습니다.</p></div>
-  </div>
-  <div class="insight"><div class="label">Mentor Insight</div><strong>콘텐츠 Agent가 필요한 이유는 글을 대신 쓰기 위해서가 아니라, 경험과 맥락을 콘텐츠로 전달하는 기준을 유지하기 위해서입니다.</strong></div>
-</section>
-
-<section class="slide agent-content">
-  <div class="eyebrow">Agent 01 · Problem Definition</div>
-  <h2>콘텐츠 편집장 Agent의 문제정의</h2>
-  <div class="quote problem-statement">업체 조건과 실제 후기를 분리해 읽고,<br>내 말투와 채널 문법으로 발행 패키지를 만든다.</div>
-  <div class="problem-grid">
-    <div class="card"><span class="badge">대상</span><h3>체험/리뷰 발행</h3><p><span class="key-red">새 글 창작</span>이 아니라 후기 재료를 발행 가능한 상태로 편집합니다.</p></div>
-    <div class="card"><span class="badge">Input</span><h3>이번 원본 재료</h3><p><span class="key-red">업체 조건, 후기 메모, 사진 목록</span>을 사실 자료로 봅니다.</p></div>
-    <div class="card"><span class="badge">Reference</span><h3>유지할 나의 기준</h3><p><span class="key-red">기존 말투, 제목 패턴, 채널 문법</span>을 따라갑니다.</p></div>
-    <div class="card"><span class="badge">Rule</span><h3>편집 판단 기준</h3><p><span class="key-red">업체 조건</span>은 반영하되 개인 경험과 광고 문구를 섞지 않습니다.</p></div>
-    <div class="card"><span class="badge">Guardrail</span><h3>넘으면 안 되는 선</h3><p><span class="key-red">방문하지 않은 장면, 확인 안 된 효과</span>를 만들지 않습니다.</p></div>
-    <div class="card"><span class="badge">Output</span><h3>발행 패키지</h3><p><span class="key-red">원고, 제목, 캡션, 첫댓글, 해시태그, 검수표</span>로 끝냅니다.</p></div>
-  </div>
-</section>
-
 <section class="slide agent-content">
   <div class="eyebrow">Agent 01 · Folder</div>
-  <h2>콘텐츠 작업 폴더 구조</h2>
+  <h2>폴더를 나누면<br>Agent가 매번 같은 순서로 읽습니다</h2>
   <div class="folder-layout mt34">
   <div class="folder-tree">content-editor-agent/
 ├── 00_admin/
@@ -3571,20 +3308,8 @@ h2{
 </section>
 
 <section class="slide agent-content">
-  <div class="eyebrow">Agent 01 · Skill Flow</div>
-  <h2>콘텐츠 편집장 Agent의 Skill 흐름</h2>
-  <div class="flow workflow-row">
-    <div class="flow-item"><b>기획</b><span><span class="key-red">타겟 독자</span><br>목적 / 메시지 / 톤</span></div>
-    <div class="flow-item"><b>리서치</b><span><span class="key-red">자료 분리</span><br>사실 / 감상 / 요구사항</span></div>
-    <div class="flow-item"><b>작성</b><span><span class="key-red">채널 변환</span><br>블로그 / 인스타 / 첫댓글</span></div>
-    <div class="flow-item"><b>교정</b><span><span class="key-red">말투 적용</span><br>문장 길이 / 리듬 / 강도</span></div>
-    <div class="flow-item"><b>검수</b><span><span class="key-red">발행 전 확인</span><br>SEO / 과장 / 누락</span></div>
-  </div>
-</section>
-
-<section class="slide agent-content">
   <div class="eyebrow">Agent 01 · Skill File</div>
-  <h2>Skill 파일에는 반복 실행할 편집 순서를 씁니다</h2>
+  <h2>Skill 파일 하나가<br>매번 설명하던 편집 순서를 대신합니다</h2>
   <div class="code mt34">03_skills/채널별_발행패키지_만들기.md
 
 목표:
@@ -3616,8 +3341,20 @@ h2{
 </section>
 
 <section class="slide agent-content">
+  <div class="eyebrow">Agent 01 · Skill Flow</div>
+  <h2>Skill은 글쓰기 재능이 아니라<br>반복 가능한 편집 순서입니다</h2>
+  <div class="flow workflow-row">
+    <div class="flow-item"><b>기획</b><span><span class="key-red">타겟 독자</span><br>목적 / 메시지 / 톤</span></div>
+    <div class="flow-item"><b>리서치</b><span><span class="key-red">자료 분리</span><br>사실 / 감상 / 요구사항</span></div>
+    <div class="flow-item"><b>작성</b><span><span class="key-red">채널 변환</span><br>블로그 / 인스타 / 첫댓글</span></div>
+    <div class="flow-item"><b>교정</b><span><span class="key-red">말투 적용</span><br>문장 길이 / 리듬 / 강도</span></div>
+    <div class="flow-item"><b>검수</b><span><span class="key-red">발행 전 확인</span><br>SEO / 과장 / 누락</span></div>
+  </div>
+</section>
+
+<section class="slide agent-content">
   <div class="eyebrow">Agent 01 · Prompt</div>
-  <h2>실제 요청 프롬프트는 이렇게 짧아집니다</h2>
+  <h2>구조를 만들면<br>실제 프롬프트는 이렇게 짧아집니다</h2>
   <div class="code mt34">콘텐츠 편집장 Agent처럼 작업해줘.
 
 00_admin의 편집장 역할지침과 절대 하지 말 것을 먼저 읽고,
@@ -3635,9 +3372,20 @@ h2{
 7. 발행 전 검수표</div>
 </section>
 
+<section class="slide">
+  <div class="eyebrow">Agent 01 · Live Demo</div>
+  <h2>이제 만든 구조가<br>실제로 어떻게 실행되는지 봅니다</h2>
+  <p class="lead">앞에서 만든 폴더와 Skill을 Claude에 실제로 실행한 결과입니다.</p>
+  <div style="margin-top:28px;display:flex;justify-content:center">
+    <video controls style="width:100%;max-width:960px;border:1px solid #c4d1e3;background:#111827" poster="assets/ai_agent_cover.png">
+      <source src="assets/taste_course_agent_demo.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
 <section class="slide agent-content">
-  <div class="eyebrow">Agent 01 · Quality</div>
-  <h2>단순 QA가 아니라 우리만의 품질 기준을 남깁니다</h2>
+  <div class="eyebrow">Agent 01 · Quality &amp; Guardrail</div>
+  <h2>QA는 마지막 점검이 아니라<br>다음 결과를 안정시키는 기준입니다</h2>
   <div class="quality-system">
     <div class="quality-principle">
       <b>CORE STANDARD</b>
@@ -3656,7 +3404,7 @@ h2{
 
 <section class="slide">
   <div class="eyebrow">Synthesis</div>
-  <h2>콘텐츠 편집장 Agent는<br>이 흐름 하나로 정리됩니다</h2>
+  <h2>결국 콘텐츠 편집장 Agent는<br>이 한 흐름으로 반복됩니다</h2>
   <div class="grid four mt34">
     <div class="card"><span class="badge">문제정의</span><h3>조건과 후기를 분리</h3><p>업체 조건은 반영하고, 실제 경험은 따로 살립니다.</p></div>
     <div class="card"><span class="badge">기준</span><h3>내 말투 유지</h3><p>문장 길이, 표현 강도, 제목 패턴을 맞춥니다.</p></div>
@@ -3666,8 +3414,59 @@ h2{
 </section>
 
 <section class="slide">
+  <div class="eyebrow">Glossary</div>
+  <h2>용어가 헷갈리면<br>이 기준으로만 구분하면 됩니다</h2>
+  <div class="matrix mt34">
+    <div class="head">용어</div><div class="head">한 줄 설명</div><div class="head">비유</div>
+    <div>Input</div><div>이번 작업에서만 쓰는 원본 자료</div><div>오늘의 재료</div>
+    <div>Reference</div><div>앞으로도 반복 적용할 기준과 예시</div><div>레시피북</div>
+    <div>Skill</div><div>읽기→판단→만들기→검수 순서를 적은 파일</div><div>업무 매뉴얼</div>
+    <div>Guardrail</div><div>Agent가 절대 넘으면 안 되는 금지선</div><div>안전 울타리</div>
+    <div>Output</div><div>사람이 바로 확인·사용할 수 있는 최종 결과물</div><div>완성품</div>
+    <div>Check</div><div>결과물이 기준에 맞는지 확인하는 검수 기준</div><div>품질 검사표</div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Build Method</div>
+  <h2>내 업무 Agent도<br>이 다섯 단계로 만들 수 있습니다</h2>
+  <div class="method-steps">
+    <div class="method-step">
+      <div class="num">1</div>
+      <h3>반복 업무</h3>
+      <p>자주 시키고 결과를 확인할 수 있는 일을 고릅니다.</p>
+      <strong>업무 1개</strong>
+    </div>
+    <div class="method-step">
+      <div class="num">2</div>
+      <h3>문제정의</h3>
+      <p>무엇을 읽고, 어떤 기준으로, 무엇을 만들지 씁니다.</p>
+      <strong>한 문장</strong>
+    </div>
+    <div class="method-step">
+      <div class="num">3</div>
+      <h3>폴더화</h3>
+      <p>Input, Reference, Skill, Output 위치를 나눕니다.</p>
+      <strong>읽을 위치</strong>
+    </div>
+    <div class="method-step focal">
+      <div class="num">4</div>
+      <h3>Skill화</h3>
+      <p>매번 말하던 작업 순서를 파일로 고정합니다.</p>
+      <strong>읽기 → 판단 → 만들기 → 검수</strong>
+    </div>
+    <div class="method-step">
+      <div class="num">5</div>
+      <h3>실행/수정</h3>
+      <p>짧게 실행하고 결과를 보며 기준을 보강합니다.</p>
+      <strong>기준 업데이트</strong>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
   <div class="eyebrow">Your Agent</div>
-  <h2>이제 내 업무를 Agent 구조로 옮깁니다</h2>
+  <h2>이제 여러분의 업무도<br>같은 방식으로 옮길 차례입니다</h2>
   <div class="grid three mt34">
     <div class="card"><span class="badge">Step 1</span><h3>내 반복 업무 쓰기</h3><p>콘텐츠 편집장처럼 매번 반복되는 업무 하나를 고릅니다.</p></div>
     <div class="card"><span class="badge">Step 2</span><h3>자료와 기준 나누기</h3><p>이번 원본은 Input, 계속 따를 기준은 Reference에 둡니다.</p></div>
@@ -3677,19 +3476,48 @@ h2{
 </section>
 
 <section class="slide">
-  <div class="eyebrow">What Good Looks Like</div>
-  <h2>Agent를 쓰다 보면 결과물보다 기준이 쌓입니다</h2>
+  <div class="eyebrow">Practice Template</div>
+  <h2>실습은 온보딩 문서에서 시작해<br>폴더와 Skill로 끝냅니다</h2>
+  <p class="lead">아래 템플릿을 복사해 내 업무에 맞게 채워보세요. GitHub 저장소의 README에서도 복사할 수 있습니다.</p>
+  <div class="code mt34">1. Agent 온보딩 문서
+- 이름:
+- 반복 업무:
+- 문제정의 한 문장: 무엇을 읽고, 어떤 기준으로, 무엇을 만드는가
+- Input:
+- Reference:
+- Rule / Guardrail:
+- Output:
+- Check:
+
+2. 폴더 구조
+- 00_admin: 역할지침, 운영 기준, 금지조건
+- 01_input: 이번 작업의 원본 자료
+- 02_reference: 계속 따라갈 기준과 예시
+- 03_skills: 반복 실행할 작업 절차
+- 04_output: 최종 결과물
+
+3. 첫 Skill 파일
+- 목표:
+- 반드시 읽을 파일:
+- 작업 순서 1~5:
+- 하면 안 되는 일:
+- 출력 형식:</div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Checkpoint</div>
+  <h2>30초만 대입해보면<br>내 업무 Agent가 보입니다</h2>
   <div class="grid three mt34">
-    <div class="card good"><h3>처음 한 번</h3><p>문제정의, 폴더, 역할지침, 첫 Skill을 만듭니다. 이때는 조금 느립니다.</p></div>
-    <div class="card good"><h3>두 번째부터</h3><p>자료만 넣고 짧은 프롬프트로 실행합니다. 기준이 이미 쌓여 있어 결과가 안정됩니다.</p></div>
-    <div class="card good"><h3>쌓일수록</h3><p>좋은 예시, 실패 예시, 검수 기준이 reference가 되어 Agent가 점점 내 방식에 가까워집니다.</p></div>
+    <div class="card"><h3>Input은 무엇인가요?</h3><p>내 업무에서 매번 바뀌는 원본 자료는 무엇인가요?</p></div>
+    <div class="card"><h3>Reference는 무엇인가요?</h3><p>다음에도 똑같이 적용할 기준이나 예시가 있나요?</p></div>
+    <div class="card"><h3>Guardrail은 무엇인가요?</h3><p>Agent가 절대 하면 안 되는 것은 무엇인가요?</p></div>
   </div>
-  <div class="insight"><div class="label">Final Mentor Insight</div><strong>잘 쓰는 사람은 매번 프롬프트를 잘 쓰는 사람이 아니라, 다시 따라 할 수 있는 기준을 남기는 사람입니다.</strong></div>
+  <div class="insight"><div class="label">진행 안내</div><strong>옆 사람과 30초만 이야기해보세요. 답이 나오면 실습 준비가 된 것입니다.</strong></div>
 </section>
 
 <section class="slide">
   <div class="eyebrow">Folder Mapping</div>
-  <h2>폴더는 그대로 복사해서 쓰는 온보딩 템플릿입니다</h2>
+  <h2>이 폴더 구조는<br>그대로 복사해서 쓰는 온보딩 템플릿입니다</h2>
   <div class="folder-template">
     <div class="folder-template-card">
       <span class="folder-id">00_admin</span>
@@ -3749,42 +3577,9 @@ h2{
   </div>
 </section>
 
-<section class="slide">
-  <div class="eyebrow">Good Definition</div>
-  <h2>콘텐츠 편집장 Agent는<br>막연한 자동화가 아니라 기준 있는 편집 구조입니다</h2>
-  <div class="as-is-to-be mt34">
-    <div class="as-card bad">
-      <b>AS IS</b>
-      <h3>블로그 잘 써줘</h3>
-      <p>말투, 후기, 업체 조건, 금지 표현이 한 대화 안에 섞입니다.</p>
-      <span>결과: 매번 수정하고 다시 설명합니다.</span>
-    </div>
-    <div class="as-arrow">→</div>
-    <div class="as-card good">
-      <b>TO BE</b>
-      <h3>조건과 후기를 분리해<br>내 말투로 발행 패키지를 만드는 Agent</h3>
-      <p>Input, Reference, Skill, Output, Check가 나뉘어 같은 기준으로 반복됩니다.</p>
-      <span>결과: 짧게 실행하고 기준으로 검수합니다.</span>
-    </div>
-  </div>
-  <div class="insight"><div class="label">판단 기준</div><strong>좋은 Agent 이름에는 무엇을 읽고, 어떤 기준으로, 무엇을 만드는지가 드러납니다.</strong></div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">Agent Blueprint</div>
-  <h2>좋은 Agent 설계서는 새 담당자 온보딩 문서처럼 읽힙니다</h2>
-  <div class="grid five mt34">
-    <div class="card"><span class="badge">Role</span><h3>어떤 담당자인가?</h3><p>경험과 맥락을 살리는 콘텐츠 편집장</p></div>
-    <div class="card"><span class="badge">Problem</span><h3>무엇을 바꾸나?</h3><p>조건과 후기를 분리해 발행 패키지로 바꿈</p></div>
-    <div class="card"><span class="badge">Reference</span><h3>무엇을 따라가나?</h3><p>기존 말투, 제목 예시, 채널 문법</p></div>
-    <div class="card"><span class="badge">Guardrail</span><h3>무엇을 막나?</h3><p>없는 경험, 과장, 사실 단정 금지</p></div>
-    <div class="card good"><span class="badge">Output</span><h3>무엇으로 끝나나?</h3><p>원고, 캡션, 첫댓글, 해시태그, 검수표</p></div>
-  </div>
-</section>
-
-<section class="slide">
+<section class="slide review-slide">
   <div class="eyebrow">Review Rubric</div>
-  <h2>실습 피드백은 기준이 보이는지 확인합니다</h2>
+  <h2>실습 피드백은<br>기준이 보이는지부터 확인합니다</h2>
   <div class="matrix mt34">
     <div class="head">점검 항목</div><div class="head">좋음</div><div class="head">보완 필요</div><div class="head">피드백 문장</div>
     <div>Input</div><div>파일명과 출처가 명확함</div><div>자료들처럼 뭉뚱그림</div><div>처음 읽을 파일을 하나로 지정해보세요</div>
@@ -3796,52 +3591,56 @@ h2{
 </section>
 
 <section class="slide">
-  <div class="eyebrow">Practice Template</div>
-  <h2>실습은 온보딩 문서 → 폴더 → Skill 순서로 만듭니다</h2>
-  <div class="code mt34">1. Agent 온보딩 문서
-- 이름:
-- 반복 업무:
-- 문제정의 한 문장: 무엇을 읽고, 어떤 기준으로, 무엇을 만드는가
-- Input:
-- Reference:
-- Rule / Guardrail:
-- Output:
-- Check:
-
-2. 폴더 구조
-- 00_admin: 역할지침, 운영 기준, 금지조건
-- 01_input: 이번 작업의 원본 자료
-- 02_reference: 계속 따라갈 기준과 예시
-- 03_skills: 반복 실행할 작업 절차
-- 04_output: 최종 결과물
-
-3. 첫 Skill 파일
-- 목표:
-- 반드시 읽을 파일:
-- 작업 순서 1~5:
-- 하면 안 되는 일:
-- 출력 형식:</div>
+  <div class="eyebrow">Before / After</div>
+  <h2>같은 재료도<br>구조가 있으면 다른 결과가 나옵니다</h2>
+  <div class="as-is-to-be mt34">
+    <div class="as-card bad">
+      <b>AS IS — 프롬프트만 쓸 때</b>
+      <h3>블로그 글 써줘</h3>
+      <p>업체 조건: 주차 무료, 키즈존 있음.<br>후기: 아이랑 가기 좋았어요.</p>
+      <span>→ "주차가 무료이며 키즈존이 완비되어 있어 아이와 함께 방문하기에 최적의 장소입니다." (광고문 톤, 내 말투 아님)</span>
+    </div>
+    <div class="as-arrow">→</div>
+    <div class="as-card good">
+      <b>TO BE — Agent 구조 적용 후</b>
+      <h3>조건과 후기를 분리한 Agent</h3>
+      <p>Input: 업체 조건 + 후기 메모<br>Reference: 내 기존 블로그 말투<br>Guardrail: 안 가본 곳 금지</p>
+      <span>→ "주차 걱정 없고, 키즈존도 있어서 애기 데리고 갔는데 생각보다 괜찮았어요." (내 말투 유지)</span>
+    </div>
+  </div>
+  <div class="insight"><div class="label">포인트</div><strong>프롬프트를 길게 쓰는 것이 아니라, 기준이 파일에 남아 있기 때문에 결과가 달라집니다.</strong></div>
 </section>
 
 <section class="slide">
-  <div class="eyebrow">Next Action</div>
-  <h2>수강생에게 남길 과제</h2>
-  <div class="grid two mt34">
-    <div class="card"><h3>필수 제출</h3><ul><li>내 업무 Agent 온보딩 문서</li><li>00_admin~04_output 폴더 구조</li><li>Input / Reference 샘플 파일 각 1개</li><li>첫 Skill 파일 1개</li><li>실행 프롬프트와 Check 기준</li></ul></div>
-    <div class="card"><h3>선택 제출</h3><ul><li>폴더 구조 스크린샷</li><li>역할지침 파일 초안</li><li>실제 샘플 데이터 5~10행</li><li>Agent로 실행해본 결과</li><li>결과를 보고 고친 Rule / Skill 변경점</li></ul></div>
+  <div class="eyebrow">What Good Looks Like</div>
+  <h2>Agent를 쓰다 보면<br>결과물보다 기준이 먼저 쌓입니다</h2>
+  <div class="grid three mt34">
+    <div class="card good"><h3>처음 한 번</h3><p>문제정의, 폴더, 역할지침, 첫 Skill을 만듭니다. 이때는 조금 느립니다.</p></div>
+    <div class="card good"><h3>두 번째부터</h3><p>자료만 넣고 짧은 프롬프트로 실행합니다. 기준이 이미 쌓여 있어 결과가 안정됩니다.</p></div>
+    <div class="card good"><h3>쌓일수록</h3><p>좋은 예시, 실패 예시, 검수 기준이 reference가 되어 Agent가 점점 내 방식에 가까워집니다.</p></div>
   </div>
-  <div class="insight"><div class="label">마무리 멘트</div><strong>오늘 과제의 핵심은 완벽한 자동화가 아니라, 다음에도 따라 할 업무 기준이 남아 있는지입니다.</strong></div>
+  <div class="insight"><div class="label">Final Mentor Insight</div><strong>잘 쓰는 사람은 매번 프롬프트를 잘 쓰는 사람이 아니라, 다음에도 같은 품질을 만들 수 있는 구조가 남아 있느냐가 중요합니다.</strong></div>
 </section>
 
 <section class="slide">
   <div class="eyebrow">Final Summary</div>
-  <h2>3주차 핵심 정리</h2>
+  <h2>오늘 기억할 것은 하나입니다<br>Agent는 기준을 남기는 방식입니다</h2>
   <div class="grid four mt34">
     <div class="card"><h3>1. 만들기 쉬워졌습니다</h3><p>그래서 정보 자체보다 사람의 경험과 맥락을 전달하는 기준이 중요해졌습니다.</p></div>
     <div class="card"><h3>2. Agent는 온보딩입니다</h3><p>역할, 읽을 자료, 판단 기준, 금지선을 문서로 남기는 일입니다.</p></div>
     <div class="card"><h3>3. 기준은 문서화합니다</h3><p>Input, Reference, Rule, Skill, Output, Check를 분리해야 결과가 안정됩니다.</p></div>
     <div class="card"><h3>4. 첫 Skill부터 시작합니다</h3><p>폴더를 만들고, 첫 Skill 파일 하나를 쓰고, 실행 후 기준을 고치는 것이 시작입니다.</p></div>
   </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">Next Action</div>
+  <h2>과제는 결과물이 아니라<br>다음에도 쓸 수 있는 기준을 남기는 것입니다</h2>
+  <div class="grid two mt34">
+    <div class="card"><h3>필수 제출</h3><ul><li>내 업무 Agent 온보딩 문서</li><li>00_admin~04_output 폴더 구조</li><li>Input / Reference 샘플 파일 각 1개</li><li>첫 Skill 파일 1개</li><li>실행 프롬프트와 Check 기준</li></ul></div>
+    <div class="card"><h3>선택 제출</h3><ul><li>폴더 구조 스크린샷</li><li>역할지침 파일 초안</li><li>실제 샘플 데이터 5~10행</li><li>Agent로 실행해본 결과</li><li>결과를 보고 고친 Rule / Skill 변경점</li></ul></div>
+  </div>
+  <div class="insight"><div class="label">마무리 멘트</div><strong>오늘 과제의 핵심은 완벽한 자동화가 아니라, 다음에도 따라 할 업무 기준이 남아 있는지입니다.</strong></div>
 </section>
 
 <section class="slide dark center closing">
@@ -3859,6 +3658,8 @@ h2{
     <div class="closing-final">오늘 만든 콘텐츠 편집장 Agent처럼, 내 업무도 먼저 구조화하면 됩니다.</div>
   </div>
 </section>
+
+
 
 </div>
 <script>
@@ -3884,6 +3685,12 @@ document.addEventListener('keydown',event=>{
   if(event.key==='End')showSlide(slides.length-1);
 });
 showSlide(0);
+let touchStartX=0;
+document.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].screenX},{passive:true});
+document.addEventListener('touchend',e=>{
+  const diff=e.changedTouches[0].screenX-touchStartX;
+  if(Math.abs(diff)>50){diff<0?nextSlide():prevSlide();}
+},{passive:true});
 </script>
 </body>
 </html>
