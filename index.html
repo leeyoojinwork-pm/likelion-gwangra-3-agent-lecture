@@ -800,11 +800,12 @@ p,.card p,.card li{
   display:grid;
   grid-template-columns:.98fr 1.02fr;
   gap:28px;
-  align-items:stretch;
+  align-items:start;
   margin-top:30px;
 }
 .reference-photo{
-  min-height:420px;
+  height:430px;
+  min-height:0;
   border:1px solid #b8c1ce;
   background:#111827;
   box-shadow:14px 14px 0 #dfe4ec;
@@ -2832,8 +2833,8 @@ h2{
 .slide.active .ia-branch,
 .slide.active .onboarding-node,
 .slide.active .onboarding-agent{
-  opacity:0;
-  animation:flowIn .42s ease forwards;
+  opacity:1;
+  animation:none;
 }
 .slide.active .workflow-row .flow-item:nth-child(1),
 .slide.active .stair-step:nth-child(1),
@@ -2858,6 +2859,77 @@ h2{
 @media(max-width:640px){
   .slide{padding:34px 24px;overflow:auto} h1{font-size:42px} h2{font-size:32px}.lead{font-size:20px}
   .cover-inner,.chapter-wrap,.two,.three,.four,.system-board,.system-item,.agent-cycle,.cycle-flow,.cycle-loop,.pillars-wrap,.layer-diagram,.layer-row,.skill-diagram,.storyline,.agent-translation,.translation-row,.folder-layout,.folder-guide-item{grid-template-columns:1fr}.visual{height:auto;min-height:360px}.matrix{grid-template-columns:1fr}.matrix div{border-right:0!important}.flow-item,.mini-row,.timeline div,.thinking-step,.thinking-note{grid-template-columns:1fr}.thinking-step .think{border-right:0;border-bottom:1px solid var(--line)}.layer-axis{display:none}.skill-step,.cycle-step{border-right:0;border-bottom:1px solid var(--line)}.skill-step:after,.cycle-step:after{content:none}.story-step{border-right:0;border-bottom:1px solid var(--line)}.translation-arrow{display:none}
+}
+
+/* QA stabilization: lecture slides should read clearly even when captured statically. */
+.reference-slide.active{
+  justify-content:center!important;
+}
+.reference-slide.active::before{
+  display:none!important;
+}
+.reference-slide h2{
+  font-size:42px!important;
+  line-height:1.08!important;
+}
+.reference-slide .reference-layout{
+  margin-top:22px!important;
+  grid-template-columns:.95fr 1.05fr!important;
+  align-items:start!important;
+}
+.reference-slide .reference-photo{
+  height:392px!important;
+  min-height:0!important;
+  box-shadow:none!important;
+}
+.reference-slide .reference-quote{
+  padding:24px 30px!important;
+}
+.reference-slide blockquote{
+  font-size:30px!important;
+  line-height:1.18!important;
+}
+.reference-slide .translation{
+  font-size:19px!important;
+  line-height:1.35!important;
+  padding:14px 0!important;
+}
+.reference-slide .reference-takeaway{
+  padding:14px 18px!important;
+  margin-top:14px!important;
+}
+.workflow-row{
+  gap:14px!important;
+  border:0!important;
+  background:transparent!important;
+}
+.workflow-row .flow-item{
+  min-height:236px!important;
+  border:1px solid #c4d1e3!important;
+  border-top:5px solid #244497!important;
+  padding:24px 20px!important;
+  overflow:visible!important;
+}
+.workflow-row .flow-item:not(:last-child):after{
+  content:"→"!important;
+  right:-18px!important;
+  top:50%!important;
+  width:auto!important;
+  height:auto!important;
+  background:transparent!important;
+  color:#244497!important;
+  font-size:28px!important;
+  line-height:1!important;
+  transform:translateY(-50%)!important;
+}
+.workflow-row .flow-item b{
+  font-size:28px!important;
+  margin-bottom:18px!important;
+}
+.workflow-row .flow-item span{
+  font-size:18px!important;
+  line-height:1.46!important;
+  word-break:keep-all!important;
 }
 </style>
 </head>
@@ -3010,7 +3082,7 @@ h2{
   <div class="insight"><div class="label">핵심</div><strong>잘 쓰는 사람은 질문을 길게 쓰는 사람이 아니라, <span class="key-red">기준을 남기는 사람</span>입니다.</strong></div>
 </section>
 
-<section class="slide">
+<section class="slide reference-slide">
   <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
   <h2>Claude를 잘 쓰는 사람은<br>맥락이 준비되는 작업 구조를 만듭니다</h2>
   <div class="reference-layout">
