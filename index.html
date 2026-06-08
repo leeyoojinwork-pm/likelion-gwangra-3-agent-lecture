@@ -5534,3 +5534,31 @@ h2{
     <div class="closing-final">오늘 배운 콘텐츠 편집장 사례를 내 업무 이름으로 바꾸고, 같은 적용 플로우에 넣어보면 됩니다.</div>
   </div>
 </section>
+
+</div>
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let current=0;
+slides.forEach((slide,index)=>{
+  const no=document.createElement('div');
+  no.className='slide-no';
+  no.textContent=`${index+1} / ${slides.length}`;
+  slide.appendChild(no);
+});
+function showSlide(i){
+  current=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((slide,index)=>slide.classList.toggle('active',index===current));
+  document.getElementById('progress').style.width=((current+1)/slides.length*100)+'%';
+}
+function nextSlide(){showSlide(current+1)}
+function prevSlide(){showSlide(current-1)}
+document.addEventListener('keydown',event=>{
+  if(['ArrowRight','PageDown',' '].includes(event.key)){event.preventDefault();nextSlide();}
+  if(['ArrowLeft','PageUp'].includes(event.key)){event.preventDefault();prevSlide();}
+  if(event.key==='Home')showSlide(0);
+  if(event.key==='End')showSlide(slides.length-1);
+});
+showSlide(0);
+</script>
+</body>
+</html>
