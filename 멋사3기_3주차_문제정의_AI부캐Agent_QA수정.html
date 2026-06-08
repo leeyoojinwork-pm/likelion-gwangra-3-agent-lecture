@@ -2969,6 +2969,267 @@ h2{
   background:#244497;
   display:inline-block;
 }
+.lesson-grid{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.lesson-box{
+  background:#fff;
+  border:1px solid #c7d4e4;
+  border-top:5px solid #244497;
+  padding:24px 24px;
+  min-height:210px;
+}
+.lesson-box b{
+  display:block;
+  color:#244497;
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:.08em;
+  margin-bottom:16px;
+}
+.lesson-box h3{
+  color:#17233d;
+  font-size:28px;
+  line-height:1.18;
+  margin-bottom:12px;
+}
+.lesson-box p{
+  font-size:19px;
+  line-height:1.42;
+  color:#334155;
+  font-weight:650;
+}
+.deep-note{
+  margin-top:26px;
+  display:grid;
+  grid-template-columns:250px 1fr;
+  border:1px solid #c7d4e4;
+  background:#fff;
+}
+.deep-note b{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#122348;
+  color:#fff;
+  font-size:24px;
+  line-height:1.2;
+  padding:24px;
+}
+.deep-note span{
+  display:flex;
+  align-items:center;
+  padding:24px 30px;
+  color:#17233d;
+  font-size:25px;
+  line-height:1.38;
+  font-weight:780;
+}
+.compare-board{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:1fr 80px 1fr;
+  gap:18px;
+  align-items:stretch;
+}
+.compare-panel{
+  border:1px solid #c7d4e4;
+  background:#fff;
+  padding:28px;
+  min-height:310px;
+}
+.compare-panel.dark-panel{
+  background:#122348;
+  color:#fff;
+  border-color:#122348;
+}
+.compare-panel b{
+  display:block;
+  color:#244497;
+  font-size:16px;
+  letter-spacing:.08em;
+  margin-bottom:18px;
+}
+.compare-panel.dark-panel b,
+.compare-panel.dark-panel p,
+.compare-panel.dark-panel li{
+  color:#fff;
+}
+.compare-panel h3{
+  font-size:34px;
+  line-height:1.15;
+  margin-bottom:18px;
+}
+.compare-panel li{
+  margin:12px 0;
+  color:#334155;
+  font-size:21px;
+  line-height:1.36;
+  font-weight:650;
+}
+.compare-arrow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#244497;
+  font-size:54px;
+  font-weight:900;
+}
+.four-cycle{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.cycle-card{
+  background:#fff;
+  border:1px solid #c7d4e4;
+  padding:24px 22px;
+  min-height:260px;
+}
+.cycle-card .num{
+  color:#244497;
+  font-size:18px;
+  font-weight:900;
+  margin-bottom:16px;
+}
+.cycle-card h3{
+  font-size:30px;
+  color:#17233d;
+  margin-bottom:12px;
+}
+.cycle-card p{
+  font-size:18px;
+  line-height:1.45;
+  font-weight:650;
+}
+.question-list{
+  margin-top:30px;
+  display:grid;
+  gap:12px;
+}
+.question-row{
+  display:grid;
+  grid-template-columns:180px 1fr;
+  border:1px solid #c7d4e4;
+  background:#fff;
+}
+.question-row b{
+  background:#f1f5fb;
+  color:#244497;
+  padding:18px 20px;
+  font-size:20px;
+}
+.question-row span{
+  padding:18px 22px;
+  color:#17233d;
+  font-size:22px;
+  font-weight:720;
+}
+.email-logic{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border:1px solid #c7d4e4;
+  background:#fff;
+}
+.email-logic div{
+  padding:24px 22px;
+  border-right:1px solid #c7d4e4;
+  min-height:250px;
+}
+.email-logic div:last-child{border-right:0}
+.email-logic b{
+  display:block;
+  color:#244497;
+  font-size:17px;
+  margin-bottom:14px;
+}
+.email-logic h3{
+  font-size:27px;
+  line-height:1.18;
+  margin-bottom:12px;
+}
+.email-logic p{
+  font-size:18px;
+  line-height:1.42;
+  font-weight:650;
+}
+.file-rule{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+.file-rule .rule-card{
+  border:1px solid #c7d4e4;
+  background:#fff;
+  padding:24px;
+  min-height:180px;
+}
+.file-rule code{
+  display:block;
+  margin-top:14px;
+  background:#122348;
+  color:#e5efff;
+  padding:16px;
+  font-size:19px;
+  line-height:1.5;
+}
+.cover{
+  background:#07111f!important;
+}
+.cover-inner{
+  background:
+    linear-gradient(90deg,rgba(7,17,31,.96) 0%,rgba(9,20,37,.94) 58%,rgba(16,35,72,.88) 100%)!important;
+}
+.cover-copy{
+  background:transparent!important;
+}
+.cover-copy:before{
+  background:#6f8bd4!important;
+  opacity:.9;
+}
+.cover h1,
+.cover-statement b{
+  color:#f8fbff!important;
+}
+.cover h1 .title-accent{
+  color:#7ca7ff!important;
+}
+.cover .eyebrow,
+.cover-kicker b{
+  color:#a9c5ff!important;
+}
+.cover .lead,
+.cover-statement span,
+.cover .meta,
+.cover-kicker span{
+  color:#d7e2f6!important;
+}
+.cover .chip{
+  background:rgba(255,255,255,.1)!important;
+  color:#eaf2ff!important;
+  border:1px solid rgba(255,255,255,.22)!important;
+}
+.cover-window,
+.cover-flow-map{
+  background:rgba(255,255,255,.92)!important;
+  box-shadow:0 24px 70px rgba(0,0,0,.34)!important;
+}
+.cover-media{
+  background:transparent!important;
+}
+.cover-media:before{
+  background:radial-gradient(circle,rgba(76,124,255,.42),rgba(7,17,31,0) 68%)!important;
+}
+.cover-media:after{
+  background:linear-gradient(90deg,rgba(7,17,31,.8) 0%,rgba(7,17,31,.18) 100%)!important;
+}
 </style>
 </head>
 <body>
@@ -3146,6 +3407,65 @@ h2{
   </div>
 </section>
 
+<section class="slide">
+  <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
+  <h2>AI Agent는 네 단계를 반복하며 일을 처리합니다</h2>
+  <div class="four-cycle">
+    <div class="cycle-card"><div class="num">01</div><h3>인식</h3><p>요청, 파일, 대화, 참고자료를 읽고 지금 어떤 상황인지 파악합니다.</p></div>
+    <div class="cycle-card"><div class="num">02</div><h3>추론</h3><p>읽은 자료를 기준과 비교해 무엇을 먼저 해야 하는지 판단합니다.</p></div>
+    <div class="cycle-card"><div class="num">03</div><h3>행동</h3><p>정해진 순서에 따라 원고, 표, 폴더, 체크리스트 같은 결과물을 만듭니다.</p></div>
+    <div class="cycle-card"><div class="num">04</div><h3>학습</h3><p>검수 결과와 수정 기준을 다시 문서에 남겨 다음 실행 품질을 올립니다.</p></div>
+  </div>
+  <div class="deep-note"><b>강의식 정의</b><span>Agent는 답변을 잘하는 AI가 아니라, 기준을 읽고 같은 방식으로 일을 반복하는 작업 구조입니다.</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
+  <h2>프롬프트를 길게 쓰는 것과<br>시스템을 만드는 것은 다릅니다</h2>
+  <div class="compare-board">
+    <div class="compare-panel">
+      <b>PROMPT ONLY</b>
+      <h3>매번 설명한다</h3>
+      <ul>
+        <li>이전 맥락을 다시 붙입니다.</li>
+        <li>결과 형식이 매번 흔들립니다.</li>
+        <li>좋은 기준이 대화창 안에서 사라집니다.</li>
+      </ul>
+    </div>
+    <div class="compare-arrow">→</div>
+    <div class="compare-panel dark-panel">
+      <b>AGENT SYSTEM</b>
+      <h3>기준을 남긴다</h3>
+      <ul>
+        <li>자료 위치가 정해져 있습니다.</li>
+        <li>판단 기준과 금지선이 파일로 남습니다.</li>
+        <li>짧은 요청으로 같은 순서를 실행합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
+  <h2>IDE는 작업실, CLI는 명령창입니다</h2>
+  <div class="lesson-grid">
+    <div class="lesson-box"><b>IDE</b><h3>눈으로 보는 작업 공간</h3><p>VS Code, Cursor처럼 폴더, 파일, 코드, AI 대화, 터미널이 한 화면에 보이는 공간입니다.</p></div>
+    <div class="lesson-box"><b>CLI</b><h3>글자로 시키는 명령창</h3><p>터미널에 명령어를 입력해 실행합니다. 빠르지만 초보자는 현재 위치를 놓치기 쉽습니다.</p></div>
+    <div class="lesson-box"><b>추천 순서</b><h3>IDE 먼저, CLI는 안에서</h3><p>처음에는 폴더와 파일 변화를 눈으로 보고, 익숙해지면 IDE 안의 터미널을 같이 씁니다.</p></div>
+  </div>
+  <div class="deep-note"><b>비유</b><span>IDE는 주방 전체를 보는 것이고, CLI는 주방장에게 글자로 명령하는 창입니다.</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
+  <h2>오늘 끝나고 남아야 하는 산출물은 세 가지입니다</h2>
+  <div class="lesson-grid">
+    <div class="lesson-box"><b>OUTPUT 1</b><h3>Agent 설계서</h3><p>이 Agent가 무엇을 읽고, 어떤 기준으로 판단하고, 무엇을 만들지 한 장으로 정리합니다.</p></div>
+    <div class="lesson-box"><b>OUTPUT 2</b><h3>업무 폴더 구조</h3><p>이번 자료, 반복 기준, 실행 순서, 최종 결과물이 서로 섞이지 않도록 폴더를 나눕니다.</p></div>
+    <div class="lesson-box"><b>OUTPUT 3</b><h3>첫 Skill 파일</h3><p>AI가 매번 따라 할 작업 순서, 금지선, 출력 형식을 파일로 남깁니다.</p></div>
+  </div>
+</section>
+
 <section class="slide section-kickoff" data-section="02">
 	  <div class="eyebrow">02. 잘하는 사람의 방식</div>
 	  <h2>Agent 만들기는 새 담당자에게 일을 알려주는 과정입니다</h2>
@@ -3205,6 +3525,63 @@ h2{
   <div class="insight"><div class="label">운영 기준</div><strong>좋은 Agent는 잘하는 일만 적힌 것이 아니라, 넘으면 안 되는 선까지 적혀 있습니다.</strong></div>
 </section>
 
+<section class="slide">
+  <div class="eyebrow">02. 잘하는 사람의 방식</div>
+  <h2>잘하는 사람을 베낀다는 건<br>결과물이 아니라 판단 순서를 보는 것입니다</h2>
+  <div class="question-list">
+    <div class="question-row"><b>무엇을 먼저 보나?</b><span>일을 시작하기 전에 반드시 확인하는 자료와 조건은 무엇인가요?</span></div>
+    <div class="question-row"><b>무엇을 버리나?</b><span>좋은 결과를 위해 과감하게 제외하는 정보, 표현, 옵션은 무엇인가요?</span></div>
+    <div class="question-row"><b>무엇을 비교하나?</b><span>결과물을 판단할 때 머릿속에서 비교하는 좋은 예시나 기준은 무엇인가요?</span></div>
+    <div class="question-row"><b>어디서 멈추나?</b><span>AI가 더 하면 위험한 지점, 사람이 반드시 확인해야 하는 지점은 어디인가요?</span></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">02. 잘하는 사람의 방식</div>
+  <h2>업무 인수인계 문서처럼 Agent를 온보딩합니다</h2>
+  <div class="lesson-grid">
+    <div class="lesson-box"><b>역할</b><h3>너는 무엇을 맡는가</h3><p>콘텐츠 편집장, 피드백 매니저, 일정 코디네이터처럼 담당자 이름을 먼저 정합니다.</p></div>
+    <div class="lesson-box"><b>판단 기준</b><h3>좋은 결과는 무엇인가</h3><p>말투, 형식, 우선순위, 좋은 예시, 금지 표현을 구체적으로 적습니다.</p></div>
+    <div class="lesson-box"><b>보고 방식</b><h3>어떻게 보여줄 것인가</h3><p>최종본, 검수표, 수정 사유, 다음 액션처럼 사람이 바로 확인할 형태를 정합니다.</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">02. 잘하는 사람의 방식</div>
+  <h2>좋은 기준은 감각이 아니라 문장으로 남습니다</h2>
+  <div class="compare-board">
+    <div class="compare-panel">
+      <b>나쁜 기준</b>
+      <h3>예쁘게 해줘</h3>
+      <ul>
+        <li>무엇을 예쁘다고 보는지 알 수 없습니다.</li>
+        <li>사람마다 결과 기대치가 달라집니다.</li>
+        <li>검수할 때도 다시 감으로 판단합니다.</li>
+      </ul>
+    </div>
+    <div class="compare-arrow">→</div>
+    <div class="compare-panel dark-panel">
+      <b>좋은 기준</b>
+      <h3>비교 가능한 문장</h3>
+      <ul>
+        <li>제목은 24자 안팎으로 씁니다.</li>
+        <li>업체 조건과 실제 후기를 분리합니다.</li>
+        <li>없는 경험은 문장으로 만들지 않습니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">02. 잘하는 사람의 방식</div>
+  <h2>Guardrail은 AI를 불신해서가 아니라<br>일의 책임선을 정하기 위해 씁니다</h2>
+  <div class="lesson-grid">
+    <div class="lesson-box"><b>생성 금지</b><h3>없는 사실 만들기 금지</h3><p>방문 경험, 고객 반응, 성과 수치처럼 확인되지 않은 정보는 만들지 않습니다.</p></div>
+    <div class="lesson-box"><b>확정 금지</b><h3>사람 판단 영역 남기기</h3><p>가격, 일정, 법적 표현, 최종 발행 여부는 사람이 확인하도록 표시합니다.</p></div>
+    <div class="lesson-box"><b>누락 방지</b><h3>필수 조건 체크하기</h3><p>업체 요청, 채널 규칙, 제출 형식, 검수 기준을 마지막 표로 확인합니다.</p></div>
+  </div>
+</section>
+
 <section class="slide chapter agent-content">
   <div class="chapter-wrap">
     <div>
@@ -3260,6 +3637,49 @@ h2{
     <div class="card"><span class="badge">Rule</span><h3>편집 판단 기준</h3><p><span class="key-red">업체 조건</span>은 반영하되 개인 경험과 광고 문구를 섞지 않습니다.</p></div>
     <div class="card"><span class="badge">Guardrail</span><h3>넘으면 안 되는 선</h3><p><span class="key-red">방문하지 않은 장면, 확인 안 된 효과</span>를 만들지 않습니다.</p></div>
     <div class="card"><span class="badge">Output</span><h3>발행 패키지</h3><p><span class="key-red">원고, 제목, 캡션, 첫댓글, 해시태그, 검수표</span>로 끝냅니다.</p></div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">03. 콘텐츠 편집장</div>
+  <h2>왜 콘텐츠 편집장 Agent가 필요한가?</h2>
+  <div class="lesson-grid">
+    <div class="lesson-box"><b>반복성</b><h3>비슷한 작업이 계속 옵니다</h3><p>후기 메모, 업체 조건, 사진 목록을 읽고 발행 가능한 콘텐츠로 바꾸는 일이 반복됩니다.</p></div>
+    <div class="lesson-box"><b>맥락성</b><h3>내 말투가 중요합니다</h3><p>AI가 잘 쓴 문장보다, 내 채널에서 어색하지 않은 문장이 더 중요합니다.</p></div>
+    <div class="lesson-box"><b>검수성</b><h3>과장과 누락을 막아야 합니다</h3><p>없는 경험, 조건 누락, 광고 같은 표현은 발행 전에 반드시 걸러야 합니다.</p></div>
+  </div>
+  <div class="deep-note"><b>문제정의</b><span>글을 잘 쓰는 AI가 아니라, 조건·후기·말투·검수 기준을 분리해서 운영하는 편집장이 필요합니다.</span></div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">03. 콘텐츠 편집장</div>
+  <h2>AX 교육 마케터 사례로 보면<br>템플릿화의 이유가 더 분명해집니다</h2>
+  <div class="email-logic">
+    <div><b>WHY</b><h3>왜 이메일 문구를 쓰나</h3><p>신청, 참여, 재방문 같은 행동을 만들기 위해 문구가 필요합니다.</p></div>
+    <div><b>OUTPUT</b><h3>무엇을 얻나</h3><p>제목 후보, 본문, CTA, 리마인드 문구처럼 바로 쓸 수 있는 결과를 얻습니다.</p></div>
+    <div><b>CRITERIA</b><h3>무엇으로 판단하나</h3><p>오픈율, 클릭률, 신청률, 신뢰감, 브랜드 톤으로 좋은 문구를 판단합니다.</p></div>
+    <div><b>SYSTEM</b><h3>어떻게 반복하나</h3><p>목표, 맥락, 입력자료, 출력형식, 검토기준을 Skill 파일에 남깁니다.</p></div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">03. 콘텐츠 편집장</div>
+  <h2>문제정의는 네 질문을 끝까지 파는 일입니다</h2>
+  <div class="question-list">
+    <div class="question-row"><b>왜 해야 하나?</b><span>결과물이 필요한 이유와 이 업무가 반복되는 이유를 먼저 씁니다.</span></div>
+    <div class="question-row"><b>무엇을 얻나?</b><span>사람이 바로 검수하거나 사용할 수 있는 산출물 이름을 고정합니다.</span></div>
+    <div class="question-row"><b>무엇으로 판단하나?</b><span>좋은 결과의 조건, 금지선, 확인해야 할 체크 기준을 적습니다.</span></div>
+    <div class="question-row"><b>어떻게 반복하나?</b><span>폴더 구조와 Skill 파일로 매번 같은 순서를 실행하게 만듭니다.</span></div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">03. 콘텐츠 편집장</div>
+  <h2>콘텐츠 편집장 Agent의 결과물은<br>글 하나가 아니라 발행 패키지입니다</h2>
+  <div class="lesson-grid">
+    <div class="lesson-box"><b>기획 묶음</b><h3>방향을 먼저 정리</h3><p>타겟 독자, 메시지, 제목 후보, 키워드 방향을 먼저 잡습니다.</p></div>
+    <div class="lesson-box"><b>채널 묶음</b><h3>채널별로 다르게 변환</h3><p>블로그 본문, 인스타 캡션, 첫댓글, 해시태그를 각각의 문법으로 만듭니다.</p></div>
+    <div class="lesson-box"><b>검수 묶음</b><h3>발행 전 확인</h3><p>없는 경험, 과장 표현, 조건 누락, 말투 이탈을 표로 확인합니다.</p></div>
   </div>
 </section>
 
@@ -3357,6 +3777,52 @@ h2{
 
 <section class="slide agent-content">
   <div class="eyebrow">04. 업무 폴더 설계</div>
+  <h2>폴더는 예쁘게 정리하는 것이 아니라<br>AI가 읽는 순서를 정하는 장치입니다</h2>
+  <div class="lesson-grid">
+    <div class="lesson-box"><b>먼저 읽을 것</b><h3>00_admin</h3><p>역할, 금지선, 운영 기준처럼 모든 작업 전에 읽어야 하는 파일을 둡니다.</p></div>
+    <div class="lesson-box"><b>이번만 읽을 것</b><h3>01_input</h3><p>이번 요청에서만 쓰는 원본 자료를 넣습니다. 다음 작업 때는 교체됩니다.</p></div>
+    <div class="lesson-box"><b>계속 따를 것</b><h3>02_reference</h3><p>말투, 좋은 예시, 채널 문법처럼 매번 유지할 기준을 모읍니다.</p></div>
+  </div>
+  <div class="deep-note"><b>핵심</b><span>AI가 헷갈리지 않으려면 자료의 성격이 폴더 이름만 봐도 구분되어야 합니다.</span></div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">04. 업무 폴더 설계</div>
+  <h2>처음 만드는 폴더는 다섯 개면 충분합니다</h2>
+  <div class="file-rule">
+    <div class="rule-card"><h3>기본 구조</h3><p>복잡하게 시작하지 말고, 읽는 순서대로 번호를 붙입니다.</p><code>00_admin<br>01_input<br>02_reference<br>03_skills<br>04_output</code></div>
+    <div class="rule-card"><h3>운영 원칙</h3><p>파일이 많아지는 것보다, 어디에 넣을지 판단이 쉬운 구조가 더 중요합니다.</p><code>admin = 정체성<br>input = 이번 재료<br>reference = 반복 기준<br>skills = 실행 순서<br>output = 결과물</code></div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">04. 업무 폴더 설계</div>
+  <h2>파일 이름은 AI와 사람이 동시에 읽을 수 있어야 합니다</h2>
+  <div class="compare-board">
+    <div class="compare-panel">
+      <b>헷갈리는 이름</b>
+      <h3>최종진짜최종.md</h3>
+      <ul>
+        <li>무슨 자료인지 알기 어렵습니다.</li>
+        <li>버전과 용도가 섞입니다.</li>
+        <li>AI도 어떤 파일을 읽을지 헷갈립니다.</li>
+      </ul>
+    </div>
+    <div class="compare-arrow">→</div>
+    <div class="compare-panel dark-panel">
+      <b>좋은 이름</b>
+      <h3>역할_용도_기준</h3>
+      <ul>
+        <li>기존_블로그_말투.md</li>
+        <li>업체조건_분리하기.md</li>
+        <li>발행전_검수표.md</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">04. 업무 폴더 설계</div>
   <h2>Skill 파일에는 반복 실행할 편집 순서를 씁니다</h2>
   <div class="code mt34">03_skills/채널별_발행패키지_만들기.md
 
@@ -3390,6 +3856,17 @@ h2{
 
 <section class="slide agent-content">
   <div class="eyebrow">04. 업무 폴더 설계</div>
+  <h2>Skill 파일은 네 블록으로 쓰면 됩니다</h2>
+  <div class="four-cycle">
+    <div class="cycle-card"><div class="num">01</div><h3>목표</h3><p>이 Skill이 끝났을 때 무엇이 만들어져야 하는지 한 문장으로 씁니다.</p></div>
+    <div class="cycle-card"><div class="num">02</div><h3>읽을 파일</h3><p>00_admin, 01_input, 02_reference 중 반드시 읽을 파일을 지정합니다.</p></div>
+    <div class="cycle-card"><div class="num">03</div><h3>작업 순서</h3><p>읽기, 판단, 만들기, 검수 순서를 번호로 적습니다.</p></div>
+    <div class="cycle-card"><div class="num">04</div><h3>출력 형식</h3><p>제목 후보, 본문, 캡션, 검수표처럼 결과물 형태를 고정합니다.</p></div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">04. 업무 폴더 설계</div>
   <h2>콘텐츠 편집장 Agent의 Skill 흐름</h2>
   <div class="flow workflow-row">
     <div class="flow-item"><b>기획</b><span><span class="key-red">타겟 독자</span><br>목적 / 메시지 / 톤</span></div>
@@ -3397,6 +3874,18 @@ h2{
     <div class="flow-item"><b>작성</b><span><span class="key-red">채널 변환</span><br>블로그 / 인스타 / 첫댓글</span></div>
     <div class="flow-item"><b>교정</b><span><span class="key-red">말투 적용</span><br>문장 길이 / 리듬 / 강도</span></div>
     <div class="flow-item"><b>검수</b><span><span class="key-red">발행 전 확인</span><br>SEO / 과장 / 누락</span></div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">04. 업무 폴더 설계</div>
+  <h2>Skill 안에는 반드시 Check 기준이 있어야 합니다</h2>
+  <div class="matrix mt34">
+    <div class="head">검수 항목</div><div class="head">확인 질문</div><div class="head">실패 예시</div><div class="head">수정 지시</div>
+    <div>사실성</div><div>없는 경험을 만들었나?</div><div>방문하지 않은 장면 묘사</div><div>확인된 메모 안에서만 다시 작성</div>
+    <div>분리</div><div>업체 조건과 후기가 섞였나?</div><div>광고 문구가 내 경험처럼 보임</div><div>조건/후기를 문단으로 분리</div>
+    <div>말투</div><div>내 기존 문장 리듬과 맞나?</div><div>과하게 홍보성 문체</div><div>기존 말투 파일 기준으로 완화</div>
+    <div>출력</div><div>바로 쓸 수 있는 형태인가?</div><div>초안만 있고 검수표 없음</div><div>발행 패키지 형식으로 재정리</div>
   </div>
 </section>
 
@@ -3499,6 +3988,53 @@ h2{
     <div class="card good"><span class="badge">Step 3</span><h3>첫 Skill로 고정하기</h3><p>읽기, 판단, 만들기, 검수 순서를 파일 하나로 남깁니다.</p></div>
   </div>
   <div class="insight"><div class="label">적용 질문</div><strong>내 업무에서는 무엇이 업체 조건이고, 무엇이 후기 메모이며, 무엇이 내 말투 기준인가요?</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">05. 내 업무로 만들기</div>
+  <h2>Agent로 만들 업무는 아무거나 고르면 안 됩니다</h2>
+  <div class="lesson-grid">
+    <div class="lesson-box"><b>좋은 후보</b><h3>반복되지만 매번 조금 다름</h3><p>자료는 매번 바뀌지만 판단 기준과 결과 형식은 비슷한 업무가 좋습니다.</p></div>
+    <div class="lesson-box"><b>좋은 후보</b><h3>검수 기준이 있음</h3><p>좋다/나쁘다를 판단할 기준이 있거나, 사람이 매번 확인하는 체크포인트가 있어야 합니다.</p></div>
+    <div class="lesson-box"><b>나쁜 후보</b><h3>한 번만 하는 일</h3><p>반복되지 않는 단발성 작업은 Agent 구조보다 그냥 한 번 요청하는 편이 낫습니다.</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">05. 내 업무로 만들기</div>
+  <h2>업무를 Agent화하기 전과 후는 이렇게 달라집니다</h2>
+  <div class="compare-board">
+    <div class="compare-panel">
+      <b>BEFORE</b>
+      <h3>대화창에서 매번 설명</h3>
+      <ul>
+        <li>자료와 기준을 한꺼번에 붙입니다.</li>
+        <li>결과가 마음에 안 들면 다시 설명합니다.</li>
+        <li>잘 된 기준이 다음 작업에 남지 않습니다.</li>
+      </ul>
+    </div>
+    <div class="compare-arrow">→</div>
+    <div class="compare-panel dark-panel">
+      <b>AFTER</b>
+      <h3>폴더와 Skill로 실행</h3>
+      <ul>
+        <li>자료, 기준, 출력물이 분리됩니다.</li>
+        <li>짧은 실행 요청으로 반복합니다.</li>
+        <li>수정 기준이 다음 Skill 업데이트가 됩니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">05. 내 업무로 만들기</div>
+  <h2>실습 시간에는 완성보다 구조를 먼저 봅니다</h2>
+  <div class="four-cycle">
+    <div class="cycle-card"><div class="num">10분</div><h3>업무 선택</h3><p>반복되는 업무 하나를 고르고, 왜 반복되는지 적습니다.</p></div>
+    <div class="cycle-card"><div class="num">15분</div><h3>폴더 설계</h3><p>Input, Reference, Skill, Output을 나눠 파일 이름을 적습니다.</p></div>
+    <div class="cycle-card"><div class="num">20분</div><h3>Skill 작성</h3><p>목표, 읽을 파일, 작업 순서, 출력 형식을 적습니다.</p></div>
+    <div class="cycle-card"><div class="num">10분</div><h3>피드백</h3><p>기준이 보이는지, 금지선이 있는지, 결과물이 확인 가능한지 봅니다.</p></div>
+  </div>
 </section>
 
 <section class="slide">
