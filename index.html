@@ -3181,11 +3181,11 @@ h2{
   line-height:1.5;
 }
 .cover{
-  background:#07111f!important;
+  background:#243a63!important;
 }
 .cover-inner{
   background:
-    linear-gradient(90deg,rgba(7,17,31,.96) 0%,rgba(9,20,37,.94) 58%,rgba(16,35,72,.88) 100%)!important;
+    linear-gradient(90deg,rgba(36,58,99,.96) 0%,rgba(42,72,125,.94) 58%,rgba(78,112,172,.9) 100%)!important;
 }
 .cover-copy{
   background:transparent!important;
@@ -3225,10 +3225,206 @@ h2{
   background:transparent!important;
 }
 .cover-media:before{
-  background:radial-gradient(circle,rgba(76,124,255,.42),rgba(7,17,31,0) 68%)!important;
+  background:radial-gradient(circle,rgba(151,184,255,.52),rgba(36,58,99,0) 68%)!important;
 }
 .cover-media:after{
-  background:linear-gradient(90deg,rgba(7,17,31,.8) 0%,rgba(7,17,31,.18) 100%)!important;
+  background:linear-gradient(90deg,rgba(36,58,99,.72) 0%,rgba(36,58,99,.12) 100%)!important;
+}
+.case-showcase{
+  width:min(560px,100%);
+  display:grid;
+  gap:18px;
+}
+.case-hub{
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.9);
+  box-shadow:0 28px 72px rgba(13,28,58,.28);
+  padding:26px;
+}
+.case-hub-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:16px;
+  border-bottom:1px solid #d5deec;
+  color:#244497;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+.case-node{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns:66px 1fr 92px;
+  gap:16px;
+  align-items:center;
+  border:1px solid #d5deec;
+  background:#fff;
+  padding:16px;
+}
+.case-icon{
+  height:58px;
+  width:58px;
+  display:grid;
+  place-items:center;
+  background:#eef4ff;
+  color:#244497;
+  font-size:26px;
+  font-weight:900;
+}
+.case-node h3{
+  margin:0!important;
+  color:#111827!important;
+  font-size:24px!important;
+  line-height:1.15!important;
+}
+.case-node p{
+  margin:6px 0 0!important;
+  color:#536176!important;
+  font-size:16px!important;
+  line-height:1.35!important;
+  font-weight:700!important;
+}
+.difficulty{
+  color:#244497;
+  font-size:18px;
+  letter-spacing:.04em;
+  font-weight:950;
+  text-align:right;
+}
+.case-flow-strip{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  border:1px solid rgba(255,255,255,.24);
+  background:rgba(255,255,255,.82);
+  box-shadow:0 18px 46px rgba(13,28,58,.18);
+}
+.case-flow-strip span{
+  min-height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-right:1px solid #d5deec;
+  color:#26364f;
+  font-size:13px;
+  font-weight:850;
+  letter-spacing:.02em;
+}
+.case-flow-strip span:last-child{border-right:0}
+.scope-board,.agent-formula,.prompt-trap,.observation-sheet,.sentence-patterns,.rule-trio,.reference-ladder,.read-map,.statement-surgery,.package-board,.mentor-os,.folder-detail-grid,.split-practice,.skill-writing-table,.prompt-anatomy,.submission-preview,.update-loop{
+  margin-top:30px;
+}
+.scope-board{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.scope-panel{border:1px solid #c6d2e3;background:#fff;padding:30px 32px;min-height:410px}
+.scope-panel strong{display:block;color:#122348;font-size:34px;line-height:1.14;margin:12px 0 20px}
+.scope-panel ul{display:grid;gap:15px;margin:0;padding-left:22px}
+.scope-panel li{color:#344054;font-size:23px;line-height:1.36;font-weight:760}
+.scope-panel.good{background:#eef5ff;border-top:6px solid #244497}
+.scope-panel.bad{border-top:6px solid #8da2c7}
+.agent-formula{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:stretch}
+.formula-card{position:relative;background:#fff;border:1px solid #c6d2e3;border-top:5px solid #244497;padding:24px 22px;min-height:300px}
+.formula-card:not(:last-child)::after{content:"";position:absolute;right:-15px;top:50%;width:15px;height:2px;background:#9fb0c7}
+.formula-card b{display:block;color:#244497;font-size:18px;margin-bottom:18px}
+.formula-card h3{color:#111827!important;font-size:28px!important;margin-bottom:14px!important}
+.formula-card p{font-size:21px!important;line-height:1.42!important;color:#344054!important;font-weight:720!important}
+.prompt-trap{display:grid;grid-template-columns:1fr 1.25fr;gap:24px;align-items:stretch}
+.trap-left{background:#122348;color:#fff;padding:36px;border:1px solid #122348}
+.trap-left h3{color:#fff!important;font-size:34px!important;margin:0 0 20px!important}
+.trap-left p{color:#dbe8ff!important;font-size:23px!important;line-height:1.42!important}
+.trap-right{display:grid;gap:12px}
+.trap-row{display:grid;grid-template-columns:88px 1fr;background:#fff;border:1px solid #c6d2e3;min-height:86px}
+.trap-row b{display:grid;place-items:center;background:#eef5ff;color:#244497;font-size:24px}
+.trap-row span{display:flex;align-items:center;padding:18px 22px;color:#344054;font-size:22px;line-height:1.35;font-weight:760}
+.observation-sheet{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.observe-card{background:#fff;border:1px solid #c6d2e3;padding:24px 22px;min-height:300px}
+.observe-card b{display:block;color:#244497;font-size:16px;margin-bottom:16px}
+.observe-card h3{font-size:26px!important;color:#111827!important;margin-bottom:14px!important}
+.observe-card p{font-size:20px!important;line-height:1.42!important;font-weight:720!important;color:#344054!important}
+.sentence-patterns{display:grid;gap:14px}
+.pattern-row{display:grid;grid-template-columns:250px 1fr;border:1px solid #c6d2e3;background:#fff;min-height:86px}
+.pattern-row b{display:flex;align-items:center;padding:18px 22px;background:#eef5ff;color:#244497;font-size:21px}
+.pattern-row span{display:flex;align-items:center;padding:18px 24px;color:#202635;font-size:24px;line-height:1.34;font-weight:820}
+.rule-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rule-trio-card{background:#fff;border:1px solid #c6d2e3;border-top:5px solid #244497;padding:28px;min-height:360px}
+.rule-trio-card b{display:block;color:#244497;font-size:15px;letter-spacing:.08em;margin-bottom:18px}
+.rule-trio-card h3{font-size:31px!important;color:#111827!important;margin-bottom:18px!important}
+.rule-trio-card p{font-size:22px!important;line-height:1.45!important;color:#344054!important;font-weight:730!important}
+.reference-ladder{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;align-items:end}
+.reference-step{background:#fff;border:1px solid #c6d2e3;padding:26px;min-height:230px}
+.reference-step:nth-child(2){min-height:310px;background:#f7faff}
+.reference-step:nth-child(3){min-height:390px;background:#eef5ff;border-top:5px solid #244497}
+.reference-step b{display:block;color:#244497;font-size:18px;margin-bottom:16px}
+.reference-step h3{font-size:29px!important;color:#111827!important;margin-bottom:14px!important}
+.reference-step p{font-size:21px!important;line-height:1.42!important;color:#344054!important;font-weight:720!important}
+.read-map{display:grid;grid-template-columns:260px 1fr 260px;gap:20px;align-items:center}
+.read-map-side,.read-map-output{border:1px solid #c6d2e3;background:#fff;padding:28px;min-height:320px}
+.read-map-side b,.read-map-output b{color:#244497;font-size:20px}
+.read-map-side p,.read-map-output p{margin-top:16px;font-size:24px!important;line-height:1.4!important;font-weight:760!important;color:#344054!important}
+.read-map-center{border:3px solid #244497;background:#eef5ff;padding:34px;text-align:center}
+.read-map-center h3{color:#122348!important;font-size:38px!important;margin-bottom:22px!important}
+.read-map-center div{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.read-map-center span{background:#244497;color:#fff;padding:12px 8px;font-size:20px;font-weight:820}
+.statement-surgery{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.surgery-main{border:1px solid #c6d2e3;background:#122348;color:#fff;padding:34px}
+.surgery-main strong{display:block;color:#fff;font-size:38px;line-height:1.18}
+.surgery-main span{display:block;margin-top:18px;color:#dbe8ff;font-size:22px;line-height:1.42}
+.surgery-list{display:grid;gap:12px}
+.surgery-row{display:grid;grid-template-columns:116px 1fr;border:1px solid #c6d2e3;background:#fff;min-height:92px}
+.surgery-row b{display:flex;align-items:center;justify-content:center;background:#eef5ff;color:#244497;font-size:18px}
+.surgery-row span{display:flex;align-items:center;padding:18px 22px;color:#344054;font-size:22px;line-height:1.34;font-weight:780}
+.package-board{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.package-card{background:#fff;border:1px solid #c6d2e3;padding:26px;min-height:340px}
+.package-card b{display:block;color:#244497;font-size:16px;margin-bottom:18px}
+.package-card h3{font-size:30px!important;color:#111827!important;margin-bottom:18px!important}
+.package-card ul{display:grid;gap:12px;margin:0;padding-left:20px}
+.package-card li{font-size:21px;line-height:1.32;color:#344054;font-weight:760}
+.mentor-os{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+.mentor-os-flow{display:grid;gap:12px}
+.mentor-os-row{display:grid;grid-template-columns:110px 1fr;border:1px solid #c6d2e3;background:#fff;min-height:82px}
+.mentor-os-row b{display:grid;place-items:center;background:#eef5ff;color:#244497;font-size:18px}
+.mentor-os-row span{display:flex;align-items:center;padding:16px 22px;color:#344054;font-size:22px;line-height:1.35;font-weight:760}
+.mentor-os-note{background:#122348;color:#fff;padding:30px}
+.mentor-os-note h3{color:#fff!important;font-size:32px!important;margin-bottom:18px!important}
+.mentor-os-note p{color:#dbe8ff!important;font-size:22px!important;line-height:1.45!important}
+.folder-detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.folder-detail{background:#fff;border:1px solid #c6d2e3;border-top:5px solid #244497;padding:24px;min-height:300px}
+.folder-detail b{display:block;color:#244497;font-size:20px;margin-bottom:14px}
+.folder-detail h3{font-size:27px!important;color:#111827!important;margin-bottom:14px!important}
+.folder-detail p{font-size:20px!important;line-height:1.42!important;color:#344054!important;font-weight:720!important}
+.split-practice{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.split-card{border:1px solid #c6d2e3;background:#fff;padding:28px;min-height:390px}
+.split-card h3{font-size:32px!important;color:#111827!important;margin-bottom:20px!important}
+.split-card ul{display:grid;gap:13px;margin:0;padding-left:22px}
+.split-card li{font-size:22px;line-height:1.35;color:#344054;font-weight:740}
+.skill-writing-table{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.skill-writing-table .skill-col{background:#fff;border:1px solid #c6d2e3;padding:28px}
+.skill-col b{display:block;color:#244497;font-size:17px;margin-bottom:18px}
+.skill-col h3{font-size:30px!important;color:#111827!important;margin-bottom:16px!important}
+.skill-col p{font-size:22px!important;line-height:1.45!important;color:#344054!important;font-weight:730!important}
+.prompt-anatomy{display:grid;grid-template-columns:1fr 1.15fr;gap:20px}
+.prompt-box{background:#122348;color:#fff;padding:28px;font-size:24px;line-height:1.5;font-weight:760}
+.anatomy-list{display:grid;gap:12px}
+.anatomy-row{display:grid;grid-template-columns:140px 1fr;border:1px solid #c6d2e3;background:#fff;min-height:82px}
+.anatomy-row b{display:flex;align-items:center;padding:14px 18px;background:#eef5ff;color:#244497;font-size:18px}
+.anatomy-row span{display:flex;align-items:center;padding:16px 20px;color:#344054;font-size:21px;line-height:1.34;font-weight:750}
+.submission-preview{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.submit-card{background:#fff;border:1px solid #c6d2e3;border-top:5px solid #244497;padding:24px;min-height:300px}
+.submit-card b{display:block;color:#244497;font-size:18px;margin-bottom:16px}
+.submit-card h3{font-size:26px!important;color:#111827!important;margin-bottom:14px!important}
+.submit-card p{font-size:20px!important;line-height:1.42!important;color:#344054!important;font-weight:720!important}
+.update-loop{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.loop-card{position:relative;background:#fff;border:1px solid #c6d2e3;padding:22px 18px;min-height:260px}
+.loop-card:not(:last-child)::after{content:"";position:absolute;right:-11px;top:50%;width:11px;height:2px;background:#9fb0c7}
+.loop-card b{display:block;color:#244497;font-size:18px;margin-bottom:14px}
+.loop-card h3{font-size:25px!important;color:#111827!important;margin-bottom:12px!important}
+.loop-card p{font-size:18px!important;line-height:1.4!important;color:#344054!important;font-weight:720!important}
+.compare-panel.dark-panel h3,
+.compare-panel.dark-panel p,
+.compare-panel.dark-panel li{
+  color:#f8fbff!important;
+}
+.compare-panel.dark-panel b{
+  color:#c9d9ff!important;
 }
 </style>
 </head>
@@ -3269,23 +3465,26 @@ h2{
       <div class="meta">이유진 멘토 · 멋쟁이사자처럼 3기 강의자료</div>
     </div>
     <div class="cover-media">
-      <div class="cover-visual" aria-label="세 가지 Agent 설계 사례">
-        <div class="cover-window">
-          <div class="window-top"><span></span><span></span><span></span></div>
-          <div class="agent-mini-card">
-            <b>콘텐츠 편집장</b>
-            <span>후기 / 말투 / 채널 변환</span>
+      <div class="case-showcase" aria-label="세 가지 Agent 설계 사례">
+        <div class="case-hub">
+          <div class="case-hub-head"><span>AGENT CASES</span><span>WEEK 3</span></div>
+          <div class="case-node">
+            <div class="case-icon">01</div>
+            <div><h3>콘텐츠 편집장</h3><p>후기, 말투, 채널 문법을 발행 패키지로 정리</p></div>
+            <div class="difficulty">★★☆☆☆</div>
           </div>
-          <div class="agent-mini-card">
-            <b>온보딩 문서</b>
-            <span>역할 / 기준 / 금지선</span>
+          <div class="case-node">
+            <div class="case-icon">02</div>
+            <div><h3>멘토링 피드백 OS</h3><p>관찰 기록을 기준화하고 다음 액션으로 변환</p></div>
+            <div class="difficulty">★★★☆☆</div>
           </div>
-          <div class="agent-mini-card">
-            <b>업무 레시피</b>
-            <span>기획 / 리서치 / 작성 / 검수</span>
+          <div class="case-node">
+            <div class="case-icon">03</div>
+            <div><h3>내 업무 Skill</h3><p>반복 업무를 폴더와 실행 순서로 고정</p></div>
+            <div class="difficulty">★★★★☆</div>
           </div>
         </div>
-        <div class="cover-flow-map">
+        <div class="case-flow-strip">
           <span>Input</span>
           <span>Reference</span>
           <span>Skill</span>
@@ -3466,6 +3665,60 @@ h2{
   </div>
 </section>
 
+<section class="slide">
+  <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
+  <h2>오늘은 자동화 툴 사용법이 아니라<br>일을 맡길 수 있는 구조를 배웁니다</h2>
+  <div class="scope-board">
+    <div class="scope-panel bad">
+      <div class="badge">오늘 하지 않을 것</div>
+      <strong>AI에게 한 번에 다 시키는 법</strong>
+      <ul>
+        <li>긴 만능 프롬프트 만들기</li>
+        <li>결과가 나올 때까지 계속 다시 말하기</li>
+        <li>도구 기능을 많이 아는 것으로 끝내기</li>
+      </ul>
+    </div>
+    <div class="scope-panel good">
+      <div class="badge">오늘 할 것</div>
+      <strong>내 업무를 담당자처럼 온보딩하기</strong>
+      <ul>
+        <li>무엇을 읽고 시작할지 정하기</li>
+        <li>좋은 결과의 기준을 문장으로 남기기</li>
+        <li>폴더와 Skill로 반복 실행 가능하게 만들기</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
+  <h2>Agent 설계는 네 칸만 잡으면 시작됩니다</h2>
+  <div class="agent-formula">
+    <div class="formula-card"><b>01</b><h3>읽는다</h3><p>이번 자료와 반복 기준을 구분해서 읽게 합니다.</p></div>
+    <div class="formula-card"><b>02</b><h3>판단한다</h3><p>좋은 결과의 조건, 우선순위, 금지선을 기준으로 봅니다.</p></div>
+    <div class="formula-card"><b>03</b><h3>만든다</h3><p>사람이 바로 검수하거나 사용할 수 있는 산출물로 끝냅니다.</p></div>
+    <div class="formula-card"><b>04</b><h3>확인한다</h3><p>체크 기준에 맞춰 결과를 다시 보고 다음 기준을 보강합니다.</p></div>
+  </div>
+  <div class="deep-note"><b>한 줄 공식</b><span>Agent = 읽을 자료 + 판단 기준 + 실행 순서 + 검수 기준</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
+  <h2>실패하는 사람은 프롬프트를 길게 만들고,<br>잘하는 사람은 기준을 밖으로 빼냅니다</h2>
+  <div class="prompt-trap">
+    <div class="trap-left">
+      <h3>긴 프롬프트의 한계</h3>
+      <p>요청문이 길어질수록 맥락, 기준, 예시, 금지선이 한 덩어리로 섞입니다. 그래서 수정할 때도 무엇을 고쳐야 하는지 보이지 않습니다.</p>
+    </div>
+    <div class="trap-right">
+      <div class="trap-row"><b>01</b><span>이번 자료와 계속 쓸 기준이 섞입니다.</span></div>
+      <div class="trap-row"><b>02</b><span>잘 된 기준이 다음 작업에 재사용되지 않습니다.</span></div>
+      <div class="trap-row"><b>03</b><span>결과가 틀렸을 때 수정할 위치가 대화창뿐입니다.</span></div>
+      <div class="trap-row"><b>04</b><span>결국 사람은 매번 처음부터 다시 설명하게 됩니다.</span></div>
+    </div>
+  </div>
+</section>
+
 <section class="slide section-kickoff" data-section="02">
 	  <div class="eyebrow">02. 잘하는 사람의 방식</div>
 	  <h2>Agent 만들기는 새 담당자에게 일을 알려주는 과정입니다</h2>
@@ -3582,6 +3835,48 @@ h2{
   </div>
 </section>
 
+<section class="slide">
+  <div class="eyebrow">02. 잘하는 사람의 방식</div>
+  <h2>잘하는 사람의 업무 방식은<br>이 네 가지로 관찰합니다</h2>
+  <div class="observation-sheet">
+    <div class="observe-card"><b>OBSERVE 1</b><h3>시작 조건</h3><p>일을 시작하기 전에 반드시 확인하는 자료, 사람, 기준은 무엇인가요?</p></div>
+    <div class="observe-card"><b>OBSERVE 2</b><h3>판단 기준</h3><p>좋다, 별로다, 위험하다를 가르는 기준은 어떤 문장으로 설명할 수 있나요?</p></div>
+    <div class="observe-card"><b>OBSERVE 3</b><h3>작업 순서</h3><p>그 사람은 왜 이 순서로 보고, 왜 이 단계에서 멈추나요?</p></div>
+    <div class="observe-card"><b>OBSERVE 4</b><h3>검수 질문</h3><p>끝났다고 판단하기 전에 마지막으로 확인하는 질문은 무엇인가요?</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">02. 잘하는 사람의 방식</div>
+  <h2>기준은 이렇게 문장으로 바꾸면<br>Agent가 따라 하기 쉬워집니다</h2>
+  <div class="sentence-patterns">
+    <div class="pattern-row"><b>역할 기준</b><span>너는 단순 작성자가 아니라, 기준을 확인하고 결과물을 정리하는 담당자다.</span></div>
+    <div class="pattern-row"><b>판단 기준</b><span>좋은 결과는 사람이 바로 검수할 수 있고, 왜 그렇게 썼는지 근거가 남아 있어야 한다.</span></div>
+    <div class="pattern-row"><b>금지 기준</b><span>확인되지 않은 경험, 수치, 약속, 법적 표현은 새로 만들지 않는다.</span></div>
+    <div class="pattern-row"><b>출력 기준</b><span>최종본만 주지 말고, 수정 이유와 체크표를 함께 남긴다.</span></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">02. 잘하는 사람의 방식</div>
+  <h2>Rule, Guardrail, Check는 서로 다른 역할입니다</h2>
+  <div class="rule-trio">
+    <div class="rule-trio-card"><b>RULE</b><h3>어떻게 판단할까</h3><p>좋은 결과를 고르는 기준입니다. 예를 들면 제목 길이, 톤, 채널 문법, 우선순위가 여기에 들어갑니다.</p></div>
+    <div class="rule-trio-card"><b>GUARDRAIL</b><h3>무엇을 넘지 말까</h3><p>AI가 하면 안 되는 선입니다. 없는 사실 생성, 가격 확정, 과장 표현, 개인정보 노출을 막습니다.</p></div>
+    <div class="rule-trio-card"><b>CHECK</b><h3>끝났는지 어떻게 볼까</h3><p>결과물이 기준에 맞는지 확인하는 질문입니다. 최종 검수표로 남기면 다음 작업에도 재사용됩니다.</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">02. 잘하는 사람의 방식</div>
+  <h2>Reference는 많을수록 좋은 게 아니라<br>따라 할 기준이 선명할수록 좋습니다</h2>
+  <div class="reference-ladder">
+    <div class="reference-step"><b>BAD</b><h3>자료 뭉치</h3><p>예시, 원본, 취향, 요구사항이 한 폴더에 섞여 있어서 무엇을 따라야 할지 모릅니다.</p></div>
+    <div class="reference-step"><b>OK</b><h3>좋은 예시 모음</h3><p>따라 할 결과물은 있지만, 왜 좋은지 기준이 따로 적혀 있지 않습니다.</p></div>
+    <div class="reference-step"><b>GOOD</b><h3>예시 + 기준</h3><p>좋은 예시 옆에 말투, 구조, 금지 표현, 검수 질문이 함께 적혀 있습니다.</p></div>
+  </div>
+</section>
+
 <section class="slide chapter agent-content">
   <div class="chapter-wrap">
     <div>
@@ -3664,6 +3959,37 @@ h2{
 
 <section class="slide agent-content">
   <div class="eyebrow">03. 콘텐츠 편집장</div>
+  <h2>콘텐츠 편집장 Agent는<br>자료를 이 순서로 읽어야 합니다</h2>
+  <div class="read-map">
+    <div class="read-map-side"><b>01_input</b><p>업체 조건<br>후기 메모<br>사진 목록<br>필수 요청사항</p></div>
+    <div class="read-map-center">
+      <h3>읽기 → 분리 → 변환 → 검수</h3>
+      <div><span>사실</span><span>후기</span><span>말투</span><span>채널</span></div>
+    </div>
+    <div class="read-map-output"><b>04_output</b><p>블로그 원고<br>인스타 캡션<br>첫댓글<br>발행 전 검수표</p></div>
+  </div>
+  <div class="deep-note"><b>읽기 기준</b><span>자료를 많이 읽히는 것보다, 어떤 자료를 어떤 용도로 읽는지 분리하는 것이 더 중요합니다.</span></div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">03. 콘텐츠 편집장</div>
+  <h2>문제정의 한 문장은<br>세 조각으로 쪼개서 봅니다</h2>
+  <div class="statement-surgery">
+    <div class="surgery-main">
+      <strong>업체 조건과 실제 후기를 분리해 읽고,<br>내 말투와 채널 문법으로<br>발행 패키지를 만든다.</strong>
+      <span>이 문장 안에는 Agent가 읽을 자료, 판단할 기준, 만들어야 할 산출물이 모두 들어 있습니다.</span>
+    </div>
+    <div class="surgery-list">
+      <div class="surgery-row"><b>읽을 것</b><span>업체 조건과 실제 후기</span></div>
+      <div class="surgery-row"><b>판단 기준</b><span>분리, 내 말투, 채널 문법</span></div>
+      <div class="surgery-row"><b>만들 것</b><span>발행 패키지</span></div>
+      <div class="surgery-row"><b>막을 것</b><span>없는 경험, 과장 표현, 조건 누락</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">03. 콘텐츠 편집장</div>
   <h2>문제정의는 네 질문을 끝까지 파는 일입니다</h2>
   <div class="question-list">
     <div class="question-row"><b>왜 해야 하나?</b><span>결과물이 필요한 이유와 이 업무가 반복되는 이유를 먼저 씁니다.</span></div>
@@ -3680,6 +4006,33 @@ h2{
     <div class="lesson-box"><b>기획 묶음</b><h3>방향을 먼저 정리</h3><p>타겟 독자, 메시지, 제목 후보, 키워드 방향을 먼저 잡습니다.</p></div>
     <div class="lesson-box"><b>채널 묶음</b><h3>채널별로 다르게 변환</h3><p>블로그 본문, 인스타 캡션, 첫댓글, 해시태그를 각각의 문법으로 만듭니다.</p></div>
     <div class="lesson-box"><b>검수 묶음</b><h3>발행 전 확인</h3><p>없는 경험, 과장 표현, 조건 누락, 말투 이탈을 표로 확인합니다.</p></div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">03. 콘텐츠 편집장</div>
+  <h2>발행 패키지는 채널별 산출물과<br>검수 기준이 함께 나와야 합니다</h2>
+  <div class="package-board">
+    <div class="package-card"><b>BLOG</b><h3>검색형 결과물</h3><ul><li>제목 후보 5개</li><li>본문 구조</li><li>사진 삽입 위치</li><li>SEO 키워드</li></ul></div>
+    <div class="package-card"><b>INSTAGRAM</b><h3>관계형 결과물</h3><ul><li>피드 캡션</li><li>첫댓글</li><li>해시태그 묶음</li><li>톤앤매너 체크</li></ul></div>
+    <div class="package-card"><b>CHECK</b><h3>검수형 결과물</h3><ul><li>없는 경험 여부</li><li>업체 조건 누락</li><li>과장 표현</li><li>발행 가능 여부</li></ul></div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">03. 실제 사례 확장</div>
+  <h2>같은 구조는 멘토링 피드백 OS Agent에도 적용됩니다</h2>
+  <div class="mentor-os">
+    <div class="mentor-os-flow">
+      <div class="mentor-os-row"><b>Input</b><span>멘티 대화 기록, 과제 링크, 관찰 메모</span></div>
+      <div class="mentor-os-row"><b>Reference</b><span>좋은 피드백 기준, 수업 목표, 금지 표현</span></div>
+      <div class="mentor-os-row"><b>Skill</b><span>관찰 → 분류 → 피드백 문장 → 다음 액션</span></div>
+      <div class="mentor-os-row"><b>Output</b><span>칭찬 1개, 개선점 1개, 다음 과제 1개</span></div>
+    </div>
+    <div class="mentor-os-note">
+      <h3>왜 넣나?</h3>
+      <p>콘텐츠 편집장 사례가 글쓰기 업무라면, 멘토링 피드백 OS는 사람을 관찰하고 기준 있게 피드백하는 업무입니다. 형태는 달라도 Agent화 원리는 같습니다.</p>
+    </div>
   </div>
 </section>
 
@@ -3823,6 +4176,59 @@ h2{
 
 <section class="slide agent-content">
   <div class="eyebrow">04. 업무 폴더 설계</div>
+  <h2>00_admin에는 Agent의 정체성과<br>책임선을 먼저 둡니다</h2>
+  <div class="folder-detail-grid">
+    <div class="folder-detail"><b>역할지침.md</b><h3>너는 누구인가</h3><p>콘텐츠 편집장, 피드백 매니저처럼 담당자 이름과 맡을 일을 정합니다.</p></div>
+    <div class="folder-detail"><b>운영_기준.md</b><h3>무엇을 중요하게 보나</h3><p>좋은 결과의 조건, 우선순위, 검수 질문을 적어둡니다.</p></div>
+    <div class="folder-detail"><b>금지사항.md</b><h3>무엇을 하면 안 되나</h3><p>임의 생성, 과장 표현, 확정하면 안 되는 내용을 명시합니다.</p></div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">04. 업무 폴더 설계</div>
+  <h2>01_input과 02_reference를 나누는 순간<br>결과가 안정됩니다</h2>
+  <div class="split-practice">
+    <div class="split-card">
+      <h3>01_input: 이번 작업의 재료</h3>
+      <ul>
+        <li>이번 요청사항</li>
+        <li>이번 대화 기록</li>
+        <li>이번 원본 메모</li>
+        <li>이번 첨부자료</li>
+      </ul>
+    </div>
+    <div class="split-card">
+      <h3>02_reference: 계속 따를 기준</h3>
+      <ul>
+        <li>좋은 결과 예시</li>
+        <li>나의 말투 기준</li>
+        <li>검수 루브릭</li>
+        <li>채널별 문법</li>
+      </ul>
+    </div>
+  </div>
+  <div class="deep-note"><b>구분 질문</b><span>다음 작업에서도 똑같이 쓸 자료라면 Reference, 이번 작업에서만 쓰면 Input입니다.</span></div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">04. 업무 폴더 설계</div>
+  <h2>Skill을 쓸 때 피해야 할 문장과<br>좋은 문장을 구분합니다</h2>
+  <div class="skill-writing-table">
+    <div class="skill-col">
+      <b>피해야 할 문장</b>
+      <h3>알아서 잘 정리해줘</h3>
+      <p>순서, 판단 기준, 출력 형식이 보이지 않습니다. 결과가 틀려도 어디를 고쳐야 하는지 찾기 어렵습니다.</p>
+    </div>
+    <div class="skill-col">
+      <b>좋은 문장</b>
+      <h3>읽고, 나누고, 만들고, 검수해줘</h3>
+      <p>어떤 파일을 읽고, 무엇을 분리하고, 어떤 산출물로 끝낼지 단계가 보입니다.</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">04. 업무 폴더 설계</div>
   <h2>Skill 파일에는 반복 실행할 편집 순서를 씁니다</h2>
   <div class="code mt34">03_skills/채널별_발행패키지_만들기.md
 
@@ -3907,6 +4313,20 @@ h2{
 5. 인스타 피드용 캡션
 6. 첫댓글과 해시태그
 7. 발행 전 검수표</div>
+</section>
+
+<section class="slide agent-content">
+  <div class="eyebrow">04. 업무 폴더 설계</div>
+  <h2>짧은 프롬프트 안에도<br>네 가지 지시가 들어가야 합니다</h2>
+  <div class="prompt-anatomy">
+    <div class="prompt-box">콘텐츠 편집장 Agent처럼 작업해줘.<br><br>00_admin을 먼저 읽고,<br>01_input과 02_reference를 구분한 뒤,<br>기획 → 리서치 → 작성 → 검수 순서로 진행해줘.<br><br>마지막에는 발행 전 검수표까지 남겨줘.</div>
+    <div class="anatomy-list">
+      <div class="anatomy-row"><b>역할</b><span>어떤 Agent로 일할지 먼저 지정합니다.</span></div>
+      <div class="anatomy-row"><b>파일</b><span>읽어야 할 폴더와 기준 파일을 지정합니다.</span></div>
+      <div class="anatomy-row"><b>순서</b><span>작업 흐름을 번호나 단계로 고정합니다.</span></div>
+      <div class="anatomy-row"><b>출력</b><span>최종 산출물과 검수표를 함께 요청합니다.</span></div>
+    </div>
+  </div>
 </section>
 
 <section class="slide">
@@ -4060,6 +4480,18 @@ h2{
     <div class="card"><h3>Guardrail은 무엇인가요?</h3><p>Agent가 절대 하면 안 되는 것은 무엇인가요?</p></div>
   </div>
   <div class="insight"><div class="label">진행 안내</div><strong>옆 사람과 30초만 이야기해보세요. 답이 나오면 실습 준비가 된 것입니다.</strong></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">05. 내 업무로 만들기</div>
+  <h2>Agent는 한 번에 완성하지 않고<br>실행 결과를 보며 기준을 업데이트합니다</h2>
+  <div class="update-loop">
+    <div class="loop-card"><b>01</b><h3>실행</h3><p>짧은 프롬프트로 Skill을 실행합니다.</p></div>
+    <div class="loop-card"><b>02</b><h3>비교</h3><p>결과를 내가 기대한 기준과 비교합니다.</p></div>
+    <div class="loop-card"><b>03</b><h3>수정</h3><p>틀린 부분을 결과물이 아니라 기준 문장으로 고칩니다.</p></div>
+    <div class="loop-card"><b>04</b><h3>기록</h3><p>수정 기준을 Reference나 Skill에 남깁니다.</p></div>
+    <div class="loop-card"><b>05</b><h3>재실행</h3><p>다음 작업에서 같은 기준이 작동하는지 봅니다.</p></div>
+  </div>
 </section>
 
 <section class="slide">
