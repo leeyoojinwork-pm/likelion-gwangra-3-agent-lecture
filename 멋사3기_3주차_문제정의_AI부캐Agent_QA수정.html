@@ -3212,7 +3212,7 @@ h2{
 
 /* QA stabilization: lecture slides should read clearly even when captured statically. */
 .reference-slide.active{
-  justify-content:center!important;
+  justify-content:flex-start!important;
 }
 .reference-slide.active::before{
   display:none!important;
@@ -3221,13 +3221,34 @@ h2{
   font-size:42px!important;
   line-height:1.08!important;
 }
+.reference-title-row{
+  display:grid;
+  grid-template-columns:1fr 390px;
+  gap:28px;
+  align-items:end;
+  width:100%;
+}
+.reference-title-shift{
+  border-left:5px solid #c2413a;
+  background:#fff;
+  padding:18px 22px;
+  color:#171b22;
+  font-size:24px;
+  line-height:1.18;
+  font-weight:850;
+}
+.reference-title-shift span{
+  display:block;
+  color:#c2413a;
+  margin-top:6px;
+}
 .reference-slide .reference-layout{
   margin-top:22px!important;
   grid-template-columns:.95fr 1.05fr!important;
   align-items:start!important;
 }
 .reference-slide .reference-photo{
-  height:392px!important;
+  height:330px!important;
   min-height:0!important;
   box-shadow:none!important;
 }
@@ -3246,6 +3267,34 @@ h2{
 .reference-slide .reference-takeaway{
   padding:14px 18px!important;
   margin-top:14px!important;
+}
+.reference-bottom-note{
+  position:absolute;
+  left:64px;
+  right:64px;
+  bottom:34px;
+  text-align:center;
+  z-index:2;
+}
+.reference-bottom-note b{
+  display:block;
+  color:#244497;
+  font-size:14px;
+  letter-spacing:.08em;
+  margin-bottom:8px;
+}
+.reference-bottom-note span{
+  display:block;
+  color:#17233d;
+  font-size:22px;
+  line-height:1.34;
+  font-weight:820;
+}
+.reference-bottom-note .source-note{
+  margin-top:8px;
+  color:#667085;
+  font-size:12px;
+  line-height:1.35;
 }
 .workflow-row{
   gap:14px!important;
@@ -3736,6 +3785,49 @@ h2{
   font-weight:720!important;
 }
 .research-card.primary p{color:#dbe8ff!important;font-size:22px!important}
+.research-slide-compact .research-grid{
+  margin-top:20px;
+  gap:12px;
+}
+.research-slide-compact .research-card{
+  min-height:188px;
+  padding:18px 20px;
+}
+.research-slide-compact .lecture-note{
+  margin-top:12px;
+}
+.research-slide-compact .source-note{
+  margin-top:10px;
+  font-size:12px;
+  line-height:1.35;
+}
+.split-note-compact .deep-note{
+  margin-top:18px;
+}
+.split-note-compact .deep-note b{
+  padding:18px 20px;
+  font-size:21px;
+}
+.split-note-compact .deep-note span{
+  padding:18px 24px;
+  font-size:22px;
+  line-height:1.32;
+}
+.video-slide .lead{
+  margin-top:14px;
+}
+.video-slide .video-wrap{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+}
+.video-slide video{
+  width:100%;
+  max-width:860px;
+  max-height:430px;
+  border:1px solid #c4d1e3;
+  background:#111827;
+}
 .maturity-visual{
   margin-top:28px;
   height:420px;
@@ -4066,7 +4158,7 @@ h2{
       <div class="eyebrow">LIKELION 3기 · Week 3</div>
       <h1><span class="title-main">반복 업무에</span><span class="title-accent">기준을 남기는</span><span class="title-end">Agent 설계</span></h1>
       <div class="cover-statement">
-        <b>사람의 경험과 기준을 폴더와 Skill로 남겨, 반복 업무를 Agent가 실행할 수 있는 구조로 바꿉니다.</b>
+        <b>사람의 경험과 기준을 폴더와 Skill로 남겨,<br>반복 업무를 Agent가 실행할 수 있는 구조로 바꿉니다.</b>
       </div>
       <div class="chips">
         <span class="chip">Onboarding</span>
@@ -4106,12 +4198,38 @@ h2{
   </div>
 </section>
 
+<section class="slide">
+  <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
+  <h2>프롬프트를 길게 쓰는 것과<br>시스템을 만드는 것은 다릅니다</h2>
+  <div class="compare-board">
+    <div class="compare-panel">
+      <b>PROMPT ONLY</b>
+      <h3>매번 설명한다</h3>
+      <ul>
+        <li>이전 맥락을 다시 붙입니다.</li>
+        <li>결과 형식이 매번 흔들립니다.</li>
+        <li>좋은 기준이 대화창 안에서 사라집니다.</li>
+      </ul>
+    </div>
+    <div class="compare-arrow">→</div>
+    <div class="compare-panel dark-panel">
+      <b>AGENT SYSTEM</b>
+      <h3>기준을 남긴다</h3>
+      <ul>
+        <li>자료 위치가 정해져 있습니다.</li>
+        <li>판단 기준과 금지선이 파일로 남습니다.</li>
+        <li>짧은 요청으로 같은 순서를 실행합니다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <section class="slide toc-start" data-section="01">
   <div class="toc-start-grid">
     <div class="toc-start-copy">
       <div class="toc-badge">01 · AI 작업 공간</div>
       <h2>IDE는 <span class="green">AI와 함께</span><br>일하는 <span class="blue">작업 공간</span>입니다</h2>
-      <p class="toc-lead">지금부터는 웹사이트에서 대화만 하는 것이 아니라, 내 컴퓨터 안의 실제 폴더를 열어두고 AI와 같이 작업하는 방식으로 넘어갑니다.</p>
+      <p class="toc-lead">지금부터는 웹사이트에서 대화만 하는 것이 아니라,<br>내 컴퓨터 안의 실제 폴더를 열어두고 AI와 같이 작업하는 방식으로 넘어갑니다.</p>
       <div class="toc-talk">
         <div><b>1</b><span>폴더와 파일을 열어두고 AI에게 “이거 봐줘”, “이 구조 설명해줘”라고 요청합니다.</span></div>
         <div><b>2</b><span>중요한 건 코딩 실력이 아니라, AI가 어떤 파일을 보고 작업하는지 확인하는 상태입니다.</span></div>
@@ -4186,7 +4304,7 @@ h2{
       <b>실행 방식</b>
       <h3>요청은 짧아지고<br>결과는 일정해집니다</h3>
       <p>“콘텐츠 편집장 Skill 실행해줘”처럼 짧게 말해도, Agent가 읽을 기준과 순서가 남아 있어야 합니다.</p>
-      <div class="agent-core-request">사람이 만든 기준을<br>AI가 같은 순서로 반복합니다.</div>
+      <div class="agent-core-request">사람이 만든 기준을<br>Agent가 같은 순서로 반복합니다.</div>
     </div>
   </div>
   <div class="key-sentence"><b>이 장의 결론</b><span>잘 쓰는 사람은 질문을 길게 쓰는 사람이 아니라, 다음에도 반복될 기준을 남기는 사람입니다.</span></div>
@@ -4194,54 +4312,26 @@ h2{
 
 <section class="slide reference-slide">
   <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
-  <h2>프롬프트보다 중요한 질문은<br>어떤 맥락을 준비할 것인가입니다</h2>
+  <div class="reference-title-row">
+    <h2>프롬프트보다 중요한 질문은<br>어떤 맥락을 준비할 것인가입니다</h2>
+    <div class="reference-title-shift">Prompt Engineering<span>→ Context Engineering</span></div>
+  </div>
   <div class="reference-layout">
     <div class="reference-photo">
       <img src="assets/maya-nielan-proactive-agent.png" alt="Anthropic 발표 화면">
     </div>
     <div class="reference-quote">
       <div class="source">Anthropic · Context Engineering</div>
-      <blockquote><span class="quote-line">Prompt Engineering</span><span class="quote-core">→ Context Engineering</span></blockquote>
       <div class="translation">
         좋은 질문을 쓰는 단계에서<br>
         좋은 맥락을 고르는 단계로 넘어갑니다.
       </div>
-      <div class="translation">
-        오늘 만드는 Agent도 긴 요청문이 아니라<br>
-        기준, 자료, 실행 순서를 갖춘 작업 구조입니다.
-      </div>
-      <div class="reference-takeaway">
-        <b>핵심 문장</b>
-        <span>Agent 설계는 프롬프트 문장보다, AI가 읽을 맥락을 큐레이션하는 일에 가깝습니다.</span>
-      </div>
-      <div class="source-note">출처: Anthropic, “Effective context engineering for AI agents”</div>
     </div>
   </div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
-  <h2>프롬프트를 길게 쓰는 것과<br>시스템을 만드는 것은 다릅니다</h2>
-  <div class="compare-board">
-    <div class="compare-panel">
-      <b>PROMPT ONLY</b>
-      <h3>매번 설명한다</h3>
-      <ul>
-        <li>이전 맥락을 다시 붙입니다.</li>
-        <li>결과 형식이 매번 흔들립니다.</li>
-        <li>좋은 기준이 대화창 안에서 사라집니다.</li>
-      </ul>
-    </div>
-    <div class="compare-arrow">→</div>
-    <div class="compare-panel dark-panel">
-      <b>AGENT SYSTEM</b>
-      <h3>기준을 남긴다</h3>
-      <ul>
-        <li>자료 위치가 정해져 있습니다.</li>
-        <li>판단 기준과 금지선이 파일로 남습니다.</li>
-        <li>짧은 요청으로 같은 순서를 실행합니다.</li>
-      </ul>
-    </div>
+  <div class="reference-bottom-note">
+    <b>핵심 문장</b>
+    <span>Agent 설계는 프롬프트 문장보다,<br>AI가 읽을 맥락을 큐레이션하는 일에 가깝습니다.</span>
+    <div class="source-note">출처: Anthropic, “Effective context engineering for AI agents”</div>
   </div>
 </section>
 
@@ -4261,6 +4351,17 @@ h2{
 
 <section class="slide">
   <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
+  <h2>IDE는 작업실, CLI는 명령창입니다</h2>
+  <div class="lesson-grid">
+    <div class="lesson-box"><b>IDE</b><h3>눈으로 보는 작업 공간</h3><p>VS Code, Cursor처럼 폴더, 파일, 코드, AI 대화, 터미널이 한 화면에 보이는 공간입니다.</p></div>
+    <div class="lesson-box"><b>CLI</b><h3>글자로 시키는 명령창</h3><p>터미널에 명령어를 입력해 실행합니다. 빠르지만 초보자는 현재 위치를 놓치기 쉽습니다.</p></div>
+    <div class="lesson-box"><b>추천 순서</b><h3>IDE 먼저, CLI는 안에서</h3><p>처음에는 폴더와 파일 변화를 눈으로 보고, 익숙해지면 IDE 안의 터미널을 같이 씁니다.</p></div>
+  </div>
+  <div class="deep-note"><b>비유</b><span>IDE는 주방 전체를 보는 것이고, CLI는 주방장에게 글자로 명령하는 창입니다.</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
   <h2>오늘의 목표는 Agent 개념 암기가 아니라<br>내 사례에 적용하는 흐름을 익히는 것입니다</h2>
   <div class="learning-target">
     콘텐츠 편집장 사례를 그대로 따라 하는 것이 아니라, 내 업무에서 Input, Reference, Skill, Check를 찾아 Agent 구조로 옮기는 법을 배웁니다.
@@ -4276,7 +4377,7 @@ h2{
   <div class="deep-note"><b>오늘 남길 것</b><span>내 업무 Agent 설계서 + 업무 폴더 구조 + 첫 Skill 파일</span></div>
 </section>
 
-<section class="slide">
+<section class="slide research-slide-compact">
   <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
   <h2>자료조사에서 확인한 Agent 설계의 공통 원칙</h2>
   <div class="research-grid">
@@ -4643,7 +4744,16 @@ h2{
   </div>
 </section>
 
-
+<section class="slide agent-content">
+  <div class="eyebrow">03. 콘텐츠 편집장</div>
+  <h2>왜 콘텐츠 편집장 Agent가 필요한가?</h2>
+  <div class="lesson-grid">
+    <div class="lesson-box"><b>반복성</b><h3>비슷한 작업이 계속 옵니다</h3><p>후기 메모, 업체 조건, 사진 목록을 읽고 발행 가능한 콘텐츠로 바꾸는 일이 반복됩니다.</p></div>
+    <div class="lesson-box"><b>맥락성</b><h3>내 말투가 중요합니다</h3><p>AI가 잘 쓴 문장보다, 내 채널에서 어색하지 않은 문장이 더 중요합니다.</p></div>
+    <div class="lesson-box"><b>검수성</b><h3>과장과 누락을 막아야 합니다</h3><p>없는 경험, 조건 누락, 광고 같은 표현은 발행 전에 반드시 걸러야 합니다.</p></div>
+  </div>
+  <div class="deep-note"><b>문제정의</b><span>글을 잘 쓰는 AI가 아니라, 조건·후기·말투·검수 기준을 분리해서 운영하는 편집장이 필요합니다.</span></div>
+</section>
 
 <section class="slide agent-content">
   <div class="eyebrow">03. 콘텐츠 편집장</div>
@@ -4921,7 +5031,7 @@ h2{
   </div>
 </section>
 
-<section class="slide agent-content">
+<section class="slide agent-content split-note-compact">
   <div class="eyebrow">04. 업무 폴더 설계</div>
   <h2>01_input과 02_reference를 나누는 순간<br>결과가 안정됩니다</h2>
   <div class="split-practice">
@@ -5082,12 +5192,12 @@ h2{
   <div class="key-sentence"><b>이 장의 결론</b><span>폴더와 Skill이 준비되면 프롬프트는 길게 설명하는 문장이 아니라 실행 버튼처럼 짧아집니다.</span></div>
 </section>
 
-<section class="slide">
+<section class="slide video-slide">
   <div class="eyebrow">04. 업무 폴더 설계</div>
   <h2>콘텐츠 편집장 Agent 실행 화면</h2>
   <p class="lead">앞에서 만든 폴더와 Skill을 Claude에 실제로 실행한 결과입니다.</p>
-  <div style="margin-top:28px;display:flex;justify-content:center">
-    <video controls style="width:100%;max-width:960px;border:1px solid #c4d1e3;background:#111827" poster="assets/ai_agent_cover.png">
+  <div class="video-wrap">
+    <video controls poster="assets/ai_agent_cover.png">
       <source src="assets/taste_course_agent_demo.mp4" type="video/mp4">
     </video>
   </div>
@@ -5424,33 +5534,3 @@ h2{
     <div class="closing-final">오늘 배운 콘텐츠 편집장 사례를 내 업무 이름으로 바꾸고, 같은 적용 플로우에 넣어보면 됩니다.</div>
   </div>
 </section>
-
-
-
-</div>
-<script>
-const slides=[...document.querySelectorAll('.slide')];
-let current=0;
-slides.forEach((slide,index)=>{
-  const no=document.createElement('div');
-  no.className='slide-no';
-  no.textContent=`${index+1} / ${slides.length}`;
-  slide.appendChild(no);
-});
-function showSlide(i){
-  current=Math.max(0,Math.min(slides.length-1,i));
-  slides.forEach((slide,index)=>slide.classList.toggle('active',index===current));
-  document.getElementById('progress').style.width=((current+1)/slides.length*100)+'%';
-}
-function nextSlide(){showSlide(current+1)}
-function prevSlide(){showSlide(current-1)}
-document.addEventListener('keydown',event=>{
-  if(['ArrowRight','PageDown',' '].includes(event.key)){event.preventDefault();nextSlide();}
-  if(['ArrowLeft','PageUp'].includes(event.key)){event.preventDefault();prevSlide();}
-  if(event.key==='Home')showSlide(0);
-  if(event.key==='End')showSlide(slides.length-1);
-});
-showSlide(0);
-</script>
-</body>
-</html>
