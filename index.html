@@ -1617,7 +1617,262 @@ p,
   font-size:20px!important;
 }
 .slide-no{
+  position:absolute;
+  right:28px!important;
+  bottom:18px!important;
+  padding:7px 11px!important;
+  border:1px solid rgba(36,68,151,.18);
+  border-radius:999px;
+  background:rgba(255,255,255,.72)!important;
+  color:rgba(18,35,72,.72)!important;
+  font-size:13px!important;
+  line-height:1;
+  font-weight:900!important;
+  letter-spacing:.03em;
+  opacity:.82;
+  backdrop-filter:blur(8px);
+  box-shadow:0 8px 22px rgba(18,35,72,.08);
+}
+.cover .slide-no,
+.dark .slide-no{
+  border-color:rgba(255,255,255,.18);
+  background:rgba(8,17,31,.42)!important;
+  color:rgba(255,255,255,.78)!important;
+  opacity:.78;
+}
+.progress{
+  opacity:.68;
+}
+.instructor-intro-slide.active{
+  align-items:center;
+  justify-content:center;
+}
+.instructor-intro-image{
+  width:auto!important;
+  max-width:min(1292px,calc(100vw - 96px))!important;
+  height:auto!important;
+  max-height:min(732px,calc(100vh - 72px))!important;
+  object-fit:contain;
+  image-rendering:auto;
+}
+.toc-start{
+  background:#f7faff!important;
+}
+.toc-start.active{
+  justify-content:center!important;
+}
+.toc-start-grid{
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+  gap:42px;
+  align-items:center;
+  width:100%;
+}
+.toc-start-copy{
+  display:grid;
+  gap:22px;
+}
+.toc-badge{
+  display:inline-flex;
+  width:max-content;
+  align-items:center;
+  gap:10px;
+  padding:9px 16px;
+  border-radius:999px;
+  background:#155ee8;
+  color:#fff;
+  font-size:18px!important;
+  line-height:1;
+  font-weight:900!important;
+}
+.toc-start h2{
+  max-width:850px!important;
+  color:#111827!important;
+  font-size:60px!important;
+  line-height:1.08!important;
+  font-weight:950!important;
+}
+.toc-start h2 .blue{color:#155ee8}
+.toc-start h2 .green{color:#1f9d46}
+.toc-lead{
+  color:#344054!important;
+  font-size:25px!important;
+  line-height:1.46!important;
+  font-weight:760!important;
+}
+.toc-talk{
+  display:grid;
+  gap:12px;
+  margin-top:4px;
+}
+.toc-talk div{
+  display:grid;
+  grid-template-columns:34px 1fr;
+  gap:14px;
+  align-items:start;
+  padding:13px 16px;
+  border:1px solid #d1dced;
+  background:#fff;
+  box-shadow:8px 8px 0 rgba(36,68,151,.08);
+}
+.toc-talk b{
+  display:grid;
+  place-items:center;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  background:#eaf1ff;
+  color:#155ee8;
+  font-size:16px!important;
+  font-weight:950!important;
+}
+.toc-talk span{
+  color:#22304a!important;
+  font-size:20px!important;
+  line-height:1.42!important;
+  font-weight:740!important;
+}
+.toc-visual{
+  position:relative;
+  min-height:520px;
+}
+.workspace-laptop{
+  position:absolute;
+  z-index:2;
+  left:50%;
+  top:52%;
+  width:min(640px,100%);
+  transform:translate(-50%,-50%);
+  border:12px solid #111827;
+  border-radius:24px;
+  background:#fff;
+  box-shadow:0 32px 70px rgba(18,35,72,.18);
+  padding:20px;
+}
+.workspace-laptop:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:-42px;
+  width:78%;
+  height:24px;
+  transform:translateX(-50%);
+  border-radius:0 0 22px 22px;
+  background:linear-gradient(180deg,#475569,#111827);
+}
+.workspace-screen{
+  display:grid;
+  grid-template-columns:1fr 1.1fr 1fr;
+  gap:10px;
+  min-height:300px;
+}
+.workspace-panel{
+  border:1px solid #dde6f2;
+  border-radius:8px;
+  background:#f8fbff;
+  padding:14px;
+}
+.workspace-panel b{
+  display:block;
+  color:#122348;
+  font-size:16px!important;
+  margin-bottom:12px;
+  font-weight:900!important;
+}
+.workspace-line{
+  height:8px;
+  margin:11px 0;
+  border-radius:999px;
+  background:#cbd7ef;
+}
+.workspace-line.short{width:58%}
+.workspace-line.green{background:#a9dfbd}
+.workspace-line.blue{background:#9dbcf7}
+.workspace-callout{
+  position:absolute;
+  z-index:4;
+  display:grid;
+  gap:8px;
+  width:220px;
+  padding:20px 22px;
+  border:2px solid #b8cdf7;
+  border-radius:18px;
+  background:rgba(255,255,255,.88);
+  box-shadow:0 18px 36px rgba(18,35,72,.10);
+}
+.workspace-callout.left{left:-4px;top:176px}
+.workspace-callout.right{right:-4px;top:236px;border-color:#b8e1c2}
+.workspace-callout b{
+  color:#155ee8;
+  font-size:22px!important;
+  font-weight:950!important;
+}
+.workspace-callout.right b{color:#1f9d46}
+.workspace-callout span{
+  color:#344054!important;
+  font-size:17px!important;
+  line-height:1.38!important;
+  font-weight:700!important;
+}
+.toc-flow{
+  position:absolute;
+  z-index:3;
+  left:50%;
+  bottom:4px;
+  width:min(760px,96%);
+  transform:translateX(-50%);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  padding:16px;
+  border:1px solid #d5deec;
+  border-radius:16px;
+  background:rgba(255,255,255,.88);
+}
+.toc-flow div{
+  text-align:center;
+  color:#22304a;
+  font-size:17px;
+  line-height:1.25;
+  font-weight:850;
+}
+.toc-flow b{
+  display:block;
+  color:#155ee8;
   font-size:14px!important;
+  margin-bottom:6px;
+  font-weight:950!important;
+}
+.toc-mini-board{
+  display:grid;
+  gap:16px;
+  padding:34px;
+  border:1px solid #d5deec;
+  background:#fff;
+  box-shadow:18px 18px 0 rgba(36,68,151,.10);
+}
+.toc-mini-row{
+  display:grid;
+  grid-template-columns:82px 1fr;
+  min-height:82px;
+  border:1px solid #d5deec;
+}
+.toc-mini-row b{
+  display:grid;
+  place-items:center;
+  background:#eaf1ff;
+  color:#155ee8;
+  font-size:22px!important;
+  font-weight:950!important;
+}
+.toc-mini-row span{
+  display:flex;
+  align-items:center;
+  padding:16px 20px;
+  color:#22304a!important;
+  font-size:23px!important;
+  line-height:1.32!important;
+  font-weight:850!important;
 }
 
 /* Visual hierarchy templates: blue emphasis + varied structures */
@@ -3681,8 +3936,8 @@ h2{
   </div>
 </section>
 
-<section class="slide" style="padding:0!important;background:linear-gradient(90deg,#1a2740 36%,#f0f4f8 36%)!important;overflow:hidden!important">
-  <img src="assets/이유진_강사소개 페이지.png" alt="이유진 강사 소개" style="max-width:100%;max-height:100%;object-fit:contain;display:block">
+<section class="slide instructor-intro-slide" style="padding:0!important;background:linear-gradient(90deg,#1a2740 36%,#f0f4f8 36%)!important;overflow:hidden!important">
+  <img class="instructor-intro-image" src="assets/이유진_강사소개 페이지.png" alt="이유진 강사 소개">
 </section>
 
 <section class="slide" style="background:#fff!important">
@@ -3698,6 +3953,38 @@ h2{
         <div style="display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:center"><span style="color:#244497;font-size:32px;font-weight:900">03</span><span style="color:#333;font-size:24px;font-weight:500">반복 업무를 구조화한 실제 사례 (콘텐츠 편집장)</span></div>
         <div style="display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:center"><span style="color:#244497;font-size:32px;font-weight:900">04</span><span style="color:#333;font-size:24px;font-weight:500">AI가 일할 수 있는 업무 폴더 설계법 ★★★</span></div>
         <div style="display:grid;grid-template-columns:56px 1fr;gap:18px;align-items:center"><span style="color:#244497;font-size:32px;font-weight:900">05</span><span style="color:#333;font-size:24px;font-weight:500">내 사례를 Agent 구조에 넣어보기</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide toc-start" data-section="01">
+  <div class="toc-start-grid">
+    <div class="toc-start-copy">
+      <div class="toc-badge">01 · AI 작업 공간</div>
+      <h2>IDE는 <span class="green">AI와 함께</span><br>일하는 <span class="blue">작업 공간</span>입니다</h2>
+      <p class="toc-lead">지금부터는 웹사이트에서 대화만 하는 것이 아니라, 내 컴퓨터 안의 실제 폴더를 열어두고 AI와 같이 작업하는 방식으로 넘어갑니다.</p>
+      <div class="toc-talk">
+        <div><b>1</b><span>폴더와 파일을 열어두고 AI에게 “이거 봐줘”, “이 구조 설명해줘”라고 요청합니다.</span></div>
+        <div><b>2</b><span>중요한 건 코딩 실력이 아니라, AI가 어떤 파일을 보고 작업하는지 확인하는 상태입니다.</span></div>
+        <div><b>3</b><span>앞으로 실습은 열기, 만들기, 설명 요청, 결과 확인, 수정 요청의 반복으로 진행됩니다.</span></div>
+      </div>
+    </div>
+    <div class="toc-visual" aria-label="IDE와 AI 작업 공간 시각화">
+      <div class="workspace-callout left"><b>파일과 폴더 관리</b><span>프로젝트를 열고 현재 작업 대상을 확인합니다.</span></div>
+      <div class="workspace-laptop">
+        <div class="workspace-screen">
+          <div class="workspace-panel"><b>프로젝트</b><div class="workspace-line blue"></div><div class="workspace-line"></div><div class="workspace-line short"></div><div class="workspace-line"></div><div class="workspace-line short"></div></div>
+          <div class="workspace-panel"><b>작업 파일</b><div class="workspace-line blue"></div><div class="workspace-line green"></div><div class="workspace-line"></div><div class="workspace-line blue short"></div><div class="workspace-line green"></div><div class="workspace-line"></div></div>
+          <div class="workspace-panel"><b>AI 대화</b><div class="workspace-line"></div><div class="workspace-line green"></div><div class="workspace-line blue"></div><div class="workspace-line short"></div></div>
+        </div>
+      </div>
+      <div class="workspace-callout right"><b>AI와 대화하며 작업</b><span>설명, 생성, 수정 요청을 같은 공간에서 반복합니다.</span></div>
+      <div class="toc-flow">
+        <div><b>OPEN</b>폴더 열기</div>
+        <div><b>MAKE</b>파일 만들기</div>
+        <div><b>ASK</b>AI에게 요청</div>
+        <div><b>CHECK</b>결과 확인</div>
       </div>
     </div>
   </div>
@@ -3947,6 +4234,27 @@ h2{
   <div class="lecture-note"><b>예시</b><span>블로그 글을 만들 때 모든 대화 내용을 붙이는 대신, 이번 업체 조건은 Input에 두고, 내 말투 기준과 좋은 예시는 Reference에 둡니다. 그러면 AI가 무엇을 참고하고 무엇을 따라야 하는지 덜 헷갈립니다.</span></div>
 </section>
 
+<section class="slide toc-start" data-section="02">
+  <div class="toc-start-grid">
+    <div class="toc-start-copy">
+      <div class="toc-badge">02 · 온보딩</div>
+      <h2>Agent는 도구가 아니라<br><span class="blue">함께 일할 담당자</span>처럼 세팅합니다</h2>
+      <p class="toc-lead">잘하는 사람을 채용하듯, 역할과 기준과 금지선을 먼저 알려줘야 같은 방식으로 일을 반복할 수 있습니다.</p>
+      <div class="toc-talk">
+        <div><b>1</b><span>무엇을 맡길지 직무명을 좁게 정합니다.</span></div>
+        <div><b>2</b><span>좋은 결과를 고르는 판단 기준을 남깁니다.</span></div>
+        <div><b>3</b><span>넘으면 안 되는 선과 마지막 검수 질문을 분리합니다.</span></div>
+      </div>
+    </div>
+    <div class="toc-mini-board">
+      <div class="toc-mini-row"><b>Role</b><span>너는 어떤 담당자인가</span></div>
+      <div class="toc-mini-row"><b>Rule</b><span>무엇을 기준으로 판단하는가</span></div>
+      <div class="toc-mini-row"><b>Guard</b><span>어디까지 하면 안 되는가</span></div>
+      <div class="toc-mini-row"><b>Check</b><span>끝났는지 어떻게 확인하는가</span></div>
+    </div>
+  </div>
+</section>
+
 <section class="slide section-kickoff" data-section="02">
 	  <div class="eyebrow">02. 잘하는 사람의 방식</div>
 	  <h2>Agent 만들기는 새 담당자를 채용하고<br>온보딩하는 과정과 비슷합니다</h2>
@@ -4129,6 +4437,27 @@ h2{
     <div class="visual-caption"><span>Lens Filter</span><span>Reference는 양보다 선명도</span></div>
   </div>
   <div class="source-note">참고: Anthropic Context Engineering의 “필요한 맥락을 선별해 넣는 관점”을 강의용 Reference 설계로 적용</div>
+</section>
+
+<section class="slide toc-start agent-content" data-section="03">
+  <div class="toc-start-grid">
+    <div class="toc-start-copy">
+      <div class="toc-badge">03 · 실제 사례</div>
+      <h2>콘텐츠 편집장 Agent로<br><span class="blue">반복 업무 구조</span>를 봅니다</h2>
+      <p class="toc-lead">글 하나를 잘 쓰는 사례가 아니라, 입력 자료와 말투 기준과 검수표를 분리해 발행 패키지로 만드는 흐름을 봅니다.</p>
+      <div class="toc-talk">
+        <div><b>1</b><span>이번 작업의 재료와 계속 따를 기준을 나눕니다.</span></div>
+        <div><b>2</b><span>기획, 작성, 캡션, 해시태그, 검수표를 하나의 패키지로 봅니다.</span></div>
+        <div><b>3</b><span>내 업무에도 옮길 수 있는 구조만 뽑아냅니다.</span></div>
+      </div>
+    </div>
+    <div class="toc-mini-board">
+      <div class="toc-mini-row"><b>Input</b><span>업체 조건, 후기 메모, 사진 목록</span></div>
+      <div class="toc-mini-row"><b>Ref</b><span>기존 말투, 제목 패턴, 채널 문법</span></div>
+      <div class="toc-mini-row"><b>Flow</b><span>읽기 → 판단 → 만들기 → 검수</span></div>
+      <div class="toc-mini-row"><b>Output</b><span>원고, 캡션, 첫댓글, 검수표</span></div>
+    </div>
+  </div>
 </section>
 
 <section class="slide chapter agent-content">
@@ -4356,6 +4685,27 @@ h2{
       <div class="quality-rule"><b>말투</b><span>기존 블로그의 <strong>문장 길이, 표현 강도, 문단 리듬</strong>을 유지한다.</span></div>
       <div class="quality-rule"><b>채널</b><span>블로그, 인스타, 첫댓글이 각각 다른 <strong>채널 문법</strong>을 따르게 한다.</span></div>
       <div class="quality-rule"><b>발행성</b><span>최종본은 사람이 바로 복사해 쓸 수 있는 <strong>발행 패키지</strong>로 끝낸다.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide toc-start agent-content" data-section="04">
+  <div class="toc-start-grid">
+    <div class="toc-start-copy">
+      <div class="toc-badge">04 · 폴더 설계</div>
+      <h2>AI가 일하려면<br><span class="blue">읽을 위치</span>가 먼저 정리돼야 합니다</h2>
+      <p class="toc-lead">폴더 이름은 단순 정리가 아니라, AI에게 무엇이 이번 자료이고 무엇이 반복 기준인지 알려주는 작업 지시입니다.</p>
+      <div class="toc-talk">
+        <div><b>1</b><span>이번 작업에서만 쓰는 자료는 Input에 둡니다.</span></div>
+        <div><b>2</b><span>다음에도 따라야 할 기준은 Reference에 둡니다.</span></div>
+        <div><b>3</b><span>Skill에는 읽기, 판단, 만들기, 검수 순서를 남깁니다.</span></div>
+      </div>
+    </div>
+    <div class="toc-mini-board">
+      <div class="toc-mini-row"><b>00</b><span>admin · 역할과 목표</span></div>
+      <div class="toc-mini-row"><b>01</b><span>input · 이번 원본 자료</span></div>
+      <div class="toc-mini-row"><b>02</b><span>reference · 반복 기준</span></div>
+      <div class="toc-mini-row"><b>03</b><span>skill · 실행 순서</span></div>
     </div>
   </div>
 </section>
@@ -4624,6 +4974,27 @@ h2{
     <video controls style="width:100%;max-width:960px;border:1px solid #c4d1e3;background:#111827" poster="assets/ai_agent_cover.png">
       <source src="assets/taste_course_agent_demo.mp4" type="video/mp4">
     </video>
+  </div>
+</section>
+
+<section class="slide toc-start" data-section="05">
+  <div class="toc-start-grid">
+    <div class="toc-start-copy">
+      <div class="toc-badge">05 · 내 사례 적용</div>
+      <h2>마지막은 내 업무 하나를<br><span class="blue">Agent 구조</span>에 넣는 시간입니다</h2>
+      <p class="toc-lead">콘텐츠 편집장 사례를 외우는 것이 아니라, 내 반복 업무에서 재료, 기준, 실행 순서, 검수 기준을 찾아봅니다.</p>
+      <div class="toc-talk">
+        <div><b>1</b><span>반복되는 업무 하나를 고릅니다.</span></div>
+        <div><b>2</b><span>매번 바뀌는 자료와 계속 유지되는 기준을 나눕니다.</span></div>
+        <div><b>3</b><span>첫 Skill 파일로 작은 실행 순서를 남깁니다.</span></div>
+      </div>
+    </div>
+    <div class="toc-mini-board">
+      <div class="toc-mini-row"><b>업무</b><span>반복되는 하나의 작업명</span></div>
+      <div class="toc-mini-row"><b>재료</b><span>이번에만 쓰는 원본 자료</span></div>
+      <div class="toc-mini-row"><b>기준</b><span>계속 따라야 할 판단 기준</span></div>
+      <div class="toc-mini-row"><b>결과</b><span>사람이 검수할 수 있는 산출물</span></div>
+    </div>
   </div>
 </section>
 
