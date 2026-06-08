@@ -2931,6 +2931,44 @@ h2{
   line-height:1.46!important;
   word-break:keep-all!important;
 }
+.section-kickoff{
+  background:linear-gradient(135deg,#f8fbff 0%,#f1f6ff 58%,#edf3fb 100%)!important;
+}
+.section-kickoff::after{
+  content:attr(data-section)!important;
+  position:absolute!important;
+  right:54px!important;
+  top:58px!important;
+  width:auto!important;
+  height:auto!important;
+  border:0!important;
+  background:transparent!important;
+  color:rgba(36,68,151,.08)!important;
+  font-size:230px!important;
+  line-height:.8!important;
+  font-weight:950!important;
+  letter-spacing:-.02em!important;
+  z-index:0!important;
+}
+.section-kickoff > :not(.slide-no){
+  position:relative;
+  z-index:1;
+}
+.section-kickoff h2{
+  max-width:1040px!important;
+}
+.section-kickoff .eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+}
+.section-kickoff .eyebrow:before{
+  content:"";
+  width:26px;
+  height:3px;
+  background:#244497;
+  display:inline-block;
+}
 </style>
 </head>
 <body>
@@ -3020,7 +3058,7 @@ h2{
   </div>
 </section>
 
-<section class="slide">
+<section class="slide section-kickoff" data-section="01">
   <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
   <h2>매번 같은 설명을 다시 하고 있지 않나요?</h2>
   <div class="opening-structure">
@@ -3108,7 +3146,7 @@ h2{
   </div>
 </section>
 
-<section class="slide">
+<section class="slide section-kickoff" data-section="02">
 	  <div class="eyebrow">02. 잘하는 사람의 방식</div>
 	  <h2>Agent 만들기는 새 담당자에게 일을 알려주는 과정입니다</h2>
 	  <div class="onboarding-diagram">
@@ -3279,7 +3317,7 @@ h2{
   </div>
 </section>
 
-<section class="slide agent-content">
+<section class="slide agent-content section-kickoff" data-section="04">
   <div class="eyebrow">04. 업무 폴더 설계</div>
   <h2>콘텐츠 작업 폴더 구조</h2>
   <div class="folder-layout mt34">
@@ -3393,7 +3431,7 @@ h2{
   </div>
 </section>
 
-<section class="slide">
+<section class="slide section-kickoff" data-section="05">
   <div class="eyebrow">05. 내 업무로 만들기</div>
   <h2>콘텐츠 편집장 Agent는<br>이 흐름 하나로 정리됩니다</h2>
   <div class="grid four mt34">
