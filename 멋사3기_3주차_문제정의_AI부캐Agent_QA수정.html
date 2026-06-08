@@ -3426,6 +3426,125 @@ h2{
 .compare-panel.dark-panel b{
   color:#c9d9ff!important;
 }
+.source-note{
+  margin-top:16px;
+  color:#667085;
+  font-size:13px;
+  line-height:1.45;
+  font-weight:780;
+}
+.research-grid{
+  margin-top:26px;
+  display:grid;
+  grid-template-columns:1.1fr 1fr 1fr;
+  grid-template-rows:repeat(2,1fr);
+  gap:14px;
+}
+.research-card{
+  border:1px solid #c6d2e3;
+  background:#fff;
+  padding:22px 24px;
+  min-height:205px;
+}
+.research-card.primary{
+  grid-row:1 / span 2;
+  background:#122348;
+  color:#fff;
+}
+.research-card b{
+  display:block;
+  color:#244497;
+  font-size:15px;
+  letter-spacing:.08em;
+  margin-bottom:14px;
+}
+.research-card.primary b{color:#c9d9ff}
+.research-card h3{
+  color:#111827!important;
+  font-size:28px!important;
+  line-height:1.17!important;
+  margin-bottom:12px!important;
+}
+.research-card.primary h3{color:#fff!important;font-size:34px!important}
+.research-card p{
+  color:#344054!important;
+  font-size:20px!important;
+  line-height:1.42!important;
+  font-weight:720!important;
+}
+.research-card.primary p{color:#dbe8ff!important;font-size:22px!important}
+.maturity-visual{
+  margin-top:28px;
+  height:420px;
+  background:#fff;
+  border:1px solid #c6d2e3;
+  position:relative;
+  overflow:hidden;
+}
+.maturity-visual svg,
+.lens-visual svg,
+.beads-visual svg,
+.spiral-visual svg{
+  width:100%;
+  height:100%;
+  display:block;
+}
+.lens-visual{
+  margin-top:28px;
+  height:420px;
+  background:#fff;
+  border:1px solid #c6d2e3;
+  position:relative;
+  overflow:hidden;
+}
+.visual-caption{
+  position:absolute;
+  left:28px;
+  bottom:22px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.visual-caption span{
+  border:1px solid #d5deec;
+  background:#f7faff;
+  color:#244497;
+  padding:7px 10px;
+  font-size:13px;
+  font-weight:900;
+}
+.maturity-visual .visual-caption{
+  top:22px;
+  bottom:auto;
+}
+.beads-visual{
+  margin-top:28px;
+  height:420px;
+  background:#fff;
+  border:1px solid #c6d2e3;
+  position:relative;
+  overflow:hidden;
+}
+.spiral-visual{
+  margin-top:28px;
+  height:400px;
+  background:#fff;
+  border:1px solid #c6d2e3;
+  position:relative;
+  overflow:hidden;
+}
+.svg-title{
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;
+  font-weight:900;
+  fill:#122348;
+  letter-spacing:-.04em;
+}
+.svg-muted{
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;
+  font-weight:800;
+  fill:#667085;
+  letter-spacing:-.03em;
+}
 </style>
 </head>
 <body>
@@ -3582,17 +3701,17 @@ h2{
 
 <section class="slide reference-slide">
   <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
-  <h2>Claude를 잘 쓰는 사람은<br>맥락이 준비되는 작업 구조를 만듭니다</h2>
+  <h2>프롬프트보다 중요한 질문은<br>어떤 맥락을 준비할 것인가입니다</h2>
   <div class="reference-layout">
     <div class="reference-photo">
       <img src="assets/maya-nielan-proactive-agent.png" alt="Anthropic 발표 화면">
     </div>
     <div class="reference-quote">
-      <div class="source">Anthropic Engineer</div>
-      <blockquote><span class="quote-line">You're not supposed to prompt Claude.</span><span class="quote-core">You're supposed to build a system that prompts itself.</span></blockquote>
+      <div class="source">Anthropic · Context Engineering</div>
+      <blockquote><span class="quote-line">Prompt Engineering</span><span class="quote-core">→ Context Engineering</span></blockquote>
       <div class="translation">
-        계속 설명하는 사람이 아니라,<br>
-        Claude가 읽을 기준을 먼저 정리하는 사람
+        좋은 질문을 쓰는 단계에서<br>
+        좋은 맥락을 고르는 단계로 넘어갑니다.
       </div>
       <div class="translation">
         오늘 만드는 Agent도 긴 요청문이 아니라<br>
@@ -3600,8 +3719,9 @@ h2{
       </div>
       <div class="reference-takeaway">
         <b>핵심 문장</b>
-        <span>Agent는 한 번의 답변이 아니라, 운영 가능한 작업 시스템으로 설계됩니다.</span>
+        <span>Agent 설계는 프롬프트 문장보다, AI가 읽을 맥락을 큐레이션하는 일에 가깝습니다.</span>
       </div>
+      <div class="source-note">출처: Anthropic, “Effective context engineering for AI agents”</div>
     </div>
   </div>
 </section>
@@ -3616,6 +3736,7 @@ h2{
     <div class="cycle-card"><div class="num">04</div><h3>학습</h3><p>검수 결과와 수정 기준을 다시 문서에 남겨 다음 실행 품질을 올립니다.</p></div>
   </div>
   <div class="deep-note"><b>강의식 정의</b><span>Agent는 답변을 잘하는 AI가 아니라, 기준을 읽고 같은 방식으로 일을 반복하는 작업 구조입니다.</span></div>
+  <div class="source-note">출처: IBM “What is Agentic AI?”의 Perception, Reasoning, Execution, Learning and adaptation 흐름을 강의용으로 번역·압축</div>
 </section>
 
 <section class="slide">
@@ -3667,56 +3788,81 @@ h2{
 
 <section class="slide">
   <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
-  <h2>오늘은 자동화 툴 사용법이 아니라<br>일을 맡길 수 있는 구조를 배웁니다</h2>
-  <div class="scope-board">
-    <div class="scope-panel bad">
-      <div class="badge">오늘 하지 않을 것</div>
-      <strong>AI에게 한 번에 다 시키는 법</strong>
-      <ul>
-        <li>긴 만능 프롬프트 만들기</li>
-        <li>결과가 나올 때까지 계속 다시 말하기</li>
-        <li>도구 기능을 많이 아는 것으로 끝내기</li>
-      </ul>
-    </div>
-    <div class="scope-panel good">
-      <div class="badge">오늘 할 것</div>
-      <strong>내 업무를 담당자처럼 온보딩하기</strong>
-      <ul>
-        <li>무엇을 읽고 시작할지 정하기</li>
-        <li>좋은 결과의 기준을 문장으로 남기기</li>
-        <li>폴더와 Skill로 반복 실행 가능하게 만들기</li>
-      </ul>
-    </div>
+  <h2>자료조사에서 확인한 Agent 설계의 공통 원칙</h2>
+  <div class="research-grid">
+    <div class="research-card primary"><b>핵심 적용점</b><h3>복잡한 Agent보다<br>명확한 업무 구조가 먼저입니다</h3><p>Anthropic은 LLM 시스템을 만들 때 가장 단순한 해결책에서 시작하고, 필요할 때만 복잡도를 올리라고 설명합니다.</p></div>
+    <div class="research-card"><b>01</b><h3>워크플로우와 Agent를 구분</h3><p>정해진 경로로 처리하면 워크플로우, 상황에 따라 스스로 경로를 고르면 Agent에 가깝습니다.</p></div>
+    <div class="research-card"><b>02</b><h3>맥락은 유한한 자원</h3><p>자료를 많이 넣는 것보다 필요한 맥락만 읽게 하는 큐레이션이 중요합니다.</p></div>
+    <div class="research-card"><b>03</b><h3>폴더 구조도 맥락 설계</h3><p>파일 경로, 문서 이름, 참고자료 위치가 Agent가 일을 이해하는 방식이 됩니다.</p></div>
+    <div class="research-card"><b>04</b><h3>검수 기준이 품질을 만든다</h3><p>Guardrail, 평가 기준, 사람 확인 지점이 있어야 반복 실행이 안전해집니다.</p></div>
   </div>
+  <div class="source-note">참고: Anthropic “Building effective agents”, “Effective context engineering”, Claude Agent SDK / OpenAI Agents SDK Guardrails</div>
 </section>
 
 <section class="slide">
   <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
-  <h2>Agent 설계는 네 칸만 잡으면 시작됩니다</h2>
-  <div class="agent-formula">
-    <div class="formula-card"><b>01</b><h3>읽는다</h3><p>이번 자료와 반복 기준을 구분해서 읽게 합니다.</p></div>
-    <div class="formula-card"><b>02</b><h3>판단한다</h3><p>좋은 결과의 조건, 우선순위, 금지선을 기준으로 봅니다.</p></div>
-    <div class="formula-card"><b>03</b><h3>만든다</h3><p>사람이 바로 검수하거나 사용할 수 있는 산출물로 끝냅니다.</p></div>
-    <div class="formula-card"><b>04</b><h3>확인한다</h3><p>체크 기준에 맞춰 결과를 다시 보고 다음 기준을 보강합니다.</p></div>
+  <h2>AI 활용은 단순 사용에서<br>Agent화로 성숙해집니다</h2>
+  <div class="maturity-visual">
+    <svg viewBox="0 0 1180 420" role="img" aria-label="AI 활용 성숙도 계단">
+      <path d="M156 315 L920 92" fill="none" stroke="#d5deec" stroke-width="14" stroke-linecap="round"/>
+      <path d="M156 315 L830 119" fill="none" stroke="#244497" stroke-width="14" stroke-linecap="round"/>
+      <g fill="#fff" stroke="#244497" stroke-width="6">
+        <circle cx="180" cy="308" r="18"/>
+        <circle cx="390" cy="247" r="18"/>
+        <circle cx="600" cy="186" r="18"/>
+        <circle cx="810" cy="125" r="18"/>
+      </g>
+      <g stroke="#244497" stroke-width="4" stroke-linecap="round">
+        <line x1="180" y1="326" x2="180" y2="348"/>
+        <line x1="390" y1="265" x2="390" y2="287"/>
+        <line x1="600" y1="204" x2="600" y2="226"/>
+        <line x1="810" y1="143" x2="810" y2="165"/>
+      </g>
+      <text x="180" y="378" font-size="28" class="svg-title" text-anchor="middle">1. 단순 사용</text>
+      <text x="180" y="407" font-size="18" class="svg-muted" text-anchor="middle">질문을 잘함</text>
+      <text x="390" y="317" font-size="28" class="svg-title" text-anchor="middle">2. 템플릿화</text>
+      <text x="390" y="346" font-size="18" class="svg-muted" text-anchor="middle">양식을 남김</text>
+      <text x="600" y="256" font-size="28" class="svg-title" text-anchor="middle">3. 워크플로우</text>
+      <text x="600" y="285" font-size="18" class="svg-muted" text-anchor="middle">순서를 고정</text>
+      <text x="810" y="195" font-size="28" class="svg-title" text-anchor="middle">4. Agent화</text>
+      <text x="810" y="224" font-size="18" class="svg-muted" text-anchor="middle">맥락과 검수까지 운영</text>
+      <circle cx="972" cy="76" r="42" fill="#eef5ff" stroke="#244497" stroke-width="5"/>
+      <text x="972" y="88" font-size="30" class="svg-title" text-anchor="middle">GO</text>
+    </svg>
+    <div class="visual-caption"><span>Maturity Ladder</span><span>idea-visualization-napkin-templates 참고</span></div>
   </div>
   <div class="deep-note"><b>한 줄 공식</b><span>Agent = 읽을 자료 + 판단 기준 + 실행 순서 + 검수 기준</span></div>
 </section>
 
 <section class="slide">
   <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
-  <h2>실패하는 사람은 프롬프트를 길게 만들고,<br>잘하는 사람은 기준을 밖으로 빼냅니다</h2>
-  <div class="prompt-trap">
-    <div class="trap-left">
-      <h3>긴 프롬프트의 한계</h3>
-      <p>요청문이 길어질수록 맥락, 기준, 예시, 금지선이 한 덩어리로 섞입니다. 그래서 수정할 때도 무엇을 고쳐야 하는지 보이지 않습니다.</p>
-    </div>
-    <div class="trap-right">
-      <div class="trap-row"><b>01</b><span>이번 자료와 계속 쓸 기준이 섞입니다.</span></div>
-      <div class="trap-row"><b>02</b><span>잘 된 기준이 다음 작업에 재사용되지 않습니다.</span></div>
-      <div class="trap-row"><b>03</b><span>결과가 틀렸을 때 수정할 위치가 대화창뿐입니다.</span></div>
-      <div class="trap-row"><b>04</b><span>결국 사람은 매번 처음부터 다시 설명하게 됩니다.</span></div>
-    </div>
+  <h2>긴 프롬프트가 아니라<br>필요한 맥락만 통과시키는 필터가 필요합니다</h2>
+  <div class="lens-visual">
+    <svg viewBox="0 0 1180 420" role="img" aria-label="맥락 필터 시각화">
+      <g fill="#f7faff" stroke="#d5deec" stroke-width="2">
+        <rect x="72" y="70" width="210" height="68"/>
+        <rect x="72" y="160" width="210" height="68"/>
+        <rect x="72" y="250" width="210" height="68"/>
+      </g>
+      <text x="103" y="113" font-size="24" class="svg-title">이번 원본</text>
+      <text x="103" y="203" font-size="24" class="svg-title">좋은 예시</text>
+      <text x="103" y="293" font-size="24" class="svg-title">금지 기준</text>
+      <path d="M320 104 C430 104 440 210 520 210" fill="none" stroke="#9fb0c7" stroke-width="3"/>
+      <path d="M320 194 C430 194 440 210 520 210" fill="none" stroke="#9fb0c7" stroke-width="3"/>
+      <path d="M320 284 C430 284 440 210 520 210" fill="none" stroke="#9fb0c7" stroke-width="3"/>
+      <circle cx="605" cy="210" r="88" fill="#eef5ff" stroke="#244497" stroke-width="5"/>
+      <text x="552" y="202" font-size="28" class="svg-title">Context</text>
+      <text x="558" y="236" font-size="22" class="svg-title">Filter</text>
+      <path d="M700 210 C770 210 800 145 880 116" fill="none" stroke="#244497" stroke-width="5" stroke-linecap="round"/>
+      <path d="M700 210 C770 210 800 275 880 304" fill="none" stroke="#244497" stroke-width="5" stroke-linecap="round"/>
+      <rect x="895" y="74" width="220" height="84" fill="#122348"/>
+      <rect x="895" y="262" width="220" height="84" fill="#fff" stroke="#c6d2e3" stroke-width="2"/>
+      <text x="930" y="126" font-size="24" fill="#fff" font-weight="900" font-family="Apple SD Gothic Neo,Noto Sans KR,sans-serif">필요한 맥락</text>
+      <text x="932" y="314" font-size="24" class="svg-title">버릴 맥락</text>
+    </svg>
+    <div class="visual-caption"><span>Lens Filter</span><span>Context Engineering</span></div>
   </div>
+  <div class="source-note">출처: Anthropic “Effective context engineering for AI agents”의 맥락 큐레이션 관점</div>
 </section>
 
 <section class="slide section-kickoff" data-section="02">
@@ -3833,6 +3979,7 @@ h2{
     <div class="lesson-box"><b>확정 금지</b><h3>사람 판단 영역 남기기</h3><p>가격, 일정, 법적 표현, 최종 발행 여부는 사람이 확인하도록 표시합니다.</p></div>
     <div class="lesson-box"><b>누락 방지</b><h3>필수 조건 체크하기</h3><p>업체 요청, 채널 규칙, 제출 형식, 검수 기준을 마지막 표로 확인합니다.</p></div>
   </div>
+  <div class="source-note">참고: OpenAI Agents SDK Guardrails는 입력, 출력, 도구 호출 단계별 검사 지점을 구분합니다. 강의에서는 이를 업무 책임선으로 번역합니다.</div>
 </section>
 
 <section class="slide">
@@ -3865,16 +4012,39 @@ h2{
     <div class="rule-trio-card"><b>GUARDRAIL</b><h3>무엇을 넘지 말까</h3><p>AI가 하면 안 되는 선입니다. 없는 사실 생성, 가격 확정, 과장 표현, 개인정보 노출을 막습니다.</p></div>
     <div class="rule-trio-card"><b>CHECK</b><h3>끝났는지 어떻게 볼까</h3><p>결과물이 기준에 맞는지 확인하는 질문입니다. 최종 검수표로 남기면 다음 작업에도 재사용됩니다.</p></div>
   </div>
+  <div class="source-note">참고: OpenAI Agents SDK는 guardrails와 structured outputs를 Agent의 런타임 동작 요소로 설명합니다.</div>
 </section>
 
 <section class="slide">
   <div class="eyebrow">02. 잘하는 사람의 방식</div>
   <h2>Reference는 많을수록 좋은 게 아니라<br>따라 할 기준이 선명할수록 좋습니다</h2>
-  <div class="reference-ladder">
-    <div class="reference-step"><b>BAD</b><h3>자료 뭉치</h3><p>예시, 원본, 취향, 요구사항이 한 폴더에 섞여 있어서 무엇을 따라야 할지 모릅니다.</p></div>
-    <div class="reference-step"><b>OK</b><h3>좋은 예시 모음</h3><p>따라 할 결과물은 있지만, 왜 좋은지 기준이 따로 적혀 있지 않습니다.</p></div>
-    <div class="reference-step"><b>GOOD</b><h3>예시 + 기준</h3><p>좋은 예시 옆에 말투, 구조, 금지 표현, 검수 질문이 함께 적혀 있습니다.</p></div>
+  <div class="lens-visual">
+    <svg viewBox="0 0 1180 420" role="img" aria-label="Reference 필터 시각화">
+      <g fill="#fff" stroke="#d5deec" stroke-width="2">
+        <rect x="70" y="60" width="220" height="70"/>
+        <rect x="70" y="158" width="220" height="70"/>
+        <rect x="70" y="256" width="220" height="70"/>
+      </g>
+      <text x="105" y="104" font-size="24" class="svg-title">예시 원고</text>
+      <text x="105" y="202" font-size="24" class="svg-title">말투 기준</text>
+      <text x="105" y="300" font-size="24" class="svg-title">금지 표현</text>
+      <path d="M305 95 C430 110 455 155 530 190" fill="none" stroke="#9fb0c7" stroke-width="3"/>
+      <path d="M305 193 C425 193 450 200 530 210" fill="none" stroke="#9fb0c7" stroke-width="3"/>
+      <path d="M305 291 C430 275 455 245 530 230" fill="none" stroke="#9fb0c7" stroke-width="3"/>
+      <circle cx="615" cy="210" r="96" fill="#eef5ff" stroke="#244497" stroke-width="5"/>
+      <text x="560" y="200" font-size="27" class="svg-title">기준으로</text>
+      <text x="565" y="235" font-size="27" class="svg-title">걸러 읽기</text>
+      <path d="M720 210 H875" stroke="#244497" stroke-width="5" stroke-linecap="round"/>
+      <polygon points="875,210 850,195 850,225" fill="#244497"/>
+      <rect x="900" y="105" width="215" height="210" fill="#122348"/>
+      <text x="930" y="165" font-size="25" fill="#fff" font-weight="900" font-family="Apple SD Gothic Neo,Noto Sans KR,sans-serif">따라 할 기준</text>
+      <text x="930" y="210" font-size="20" fill="#dbe8ff" font-weight="800" font-family="Apple SD Gothic Neo,Noto Sans KR,sans-serif">말투 · 구조</text>
+      <text x="930" y="244" font-size="20" fill="#dbe8ff" font-weight="800" font-family="Apple SD Gothic Neo,Noto Sans KR,sans-serif">좋은 예시</text>
+      <text x="930" y="278" font-size="20" fill="#dbe8ff" font-weight="800" font-family="Apple SD Gothic Neo,Noto Sans KR,sans-serif">검수 질문</text>
+    </svg>
+    <div class="visual-caption"><span>Lens Filter</span><span>Reference는 양보다 선명도</span></div>
   </div>
+  <div class="source-note">참고: Anthropic Context Engineering의 “필요한 맥락을 선별해 넣는 관점”을 강의용 Reference 설계로 적용</div>
 </section>
 
 <section class="slide chapter agent-content">
@@ -3960,15 +4130,31 @@ h2{
 <section class="slide agent-content">
   <div class="eyebrow">03. 콘텐츠 편집장</div>
   <h2>콘텐츠 편집장 Agent는<br>자료를 이 순서로 읽어야 합니다</h2>
-  <div class="read-map">
-    <div class="read-map-side"><b>01_input</b><p>업체 조건<br>후기 메모<br>사진 목록<br>필수 요청사항</p></div>
-    <div class="read-map-center">
-      <h3>읽기 → 분리 → 변환 → 검수</h3>
-      <div><span>사실</span><span>후기</span><span>말투</span><span>채널</span></div>
-    </div>
-    <div class="read-map-output"><b>04_output</b><p>블로그 원고<br>인스타 캡션<br>첫댓글<br>발행 전 검수표</p></div>
+  <div class="beads-visual">
+    <svg viewBox="0 0 1180 420" role="img" aria-label="콘텐츠 편집장 자료 처리 가치사슬">
+      <path d="M110 210 C250 120 360 310 500 210 C640 110 760 305 920 210 C990 168 1030 156 1090 145" fill="none" stroke="#d5deec" stroke-width="8" stroke-linecap="round"/>
+      <g>
+        <circle cx="120" cy="210" r="54" fill="#eef5ff" stroke="#244497" stroke-width="4"/>
+        <circle cx="330" cy="210" r="54" fill="#fff" stroke="#c6d2e3" stroke-width="4"/>
+        <circle cx="540" cy="210" r="54" fill="#fff" stroke="#c6d2e3" stroke-width="4"/>
+        <circle cx="750" cy="210" r="54" fill="#fff" stroke="#c6d2e3" stroke-width="4"/>
+        <circle cx="960" cy="210" r="54" fill="#122348" stroke="#122348" stroke-width="4"/>
+      </g>
+      <text x="90" y="219" font-size="24" class="svg-title">Input</text>
+      <text x="302" y="219" font-size="24" class="svg-title">분리</text>
+      <text x="512" y="219" font-size="24" class="svg-title">변환</text>
+      <text x="722" y="219" font-size="24" class="svg-title">검수</text>
+      <text x="925" y="219" font-size="24" fill="#fff" font-weight="900" font-family="Apple SD Gothic Neo,Noto Sans KR,sans-serif">Output</text>
+      <text x="70" y="305" font-size="20" class="svg-muted">조건·후기·사진</text>
+      <text x="285" y="120" font-size="20" class="svg-muted">사실과 감상</text>
+      <text x="485" y="305" font-size="20" class="svg-muted">말투·채널</text>
+      <text x="700" y="120" font-size="20" class="svg-muted">과장·누락</text>
+      <text x="894" y="305" font-size="20" class="svg-muted">발행 패키지</text>
+    </svg>
+    <div class="visual-caption"><span>Value Chain Beads</span><span>자료 → 발행 패키지</span></div>
   </div>
   <div class="deep-note"><b>읽기 기준</b><span>자료를 많이 읽히는 것보다, 어떤 자료를 어떤 용도로 읽는지 분리하는 것이 더 중요합니다.</span></div>
+  <div class="source-note">참고: Claude Agent SDK는 파일 시스템과 폴더 구조를 Agent가 맥락을 가져오는 방식으로 설명합니다.</div>
 </section>
 
 <section class="slide agent-content">
@@ -4485,13 +4671,25 @@ h2{
 <section class="slide">
   <div class="eyebrow">05. 내 업무로 만들기</div>
   <h2>Agent는 한 번에 완성하지 않고<br>실행 결과를 보며 기준을 업데이트합니다</h2>
-  <div class="update-loop">
-    <div class="loop-card"><b>01</b><h3>실행</h3><p>짧은 프롬프트로 Skill을 실행합니다.</p></div>
-    <div class="loop-card"><b>02</b><h3>비교</h3><p>결과를 내가 기대한 기준과 비교합니다.</p></div>
-    <div class="loop-card"><b>03</b><h3>수정</h3><p>틀린 부분을 결과물이 아니라 기준 문장으로 고칩니다.</p></div>
-    <div class="loop-card"><b>04</b><h3>기록</h3><p>수정 기준을 Reference나 Skill에 남깁니다.</p></div>
-    <div class="loop-card"><b>05</b><h3>재실행</h3><p>다음 작업에서 같은 기준이 작동하는지 봅니다.</p></div>
+  <div class="spiral-visual">
+    <svg viewBox="0 0 1180 400" role="img" aria-label="Agent 업데이트 스파이럴">
+      <path d="M590 205 m-26 0 a26 26 0 1 0 52 0 a26 26 0 1 0 -52 0
+               M590 205 m-70 0 a70 70 0 1 0 140 0 a70 70 0 1 0 -140 0
+               M590 205 m-118 0 a118 118 0 1 0 236 0 a118 118 0 1 0 -236 0
+               M590 205 m-172 0 a172 172 0 1 0 344 0 a172 172 0 1 0 -344 0" fill="none" stroke="#244497" stroke-width="7" stroke-linecap="round" opacity=".75"/>
+      <circle cx="590" cy="205" r="18" fill="#122348"/>
+      <circle cx="660" cy="205" r="13" fill="#eef5ff" stroke="#244497" stroke-width="4"/>
+      <circle cx="708" cy="205" r="13" fill="#eef5ff" stroke="#244497" stroke-width="4"/>
+      <circle cx="762" cy="205" r="13" fill="#eef5ff" stroke="#244497" stroke-width="4"/>
+      <text x="510" y="62" font-size="26" class="svg-title">실행</text>
+      <text x="760" y="150" font-size="26" class="svg-title">비교</text>
+      <text x="725" y="330" font-size="26" class="svg-title">수정</text>
+      <text x="318" y="294" font-size="26" class="svg-title">기록</text>
+      <text x="450" y="210" font-size="24" class="svg-muted">재실행</text>
+    </svg>
+    <div class="visual-caption"><span>Spiral Learning</span><span>실행 → 비교 → 기준 업데이트</span></div>
   </div>
+  <div class="source-note">참고: Anthropic은 Agent 평가가 기대 행동을 명시하고 반복 개선을 가능하게 한다고 설명합니다.</div>
 </section>
 
 <section class="slide">
