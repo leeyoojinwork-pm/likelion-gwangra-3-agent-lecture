@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Opening Slide Variants - Clean</title>
+<style>
+  :root{
+    --paper:#f7f8fa;
+    --white:#fff;
+    --ink:#15171c;
+    --sub:#555f6f;
+    --muted:#aab2bf;
+    --line:#d9dee7;
+    --red:#d64235;
+    --soft-red:#fff0ee;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#e7ebf1;font-family:Apple SD Gothic Neo,Noto Sans KR,system-ui,sans-serif;color:var(--ink)}
+  .wrap{padding:28px;display:grid;gap:32px}
+  .guide{width:1280px;background:#fff;padding:18px 22px;border-left:5px solid var(--red);font-size:18px;font-weight:850;color:#313946}
+  .slide{
+    position:relative;width:1280px;height:720px;background:var(--paper);overflow:hidden;
+    padding:52px 64px;border:1px solid #cfd6e2;
+  }
+  .slide::after{content:attr(data-name);position:absolute;right:28px;top:24px;color:#98a1af;font-size:13px;font-weight:900;letter-spacing:.08em}
+  .eyebrow{display:flex;align-items:center;gap:14px;color:#313946;font-size:14px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
+  .eyebrow::before{content:"";width:44px;height:2px;background:var(--ink)}
+  h1{margin:26px 0 0;font-size:62px;line-height:1.08;letter-spacing:-.025em;color:var(--ink);font-weight:950}
+  h2{margin:0;font-size:38px;line-height:1.22;letter-spacing:-.015em;color:var(--ink);font-weight:920}
+  p{margin:0;font-size:24px;line-height:1.45;color:var(--sub);font-weight:760}
+  .red{color:var(--red);font-weight:950}
+  .small{font-size:17px;color:#6b7280;font-weight:820}
+
+  /* 01: single thesis */
+  .v1 .thesis{
+    position:absolute;left:64px;right:64px;bottom:78px;border-top:2px solid var(--ink);
+    padding-top:24px;font-size:34px;line-height:1.34;font-weight:900;letter-spacing:-.01em;
+  }
+  .v1 .side{
+    position:absolute;right:72px;top:188px;width:290px;color:#d7dce5;font-size:86px;line-height:.95;font-weight:950;letter-spacing:-.05em;text-align:right
+  }
+
+  /* 02: dialogue to structure */
+  .v2 .body{position:absolute;left:72px;right:72px;top:198px;bottom:82px}
+  .v2 .talk{position:absolute;left:0;top:0;width:440px;display:grid;gap:22px}
+  .v2 .talk div{font-size:29px;font-weight:920;letter-spacing:-.01em}
+  .v2 .talk div span{display:inline-block;background:var(--soft-red);color:var(--red);padding:0 5px}
+  .v2 .arrow{position:absolute;left:510px;top:122px;width:150px;border-top:2px solid var(--ink)}
+  .v2 .arrow::after{content:"";position:absolute;right:0;top:-7px;width:13px;height:13px;border-top:2px solid var(--ink);border-right:2px solid var(--ink);transform:rotate(45deg)}
+  .v2 .structure{position:absolute;right:0;top:-8px;width:430px}
+  .v2 .structure h2{font-size:35px;margin-bottom:28px}
+  .v2 .row{display:grid;grid-template-columns:120px 1fr;gap:20px;border-top:1px solid var(--line);padding:18px 0}
+  .v2 .row b{font-size:18px;color:var(--red);font-weight:950}.v2 .row span{font-size:24px;font-weight:900}
+  .v2 .bottom{position:absolute;left:0;right:0;bottom:0;border-top:1px solid var(--line);padding-top:18px;font-size:25px;font-weight:900}
+
+  /* 03: black header, white body */
+  .v3{background:#fff;padding:0}
+  .v3 .top{height:255px;background:#16191f;color:#fff;padding:48px 64px}
+  .v3 .top .eyebrow{color:#d7dce5}.v3 .top .eyebrow::before{background:#d7dce5}
+  .v3 .top h1{color:#fff;font-size:54px;margin-top:24px}
+  .v3 .content{padding:48px 64px;display:grid;grid-template-columns:1fr 1fr;gap:72px}
+  .v3 .col-title{font-size:17px;font-weight:950;color:#6b7280;letter-spacing:.1em;margin-bottom:22px}
+  .v3 ul{margin:0;padding:0;list-style:none;display:grid;gap:18px}
+  .v3 li{font-size:26px;line-height:1.32;font-weight:850;border-bottom:1px solid var(--line);padding-bottom:16px}
+  .v3 .answer{border-left:4px solid var(--red);padding-left:28px}
+
+  /* 04: lecture note style */
+  .v4 .quote{
+    position:absolute;left:74px;top:210px;width:690px;font-size:58px;line-height:1.14;font-weight:950;letter-spacing:-.025em
+  }
+  .v4 .note{
+    position:absolute;right:72px;top:238px;width:350px;border-left:4px solid var(--red);padding-left:24px
+  }
+  .v4 .note b{display:block;font-size:15px;letter-spacing:.12em;color:#6b7280;margin-bottom:18px}
+  .v4 .note p{font-size:25px;color:var(--ink);font-weight:860}
+  .v4 .footer{
+    position:absolute;left:74px;right:72px;bottom:70px;border-top:1px solid var(--line);padding-top:20px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+  }
+  .v4 .footer div{font-size:22px;font-weight:900;color:var(--ink)}
+  .v4 .footer span{display:block;margin-top:7px;font-size:15px;color:#6b7280;font-weight:800}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="guide">다시 조정한 버전. 컬러는 검정/회색/빨강만 사용. 파란색 템플릿 느낌 제거.</div>
+
+  <section class="slide v1" data-name="01 / Thesis">
+    <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
+    <h1>매번 같은 설명을<br>다시 하고 있지 않나요?</h1>
+    <div class="side">same<br>again</div>
+    <div class="thesis">반복 설명은 <span class="red">AI가 못 알아듣는 문제</span>가 아니라,<br>업무 기준이 아직 <span class="red">파일과 폴더로 남지 않은 신호</span>입니다.</div>
+  </section>
+
+  <section class="slide v2" data-name="02 / Dialogue to Structure">
+    <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
+    <h1>대화창에 반복해서 치는 말은<br>사실 <span class="red">Agent에게 넘겨야 할 기준</span>입니다</h1>
+    <div class="body">
+      <div class="talk">
+        <div>이거 내 <span>말투</span>로 해줘.</div>
+        <div>아까 말한 <span>양식</span>으로 해줘.</div>
+        <div><span>예시</span>는 유지하고, <span>최종본</span>은 따로 줘.</div>
+      </div>
+      <div class="arrow"></div>
+      <div class="structure">
+        <h2>반복되는 말은<br>이렇게 분리합니다</h2>
+        <div class="row"><b>Reference</b><span>말투와 좋은 예시</span></div>
+        <div class="row"><b>Skill</b><span>작업 순서</span></div>
+        <div class="row"><b>Output</b><span>최종본 형식</span></div>
+      </div>
+      <div class="bottom">오늘의 핵심: 설명을 더 길게 쓰는 게 아니라, <span class="red">반복 기준을 밖으로 빼는 것</span>.</div>
+    </div>
+  </section>
+
+  <section class="slide v3" data-name="03 / Before After">
+    <div class="top">
+      <div class="eyebrow">Opening</div>
+      <h1>Agent화는 자동화가 아니라<br>반복 기준을 남기는 방식입니다</h1>
+    </div>
+    <div class="content">
+      <div>
+        <div class="col-title">AS IS</div>
+        <ul>
+          <li>맥락을 매번 다시 설명합니다.</li>
+          <li>좋은 예시와 금지 기준이 흩어집니다.</li>
+          <li>결과물 형식이 조금씩 흔들립니다.</li>
+        </ul>
+      </div>
+      <div class="answer">
+        <div class="col-title">TO BE</div>
+        <ul>
+          <li><span class="red">Input</span>에는 이번 재료만 둡니다.</li>
+          <li><span class="red">Reference</span>에는 반복 기준을 둡니다.</li>
+          <li><span class="red">Skill</span>에는 작업 순서를 둡니다.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide v4" data-name="04 / Lecture Sentence">
+    <div class="eyebrow">Opening</div>
+    <div class="quote">문제는<br><span class="red">프롬프트</span>가 아니라<br><span class="red">기준의 위치</span>입니다.</div>
+    <div class="note">
+      <b>LECTURE POINT</b>
+      <p>기준이 대화창 안에만 있으면, 매번 처음부터 다시 설명하게 됩니다.</p>
+    </div>
+    <div class="footer">
+      <div>맥락<span>이번 작업에서 읽을 재료</span></div>
+      <div>기준<span>다음에도 반복할 원칙</span></div>
+      <div>순서<span>AI가 따라갈 작업 흐름</span></div>
+      <div>검수<span>사람이 확인할 질문</span></div>
+    </div>
+  </section>
+</div>
+</body>
+</html>

@@ -4,11 +4,12 @@
 
 - 주제: 내 업무 속 AI 부캐 Agent 만들기
 - 핵심: 문제정의, 폴더 구조, Skill 파일, Guardrail
-- 사례: 콘텐츠 편집장 Agent
+- 사례: 블로그 리뷰단 Agent
 
 ## 보기
 
 - [강의자료 바로 보기](https://leeyoojinwork-pm.github.io/likelion-gwangra-3-agent-lecture/)
+- [오프닝 장표 후보 보기](https://leeyoojinwork-pm.github.io/likelion-gwangra-3-agent-lecture/opening-variants.html)
 - `index.html`
 - `멋사3기_3주차_문제정의_AI부캐Agent_QA수정.html`
 
