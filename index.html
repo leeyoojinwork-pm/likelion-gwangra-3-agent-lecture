@@ -3369,10 +3369,26 @@ h2{
 .reference-bottom-note span{
   display:block;
   color:#17233d;
-  font-size:24px;
-  line-height:1.2;
+  font-size:21px;
+  line-height:1.25;
   font-weight:820;
-  white-space:nowrap;
+  white-space:normal;
+}
+.reference-bottom-note .quote-en{
+  display:block;
+  color:#111827;
+  font-size:25px;
+  line-height:1.16;
+  font-weight:900;
+  letter-spacing:0;
+}
+.reference-bottom-note .quote-ko{
+  display:block;
+  margin-top:8px;
+  color:#244497;
+  font-size:18px;
+  line-height:1.3;
+  font-weight:850;
 }
 .reference-bottom-note .source-note{
   margin-top:8px;
@@ -4408,7 +4424,8 @@ h2{
   </div>
   <div class="reference-bottom-note">
     <b>핵심 문장</b>
-    <span>좋은 Agent는 긴 프롬프트가 아니라 선명한 Context에서 시작합니다.</span>
+    <span class="quote-en">You're not supposed to prompt Claude.<br>You're supposed to build a system that prompts itself.</span>
+    <span class="quote-ko">Claude에게 계속 지시하는 것이 아니라, 스스로 좋은 입력을 만들 구조를 세팅합니다.</span>
   </div>
 </section>
 
