@@ -2986,6 +2986,20 @@ h2{
   line-height:1.32;
   font-weight:820;
 }
+.opening-core-message{
+  width:min(920px, 86%);
+  margin:22px auto 0;
+  padding:22px 34px;
+  background:#122348;
+  color:#fff;
+  text-align:center;
+  font-size:29px;
+  line-height:1.34;
+  font-weight:860;
+}
+.opening-core-message .key-red{
+  color:#ff7b70!important;
+}
 .section-kickoff .key-red{
   color:#c63d32!important;
   font-weight:950;
@@ -3076,6 +3090,110 @@ h2{
   font-size:24px;
   line-height:1.28;
   font-weight:850;
+}
+.agent-architecture{
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:1fr 1.08fr 1fr;
+  gap:18px;
+  align-items:stretch;
+}
+.arch-column{
+  display:grid;
+  gap:14px;
+  align-content:start;
+}
+.arch-card{
+  background:#fff;
+  border:1px solid #c6d2e3;
+  padding:16px 18px;
+  min-height:116px;
+}
+.arch-card b{
+  display:block;
+  color:#244497;
+  font-size:14px;
+  letter-spacing:.08em;
+  margin-bottom:10px;
+  font-weight:950;
+}
+.arch-card h3{
+  color:#122348!important;
+  font-size:23px!important;
+  line-height:1.16!important;
+  margin-bottom:6px!important;
+}
+.arch-card p{
+  color:#475569!important;
+  font-size:15px!important;
+  line-height:1.34!important;
+  font-weight:720!important;
+}
+.arch-core{
+  position:relative;
+  min-height:300px;
+  display:grid;
+  place-items:center;
+}
+.arch-core svg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+.arch-agent{
+  position:relative;
+  z-index:2;
+  width:230px;
+  min-height:146px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  background:#122348;
+  color:#fff;
+  border:1px solid #122348;
+  padding:22px;
+}
+.arch-agent b{
+  color:#bcd2ff;
+  font-size:14px;
+  letter-spacing:.12em;
+  font-weight:950;
+}
+.arch-agent strong{
+  display:block;
+  margin-top:10px;
+  color:#fff;
+  font-size:29px;
+  line-height:1.08;
+  font-weight:950;
+}
+.arch-root-grid{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.arch-root{
+  background:#eef5ff;
+  border:1px solid #c7d4e4;
+  border-top:4px solid #244497;
+  padding:11px 13px 12px;
+  min-height:88px;
+}
+.arch-root b{
+  display:block;
+  color:#244497;
+  font-size:16px;
+  font-weight:950;
+  margin-bottom:8px;
+}
+.arch-root span{
+  display:block;
+  color:#344054;
+  font-size:14px;
+  line-height:1.28;
+  font-weight:720;
 }
 .reference-takeaway{
   margin-top:22px;
@@ -5133,6 +5251,7 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
       <div class="meta">이유진 멘토 · 멋쟁이사자처럼 3기 강의자료</div>
     </div>
   </div>
+  <div class="opening-core-message">Agent화는 설명을 더 길게 쓰는 일이 아니라,<br><span class="key-red">반복 기준</span>을 <span class="key-red">파일과 폴더</span>에 남기는 일입니다.</div>
 </section>
 
 <section class="slide instructor-intro-slide" style="padding:0!important;background:linear-gradient(90deg,#1a2740 36%,#f0f4f8 36%)!important;overflow:hidden!important">
@@ -5297,6 +5416,61 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
 
 <section class="slide">
   <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
+  <h2>Agent는 프롬프트 하나가 아니라<br>업무 기준을 읽는 운영 구조입니다</h2>
+  <div class="agent-architecture">
+    <div class="arch-column">
+      <div class="arch-card">
+        <b>REQUEST</b>
+        <h3>짧은 실행 요청</h3>
+        <p>사람은 매번 긴 설명을 다시 쓰지 않고, 이번에 실행할 일만 말합니다.</p>
+      </div>
+      <div class="arch-card">
+        <b>HUMAN REVIEW</b>
+        <h3>검수와 승인</h3>
+        <p>최종 판단은 사람이 하고, 수정 기준은 다시 문서에 남깁니다.</p>
+      </div>
+    </div>
+    <div class="arch-core">
+      <svg viewBox="0 0 420 430" aria-hidden="true">
+        <path d="M65 98 C126 98 126 170 188 170" fill="none" stroke="#9fb0c7" stroke-width="3"/>
+        <path d="M232 170 C294 170 294 98 355 98" fill="none" stroke="#9fb0c7" stroke-width="3"/>
+        <path d="M210 250 V342" fill="none" stroke="#244497" stroke-width="4"/>
+        <path d="M210 342 C145 342 145 382 80 382" fill="none" stroke="#244497" stroke-width="3"/>
+        <path d="M210 342 C184 342 184 382 158 382" fill="none" stroke="#244497" stroke-width="3"/>
+        <path d="M210 342 C236 342 236 382 262 382" fill="none" stroke="#244497" stroke-width="3"/>
+        <path d="M210 342 C275 342 275 382 340 382" fill="none" stroke="#244497" stroke-width="3"/>
+        <circle cx="210" cy="342" r="8" fill="#244497"/>
+      </svg>
+      <div class="arch-agent">
+        <div>
+          <b>AGENT OS</b>
+          <strong>읽고<br>판단하고<br>실행</strong>
+        </div>
+      </div>
+    </div>
+    <div class="arch-column">
+      <div class="arch-card">
+        <b>OUTPUT</b>
+        <h3>정해진 산출물</h3>
+        <p>원고, 제목, 캡션, 체크리스트처럼 끝나는 형태를 미리 정합니다.</p>
+      </div>
+      <div class="arch-card">
+        <b>UPDATE</b>
+        <h3>다음 기준 반영</h3>
+        <p>틀린 결과를 한 번 고치는 데서 끝내지 않고 다음 실행 기준으로 바꿉니다.</p>
+      </div>
+    </div>
+  </div>
+  <div class="arch-root-grid">
+    <div class="arch-root"><b>Input</b><span>이번에만 쓰는 원본 자료와 조건</span></div>
+    <div class="arch-root"><b>Reference</b><span>계속 따라야 할 말투, 예시, 운영 기준</span></div>
+    <div class="arch-root"><b>Skill</b><span>읽기부터 검수까지 반복 실행할 순서</span></div>
+    <div class="arch-root"><b>Check</b><span>사람이 확인할 품질 기준과 금지선</span></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
   <h2>AI Agent는 네 단계를 반복하며 일을 처리합니다</h2>
   <div class="four-cycle">
     <div class="cycle-card"><div class="num">01</div><h3>인식 <small>(Perceive)</small></h3><p>요청, 파일, 대화, 참고자료를 읽고<br>지금 어떤 상황인지 파악합니다.</p></div>
@@ -5305,32 +5479,7 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
     <div class="cycle-card"><div class="num">04</div><h3>학습 <small>(Learn)</small></h3><p>검수 결과와 수정 기준을 다시 문서에 남겨<br>다음 실행 품질을 올립니다.</p></div>
   </div>
   <div class="deep-note"><b>강의식 정의</b><span>Agent는 답변을 잘하는 AI가 아니라,<br>기준을 읽고 같은 방식으로 일을 반복하는 작업 구조입니다.</span></div>
-  <div class="study-question"><small>수강생 질문</small>내 업무에서 AI가 읽어야 할 자료는 무엇이고, 판단해야 할 기준은 무엇인가요?</div>
   <div class="source-note">출처: IBM “What is Agentic AI?”의 Agentic AI 흐름을 강의용으로 번역·압축</div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
-  <h2>실제 업무에서는 이렇게 작동합니다</h2>
-  <div class="agent-operating-loop">
-    <div class="loop-left">
-      <div class="loop-request">“이번 후기 메모를 블로그 리뷰단 Agent로 발행 패키지까지 정리해줘.”</div>
-      <div class="loop-stack">
-        <div><b>요청</b><span>짧게 실행 의도를 말합니다.</span></div>
-        <div><b>폴더</b><span>AI가 읽을 자료 위치를 이미 나눠둡니다.</span></div>
-        <div><b>Skill</b><span>읽기, 판단, 작성, 검수 순서가 남아 있습니다.</span></div>
-        <div><b>사람</b><span>마지막 결과와 기준 업데이트를 확인합니다.</span></div>
-      </div>
-    </div>
-    <div class="loop-right">
-      <div class="loop-row"><b>인식</b><span>01_input과 02_reference를 구분해 읽습니다.</span></div>
-      <div class="loop-row"><b>추론</b><span>역할 지침과 검수 기준으로 우선순위를 판단합니다.</span></div>
-      <div class="loop-row"><b>행동</b><span>정해진 출력 형식으로 결과물을 만듭니다.</span></div>
-      <div class="loop-row"><b>확인</b><span>Check 기준으로 빠진 것과 위험한 표현을 표시합니다.</span></div>
-      <div class="loop-row"><b>학습</b><span>수정 기준을 Reference나 Skill에 다시 남깁니다.</span></div>
-    </div>
-  </div>
-  <div class="key-sentence"><b>이 장의 결론</b><span>Agent는 “한 번 답하는 AI”가 아니라,<br>폴더와 기준을 읽고 실행한 뒤 다시 기준을 업데이트하는 업무 흐름입니다.</span></div>
 </section>
 
 <section class="slide">
@@ -5379,7 +5528,6 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
   <div class="visual-caption"><span>Context Filter</span><span>Keep what matters · Drop what distracts</span></div>
   </div>
   <div class="source-note">출처: Anthropic “Effective context engineering for AI agents”의 맥락 큐레이션 관점</div>
-  <div class="lecture-note"><b>예시</b><span>블로그 글을 만들 때 모든 대화 내용을 붙이는 대신, 이번 업체 조건은 Input에 두고, 내 말투 기준과 좋은 예시는 Reference에 둡니다. 그러면 AI가 무엇을 참고하고 무엇을 따라야 하는지 덜 헷갈립니다.</span></div>
 </section>
 
 <section class="slide chapter-divider" data-chapter="02">
@@ -5579,14 +5727,24 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
 <section class="slide agent-content">
   <div class="eyebrow">03. 블로그 리뷰단</div>
   <h2>블로그 리뷰단 Agent의 문제정의</h2>
-  <div class="quote problem-statement">업체 조건과 실제 후기를 분리해 읽고,<br>내 말투와 채널 문법으로 발행 패키지를 만든다.</div>
-  <div class="problem-grid">
-    <div class="card"><span class="badge">대상</span><h3>체험/리뷰 발행</h3><p><span class="key-red">새 글 창작</span>이 아니라 후기 재료를 발행 가능한 상태로 편집합니다.</p></div>
-    <div class="card"><span class="badge">Input</span><h3>이번 원본 재료</h3><p><span class="key-red">업체 조건, 후기 메모, 사진 목록</span>을 사실 자료로 봅니다.</p></div>
-    <div class="card"><span class="badge">Reference</span><h3>유지할 나의 기준</h3><p><span class="key-red">기존 말투, 제목 패턴, 채널 문법</span>을 따라갑니다.</p></div>
-    <div class="card"><span class="badge">Rule</span><h3>편집 판단 기준</h3><p><span class="key-red">업체 조건</span>은 반영하되 개인 경험과 광고 문구를 섞지 않습니다.</p></div>
-    <div class="card"><span class="badge">Guardrail</span><h3>넘으면 안 되는 선</h3><p><span class="key-red">방문하지 않은 장면, 확인 안 된 효과</span>를 만들지 않습니다.</p></div>
-    <div class="card"><span class="badge">Output</span><h3>발행 패키지</h3><p><span class="key-red">원고, 제목, 캡션, 첫댓글, 해시태그, 검수표</span>로 끝냅니다.</p></div>
+  <div class="problem-shift">
+    <div class="problem-shift-panel asis">
+      <b>AS IS</b>
+      <h3>“후기 글 잘 써줘”</h3>
+      <p>업체 조건, 실제 경험, 말투 기준, 금지선이 한 문장 안에 섞여 결과가 매번 흔들립니다.</p>
+    </div>
+    <div class="problem-shift-arrow">→</div>
+    <div class="problem-shift-panel tobe">
+      <b>TO BE 문제정의</b>
+      <h3>업체 조건과 실제 후기를 <span class="key-red">분리해 읽고</span>,<br>내 말투와 채널 문법으로<br><span class="key-red">발행 패키지</span>를 만든다.</h3>
+      <p>읽을 자료, 판단 기준, 산출물, 금지선이 한 문장 안에 보이게 만듭니다.</p>
+    </div>
+  </div>
+  <div class="problem-shift-note">
+    <div><b>읽을 것</b><span>업체 조건과 실제 후기</span></div>
+    <div><b>판단 기준</b><span>분리, 내 말투, 채널 문법</span></div>
+    <div><b>만들 것</b><span>발행 패키지</span></div>
+    <div><b>막을 것</b><span>없는 경험, 과장 표현, 조건 누락</span></div>
   </div>
 </section>
 
@@ -6237,7 +6395,7 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
       <div class="closing-arrow">→</div>
       <div><b>TO BE</b><span>짧게 실행하고 개선한다</span></div>
     </div>
-    <div class="closing-final">오늘의 과제는 AI에게 일을 맡기는 것이 아니라, 내 일이 다시 실행될 수 있는 기준을 남겨보는 것입니다.</div>
+    <div class="closing-final">오늘의 과제는 AI에게 일을 맡기는 것이 아니라,<br>내 일이 다시 실행될 수 있는 기준을 남겨보는 것입니다.</div>
   </div>
 </section>
 
