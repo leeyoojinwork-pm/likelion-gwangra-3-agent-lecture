@@ -4858,6 +4858,169 @@ h2{
 .insight{
   box-shadow:none!important;
 }
+
+/* Final palette lock: calm lecture deck, no mixed blue/red overrides. */
+:root{
+  --bg:#f6f8fb;
+  --ink:#172033;
+  --muted:#526071;
+  --line:#d7dee8;
+  --accent:#2f6f73;
+  --accent-dark:#17474a;
+  --accent-soft:#e8f2f2;
+  --navy:#172033;
+  --forest:#172033;
+  --deep-blue:#2f6f73;
+  --blue:#2f6f73;
+  --mist:#edf3f6;
+  --wash:#f6f8fb;
+}
+html,body{background:#172033!important;color:var(--ink)!important}
+.slide{background:#f6f8fb!important;color:var(--ink)!important}
+.slide:not(.cover):not(.dark)::after,
+.slide:not(.cover):not(.dark)::before,
+.cover-media::before,
+.cover-media::after,
+.card::after{display:none!important}
+h1,h2,h3{color:#172033!important;letter-spacing:0!important}
+p,.lead,.muted,li,.card p,.card li{color:#526071!important}
+.eyebrow,.badge,.auto-key-soft,.auto-key,.key-red,.key-bold{
+  color:#2f6f73!important;
+  font-weight:900!important;
+}
+.progress{background:#2f6f73!important}
+.slide-no{color:#8a96a6!important;background:transparent!important}
+.cover{
+  background:#f6f8fb!important;
+  color:#172033!important;
+}
+.cover-inner{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  background:#f6f8fb!important;
+}
+.cover-copy{
+  max-width:1180px!important;
+  padding:72px 96px!important;
+  background:#f6f8fb!important;
+  color:#172033!important;
+}
+.cover-copy::before{
+  left:96px!important;
+  top:60px!important;
+  width:220px!important;
+  height:4px!important;
+  background:#2f6f73!important;
+  opacity:1!important;
+}
+.cover .eyebrow{
+  color:#2f6f73!important;
+  font-size:15px!important;
+  margin-bottom:24px!important;
+}
+.cover h1{
+  max-width:900px!important;
+  color:#172033!important;
+  font-size:68px!important;
+  line-height:1.02!important;
+  font-weight:900!important;
+}
+.cover h1 .title-main,
+.cover h1 .title-accent,
+.cover h1 .title-end{
+  display:block!important;
+}
+.cover h1 .title-accent{
+  color:#2f6f73!important;
+  font-size:76px!important;
+  line-height:1!important;
+  white-space:normal!important;
+}
+.cover-statement{
+  max-width:900px!important;
+  margin-top:32px!important;
+  padding-top:24px!important;
+  border-top:1px solid #c8d2dc!important;
+}
+.cover-statement b{
+  color:#243044!important;
+  font-size:25px!important;
+  line-height:1.42!important;
+  font-weight:760!important;
+}
+.cover-kicker{
+  max-width:780px!important;
+  margin-top:32px!important;
+}
+.cover-kicker div{
+  border-left:4px solid #2f6f73!important;
+}
+.cover-kicker b{color:#2f6f73!important}
+.cover-kicker span,.cover .meta{color:#526071!important}
+.cover .chips{display:none!important}
+.chapter-divider,
+.slide.dark.closing{
+  background:#172033!important;
+  color:#fff!important;
+}
+.chapter-divider h1,
+.chapter-divider .lead,
+.chapter-divider .chapter-index .num,
+.chapter-divider .chapter-index .label,
+.slide.dark.closing h1,
+.slide.dark.closing .lead{
+  color:#fff!important;
+}
+.chapter-divider .route-step.active{
+  background:#fff!important;
+}
+.chapter-divider .route-step.active b,
+.chapter-divider .route-step.active span{
+  color:#172033!important;
+}
+.card,.rule-trio-card,.cycle-card,.lesson-box,.observe-card,.folder-detail,.split-card,.skill-col,.submit-card,.detail-doc,.pipeline-map,.practice-milestone,.next-case-bridge{
+  background:#fff!important;
+  border-color:#d7dee8!important;
+  border-top-color:#2f6f73!important;
+}
+.card h3,.rule-trio-card h3,.cycle-card h3,.detail-doc-head b,.pipeline-step h3,.practice-milestone h3{
+  color:#172033!important;
+}
+.badge,.onboarding-node::before,.pipeline-step b,.detail-doc-row b,.detail-doc-checks b{
+  background:#e8f2f2!important;
+  color:#2f6f73!important;
+  border-color:#c8dddd!important;
+}
+.insight,.deep-note,.key-sentence,.lecture-note,.study-question{
+  border-color:#c8d2dc!important;
+  background:#fff!important;
+  color:#172033!important;
+}
+.insight .label,.deep-note b,.key-sentence b,.lecture-note b,.study-question small{
+  color:#2f6f73!important;
+}
+.shift-node.dark,.pipeline-step.output,.detail-doc-note,.prompt-box,.trap-left,.mentor-os-note,.surgery-main,.onboarding-agent,.practice-dot{
+  background:#172033!important;
+  border-color:#172033!important;
+  color:#fff!important;
+}
+.shift-node.dark h3,.shift-node.dark p,.pipeline-step.output h3,.pipeline-step.output p,.onboarding-agent b,.onboarding-agent span{
+  color:#fff!important;
+}
+.onboarding-agent::before{
+  background:#fff!important;
+  color:#172033!important;
+  border-color:#fff!important;
+}
+.closing-system div:not(.closing-arrow),
+.closing-final{
+  background:#fff!important;
+  border-color:#d7dee8!important;
+  color:#172033!important;
+}
+.closing-system b,.closing-system span,.closing-final{
+  color:#172033!important;
+}
 </style>
 </head>
 <body>
@@ -6013,7 +6176,7 @@ h2{
 </div>
 <script>
 function insertCommaBreaks(){
-  const skipSelector='script,style,svg,code,pre,.slide-no,.num';
+  const skipSelector='script,style,svg,code,pre,.cover,h1,h2,.slide-no,.num';
   const walker=document.createTreeWalker(document.querySelector('.deck'),NodeFilter.SHOW_TEXT,{
     acceptNode(node){
       const parent=node.parentElement;
@@ -6051,7 +6214,7 @@ function highlightCoreKeywords(){
   const escaped=terms.map(({word})=>word.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'));
   const pattern=new RegExp(`(${escaped.join('|')})`,'g');
   const termClass=new Map(terms.map(({word,cls})=>[word,cls]));
-  const skipSelector='script,style,svg,code,pre,b,strong,.key-red,.key-bold,.auto-key,.auto-key-soft,.slide-no,.num,.badge';
+  const skipSelector='script,style,svg,code,pre,.cover,h1,h2,h3,b,strong,.key-red,.key-bold,.auto-key,.auto-key-soft,.slide-no,.num,.badge';
   const walker=document.createTreeWalker(document.querySelector('.deck'),NodeFilter.SHOW_TEXT,{
     acceptNode(node){
       const parent=node.parentElement;
