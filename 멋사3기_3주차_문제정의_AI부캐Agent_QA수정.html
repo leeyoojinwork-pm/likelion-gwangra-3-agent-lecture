@@ -3380,6 +3380,59 @@ h2{
   font-size:12px;
   line-height:1.35;
 }
+.context-template-card{
+  min-height:320px!important;
+  padding:0!important;
+  display:grid!important;
+  grid-template-rows:auto 1fr!important;
+  background:#fff!important;
+  border:1px solid #c7d4e4!important;
+  border-left:5px solid #244497!important;
+}
+.context-template-head{
+  display:grid;
+  grid-template-columns:128px 1fr;
+  border-bottom:1px solid #d7dce5;
+}
+.context-template-head b{
+  padding:18px 22px;
+  background:#17233d;
+  color:#fff;
+  font-size:16px;
+  letter-spacing:.08em;
+}
+.context-template-head span{
+  padding:18px 22px;
+  color:#244497;
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:.06em;
+}
+.context-template-body{
+  display:grid;
+  grid-template-rows:repeat(3,1fr);
+}
+.context-template-row{
+  display:grid;
+  grid-template-columns:128px 1fr;
+  border-bottom:1px solid #e0e6f0;
+}
+.context-template-row:last-child{border-bottom:0}
+.context-template-row b{
+  padding:18px 22px;
+  background:#f1f5fb;
+  color:#244497;
+  font-size:15px;
+  font-weight:950;
+  letter-spacing:.08em;
+}
+.context-template-row span{
+  padding:18px 22px;
+  color:#17233d;
+  font-size:21px;
+  line-height:1.32;
+  font-weight:820;
+}
 .workflow-row{
   gap:14px!important;
   border:0!important;
@@ -4344,11 +4397,12 @@ h2{
     <div class="reference-photo">
       <img src="assets/maya-nielan-proactive-agent.png" alt="Anthropic 발표 화면">
     </div>
-    <div class="reference-quote">
-      <div class="source">Anthropic · Context Engineering</div>
-      <div class="translation">
-        좋은 질문을 쓰는 단계에서<br>
-        좋은 맥락을 고르는 단계로 넘어갑니다.
+    <div class="reference-quote context-template-card">
+      <div class="context-template-head"><b>SHIFT</b><span>PROMPT → CONTEXT</span></div>
+      <div class="context-template-body">
+        <div class="context-template-row"><b>QUESTION</b><span>무엇을 물을까보다, 무엇을 읽힐까?</span></div>
+        <div class="context-template-row"><b>TEMPLATE</b><span>Input · Reference · Guardrail · Output</span></div>
+        <div class="context-template-row"><b>RESULT</b><span>설명은 짧아지고, 결과 기준은 선명해집니다.</span></div>
       </div>
     </div>
   </div>
