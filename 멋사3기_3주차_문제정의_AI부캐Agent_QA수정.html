@@ -270,6 +270,13 @@ p{font-size:17px;line-height:1.55;color:var(--muted)}
 .ba-panel.dark{background:#17233d;color:#fff;border-color:#17233d}
 .ba-panel b{display:block;color:#244497;font-size:15px;font-weight:950;letter-spacing:.08em;margin-bottom:18px}
 .ba-panel.dark b,.ba-panel.dark h3,.ba-panel.dark li{color:#fff}
+.ba-panel.dark h3,
+.ba-panel.dark li{
+  color:#f8fbff!important;
+}
+.ba-panel.dark b{
+  color:#c9d9ff!important;
+}
 .ba-panel h3{font-size:30px;line-height:1.18;color:#17233d;margin-bottom:18px}
 .ba-panel ul{margin:0;padding-left:20px}
 .ba-panel li{margin:12px 0;color:#41536b;font-size:20px;line-height:1.34;font-weight:760}
@@ -1775,7 +1782,7 @@ p,
   font-weight:950!important;
 }
 .toc-start h2 .blue{color:#155ee8}
-.toc-start h2 .green{color:#1f9d46}
+.toc-start h2 .green{color:#244497}
 .toc-lead{
   color:#344054!important;
   font-size:25px!important;
@@ -1868,7 +1875,7 @@ p,
   background:#cbd7ef;
 }
 .workspace-line.short{width:58%}
-.workspace-line.green{background:#a9dfbd}
+.workspace-line.green{background:#9dbcf7}
 .workspace-line.blue{background:#9dbcf7}
 .workspace-callout{
   position:absolute;
@@ -1883,13 +1890,13 @@ p,
   box-shadow:0 18px 36px rgba(18,35,72,.10);
 }
 .workspace-callout.left{left:-4px;top:176px}
-.workspace-callout.right{right:-4px;top:236px;border-color:#b8e1c2}
+.workspace-callout.right{right:-4px;top:236px;border-color:#b8cdf7}
 .workspace-callout b{
   color:#155ee8;
   font-size:22px!important;
   font-weight:950!important;
 }
-.workspace-callout.right b{color:#1f9d46}
+.workspace-callout.right b{color:#244497}
 .workspace-callout span{
   color:#344054!important;
   font-size:17px!important;
@@ -4904,13 +4911,13 @@ h2{
   --ink:#172033;
   --muted:#526071;
   --line:#d7dee8;
-  --accent:#2f6f73;
-  --accent-dark:#17474a;
-  --accent-soft:#e8f2f2;
+  --accent:#244497;
+  --accent-dark:#17233d;
+  --accent-soft:#eef5ff;
   --navy:#172033;
   --forest:#172033;
-  --deep-blue:#2f6f73;
-  --blue:#2f6f73;
+  --deep-blue:#244497;
+  --blue:#244497;
   --mist:#edf3f6;
   --wash:#f6f8fb;
 }
@@ -4924,44 +4931,44 @@ html,body{background:#f6f8fb!important;color:var(--ink)!important}
 h1,h2,h3{color:#172033!important;letter-spacing:0!important}
 p,.lead,.muted,li,.card p,.card li{color:#526071!important}
 .eyebrow,.badge,.auto-key-soft,.auto-key,.key-red,.key-bold{
-  color:#2f6f73!important;
+  color:#244497!important;
   font-weight:900!important;
 }
-.progress{background:#2f6f73!important}
+.progress{background:#244497!important}
 .slide-no{color:#8a96a6!important;background:transparent!important}
 .cover{
-  background:#f6f8fb!important;
-  color:#172033!important;
+  background:#17233d!important;
+  color:#fff!important;
 }
 .cover-inner{
   display:grid!important;
   grid-template-columns:1fr!important;
-  background:#f6f8fb!important;
+  background:#17233d!important;
 }
 .cover-copy{
   max-width:1180px!important;
   padding:72px 96px!important;
-  background:#f6f8fb!important;
-  color:#172033!important;
+  background:#17233d!important;
+  color:#fff!important;
 }
 .cover-copy::before{
   left:96px!important;
   top:60px!important;
   width:220px!important;
   height:4px!important;
-  background:#2f6f73!important;
+  background:#244497!important;
   opacity:1!important;
 }
 .cover .eyebrow{
-  color:#2f6f73!important;
+  color:#bcd2ff!important;
   font-size:15px!important;
   margin-bottom:24px!important;
 }
 .cover h1{
   max-width:900px!important;
-  color:#172033!important;
-  font-size:68px!important;
-  line-height:1.02!important;
+  color:#fff!important;
+  font-size:62px!important;
+  line-height:1.12!important;
   font-weight:900!important;
 }
 .cover h1 .title-main,
@@ -4970,19 +4977,19 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
   display:block!important;
 }
 .cover h1 .title-accent{
-  color:#2f6f73!important;
-  font-size:76px!important;
-  line-height:1!important;
+  color:#82a8ff!important;
+  font-size:70px!important;
+  line-height:1.08!important;
   white-space:normal!important;
 }
 .cover-statement{
   max-width:900px!important;
   margin-top:32px!important;
   padding-top:24px!important;
-  border-top:1px solid #c8d2dc!important;
+  border-top:1px solid rgba(255,255,255,.48)!important;
 }
 .cover-statement b{
-  color:#243044!important;
+  color:#fff!important;
   font-size:25px!important;
   line-height:1.42!important;
   font-weight:760!important;
@@ -4992,29 +4999,51 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
   margin-top:32px!important;
 }
 .cover-kicker div{
-  border-left:4px solid #2f6f73!important;
+  border-left:4px solid #244497!important;
 }
-.cover-kicker b{color:#2f6f73!important}
-.cover-kicker span,.cover .meta{color:#526071!important}
+.cover-kicker b{color:#244497!important}
+.cover-kicker span,.cover .meta{color:#dbe7ff!important}
 .cover .chips{display:none!important}
-.chapter-divider,
-.slide.dark.closing{
+.chapter-divider{
   background:#f6f8fb!important;
   color:#172033!important;
+}
+.slide.dark.closing{
+  background:#17233d!important;
+  color:#fff!important;
 }
 .chapter-divider h1,
 .chapter-divider .lead,
 .chapter-divider .chapter-index .num,
-.chapter-divider .chapter-index .label,
+ .chapter-divider .chapter-index .label{
+  color:#172033!important;
+}
 .slide.dark.closing h1,
 .slide.dark.closing .lead{
-  color:#172033!important;
+  color:#fff!important;
+}
+.slide.dark.closing .eyebrow{
+  color:#bcd2ff!important;
+}
+.slide.dark.closing .closing-arrow{
+  color:#82a8ff!important;
+}
+.slide.dark.closing .closing-system div:not(.closing-arrow),
+.slide.dark.closing .closing-final{
+  background:rgba(255,255,255,.08)!important;
+  border-color:rgba(255,255,255,.2)!important;
+  color:#fff!important;
+}
+.slide.dark.closing .closing-system b,
+.slide.dark.closing .closing-system span,
+.slide.dark.closing .closing-final{
+  color:#fff!important;
 }
 .chapter-divider .chapter-index{
   border-right-color:#d7dee8!important;
 }
 .chapter-divider::before{
-  background:#2f6f73!important;
+  background:#244497!important;
 }
 .chapter-divider .route-step.active{
   background:#fff!important;
@@ -5026,15 +5055,15 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
 .card,.rule-trio-card,.cycle-card,.lesson-box,.observe-card,.folder-detail,.split-card,.skill-col,.submit-card,.detail-doc,.pipeline-map,.practice-milestone,.next-case-bridge{
   background:#fff!important;
   border-color:#d7dee8!important;
-  border-top-color:#2f6f73!important;
+  border-top-color:#244497!important;
 }
 .card h3,.rule-trio-card h3,.cycle-card h3,.detail-doc-head b,.pipeline-step h3,.practice-milestone h3{
   color:#172033!important;
 }
 .badge,.onboarding-node::before,.pipeline-step b,.detail-doc-row b,.detail-doc-checks b{
-  background:#e8f2f2!important;
-  color:#2f6f73!important;
-  border-color:#c8dddd!important;
+  background:#eef5ff!important;
+  color:#244497!important;
+  border-color:#c7d4e4!important;
 }
 .insight,.deep-note,.key-sentence,.lecture-note,.study-question{
   border-color:#c8d2dc!important;
@@ -5042,7 +5071,7 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
   color:#172033!important;
 }
 .insight .label,.deep-note b,.key-sentence b,.lecture-note b,.study-question small{
-  color:#2f6f73!important;
+  color:#244497!important;
 }
 .shift-node.dark,.pipeline-step.output,.detail-doc-note,.prompt-box,.trap-left,.mentor-os-note,.surgery-main,.onboarding-agent,.practice-dot{
   background:#172033!important;
@@ -5705,36 +5734,29 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
   <div class="eyebrow">04. 업무 폴더 설계</div>
   <h2>블로그 리뷰단 작업 폴더 구조</h2>
   <div class="folder-layout mt34">
-  <div class="folder-tree">content-editor-agent/
+  <div class="folder-tree compact-folder-tree">blog-review-agent/
 ├── 00_admin/
 │   ├── 리뷰단_역할지침.md
-│   ├── 콘텐츠_운영_기준.md
-│   ├── 채널별_톤앤매너.md
 │   └── 절대_하지_말_것.md
 ├── 01_input/
 │   ├── 업체_가이드라인.md
 │   ├── 방문_후기_메모.md
-│   ├── 제품_정보.md
 │   └── 사진_목록.md
 ├── 02_reference/
 │   ├── 기존_블로그_말투.md
-│   ├── 잘_터진_제목_예시.md
-│   └── 인스타_피드_예시.md
+│   ├── 좋은_제목_예시.md
+│   └── 금지표현_리스트.md
 ├── 03_skills/
-│   ├── 기획안_만들기.md
-│   ├── 업체조건_분리하기.md
-│   ├── 후기_말투_적용하기.md
-│   └── 채널별_발행패키지_만들기.md
+│   └── 발행패키지_만들기.md
 └── 04_output/
-    ├── 최종_블로그_원고.md
-    ├── 최종_인스타_캡션.md
-    └── 첫댓글_해시태그.md</div>
+    ├── 블로그_원고.md
+    └── 발행전_검수표.md</div>
     <div class="folder-guide">
-      <div class="folder-guide-item"><b>00_admin</b><span>블로그 리뷰단 Agent의 성격과 금지선을 둡니다.<em>예: 역할지침, 톤앤매너, 절대 하지 말 것</em></span></div>
-      <div class="folder-guide-item"><b>01_input</b><span>이번 글에서만 쓰는 원본 재료를 넣습니다.<em>예: 업체 가이드라인, 방문 후기, 사진 목록</em></span></div>
-      <div class="folder-guide-item"><b>02_reference</b><span>앞으로도 계속 유지할 내 기준을 모읍니다.<em>예: 기존 말투, 잘 된 제목, 인스타 문법</em></span></div>
-      <div class="folder-guide-item"><b>03_skills</b><span>반복 실행할 업무 레시피를 둡니다.<em>예: 기획 → 리서치 → 작성 → 검수</em></span></div>
-      <div class="folder-guide-item"><b>04_output</b><span>복사해서 바로 발행하거나 검수할 최종본을 저장합니다.<em>예: 블로그 원고, 캡션, 첫댓글, 해시태그</em></span></div>
+      <div class="folder-guide-item"><b>00_admin</b><span>Agent의 역할과 금지선을 둡니다.<em>역할지침, 절대 하지 말 것</em></span></div>
+      <div class="folder-guide-item"><b>01_input</b><span>이번 글에서만 쓰는 원본 재료입니다.<em>업체 조건, 후기, 사진 목록</em></span></div>
+      <div class="folder-guide-item"><b>02_reference</b><span>계속 유지할 내 기준입니다.<em>말투, 제목 예시, 금지 표현</em></span></div>
+      <div class="folder-guide-item"><b>03_skills</b><span>반복 실행할 업무 순서입니다.<em>기획 → 작성 → 검수</em></span></div>
+      <div class="folder-guide-item"><b>04_output</b><span>복사하거나 검수할 최종본입니다.<em>원고, 캡션, 검수표</em></span></div>
     </div>
   </div>
 </section>
@@ -6291,7 +6313,8 @@ function highlightCoreKeywords(){
     node.parentNode.replaceChild(fragment,node);
   });
 }
-highlightCoreKeywords();
+// Automatic keyword highlighting made sentence rhythm unstable in note blocks.
+// Keep only the manual emphasis written in the slide markup.
 const slides=[...document.querySelectorAll('.slide')];
 let current=0;
 slides.forEach((slide,index)=>{

@@ -270,6 +270,13 @@ p{font-size:17px;line-height:1.55;color:var(--muted)}
 .ba-panel.dark{background:#17233d;color:#fff;border-color:#17233d}
 .ba-panel b{display:block;color:#244497;font-size:15px;font-weight:950;letter-spacing:.08em;margin-bottom:18px}
 .ba-panel.dark b,.ba-panel.dark h3,.ba-panel.dark li{color:#fff}
+.ba-panel.dark h3,
+.ba-panel.dark li{
+  color:#f8fbff!important;
+}
+.ba-panel.dark b{
+  color:#c9d9ff!important;
+}
 .ba-panel h3{font-size:30px;line-height:1.18;color:#17233d;margin-bottom:18px}
 .ba-panel ul{margin:0;padding-left:20px}
 .ba-panel li{margin:12px 0;color:#41536b;font-size:20px;line-height:1.34;font-weight:760}
@@ -5727,36 +5734,29 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
   <div class="eyebrow">04. 업무 폴더 설계</div>
   <h2>블로그 리뷰단 작업 폴더 구조</h2>
   <div class="folder-layout mt34">
-  <div class="folder-tree">content-editor-agent/
+  <div class="folder-tree compact-folder-tree">blog-review-agent/
 ├── 00_admin/
 │   ├── 리뷰단_역할지침.md
-│   ├── 콘텐츠_운영_기준.md
-│   ├── 채널별_톤앤매너.md
 │   └── 절대_하지_말_것.md
 ├── 01_input/
 │   ├── 업체_가이드라인.md
 │   ├── 방문_후기_메모.md
-│   ├── 제품_정보.md
 │   └── 사진_목록.md
 ├── 02_reference/
 │   ├── 기존_블로그_말투.md
-│   ├── 잘_터진_제목_예시.md
-│   └── 인스타_피드_예시.md
+│   ├── 좋은_제목_예시.md
+│   └── 금지표현_리스트.md
 ├── 03_skills/
-│   ├── 기획안_만들기.md
-│   ├── 업체조건_분리하기.md
-│   ├── 후기_말투_적용하기.md
-│   └── 채널별_발행패키지_만들기.md
+│   └── 발행패키지_만들기.md
 └── 04_output/
-    ├── 최종_블로그_원고.md
-    ├── 최종_인스타_캡션.md
-    └── 첫댓글_해시태그.md</div>
+    ├── 블로그_원고.md
+    └── 발행전_검수표.md</div>
     <div class="folder-guide">
-      <div class="folder-guide-item"><b>00_admin</b><span>블로그 리뷰단 Agent의 성격과 금지선을 둡니다.<em>예: 역할지침, 톤앤매너, 절대 하지 말 것</em></span></div>
-      <div class="folder-guide-item"><b>01_input</b><span>이번 글에서만 쓰는 원본 재료를 넣습니다.<em>예: 업체 가이드라인, 방문 후기, 사진 목록</em></span></div>
-      <div class="folder-guide-item"><b>02_reference</b><span>앞으로도 계속 유지할 내 기준을 모읍니다.<em>예: 기존 말투, 잘 된 제목, 인스타 문법</em></span></div>
-      <div class="folder-guide-item"><b>03_skills</b><span>반복 실행할 업무 레시피를 둡니다.<em>예: 기획 → 리서치 → 작성 → 검수</em></span></div>
-      <div class="folder-guide-item"><b>04_output</b><span>복사해서 바로 발행하거나 검수할 최종본을 저장합니다.<em>예: 블로그 원고, 캡션, 첫댓글, 해시태그</em></span></div>
+      <div class="folder-guide-item"><b>00_admin</b><span>Agent의 역할과 금지선을 둡니다.<em>역할지침, 절대 하지 말 것</em></span></div>
+      <div class="folder-guide-item"><b>01_input</b><span>이번 글에서만 쓰는 원본 재료입니다.<em>업체 조건, 후기, 사진 목록</em></span></div>
+      <div class="folder-guide-item"><b>02_reference</b><span>계속 유지할 내 기준입니다.<em>말투, 제목 예시, 금지 표현</em></span></div>
+      <div class="folder-guide-item"><b>03_skills</b><span>반복 실행할 업무 순서입니다.<em>기획 → 작성 → 검수</em></span></div>
+      <div class="folder-guide-item"><b>04_output</b><span>복사하거나 검수할 최종본입니다.<em>원고, 캡션, 검수표</em></span></div>
     </div>
   </div>
 </section>
