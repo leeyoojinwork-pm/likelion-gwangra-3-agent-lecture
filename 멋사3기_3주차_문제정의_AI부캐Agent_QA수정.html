@@ -4410,7 +4410,7 @@ h2{
 }
 .system-prompt-grid{
   display:grid;
-  grid-template-columns:.58fr 1.42fr;
+  grid-template-columns:.72fr 1.28fr;
   gap:34px;
   align-items:center;
   width:100%;
@@ -4579,6 +4579,45 @@ h2{
   color:#244497;
   font-size:42px;
   font-weight:900;
+}
+.anthropic-visual{
+  display:grid;
+  gap:18px;
+}
+.anthropic-photo{
+  height:255px;
+  border:1px solid #c6d2e3;
+  background:#fff;
+  overflow:hidden;
+}
+.anthropic-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+.anthropic-visual .shift-map{
+  grid-template-columns:1fr 1fr 1fr;
+  min-height:0;
+}
+.anthropic-visual .shift-arrow{
+  display:none;
+}
+.anthropic-visual .shift-node{
+  min-height:178px;
+}
+.anthropic-visual .shift-node h3{
+  font-size:21px!important;
+}
+.anthropic-visual .shift-node p{
+  font-size:15px!important;
+}
+.anthropic-source{
+  color:#526071;
+  font-size:14px;
+  line-height:1.35;
+  font-weight:720;
 }
 .pipeline-map{
   margin-top:30px;
@@ -4875,7 +4914,7 @@ h2{
   --mist:#edf3f6;
   --wash:#f6f8fb;
 }
-html,body{background:#172033!important;color:var(--ink)!important}
+html,body{background:#f6f8fb!important;color:var(--ink)!important}
 .slide{background:#f6f8fb!important;color:var(--ink)!important}
 .slide:not(.cover):not(.dark)::after,
 .slide:not(.cover):not(.dark)::before,
@@ -4960,8 +4999,8 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
 .cover .chips{display:none!important}
 .chapter-divider,
 .slide.dark.closing{
-  background:#172033!important;
-  color:#fff!important;
+  background:#f6f8fb!important;
+  color:#172033!important;
 }
 .chapter-divider h1,
 .chapter-divider .lead,
@@ -4969,7 +5008,13 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
 .chapter-divider .chapter-index .label,
 .slide.dark.closing h1,
 .slide.dark.closing .lead{
-  color:#fff!important;
+  color:#172033!important;
+}
+.chapter-divider .chapter-index{
+  border-right-color:#d7dee8!important;
+}
+.chapter-divider::before{
+  background:#2f6f73!important;
 }
 .chapter-divider .route-step.active{
   background:#fff!important;
@@ -5113,27 +5158,28 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
         <span>질문을 길게 쓰는 능력에서<br>맥락을 설계하는 능력으로 이동합니다.</span>
       </div>
     </div>
-    <div class="shift-map">
-      <div class="shift-node">
-        <b>01 PROMPT</b>
-        <h3>대화창에<br>계속 설명</h3>
-        <p>자료, 말투, 금지선, 출력 형식을 매번 다시 붙입니다.</p>
-        <div class="shift-mini"><span>긴 요청</span><span>흩어진 기준</span><span>매번 수정</span></div>
+    <div class="anthropic-visual">
+      <div class="anthropic-photo">
+        <img src="assets/maya-nielan-proactive-agent.png" alt="Anthropic 개발자 발표 화면">
       </div>
-      <div class="shift-arrow">→</div>
-      <div class="shift-node">
-        <b>02 CONTEXT</b>
-        <h3>읽을 맥락을<br>밖으로 분리</h3>
-        <p>Input과 Reference를 나누고, 반복 기준을 문서로 남깁니다.</p>
-        <div class="shift-mini"><span>Input</span><span>Reference</span><span>Guardrail</span></div>
+      <div class="shift-map">
+        <div class="shift-node">
+          <b>01 PROMPT</b>
+          <h3>대화창에<br>계속 설명</h3>
+          <p>자료와 기준을 매번 다시 붙입니다.</p>
+        </div>
+        <div class="shift-node">
+          <b>02 CONTEXT</b>
+          <h3>읽을 맥락을<br>밖으로 분리</h3>
+          <p>Input과 Reference를 나눕니다.</p>
+        </div>
+        <div class="shift-node dark">
+          <b>03 AGENT</b>
+          <h3>짧게 실행하고<br>사람이 검수</h3>
+          <p>Skill이 같은 순서로 반복합니다.</p>
+        </div>
       </div>
-      <div class="shift-arrow">→</div>
-      <div class="shift-node dark">
-        <b>03 AGENT</b>
-        <h3>짧게 실행하고<br>사람이 검수</h3>
-        <p>Skill이 같은 순서로 읽고 만들고 확인합니다.</p>
-        <div class="shift-mini"><span>Skill 실행</span><span>Output 생성</span><span>Check 업데이트</span></div>
-      </div>
+      <div class="anthropic-source">Anthropic의 Context Engineering 관점을 오늘은 “AI가 읽을 자료와 기준을 미리 정리하는 법”으로 풀어봅니다.</div>
     </div>
   </div>
 </section>
@@ -6245,7 +6291,6 @@ function highlightCoreKeywords(){
     node.parentNode.replaceChild(fragment,node);
   });
 }
-insertCommaBreaks();
 highlightCoreKeywords();
 const slides=[...document.querySelectorAll('.slide')];
 let current=0;
