@@ -1782,7 +1782,7 @@ p,
   font-weight:950!important;
 }
 .toc-start h2 .blue{color:#155ee8}
-.toc-start h2 .green{color:#244497}
+.toc-start h2 .navy{color:#244497}
 .toc-lead{
   color:#344054!important;
   font-size:25px!important;
@@ -1875,7 +1875,7 @@ p,
   background:#cbd7ef;
 }
 .workspace-line.short{width:58%}
-.workspace-line.green{background:#9dbcf7}
+.workspace-line.soft{background:#9dbcf7}
 .workspace-line.blue{background:#9dbcf7}
 .workspace-callout{
   position:absolute;
@@ -2629,12 +2629,13 @@ h2{
   align-items:stretch;
 }
 .quality-principle{
-  background:#244497;
+  background:#122348;
   color:#fff;
   padding:34px 32px;
   display:flex;
   flex-direction:column;
   justify-content:center;
+  border:1px solid #122348;
 }
 .quality-principle b{
   display:block;
@@ -2669,7 +2670,7 @@ h2{
   display:flex;
   align-items:center;
   padding:18px 20px;
-  background:#f1f5fb;
+  background:#eef5ff;
   color:#244497;
   font-size:22px;
 }
@@ -2681,6 +2682,20 @@ h2{
   font-weight:760;
 }
 .quality-rule strong{color:#244497}
+.slide.active .pipeline-map .pipeline-step{
+  opacity:0;
+  animation:flowIn .48s ease forwards;
+}
+.slide.active .pipeline-map .pipeline-step:nth-child(1){animation-delay:.06s}
+.slide.active .pipeline-map .pipeline-step:nth-child(2){animation-delay:.18s}
+.slide.active .pipeline-map .pipeline-step:nth-child(3){animation-delay:.30s}
+.slide.active .pipeline-map .pipeline-step:nth-child(4){animation-delay:.42s}
+.slide.active .pipeline-map .pipeline-step:nth-child(5){animation-delay:.54s}
+.slide.active .pipeline-caption{
+  opacity:0;
+  animation:flowIn .48s ease forwards;
+  animation-delay:.68s;
+}
 .deck-icon{
   width:38px;
   height:38px;
@@ -2988,7 +3003,7 @@ h2{
 }
 .opening-core-message{
   width:min(920px, 86%);
-  margin:22px auto 0;
+  margin:0;
   padding:22px 34px;
   background:#122348;
   color:#fff;
@@ -2996,6 +3011,9 @@ h2{
   font-size:29px;
   line-height:1.34;
   font-weight:860;
+}
+.cover .opening-core-message{
+  display:none;
 }
 .opening-core-message .key-red{
   color:#ff7b70!important;
@@ -4816,6 +4834,89 @@ h2{
   line-height:1.35;
   font-weight:780;
 }
+.problem-shift{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:1fr 70px 1.45fr;
+  gap:0;
+  align-items:stretch;
+}
+.problem-shift-panel{
+  min-height:300px;
+  border:1px solid #c6d2e3;
+  background:#fff;
+  padding:30px 32px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.problem-shift-panel b{
+  display:block;
+  color:#244497;
+  font-size:15px;
+  letter-spacing:.08em;
+  margin-bottom:16px;
+  font-weight:950;
+}
+.problem-shift-panel h3{
+  color:#122348!important;
+  font-size:32px!important;
+  line-height:1.2!important;
+  margin-bottom:18px!important;
+}
+.problem-shift-panel p{
+  color:#475569!important;
+  font-size:20px!important;
+  line-height:1.38!important;
+  font-weight:720!important;
+}
+.problem-shift-panel.tobe{
+  border-color:#122348;
+  border-top:5px solid #244497;
+}
+.problem-shift-panel.tobe h3{
+  font-size:34px!important;
+}
+.problem-shift-arrow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#244497;
+  font-size:46px;
+  font-weight:950;
+}
+.problem-shift-note{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border:1px solid #c6d2e3;
+  background:#fff;
+}
+.problem-shift-note div{
+  min-height:86px;
+  border-right:1px solid #d7dce5;
+  display:grid;
+  grid-template-columns:92px 1fr;
+  align-items:center;
+}
+.problem-shift-note div:last-child{border-right:0}
+.problem-shift-note b{
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#eef5ff;
+  color:#244497;
+  font-size:17px;
+  font-weight:950;
+}
+.problem-shift-note span{
+  padding:14px 16px;
+  color:#344054;
+  font-size:18px;
+  line-height:1.3;
+  font-weight:760;
+}
 .practice-timeline{
   margin-top:34px;
   display:grid;
@@ -5188,8 +5289,12 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
   background:#fff!important;
   color:#172033!important;
 }
-.insight .label,.deep-note b,.key-sentence b,.lecture-note b,.study-question small{
+.insight .label,.study-question small{
   color:#244497!important;
+}
+.deep-note b,.key-sentence b,.lecture-note b{
+  background:#122348!important;
+  color:#fff!important;
 }
 .shift-node.dark,.pipeline-step.output,.detail-doc-note,.prompt-box,.trap-left,.mentor-os-note,.surgery-main,.onboarding-agent,.practice-dot{
   background:#172033!important;
@@ -5351,7 +5456,6 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
       <strong>Agent화는 설명을 더 길게 쓰는 일이 아니라, <span class="key-red">반복 기준</span>을 <span class="key-red">파일과 폴더</span>에 남기는 일입니다.</strong>
     </div>
   </div>
-  <div class="lecture-note"><b>이해 포인트</b><span>문제는 AI가 말을 못 알아듣는 것이 아니라, 매번 필요한 <span class="key-red">맥락</span>과 <span class="key-red">기준</span>이 대화창 안에 흩어진다는 데 있습니다.</span></div>
 </section>
 
 <section class="slide">
@@ -5780,11 +5884,11 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
 
 <section class="slide agent-content">
   <div class="eyebrow">03. 블로그 리뷰단</div>
-  <h2>문제정의 한 문장은<br>세 조각으로 쪼개서 봅니다</h2>
+  <h2>앞 페이지의 TO BE 문제정의를<br>네 요소로 쪼개서 봅니다</h2>
   <div class="statement-surgery">
     <div class="surgery-main">
       <strong>업체 조건과 실제 후기를 분리해 읽고,<br>내 말투와 채널 문법으로<br>발행 패키지를 만든다.</strong>
-      <span>이 문장 안에는 Agent가 읽을 자료, 판단할 기준, 만들어야 할 산출물이 모두 들어 있습니다.</span>
+      <span>앞 장의 TO BE 문장에는 읽을 자료, 판단 기준, 산출물, 금지선이 함께 들어 있습니다.</span>
     </div>
     <div class="surgery-list">
       <div class="surgery-row"><b>읽을 것</b><span>업체 조건과 실제 후기</span></div>
@@ -5852,12 +5956,12 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
 
 <section class="slide agent-content">
   <div class="eyebrow">03. 블로그 리뷰단</div>
-  <h2>단순 QA가 아니라 우리만의 품질 기준을 남깁니다</h2>
+  <h2>QA AI가 아니라<br>우리만의 검수 기준을 남기는 Agent입니다</h2>
   <div class="quality-system">
     <div class="quality-principle">
       <b>CORE STANDARD</b>
-      <strong>매번 같은 기준으로<br>콘텐츠를 검수하게 만든다</strong>
-      <span>좋은 Agent는 결과물을 한 번 고치는 것이 아니라, 다음 결과물에도 적용될 검수 기준을 남깁니다.</span>
+      <strong>결과를 고치는 AI가 아니라<br>기준을 남기는 구조</strong>
+      <span>좋은 Agent는 결과물을 한 번 수정하는 데서 끝나지 않고, 다음 결과물에도 적용될 검수 기준을 남깁니다.</span>
     </div>
     <div class="quality-rules">
       <div class="quality-rule"><b>사실성</b><span><strong>방문하지 않은 경험</strong>, 확인되지 않은 효과, 과장된 감정을 만들지 않는다.</span></div>
