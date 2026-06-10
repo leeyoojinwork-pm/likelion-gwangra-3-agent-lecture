@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VS Code 실습 — 호텔 리뷰 감성분석 (데이터 처리)</title>
+<style>
+  :root{--ed:#1e1e1e;--side:#252526;--act:#333333;--bar:#3c3c3c;--tx:#cccccc;--acc:#007acc;--grn:#73c991;--org:#ce9178;--pur:#c586c0;--kw:#569cd6;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#f7f9fb;font-family:"Apple SD Gothic Neo","Pretendard","Noto Sans KR",sans-serif;width:100vw;height:100vh;min-height:0;display:flex;flex-direction:column;align-items:center;gap:0;padding:0;overflow:hidden;}
+  .ctrls{display:none!important;}
+  .ctrls button{font:inherit;font-size:14px;font-weight:600;color:#fff;background:var(--acc);border:0;border-radius:8px;padding:9px 18px;cursor:pointer;}
+  .ctrls .cap{font-size:13px;color:#555;}
+  .win{width:100%;height:100%;background:var(--ed);border-radius:0;overflow:hidden;box-shadow:none;display:flex;flex-direction:column;font-family:"SF Mono",Menlo,Consolas,"Courier New",monospace;}
+  .title{height:34px;background:var(--bar);display:flex;align-items:center;padding:0 12px;gap:8px;flex:none;}
+  .dot{width:12px;height:12px;border-radius:50%;}
+  .dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+  .title .t{flex:1;text-align:center;color:#9d9d9d;font-size:12.5px;font-family:"Apple SD Gothic Neo",sans-serif;}
+  .body{flex:1;display:flex;min-height:0;}
+  .act{width:48px;background:var(--act);flex:none;display:flex;flex-direction:column;align-items:center;padding-top:12px;gap:20px;color:#858585;font-size:21px;}
+  .act .on{color:#fff;}
+  .side{width:300px;background:var(--side);flex:none;color:var(--tx);overflow:hidden;display:flex;flex-direction:column;}
+  .side .hd{font-size:11px;letter-spacing:1px;color:#bbb;padding:12px 16px 6px;font-family:"Apple SD Gothic Neo",sans-serif;font-weight:600;}
+  .tree{font-size:13px;padding:4px 0 0;overflow-y:auto;}
+  .row{display:flex;align-items:center;gap:5px;padding:3px 10px;white-space:nowrap;}
+  .row.active{background:#37373d;}
+  .tw{color:#c5c5c5;width:12px;display:inline-block;text-align:center;font-size:10px;}
+  .fold{color:#dcb67a}.file{color:#9cdcfe}.csv{color:#7fd6a0}
+  .nm{color:#cfcfcf;font-family:"Apple SD Gothic Neo",sans-serif;}
+  .badge{margin-left:auto;color:var(--grn);font-weight:700;font-size:12px;padding-left:8px;}
+  .row.new{animation:flashIn .5s ease;}
+  @keyframes flashIn{from{background:#2e4b32}to{background:transparent}}
+  .main{flex:1;display:flex;flex-direction:column;min-width:0;}
+  .tabs{height:36px;background:#2d2d2d;display:flex;flex:none;}
+  .tab{display:flex;align-items:center;gap:8px;padding:0 16px;font-size:12.5px;color:#fff;background:var(--ed);font-family:"Apple SD Gothic Neo",sans-serif;}
+  .tab .fi{color:#9cdcfe;font-family:monospace;}
+  .editor{flex:1;background:var(--ed);overflow:auto;padding:14px 0;min-height:0;}
+  .code{font-size:12.5px;line-height:1.7;color:var(--tx);white-space:pre;}
+  .code .ln{display:flex;}
+  .code .g{width:42px;flex:none;text-align:right;padding-right:16px;color:#5a5a5a;user-select:none;}
+  .code .c{flex:1;padding-right:20px;white-space:pre-wrap;}
+  .h1{color:var(--pur)}.key{color:var(--kw)}.str{color:var(--org)}.com{color:#6a9955}.cur{color:var(--grn)}
+  .panel{height:252px;background:var(--ed);border-top:1px solid #333;flex:none;display:flex;flex-direction:column;}
+  .ptabs{height:30px;background:#252526;display:flex;align-items:center;gap:18px;padding:0 16px;flex:none;}
+  .ptabs span{font-size:11px;letter-spacing:.5px;color:#858585;font-family:"Apple SD Gothic Neo",sans-serif;}
+  .ptabs .on{color:#fff;border-bottom:1px solid #fff;height:30px;display:flex;align-items:center;}
+  .term{flex:1;overflow-y:auto;padding:10px 16px;font-size:13px;line-height:1.7;color:#d4d4d4;}
+  .term .p{color:#5ac8a8}.term .u{color:#e6e6e6}.term .a{color:#c5a3ff}.term .ok{color:var(--grn)}.term .dim{color:#7a7a7a}.term .acc{color:#dcdcaa}.term .gate{color:#f48771;font-weight:700}
+  .vsrun-cur{display:inline-block;width:7px;height:1em;background:#d4d4d4;vertical-align:-2px;animation:bk 1s step-end infinite;}
+  @keyframes bk{50%{opacity:0}}
+</style>
+</head>
+<body>
+  <div class="ctrls">
+    <button id="replay">▶ 처음부터 다시 보기</button>
+    <span class="cap">실습: 호텔 리뷰 CSV를 VS Code + Claude로 감성분석 (데이터 처리 흐름)</span>
+  </div>
+  <div class="win">
+    <div class="title"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="t">hotel-review-analysis — Claude Code</span></div>
+    <div class="body">
+      <div class="act"><span class="on">🗂</span><span>🔍</span><span>⎇</span><span>🐞</span><span>⬢</span></div>
+      <div class="side">
+        <div class="hd">탐색기 · HOTEL-REVIEW-ANALYSIS</div>
+        <div class="tree" id="tree">
+          <div class="row"><span class="tw">▾</span><span class="fold">📂</span><span class="nm">hotel-review-analysis</span></div>
+          <div class="row" style="padding-left:24px"><span class="tw">▾</span><span class="fold">📁</span><span class="nm">01_데이터</span></div>
+          <div class="row active r-csv" style="padding-left:48px"><span class="tw"></span><span class="csv">▦</span><span class="nm">hotel_reviews_50.csv</span></div>
+          <div class="row" style="padding-left:24px"><span class="tw">▾</span><span class="fold">📁</span><span class="nm">02_기준</span></div>
+          <div class="row r-rule" style="padding-left:48px"><span class="tw"></span><span class="file">📄</span><span class="nm">감성분석_기준.md</span></div>
+          <div class="row" style="padding-left:24px"><span class="tw">▾</span><span class="fold">📁</span><span class="nm">03_작업순서</span></div>
+          <div class="row" style="padding-left:48px"><span class="tw"></span><span class="file">📄</span><span class="nm">감성분석.md</span></div>
+          <div class="row" style="padding-left:24px"><span class="tw">▾</span><span class="fold">📁</span><span class="nm">04_결과물</span></div>
+          <div id="slot" style="padding-left:48px"></div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="tabs"><div class="tab"><span class="fi">▦</span><span id="tabname">hotel_reviews_50.csv</span></div></div>
+        <div class="editor"><div class="code" id="code"></div></div>
+        <div class="panel">
+          <div class="ptabs"><span>문제</span><span>출력</span><span class="on">터미널</span><span>포트</span></div>
+          <div class="term" id="term"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+const $=s=>document.querySelector(s);
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const CSV_MD=[
+  ['1','Review,Rating','key'],
+  ['2','"nice hotel expensive parking got good deal stay hotel anniversary...",4','str'],
+  ['3','"ok nothing special charge diamond member hilton decided chain...",2','str'],
+  ['4','"nice rooms not 4* experience hotel monaco seattle good hotel...",3','str'],
+  ['5','"unique great stay wonderful time hotel monaco location excellent...",5','str'],
+  ['6','"great stay great stay went seahawk game awesome downtown...",5','str'],
+  ['7','"horrible customer service hotel stay february 3rd 4th 2007...",1','str'],
+  ['8','… 상위 50행 (전체 20,491행 중 발췌)','com'],
+];
+const RESULT_MD=[
+  ['1','# 호텔 리뷰 감성분석 (50건)','h1'],['2','',''],
+  ['3','긍정: 33건 (66%)','cur'],['4','부정: 17건 (34%)','cur'],
+  ['5','* 기준: 평점 4↑ = 긍정 / 3↓ = 부정','com'],['6','',''],
+  ['7','## 핵심 키워드','key'],
+  ['8','긍정 → location · staff · clean','str'],
+  ['9','부정 → room · noise · service','str'],['10','',''],
+  ['11','## 개선 제안','key'],
+  ['12','1. 노후 객실 리노베이션 · 정기 점검','str'],
+  ['13','2. 직원 서비스 응대 교육 강화','str'],
+  ['14','3. 객실 방음 보강 · 야간 소음 관리','str'],
+];
+function renderCode(rows,cur){
+  const c=$('#code');c.innerHTML='';
+  rows.forEach(([g,t,cls])=>{const ln=document.createElement('div');ln.className='ln';ln.innerHTML=`<span class="g">${g}</span><span class="c ${cls||''}">${t||' '}</span>`;c.appendChild(ln);});
+  if(cur){const last=c.lastChild.querySelector('.c');const s=document.createElement('span');s.className='vsrun-cur';last.appendChild(s);}
+}
+function termLine(html){const t=$('#term');const d=document.createElement('div');d.innerHTML=html;t.appendChild(d);t.scrollTop=t.scrollHeight;return d;}
+async function typeInto(el,text,sp=30){for(let i=0;i<text.length;i++){el.textContent+=text[i];await sleep(sp);$('#term').scrollTop=$('#term').scrollHeight;}}
+function highlight(sel){const r=document.querySelector(sel);if(r){r.style.background='#264f78';setTimeout(()=>r.style.background='',900);}}
+function addFile(name){const s=$('#slot');const row=document.createElement('div');row.className='row new';row.innerHTML=`<span class="tw"></span><span class="file">📄</span><span class="nm">${name}</span><span class="badge">U</span>`;s.appendChild(row);$('#tree').scrollTop=$('#tree').scrollHeight;}
+let running=false;
+async function run(){
+  if(running)return;running=true;$('#term').innerHTML='';$('#slot').innerHTML='';
+  $('#tabname').textContent='hotel_reviews_50.csv';renderCode(CSV_MD,false);
+  $('#replay').disabled=true;$('#replay').style.opacity=.5;
+  await sleep(450);
+  termLine('<span class="p">➜ hotel-review-analysis</span> <span class="dim">claude</span>');await sleep(360);
+  const pl=termLine('<span class="a">❯ </span><span class="u"></span>');
+  await typeInto(pl.querySelector('.u'),'hotel_reviews_50.csv 읽고 감성분석 해줘. 긍정·부정 비율이랑 핵심 키워드까지.');await sleep(450);
+  termLine('<span class="ok">●</span> Read <span class="dim">01_데이터/hotel_reviews_50.csv</span> <span class="dim">(50행)</span>');highlight('.r-csv');await sleep(560);
+  termLine('<span class="a">● </span><span class="dim">정리: 평점 4↑ = 긍정 / 3↓ = 부정 라벨링</span>');highlight('.r-rule');await sleep(620);
+  termLine('<span class="acc">● 분석:</span> <span class="dim">긍정</span> <span class="acc">33건 (66%)</span> <span class="dim">/ 부정</span> <span class="acc">17건 (34%)</span>');await sleep(640);
+  termLine('<span class="a">● </span><span class="dim">키워드 (+)location·staff·clean　(−)room·noise·service</span>');await sleep(700);
+  addFile('감성분석_요약.md');
+  termLine('<span class="ok">●</span> Write <span class="cur">04_결과물/감성분석_요약.md</span> <span class="ok">✓</span>');
+  $('#tabname').textContent='감성분석_요약.md';
+  for(let i=1;i<=RESULT_MD.length;i++){renderCode(RESULT_MD.slice(0,i),true);await sleep(155);}
+  await sleep(450);
+  addFile('키워드_개선제안.md');
+  termLine('<span class="ok">●</span> Write <span class="cur">04_결과물/키워드_개선제안.md</span> <span class="ok">✓</span>');await sleep(550);
+  termLine('<span class="gate">─────────────────────────────────────────────</span>');
+  termLine('<span class="gate">⏸  검수 — 샘플 50건 · 평점 기준 · 과장 결론을 사람이 확인.</span>');
+  $('#term').scrollTop=$('#term').scrollHeight;
+  $('#replay').disabled=false;$('#replay').style.opacity=1;running=false;
+}
+$('#replay').addEventListener('click',run);
+renderCode(CSV_MD,false);
+window.addEventListener('load',()=>setTimeout(run,500));
+</script>
+</body>
+</html>
