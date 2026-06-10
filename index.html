@@ -7235,17 +7235,9 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
   </div>
 </section>
 
-<section class="slide matrix-image-slide">
-  <div class="eyebrow">1주차 연결 · AI 적용 매트릭스</div>
-  <h2>모든 업무를 자동화하기보다<br>빈도와 판단 복잡성으로 먼저 나눕니다</h2>
-  <div class="decision-matrix-frame">
-    <div class="decision-matrix-image" role="img" aria-label="실무 판단 프레임워크 AI 적용 매트릭스"></div>
-  </div>
-</section>
-
 <section class="slide">
   <div class="eyebrow">실습 액션 1 · 의사결정</div>
-  <h2>지금 할 일은<br>후보를 하나로 좁히는 것입니다</h2>
+  <h2>나만의 Agent가 막막하면<br>후보를 하나로 좁히는 것부터 합니다</h2>
   <div class="workshop-map">
     <div class="workshop-route">
       <div class="workshop-step"><b>01</b><div><h3>반복 판단 3개를 씁니다</h3><p>매일·매주 비슷하게 고민하는 업무를 떠오르는 대로 적습니다.</p></div></div>
@@ -7257,13 +7249,13 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
 각 후보를 반복 빈도, 필요한 데이터, 기준의 명확함, 바로 써볼 수 있는 정도로 비교해줘.
 마지막에는 오늘 Agent로 만들기 가장 좋은 주제 1개를 추천해줘.</div>
   </div>
-  <div class="key-sentence"><b>산출물</b><span>오늘 만들 Agent 주제 1개를 한 문장으로 남깁니다.</span></div>
+  <div class="key-sentence"><b>산출물</b><span>오늘 만들 Agent 주제 1개를 고르고, 다음 장표부터 그 주제로 폴더와 실행 순서를 만듭니다.</span></div>
 </section>
 
 <section class="slide">
   <div class="eyebrow">멘토 케이스 스터디 · CASE STUDY</div>
   <h2>멘토링 피드백 운영 AGENT를<br>한 장으로 정리했습니다</h2>
-  <p class="lead">핵심 AGENT가 제출물을 받고, 보조 AGENT가 병렬 처리하고, 멘토 검수 게이트에서 멈춥니다. AGENT의 경계를 그대로 그림으로 봅니다.</p>
+  <p class="lead">나는 [거래처별 매출·민원 표]를 근거로 [이번 주 응대 우선순위]를 판단하고, [상위 5곳 응대 메일 초안]을 작성하며, 외부 발송은 본인 승인 후 실행되는 Agent를 만든다.</p>
   <div class="mentor-agent-board with-vscode">
     <div class="mentor-vscode">
       <div class="mentor-vscode-title">EXPLORER</div>
@@ -7352,6 +7344,32 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
     </div>
   </div>
   <div class="data-source-callout"><b>진짜 핵심</b><span>데이터가 있든 없든, 결국 Agent가 읽을 자료와 판단 기준을 먼저 정리하는 일로 모입니다.</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">데이터 수집 HOW-TO</div>
+  <h2>외부 데이터는<br>세 가지 방식으로 가져옵니다</h2>
+  <div class="workshop-map">
+    <div class="workshop-route">
+      <div class="workshop-step"><b>01</b><div><h3>복사·다운로드</h3><p>표, CSV, PDF, 캡처처럼 이미 있는 자료를 내려받아 01_이번재료에 넣습니다.</p></div></div>
+      <div class="workshop-step"><b>02</b><div><h3>스크래핑·크롤링</h3><p>웹에 공개된 목록, 리뷰, 가격, 채용공고처럼 반복해서 보는 정보를 표로 모읍니다.</p></div></div>
+      <div class="workshop-step"><b>03</b><div><h3>MCP·API 연결</h3><p>Notion, Slack, Calendar, Drive처럼 연결 가능한 서비스의 자료를 Agent가 읽게 합니다.</p></div></div>
+    </div>
+    <div class="skill-template-code"><strong>외부 데이터 수집 프롬프트</strong>
+내 Agent에 필요한 외부 데이터를 가져오는 방법을 골라줘.
+
+업무:
+[예: 경쟁사 가격 비교 / 리뷰 수집 / 채용공고 모니터링]
+
+확인해줘:
+1. 사람이 복사·다운로드하면 충분한지
+2. 스크래핑·크롤링이 필요한지
+3. MCP나 API로 연결하는 편이 나은지
+4. 약관·개인정보·로그인 데이터처럼 조심할 지점이 있는지
+
+마지막에는 01_이번재료에 넣을 파일 목록으로 정리해줘.</div>
+  </div>
+  <div class="data-source-callout"><b>핵심</b><span>외부 데이터는 자동으로 긁어오는 기술보다, 어디서 가져오고 어디까지 써도 되는지 먼저 정하는 것이 중요합니다.</span></div>
 </section>
 
 <section class="slide data-scope-slide">
