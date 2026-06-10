@@ -5694,6 +5694,10 @@ h2{
 .summary-slide .eyebrow{
   color:#244497!important;
 }
+.summary-divider,
+.summary-slide{
+  background:linear-gradient(135deg,#eef2f7 0%,#f7f8fb 54%,#e8edf5 100%)!important;
+}
 .summary-divider h2 span,
 .summary-slide h2 .summary-orange,
 .summary-slide .skill-template-code strong{
@@ -5842,6 +5846,18 @@ h2{
 .mentor-agent-board.with-vscode{
   --flow-center:66%;
   padding-left:34px;
+}
+.mentor-agent-sentence{
+  max-width:1180px!important;
+  margin:30px auto 24px!important;
+  text-align:center;
+  font-size:23px!important;
+  line-height:1.5!important;
+  font-weight:760!important;
+}
+.mentor-agent-sentence .bracket-key{
+  color:#244497!important;
+  font-weight:900!important;
 }
 .mentor-vscode{
   position:absolute;
@@ -6917,6 +6933,10 @@ h2{
 }
 html,body{background:#f6f8fb!important;color:var(--ink)!important}
 .slide{background:#f6f8fb!important;color:var(--ink)!important}
+.slide.summary-divider,
+.slide.summary-slide{
+  background:linear-gradient(135deg,#eef2f7 0%,#f7f8fb 54%,#e8edf5 100%)!important;
+}
 .slide:not(.cover):not(.dark)::after,
 .slide:not(.cover):not(.dark)::before,
 .cover-media::before,
@@ -7255,7 +7275,7 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
 <section class="slide">
   <div class="eyebrow">멘토 케이스 스터디 · CASE STUDY</div>
   <h2>멘토링 피드백 운영 AGENT를<br>한 장으로 정리했습니다</h2>
-  <p class="lead">나는 [멘티 제출물·회고·슬랙 링크]를 읽고,<br>[6가지 피드백 유형]으로 분류한 뒤,<br>[피드백 초안과 넥스트 스텝 3개]를 작성하며,<br>멘토 승인 후 슬랙 발송과 PDF 리포트가 진행되는 Agent를 만든다.</p>
+  <p class="lead mentor-agent-sentence">나는 <span class="bracket-key">[멘티 제출물·회고·슬랙 링크]</span>를 읽고,<br><span class="bracket-key">[6가지 피드백 유형]</span>으로 분류한 뒤,<br><span class="bracket-key">[피드백 초안과 넥스트 스텝 3개]</span>를 작성하며,<br>멘토 승인 후 슬랙 발송과 PDF 리포트가 진행되는 Agent를 만든다.</p>
   <div class="mentor-agent-board with-vscode">
     <div class="mentor-vscode">
       <div class="mentor-vscode-title">EXPLORER</div>
@@ -7344,32 +7364,6 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
     </div>
   </div>
   <div class="data-source-callout"><b>진짜 핵심</b><span>데이터가 있든 없든, 결국 Agent가 읽을 자료와 판단 기준을 먼저 정리하는 일로 모입니다.</span></div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">데이터 수집 HOW-TO</div>
-  <h2>외부 데이터는<br>세 가지 방식으로 가져옵니다</h2>
-  <div class="workshop-map">
-    <div class="workshop-route">
-      <div class="workshop-step"><b>01</b><div><h3>복사·다운로드</h3><p>표, CSV, PDF, 캡처처럼 이미 있는 자료를 내려받아 01_이번재료에 넣습니다.</p></div></div>
-      <div class="workshop-step"><b>02</b><div><h3>스크래핑·크롤링</h3><p>웹에 공개된 목록, 리뷰, 가격, 채용공고처럼 반복해서 보는 정보를 표로 모읍니다.</p></div></div>
-      <div class="workshop-step"><b>03</b><div><h3>MCP·API 연결</h3><p>Notion, Slack, Calendar, Drive처럼 연결 가능한 서비스의 자료를 Agent가 읽게 합니다.</p></div></div>
-    </div>
-    <div class="skill-template-code"><strong>외부 데이터 수집 프롬프트</strong>
-내 Agent에 필요한 외부 데이터를 가져오는 방법을 골라줘.
-
-업무:
-[예: 경쟁사 가격 비교 / 리뷰 수집 / 채용공고 모니터링]
-
-확인해줘:
-1. 사람이 복사·다운로드하면 충분한지
-2. 스크래핑·크롤링이 필요한지
-3. MCP나 API로 연결하는 편이 나은지
-4. 약관·개인정보·로그인 데이터처럼 조심할 지점이 있는지
-
-마지막에는 01_이번재료에 넣을 파일 목록으로 정리해줘.</div>
-  </div>
-  <div class="data-source-callout"><b>핵심</b><span>외부 데이터는 자동으로 긁어오는 기술보다, 어디서 가져오고 어디까지 써도 되는지 먼저 정하는 것이 중요합니다.</span></div>
 </section>
 
 <section class="slide data-scope-slide">
@@ -7496,6 +7490,32 @@ Agent를 만든다.</pre>
 [여기에 자료 붙여넣기]</div>
   </div>
   <div class="key-sentence"><b>산출물</b><span>01_이번재료와 02_반복기준에 들어갈 파일 목록을 얻습니다.</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">데이터 수집 HOW-TO</div>
+  <h2>외부 데이터는<br>세 가지 방식으로 가져옵니다</h2>
+  <div class="workshop-map">
+    <div class="workshop-route">
+      <div class="workshop-step"><b>01</b><div><h3>복사·다운로드</h3><p>표, CSV, PDF, 캡처처럼 이미 있는 자료를 내려받아 01_이번재료에 넣습니다.</p></div></div>
+      <div class="workshop-step"><b>02</b><div><h3>스크래핑·크롤링</h3><p>웹에 공개된 목록, 리뷰, 가격, 채용공고처럼 반복해서 보는 정보를 표로 모읍니다.</p></div></div>
+      <div class="workshop-step"><b>03</b><div><h3>MCP·API 연결</h3><p>Notion, Slack, Calendar, Drive처럼 연결 가능한 서비스의 자료를 Agent가 읽게 합니다.</p></div></div>
+    </div>
+    <div class="skill-template-code"><strong>외부 데이터 수집 프롬프트</strong>
+내 Agent에 필요한 외부 데이터를 가져오는 방법을 골라줘.
+
+업무:
+[예: 경쟁사 가격 비교 / 리뷰 수집 / 채용공고 모니터링]
+
+확인해줘:
+1. 사람이 복사·다운로드하면 충분한지
+2. 스크래핑·크롤링이 필요한지
+3. MCP나 API로 연결하는 편이 나은지
+4. 약관·개인정보·로그인 데이터처럼 조심할 지점이 있는지
+
+마지막에는 01_이번재료에 넣을 파일 목록으로 정리해줘.</div>
+  </div>
+  <div class="data-source-callout"><b>핵심</b><span>외부 데이터는 자동으로 긁어오는 기술보다, 어디서 가져오고 어디까지 써도 되는지 먼저 정하는 것이 중요합니다.</span></div>
 </section>
 
 <section class="slide method-divider">
