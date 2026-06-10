@@ -5690,6 +5690,53 @@ h2{
   line-height:1.42;
   font-weight:850;
 }
+.summary-divider .method-divider-index,
+.summary-slide .eyebrow{
+  color:#ff7710!important;
+}
+.summary-divider h2 span,
+.summary-slide h2 .summary-orange,
+.summary-slide .skill-template-code strong{
+  color:#ff7710!important;
+}
+.summary-divider .method-divider-board b,
+.summary-slide .copy-template-btn{
+  color:#ff7710!important;
+  border-color:#ffb680!important;
+}
+.summary-slide .copy-template-btn.copied{
+  background:#ff7710!important;
+  color:#fff!important;
+}
+.summary-divider .method-divider-board li::marker{
+  color:#ff7710;
+}
+.summary-slide .workshop-step b,
+.summary-slide .takeaway-check b,
+.summary-slide .key-sentence b,
+.summary-slide .deep-note b,
+.summary-slide .takeaway-prompt b{
+  background:#ff7710!important;
+  color:#fff!important;
+}
+.summary-slide .workshop-route:before{
+  background:#ffd2b0!important;
+}
+.summary-slide .skill-template-code,
+.summary-slide .workshop-route,
+.summary-slide .takeaway-checklist,
+.summary-slide .takeaway-prompt{
+  border-color:#ffc49b!important;
+}
+.summary-slide .takeaway-statement{
+  background:#d9480f!important;
+}
+.summary-slide .takeaway-statement b{
+  color:#fff1e6!important;
+}
+.summary-slide .takeaway-statement span{
+  color:#fff4ec!important;
+}
 .workshop-map{
   margin-top:28px;
   display:grid;
@@ -7634,9 +7681,9 @@ Agent를 만든다.</pre>
   </div>
 </section>
 
-<section class="slide agent-content split-note-compact">
+<section class="slide agent-content split-note-compact summary-slide">
   <div class="eyebrow">총정리 01 · 데이터 기준</div>
-  <h2>데이터 기준은<br>이번 재료와 반복 기준을 나누는 일입니다</h2>
+  <h2>데이터 기준은<br><span class="summary-orange">이번 재료와 반복 기준을 나누는 일입니다</span></h2>
   <div class="workshop-map">
     <div class="workshop-route">
       <div class="workshop-step"><b>01</b><div><h3>이번에만 쓰는가</h3><p>원본 데이터, 이번 요청사항, 첨부자료, 오늘 대화 기록은 이번 재료입니다.</p></div></div>
@@ -7664,9 +7711,9 @@ Agent를 만든다.</pre>
 
 
 
-<section class="slide">
+<section class="slide summary-slide">
   <div class="eyebrow">총정리 02 · 한 문장 정의</div>
-  <h2>네 요소를 한 문장으로 묶으면<br>내 업무 Agent 과제가 됩니다</h2>
+  <h2>네 요소를 한 문장으로 묶으면<br><span class="summary-orange">내 업무 Agent 과제가 됩니다</span></h2>
   <div class="workshop-map">
     <div class="workshop-route">
       <div class="workshop-step"><b>01</b><div><h3>의사결정</h3><p>반복해서 판단해야 하는 업무를 하나만 고릅니다.</p></div></div>
@@ -7692,9 +7739,9 @@ Agent를 만든다.</pre>
 
 
 
-<section class="slide">
+<section class="slide summary-slide">
   <div class="eyebrow">총정리 03 · 실습 전환</div>
-  <h2>자리에 돌아가면<br>폴더에 넣고 한 번 실행합니다</h2>
+  <h2>자리에 돌아가면<br><span class="summary-orange">폴더에 넣고 한 번 실행합니다</span></h2>
   <div class="workshop-map">
     <div class="workshop-route">
       <div class="workshop-step"><b>01</b><div><h3>업무 하나 선택</h3><p>Agent로 만들 반복 업무를 하나만 정합니다.</p></div></div>
@@ -7719,23 +7766,23 @@ my-agent/
 
 
 
-<section class="slide">
+<section class="slide summary-slide">
   <div class="eyebrow">총정리 04 · 최종 메시지</div>
-  <h2>오늘의 결론은<br>파일을 나누면 Agent가 일한다는 것입니다</h2>
+  <h2>오늘 가져갈 말은<br><span class="summary-orange">자료를 잘 나누면 일이 반복된다는 것입니다</span></h2>
   <div class="takeaway-close">
     <div class="takeaway-statement">
-      <b>FINAL TAKEAWAY</b>
-      <strong>Agent화는<br>프롬프트를 길게 쓰는 일이 아닙니다</strong>
-      <span>내 업무의 판단 기준과 반복 흐름을 파일과 폴더에 남겨, Agent가 매번 같은 기준으로 읽고 실행하게 만드는 일입니다.</span>
+      <b>FINAL MEMO</b>
+      <strong>프롬프트를 더 길게 쓰기보다<br>다음에도 쓸 기준을 남깁니다</strong>
+      <span>오늘 만든 폴더는 정리용이 아니라, 다음번에 Agent가 같은 기준으로 다시 읽게 해두는 장치입니다.</span>
     </div>
     <div class="takeaway-checklist">
-      <div class="takeaway-check"><b>01</b><span>이번에만 쓸 자료는 01_이번재료에 넣습니다.</span></div>
-      <div class="takeaway-check"><b>02</b><span>다음에도 지킬 기준은 02_반복기준에 남깁니다.</span></div>
-      <div class="takeaway-check"><b>03</b><span>Agent가 따라 할 순서는 03_작업순서에 씁니다.</span></div>
-      <div class="takeaway-check"><b>04</b><span>사람이 볼 기준은 검수 질문으로 끝에 붙입니다.</span></div>
+      <div class="takeaway-check"><b>01</b><span>오늘 받은 자료는 01_이번재료로 보냅니다.</span></div>
+      <div class="takeaway-check"><b>02</b><span>계속 쓸 판단 기준은 02_반복기준에 남깁니다.</span></div>
+      <div class="takeaway-check"><b>03</b><span>매번 설명하던 순서는 03_작업순서로 옮깁니다.</span></div>
+      <div class="takeaway-check"><b>04</b><span>불안한 지점은 검수 질문으로 멈춰 세웁니다.</span></div>
     </div>
   </div>
-  <div class="takeaway-prompt"><b>마지막 실행 문장</b><span>내 자료를 보고 이번 재료, 반복 기준, 작업 순서, 결과물 폴더로 나눠서 나만의 Agent 폴더 초안을 만들어줘. 사람 검토 지점은 검수 질문으로 붙여줘.</span></div>
+  <div class="takeaway-prompt"><b>마지막 실행 문장</b><span>이 자료를 이번 재료, 반복 기준, 작업 순서, 결과물로 나눠줘. 사람이 확인해야 할 부분은 검수 질문으로 따로 적어줘.</span></div>
 </section>
 
 </div>
