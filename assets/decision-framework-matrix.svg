@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <style>
+      .bg{fill:#f6f8fb}
+      .ink{fill:#111827}
+      .muted{fill:#6b7687}
+      .blue{fill:#2364e8}
+      .navy{fill:#0f1e2d}
+      .soft{fill:#ecf2ff}
+      .line{stroke:#cfd9ea;stroke-width:3}
+      .card{fill:#fff;stroke:#bfd1ff;stroke-width:3}
+      .card-soft{fill:#eef4ff;stroke:#bfd1ff;stroke-width:3}
+      .shadow{filter:url(#shadow)}
+      text{font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",Arial,sans-serif}
+      .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;letter-spacing:.08em}
+    </style>
+    <filter id="shadow" x="-12%" y="-12%" width="124%" height="124%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#9fb4d6" flood-opacity=".22"/>
+    </filter>
+  </defs>
+  <rect class="bg" width="1920" height="1080"/>
+
+  <rect x="130" y="100" rx="28" ry="28" width="335" height="58" fill="#e8f0ff"/>
+  <text x="157" y="139" class="blue mono" font-size="27" font-weight="900">DECISION FRAMEWORK</text>
+
+  <text x="130" y="250" class="ink" font-size="64" font-weight="950">실무 판단 프레임워크: AI 적용 매트릭스</text>
+  <text x="130" y="315" class="muted" font-size="31" font-weight="650">모든 업무를 자동화할 필요는 없습니다. </text>
+  <text x="662" y="315" class="blue" font-size="31" font-weight="900">빈도(Frequency)</text>
+  <text x="902" y="315" class="muted" font-size="31" font-weight="650">와 </text>
+  <text x="952" y="315" class="blue" font-size="31" font-weight="900">판단 복잡성(Complexity)</text>
+  <text x="1327" y="315" class="muted" font-size="31" font-weight="650">에 따라 전략을 달리하세요.</text>
+
+  <text x="1665" y="140" class="ink" font-size="47" font-weight="950">TIP은 찍어가자!</text>
+  <g transform="translate(1735 178) scale(1.1)">
+    <path d="M30 34h19l8-14h76l8 14h20c16 0 29 13 29 29v95c0 16-13 29-29 29H30c-16 0-29-13-29-29V63c0-16 13-29 29-29z" fill="#000"/>
+    <circle cx="96" cy="111" r="47" fill="none" stroke="#fff" stroke-width="8"/>
+    <circle cx="96" cy="111" r="31" fill="#000"/>
+  </g>
+
+  <g transform="translate(300 390)">
+    <line x1="96" y1="0" x2="96" y2="625" class="line"/>
+    <path d="M96 0l-9 18h18z" fill="#cfd9ea"/>
+    <text x="0" y="36" class="ink" font-size="21" font-weight="900">High</text>
+    <rect x="-13" y="8" width="74" height="39" rx="6" fill="#eef2f7" opacity=".85"/>
+    <text x="0" y="603" class="ink" font-size="21" font-weight="900">Low</text>
+    <rect x="-13" y="575" width="74" height="39" rx="6" fill="#eef2f7" opacity=".85"/>
+    <text x="84" y="366" class="muted mono" font-size="16" font-weight="800" transform="rotate(-90 84 366)">FREQUENCY</text>
+  </g>
+
+  <g transform="translate(432 395)">
+    <line x1="0" y1="650" x2="1260" y2="650" class="line"/>
+    <path d="M1260 650l-18-9v18z" fill="#cfd9ea"/>
+    <rect x="16" y="655" width="74" height="39" rx="6" fill="#eef2f7" opacity=".85"/>
+    <text x="30" y="682" class="ink" font-size="21" font-weight="900">Low</text>
+    <rect x="1192" y="655" width="74" height="39" rx="6" fill="#eef2f7" opacity=".85"/>
+    <text x="1207" y="682" class="ink" font-size="21" font-weight="900">High</text>
+    <text x="552" y="676" class="muted mono" font-size="16" font-weight="800">COMPLEXITY</text>
+  </g>
+
+  <g transform="translate(432 395)">
+    <rect class="card-soft shadow" x="0" y="0" width="628" height="297" rx="24"/>
+    <rect x="38" y="48" width="58" height="58" rx="16" fill="#dce9ff"/>
+    <text x="58" y="86" class="blue" font-size="28" font-weight="950">🤖</text>
+    <text x="114" y="64" class="blue" font-size="31" font-weight="950">즉시 자동화</text>
+    <text x="114" y="106" class="blue" font-size="19" font-weight="650">Immediate Automation</text>
+    <text x="38" y="160" class="muted" font-size="22" font-weight="650">규칙이 명확하고 반복적인 업무입니다.</text>
+    <text x="38" y="196" class="muted" font-size="22" font-weight="650">템플릿과 AI로 처리 시간을 극단적으로 줄이세요.</text>
+    <rect x="38" y="230" width="108" height="40" rx="7" fill="#fff" stroke="#bfd1ff"/>
+    <text x="54" y="256" class="blue" font-size="18" font-weight="900">회의록 요약</text>
+    <rect x="158" y="230" width="91" height="40" rx="7" fill="#fff" stroke="#bfd1ff"/>
+    <text x="176" y="256" class="blue" font-size="18" font-weight="900">단순 번역</text>
+    <rect x="261" y="230" width="118" height="40" rx="7" fill="#fff" stroke="#bfd1ff"/>
+    <text x="278" y="256" class="blue" font-size="18" font-weight="900">데이터 전처리</text>
+
+    <rect class="card-soft shadow" x="655" y="0" width="628" height="297" rx="24"/>
+    <rect x="693" y="48" width="58" height="58" rx="16" fill="#dde4ff"/>
+    <text x="711" y="86" class="blue" font-size="28" font-weight="950">🤝</text>
+    <text x="769" y="64" class="blue" font-size="31" font-weight="950">부분 보조</text>
+    <text x="769" y="106" class="blue" font-size="19" font-weight="650">Partial Assistance</text>
+    <text x="693" y="160" class="muted" font-size="21" font-weight="650">자주 발생하지만 사람의 판단이 중요합니다. AI에게 초안 작성을 맡기</text>
+    <text x="693" y="196" class="muted" font-size="21" font-weight="650">고 검수에 집중하세요.</text>
+    <rect x="693" y="230" width="91" height="40" rx="7" fill="#fff" stroke="#bfd1ff"/>
+    <text x="711" y="256" class="blue" font-size="18" font-weight="900">초안 작성</text>
+    <rect x="796" y="230" width="118" height="40" rx="7" fill="#fff" stroke="#bfd1ff"/>
+    <text x="813" y="256" class="blue" font-size="18" font-weight="900">아이디어 발상</text>
+    <rect x="926" y="230" width="118" height="40" rx="7" fill="#fff" stroke="#bfd1ff"/>
+    <text x="943" y="256" class="blue" font-size="18" font-weight="900">코드 리팩토링</text>
+
+    <rect class="card shadow" x="0" y="324" width="628" height="297" rx="24" fill="#fff"/>
+    <rect x="38" y="372" width="58" height="58" rx="16" fill="#eef2f7"/>
+    <text x="58" y="410" class="muted" font-size="28" font-weight="950">↖</text>
+    <text x="114" y="388" class="muted" font-size="31" font-weight="950">선택적 활용</text>
+    <text x="114" y="430" class="muted" font-size="19" font-weight="650">Optional Use</text>
+    <text x="38" y="484" class="muted" font-size="22" font-weight="650">가끔 발생하는 쉬운 업무입니다. 자동화 구축 비용이 더 큽니다.</text>
+    <text x="38" y="520" class="muted" font-size="22" font-weight="650">필요할 때만 가볍게 사용하세요.</text>
+    <rect x="38" y="555" width="91" height="40" rx="7" fill="#fff" stroke="#d7dfec"/>
+    <text x="55" y="581" class="muted" font-size="18" font-weight="900">단순 검색</text>
+    <rect x="140" y="555" width="118" height="40" rx="7" fill="#fff" stroke="#d7dfec"/>
+    <text x="157" y="581" class="muted" font-size="18" font-weight="900">이메일 템플릿</text>
+    <rect x="270" y="555" width="91" height="40" rx="7" fill="#fff" stroke="#d7dfec"/>
+    <text x="287" y="581" class="muted" font-size="18" font-weight="900">문구 교정</text>
+
+    <rect class="shadow" x="655" y="324" width="628" height="297" rx="24" fill="#0f1e2d"/>
+    <rect x="693" y="372" width="58" height="58" rx="16" fill="#fff"/>
+    <text x="711" y="410" class="navy" font-size="28" font-weight="950">🧑‍💼</text>
+    <text x="769" y="388" fill="#fff" font-size="31" font-weight="950">사람 집중</text>
+    <text x="769" y="430" fill="#b9c4d4" font-size="19" font-weight="650">Human Focus</text>
+    <text x="693" y="484" fill="#d6dde8" font-size="22" font-weight="650">복잡하고 리스크가 큰 업무입니다.</text>
+    <text x="693" y="520" fill="#d6dde8" font-size="22" font-weight="650">AI는 참고용으로만 쓰고, 사람의 전문성으로 해결하세요.</text>
+    <rect x="693" y="555" width="91" height="40" rx="7" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.25)"/>
+    <text x="710" y="581" fill="#d6dde8" font-size="18" font-weight="900">위기 관리</text>
+    <rect x="796" y="555" width="118" height="40" rx="7" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.25)"/>
+    <text x="813" y="581" fill="#d6dde8" font-size="18" font-weight="900">핵심 전략 수립</text>
+    <rect x="926" y="555" width="91" height="40" rx="7" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.25)"/>
+    <text x="943" y="581" fill="#d6dde8" font-size="18" font-weight="900">복합 협상</text>
+  </g>
+</svg>
