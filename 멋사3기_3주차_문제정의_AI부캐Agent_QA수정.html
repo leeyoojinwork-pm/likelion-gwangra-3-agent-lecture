@@ -7481,6 +7481,22 @@ Agent를 만든다.</pre>
   </div>
 </section>
 
+<section class="slide vscode-run-slide action-processing-run-slide">
+  <div class="eyebrow">액션 실습 · 실행 화면</div>
+  <h2>작업 순서 파일을 만들면<br>Agent가 그대로 읽고 실행합니다</h2>
+  <div class="vscode-run-embed">
+    <iframe src="assets/vscode-action-demo.html?v=1" data-replay-on-active="true" title="VS Code에서 작업 순서 파일을 읽고 영업 응대 초안을 만드는 애니메이션"></iframe>
+  </div>
+  <div class="vscode-run-callout"><b>액션 포인트</b><span>액션은 “알아서 처리”가 아니라 READ → SORT → DECIDE → MAKE → CHECK처럼 Agent가 따라 할 실행 동사 순서로 남깁니다.</span></div>
+  <div class="data-run-workflow" aria-label="영업 응대 Agent 작업 순서 워크플로우">
+    <div class="data-run-step"><b>READ</b><span>자료 읽기</span></div>
+    <div class="data-run-step"><b>SORT</b><span>기준대로 분류</span></div>
+    <div class="data-run-step"><b>DECIDE</b><span>우선순위 판단</span></div>
+    <div class="data-run-step"><b>MAKE</b><span>결과물 작성</span></div>
+    <div class="data-run-step dark"><b>CHECK</b><span>사람 검수 표시</span></div>
+  </div>
+</section>
+
 <section class="slide">
   <div class="eyebrow">실습 액션 3 · 작업 순서</div>
   <h2>판단을<br>Agent가 따라 할 순서로 바꿉니다</h2>
@@ -7626,15 +7642,15 @@ Agent를 만든다.</pre>
     </div>
     <div class="skill-template-code"><strong>분리 예시</strong>
 01_이번재료/
-├── 이번_요청사항.md
+├── 한문장_과제정의.md
+├── 참고데이터_목록.md
 ├── 이번_대화기록.md
-├── 원본_메모.md
 └── 첨부자료.md
 
 02_반복기준/
-├── 좋은_결과_예시.md
 ├── 판단_기준.md
-├── 검수_루브릭.md
+├── 중요기준_적용방식.md
+├── 통제_기준.md
 └── 출력_형식.md</div>
   </div>
   <div class="deep-note"><b>총정리 포인트</b><span>다음 작업에서도 똑같이 쓸 자료라면 반복 기준, 이번 작업에서만 쓰면 이번 재료입니다.</span></div>
@@ -7678,7 +7694,7 @@ Agent를 만든다.</pre>
   <div class="workshop-map">
     <div class="workshop-route">
       <div class="workshop-step"><b>01</b><div><h3>업무 하나 선택</h3><p>Agent로 만들 반복 업무를 하나만 정합니다.</p></div></div>
-      <div class="workshop-step"><b>02</b><div><h3>자료를 폴더에 나누기</h3><p>이번 재료, 반복 기준, 작업 순서, 검수 기준으로 나눕니다.</p></div></div>
+      <div class="workshop-step"><b>02</b><div><h3>자료를 폴더에 나누기</h3><p>이번 재료, 반복 기준, 작업 순서, 결과물로 나눕니다.</p></div></div>
       <div class="workshop-step"><b>03</b><div><h3>작업 순서 실행</h3><p>읽기 → 판단 → 만들기 → 검수 흐름으로 한 번 돌립니다.</p></div></div>
       <div class="workshop-step"><b>04</b><div><h3>기준을 업데이트</h3><p>결과를 보고 부족한 판단 기준을 다시 파일에 남깁니다.</p></div></div>
     </div>
@@ -7694,7 +7710,7 @@ my-agent/
 02_반복기준: 다음에도 지킬 기준
 03_작업순서: Agent가 따라 할 일의 순서</div>
   </div>
-  <div class="key-sentence"><b>실습 프롬프트</b><span>내 자료를 보고 이번 재료, 반복 기준, 작업 순서, 검수 기준으로 나눠서 나만의 Agent 폴더 초안을 만들어줘.</span></div>
+  <div class="key-sentence"><b>실습 프롬프트</b><span>내 자료를 보고 이번 재료, 반복 기준, 작업 순서, 결과물 폴더로 나눠서 나만의 Agent 폴더 초안을 만들어줘. 사람 검토 지점은 검수 질문으로 붙여줘.</span></div>
 </section>
 
 
@@ -7715,7 +7731,7 @@ my-agent/
       <div class="takeaway-check"><b>04</b><span>사람이 볼 기준은 검수 질문으로 끝에 붙입니다.</span></div>
     </div>
   </div>
-  <div class="takeaway-prompt"><b>마지막 실행 문장</b><span>내 자료를 보고 이번 재료, 반복 기준, 작업 순서, 검수 기준으로 나눠서 나만의 Agent 폴더 초안을 만들어줘.</span></div>
+  <div class="takeaway-prompt"><b>마지막 실행 문장</b><span>내 자료를 보고 이번 재료, 반복 기준, 작업 순서, 결과물 폴더로 나눠서 나만의 Agent 폴더 초안을 만들어줘. 사람 검토 지점은 검수 질문으로 붙여줘.</span></div>
 </section>
 
 </div>
