@@ -5487,9 +5487,22 @@ h2{
 }
 .workshop-map.with-flow{
   grid-template-rows:auto auto;
+  gap:16px 28px;
+}
+.workshop-map.with-flow .workshop-route{
+  padding:26px 32px;
+}
+.workshop-map.with-flow .workshop-step{
+  margin-bottom:18px;
+}
+.workshop-map.with-flow .skill-template-code{
+  padding:26px 30px 22px;
+  font-size:18px;
+  line-height:1.45;
 }
 .workshop-map.with-flow .mini-flowchart{
   grid-column:1 / -1;
+  margin-right:64px;
 }
 .workshop-route{
   position:relative;
@@ -5553,6 +5566,10 @@ h2{
   min-height:92px;
   padding:18px 20px;
   border-right:1px solid #d7dce5;
+}
+.workshop-map.with-flow .mini-flow-step{
+  min-height:72px;
+  padding:12px 18px;
 }
 .mini-flow-step:last-child{border-right:0}
 .mini-flow-step:not(:last-child)::after{
@@ -6199,11 +6216,11 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
     </div>
     <div class="method-divider-board">
       <b>HOW TO</b>
-      <strong>Agent에게 맡길 일의 경계를 정합니다</strong>
+      <strong>Agent가 맡을 의사결정의 범위를 정합니다</strong>
       <ul>
-        <li>반복해서 설명하는 업무 하나를 고릅니다.</li>
-        <li>이 업무가 끝났다고 볼 결과물 형태를 정합니다.</li>
-        <li>Agent가 하면 안 되는 역할을 함께 적습니다.</li>
+        <li>매일·매주 반복되는 판단 하나를 고릅니다.</li>
+        <li>결과물 형태를 순위표, 초안, 추천안처럼 정합니다.</li>
+        <li>사람이 계속 확인해야 할 지점을 함께 적습니다.</li>
       </ul>
     </div>
   </div>
@@ -6233,6 +6250,23 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
 좋은 예:
 이번 자료를 보고 발행 우선순위와 메시지를 정한다.</div>
   </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">실습 액션 1 · 의사결정</div>
+  <h2>지금 할 일은<br>후보를 하나로 좁히는 것입니다</h2>
+  <div class="workshop-map">
+    <div class="workshop-route">
+      <div class="workshop-step"><b>01</b><div><h3>후보 3개를 씁니다</h3><p>반복해서 판단하는 업무를 떠오르는 대로 적습니다.</p></div></div>
+      <div class="workshop-step"><b>02</b><div><h3>효과가 큰 것을 고릅니다</h3><p>자주 반복되고, 틀렸을 때 손실이 큰 결정을 우선합니다.</p></div></div>
+      <div class="workshop-step"><b>03</b><div><h3>한 문장으로 고정합니다</h3><p>무엇을 정할지, 무엇이 나오면 끝인지 씁니다.</p></div></div>
+    </div>
+    <div class="skill-template-code"><strong>복붙 프롬프트</strong>
+내 업무에서 매일·매주 반복되는 판단 후보를 5개 뽑아줘.
+각 후보를 반복 빈도, 걸리는 시간, 잘못됐을 때의 리스크, 잘됐을 때의 편익으로 비교해줘.
+마지막에는 오늘 Agent로 만들기 가장 좋은 의사결정 1개를 추천해줘.</div>
+  </div>
+  <div class="key-sentence"><b>산출물</b><span>Agent가 맡을 의사결정 문장 1개를 남깁니다.</span></div>
 </section>
 
 <section class="slide method-divider">
@@ -6277,6 +6311,25 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
 01_이번재료/거래처별_매출표.md
 02_반복기준/응대_우선순위.md</div>
   </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">실습 액션 2 · 데이터</div>
+  <h2>이제 자료를<br>이번 재료와 반복 기준으로 나눕니다</h2>
+  <div class="workshop-map">
+    <div class="workshop-route">
+      <div class="workshop-step"><b>01</b><div><h3>실제로 보는 자료를 모읍니다</h3><p>표, 메모, 링크, 캡처, 기존 결과물을 한곳에 둡니다.</p></div></div>
+      <div class="workshop-step"><b>02</b><div><h3>이번 것과 계속 쓸 것을 나눕니다</h3><p>이번 작업에서만 쓰면 이번 재료, 다음에도 쓰면 반복 기준입니다.</p></div></div>
+      <div class="workshop-step"><b>03</b><div><h3>판단 기준을 문장으로 씁니다</h3><p>좋은 결과의 조건, 우선순위, 금지선을 따로 적습니다.</p></div></div>
+    </div>
+    <div class="skill-template-code"><strong>복붙 프롬프트</strong>
+아래 자료를 보고 01_이번재료와 02_반복기준으로 나눠줘.
+이번 작업에서만 쓰는 자료와 다음에도 계속 지킬 기준을 분리해줘.
+반복 기준은 판단 기준, 좋은 예시, 금지선, 출력 형식으로 정리해줘.
+
+[여기에 자료 붙여넣기]</div>
+  </div>
+  <div class="key-sentence"><b>산출물</b><span>01_이번재료와 02_반복기준에 들어갈 파일 목록을 얻습니다.</span></div>
 </section>
 
 <section class="slide method-divider">
@@ -6327,6 +6380,35 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
   </div>
 </section>
 
+<section class="slide">
+  <div class="eyebrow">실습 액션 3 · 작업 순서</div>
+  <h2>판단을<br>Agent가 따라 할 순서로 바꿉니다</h2>
+  <div class="workshop-map with-flow">
+    <div class="workshop-route">
+      <div class="workshop-step"><b>01</b><div><h3>첫 동사를 정합니다</h3><p>읽는다, 고른다, 쓴다, 표시한다처럼 행동 단어로 시작합니다.</p></div></div>
+      <div class="workshop-step"><b>02</b><div><h3>작업 순서를 나눕니다</h3><p>읽기 → 분류 → 판단 → 작성 → 검수 순서로 쪼갭니다.</p></div></div>
+      <div class="workshop-step"><b>03</b><div><h3>결과물 형태를 붙입니다</h3><p>표, 메일 초안, 요약문, 체크리스트처럼 남길 형태를 정합니다.</p></div></div>
+    </div>
+    <div class="skill-template-code"><strong>복붙 프롬프트</strong>
+내 의사결정 문장과 자료 기준을 바탕으로 Agent가 따라 할 작업 순서를 만들어줘.
+순서는 읽기 → 분류 → 판단 → 작성 → 검수로 나눠줘.
+각 단계마다 읽을 파일, 판단 기준, 만들어야 할 결과물을 적어줘.
+
+의사결정:
+[여기에 문장 붙여넣기]
+
+자료와 기준:
+[여기에 목록 붙여넣기]</div>
+    <div class="mini-flowchart">
+      <div class="mini-flow-step"><b>READ</b><span>자료 읽기</span></div>
+      <div class="mini-flow-step"><b>SORT</b><span>분류</span></div>
+      <div class="mini-flow-step"><b>DECIDE</b><span>판단</span></div>
+      <div class="mini-flow-step"><b>MAKE</b><span>작성</span></div>
+      <div class="mini-flow-step dark"><b>CHECK</b><span>검수</span></div>
+    </div>
+  </div>
+</section>
+
 <section class="slide method-divider">
   <div class="method-divider-wrap">
     <div>
@@ -6371,6 +6453,29 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
       <div class="mini-flow-step"><b>DECIDE</b><span>실행 또는 보류</span></div>
     </div>
   </div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">실습 액션 4 · 통제</div>
+  <h2>마지막으로<br>사람이 확인할 질문을 붙입니다</h2>
+  <div class="workshop-map with-flow">
+    <div class="workshop-route">
+      <div class="workshop-step"><b>01</b><div><h3>밖으로 나가는 일을 찾습니다</h3><p>발송, 공개, 결제, 삭제처럼 되돌리기 어려운 일을 표시합니다.</p></div></div>
+      <div class="workshop-step"><b>02</b><div><h3>승인 전 금지선을 씁니다</h3><p>Agent가 초안까지만 만들지, 실행까지 할지 선을 긋습니다.</p></div></div>
+      <div class="workshop-step"><b>03</b><div><h3>검수 질문 3개를 남깁니다</h3><p>사람이 마지막에 확인할 질문을 결과물 아래에 붙입니다.</p></div></div>
+    </div>
+    <div class="skill-template-code"><strong>복붙 프롬프트</strong>
+이 Agent가 만든 결과물을 사람이 검수할 기준을 만들어줘.
+외부 발송, 개인정보, 확인되지 않은 사실, 과장 표현, 확정 표현을 기준으로 위험 지점을 찾아줘.
+마지막에 사람이 확인할 체크 질문 3개와 실행 금지선을 써줘.</div>
+    <div class="mini-flowchart four">
+      <div class="mini-flow-step"><b>AGENT</b><span>초안 생성</span></div>
+      <div class="mini-flow-step"><b>FLAG</b><span>위험 표시</span></div>
+      <div class="mini-flow-step dark"><b>HUMAN</b><span>사람 검수</span></div>
+      <div class="mini-flow-step"><b>RUN</b><span>실행 또는 보류</span></div>
+    </div>
+  </div>
+  <div class="key-sentence"><b>산출물</b><span>사람이 확인할 체크 질문 3개와 실행 금지선을 얻습니다.</span></div>
 </section>
 
 <section class="slide">
@@ -6917,7 +7022,7 @@ document.querySelectorAll('.skill-template-code').forEach(block=>{
     event.stopPropagation();
     const clone=block.cloneNode(true);
     clone.querySelectorAll('.copy-template-btn').forEach(node=>node.remove());
-    const text=clone.innerText.trim();
+    const text=clone.textContent.trim();
     try{
       const copied=await copyTemplateText(text);
       if(!copied) throw new Error('copy failed');
