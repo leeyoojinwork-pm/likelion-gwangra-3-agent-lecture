@@ -30,8 +30,8 @@
   <text x="952" y="315" class="blue" font-size="31" font-weight="900">판단 복잡성(Complexity)</text>
   <text x="1327" y="315" class="muted" font-size="31" font-weight="650">에 따라 전략을 달리하세요.</text>
 
-  <text x="1665" y="140" class="ink" font-size="47" font-weight="950">TIP은 찍어가자!</text>
-  <g transform="translate(1735 178) scale(1.1)">
+  <text x="1485" y="112" class="ink" font-size="40" font-weight="950">TIP은 찍어가자!</text>
+  <g transform="translate(1590 128) scale(.82)">
     <path d="M30 34h19l8-14h76l8 14h20c16 0 29 13 29 29v95c0 16-13 29-29 29H30c-16 0-29-13-29-29V63c0-16 13-29 29-29z" fill="#000"/>
     <circle cx="96" cy="111" r="47" fill="none" stroke="#fff" stroke-width="8"/>
     <circle cx="96" cy="111" r="31" fill="#000"/>
