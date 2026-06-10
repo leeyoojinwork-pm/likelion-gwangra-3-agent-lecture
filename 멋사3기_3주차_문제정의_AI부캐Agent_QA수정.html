@@ -5597,6 +5597,99 @@ h2{
   line-height:1.45!important;
   font-weight:760!important;
 }
+.takeaway-close{
+  display:grid;
+  grid-template-columns:.92fr 1.08fr;
+  gap:28px;
+  align-items:stretch;
+  margin-top:32px;
+}
+.takeaway-statement{
+  background:#122348;
+  color:#fff;
+  padding:46px 44px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:520px;
+}
+.takeaway-statement b{
+  color:#c9d9ff;
+  font-size:18px;
+  letter-spacing:.12em;
+  font-weight:950;
+}
+.takeaway-statement strong{
+  display:block;
+  margin-top:24px;
+  color:#fff;
+  font-size:48px;
+  line-height:1.13;
+  font-weight:950;
+}
+.takeaway-statement span{
+  display:block;
+  margin-top:30px;
+  color:#dbe8ff;
+  font-size:24px;
+  line-height:1.45;
+  font-weight:760;
+}
+.takeaway-checklist{
+  background:#fff;
+  border:1px solid #c6d2e3;
+  padding:38px 42px;
+  display:grid;
+  align-content:center;
+  gap:18px;
+}
+.takeaway-check{
+  display:grid;
+  grid-template-columns:74px 1fr;
+  gap:20px;
+  align-items:center;
+  padding:18px 0;
+  border-bottom:1px solid #d7dce5;
+}
+.takeaway-check:last-child{border-bottom:0}
+.takeaway-check b{
+  display:grid;
+  place-items:center;
+  width:58px;
+  height:58px;
+  background:#244497;
+  color:#fff;
+  font-size:18px;
+}
+.takeaway-check span{
+  color:#172033;
+  font-size:25px;
+  line-height:1.34;
+  font-weight:860;
+}
+.takeaway-prompt{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:180px 1fr;
+  border:1px solid #c6d2e3;
+  background:#fff;
+}
+.takeaway-prompt b{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#122348;
+  color:#fff;
+  font-size:18px;
+}
+.takeaway-prompt span{
+  display:block;
+  padding:20px 24px;
+  color:#172033;
+  font-size:22px;
+  line-height:1.42;
+  font-weight:850;
+}
 .workshop-map{
   margin-top:28px;
   display:grid;
@@ -7164,7 +7257,7 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
   <div class="eyebrow">멘토 케이스 스터디 · 실행 화면</div>
   <h2>VS Code에서는 Agent가<br>파일을 읽고 결과물을 쓰는 흐름으로 보입니다</h2>
   <div class="vscode-run-embed">
-    <iframe src="assets/vscode-run-demo.html?v=3" title="VS Code에서 Agent가 파일을 읽고 결과물을 쓰는 실행 화면 애니메이션"></iframe>
+    <iframe src="assets/vscode-run-demo.html?v=4" data-replay-on-active="true" title="VS Code에서 Agent가 파일을 읽고 결과물을 쓰는 실행 화면 애니메이션"></iframe>
   </div>
   <div class="vscode-run-callout"><b>보여줄 포인트</b><span>Agent는 말로만 작동하는 것이 아니라, 폴더의 자료와 기준을 읽고 결과물 파일을 남기는 실행 흐름으로 운영됩니다.</span></div>
 </section>
@@ -7281,7 +7374,7 @@ Agent를 만든다.</pre>
   <div class="eyebrow">데이터 처리 실습 · 실행 화면</div>
   <h2>호텔 리뷰 CSV도<br>읽기·분석·결과물 저장 흐름으로 처리합니다</h2>
   <div class="vscode-run-embed">
-    <iframe src="assets/vscode-data-demo.html?v=2" title="VS Code에서 호텔 리뷰 CSV를 감성분석하는 데이터 처리 애니메이션"></iframe>
+    <iframe src="assets/vscode-data-demo.html?v=3" data-replay-on-active="true" title="VS Code에서 호텔 리뷰 CSV를 감성분석하는 데이터 처리 애니메이션"></iframe>
   </div>
   <div class="vscode-run-callout"><b>데이터 포인트</b><span>데이터 처리는 CSV를 읽고, 기준에 맞춰 라벨링한 뒤 비율·키워드·개선 제안을 결과 파일로 남기는 흐름입니다.</span></div>
   <div class="data-run-workflow" aria-label="호텔 리뷰 감성분석 데이터 처리 워크플로우">
@@ -7501,55 +7594,24 @@ Agent를 만든다.</pre>
 
 
 
-<section class="slide agent-content section-kickoff" data-section="04">
-  <div class="eyebrow">04. 업무 폴더 설계</div>
-  <h2>내 업무 Agent 작업 폴더 구조</h2>
-  <div class="folder-map">
-    <div class="folder-map-visual">
-      <div class="folder-lane"><b>00 역할·금지선</b><span>Agent가 누구인지, 절대 하면 안 되는 일이 무엇인지 둡니다.</span></div>
-      <div class="folder-lane"><b>01 이번 재료</b><span>이번 요청 자료, 표, 메모, 캡처처럼 이번 작업에서만 쓰는 데이터를 넣습니다.</span></div>
-      <div class="folder-lane"><b>02 반복 기준</b><span>좋은 예시, 판단 기준, 금지 표현처럼 다음에도 지킬 기준을 넣습니다.</span></div>
-      <div class="folder-lane"><b>03 작업 순서</b><span>읽기 → 판단 → 만들기 → 검수처럼 Agent가 따라 할 실행 순서를 씁니다.</span></div>
-      <div class="folder-lane"><b>04 결과물</b><span>요약표, 초안, 제안서, 검수표처럼 사람이 바로 쓸 최종본을 둡니다.</span></div>
+<section class="slide method-divider summary-divider">
+  <div class="method-divider-wrap">
+    <div>
+      <div class="method-divider-index">SUMMARY INDEX</div>
+      <h2>총정리 목차를<br><span>한 번에 짚고 갑니다</span></h2>
+      <div class="method-divider-copy">오늘 배운 4요소를 실제 업무 폴더와 실행 문장으로 바꾸는 마지막 구간입니다.</div>
     </div>
-    <div class="folder-map-side">
-      <b>FOLDER MAP</b>
-      <h3>폴더는 저장 공간이 아니라<br>Agent가 읽는 순서입니다</h3>
-      <p>자료가 많아서 폴더를 만드는 것이 아니라, Agent가 무엇을 먼저 읽고 어떤 기준으로 판단할지 통제하기 위해 나눕니다.</p>
-    </div>
-  </div>
-</section>
-
-<section class="slide">
-  <div class="eyebrow">총정리 Deck 목차</div>
-  <h2>오늘 배운 내용은<br>네 가지로 다시 정리됩니다</h2>
-  <div class="final-agent-summary">
-    <div class="final-summary-card">
-      <b>01 DECISION</b>
-      <h3>의사결정 정의</h3>
-      <p>무엇을 판단하고, 무엇이 나오면 일이 끝나는지 정합니다.</p>
-      <em>→ Agent 역할 정의</em>
-    </div>
-    <div class="final-summary-card">
-      <b>02 DATA</b>
-      <h3>데이터 기준</h3>
-      <p>이번 재료와 반복 기준을 나눠 Agent가 읽을 수 있게 둡니다.</p>
-      <em>→ Folder 구조</em>
-    </div>
-    <div class="final-summary-card">
-      <b>03 ACTION</b>
-      <h3>액션</h3>
-      <p>결과물을 만드는 순서를 작업 순서 파일에 고정합니다.</p>
-      <em>→ Skill 작업 순서</em>
-    </div>
-    <div class="final-summary-card dark">
-      <b>04 CONTROL</b>
-      <h3>통제 지점</h3>
-      <p>사람이 확인할 기준과 금지선을 검수 기준으로 남깁니다.</p>
-      <em>→ AI-사람 검수</em>
+    <div class="method-divider-board">
+      <b>HOW TO</b>
+      <strong>이제 볼 체크포인트는 네 가지입니다</strong>
+      <ul>
+        <li>데이터 기준: 이번 재료와 반복 기준을 나눕니다.</li>
+        <li>한 문장 정의: 의사결정·데이터·액션·통제를 묶습니다.</li>
+        <li>실습 전환: 폴더에 자료를 넣고 한 번 실행합니다.</li>
+        <li>최종 메시지: Agent화의 핵심 문장을 남깁니다.</li>
+      </ul>
     </div>
   </div>
-  <div class="key-sentence"><b>총정리 흐름</b><span>의사결정을 정하고, 데이터를 나누고, 액션을 순서로 쓰고, 통제 지점을 남기면 내 업무 Agent의 뼈대가 완성됩니다.</span></div>
 </section>
 
 <section class="slide agent-content split-note-compact">
@@ -7638,48 +7700,22 @@ my-agent/
 
 
 <section class="slide">
-  <div class="eyebrow">총정리 04 · 최종 체크</div>
-  <h2>Agent는 네 가지가 정리될 때<br>업무 폴더로 옮길 수 있습니다</h2>
-  <div class="final-agent-summary">
-    <div class="final-summary-card">
-      <b>01 DECISION</b>
-      <h3>의사결정 정의</h3>
-      <p>무엇을 판단하고, 무엇이 나오면 일이 끝나는지 정합니다.</p>
-      <em>→ Agent 역할 정의</em>
-    </div>
-    <div class="final-summary-card">
-      <b>02 DATA</b>
-      <h3>데이터 기준</h3>
-      <p>이번 자료와 반복 기준을 나눠 Agent가 읽을 수 있게 둡니다.</p>
-      <em>→ Folder 구조</em>
-    </div>
-    <div class="final-summary-card">
-      <b>03 ACTION</b>
-      <h3>액션</h3>
-      <p>결과물을 만드는 순서를 작업 순서 파일에 고정합니다.</p>
-      <em>→ Skill 작업 순서</em>
-    </div>
-    <div class="final-summary-card dark">
-      <b>04 CONTROL</b>
-      <h3>통제 지점</h3>
-      <p>사람이 확인할 기준과 금지선을 검수 기준으로 남깁니다.</p>
-      <em>→ AI-사람 검수</em>
-    </div>
-  </div>
-  <div class="final-folder-recap">
-    <div class="final-folder-list">
-      <div class="final-folder-row"><b>00 역할·금지선</b><span>Agent가 누구인지, 절대 하면 안 되는 일을 둡니다.</span></div>
-      <div class="final-folder-row"><b>01 이번 재료</b><span>이번 작업에만 쓰는 데이터와 요청사항을 넣습니다.</span></div>
-      <div class="final-folder-row"><b>02 반복 기준</b><span>다음에도 지킬 판단 기준, 좋은 예시, 금지 표현을 둡니다.</span></div>
-      <div class="final-folder-row"><b>03 작업 순서</b><span>읽기 → 판단 → 만들기 → 검수처럼 실행 순서를 씁니다.</span></div>
-      <div class="final-folder-row"><b>04 결과물</b><span>요약표, 초안, 제안서, 검수표처럼 바로 쓸 최종본을 둡니다.</span></div>
-    </div>
-    <div class="final-folder-note">
+  <div class="eyebrow">총정리 04 · 최종 메시지</div>
+  <h2>오늘의 결론은<br>파일을 나누면 Agent가 일한다는 것입니다</h2>
+  <div class="takeaway-close">
+    <div class="takeaway-statement">
       <b>FINAL TAKEAWAY</b>
-      <h3>폴더는 저장 공간이 아니라<br>Agent가 읽는 순서입니다</h3>
-      <p>자료가 많아서 폴더를 만드는 것이 아니라, Agent가 무엇을 먼저 읽고 어떤 기준으로 판단할지 통제하기 위해 나눕니다.</p>
+      <strong>Agent화는<br>프롬프트를 길게 쓰는 일이 아닙니다</strong>
+      <span>내 업무의 판단 기준과 반복 흐름을 파일과 폴더에 남겨, Agent가 매번 같은 기준으로 읽고 실행하게 만드는 일입니다.</span>
+    </div>
+    <div class="takeaway-checklist">
+      <div class="takeaway-check"><b>01</b><span>이번에만 쓸 자료는 01_이번재료에 넣습니다.</span></div>
+      <div class="takeaway-check"><b>02</b><span>다음에도 지킬 기준은 02_반복기준에 남깁니다.</span></div>
+      <div class="takeaway-check"><b>03</b><span>Agent가 따라 할 순서는 03_작업순서에 씁니다.</span></div>
+      <div class="takeaway-check"><b>04</b><span>사람이 볼 기준은 검수 질문으로 끝에 붙입니다.</span></div>
     </div>
   </div>
+  <div class="takeaway-prompt"><b>마지막 실행 문장</b><span>내 자료를 보고 이번 재료, 반복 기준, 작업 순서, 검수 기준으로 나눠서 나만의 Agent 폴더 초안을 만들어줘.</span></div>
 </section>
 
 </div>
@@ -7769,6 +7805,12 @@ function showSlide(i){
   current=Math.max(0,Math.min(slides.length-1,i));
   slides.forEach((slide,index)=>slide.classList.toggle('active',index===current));
   document.getElementById('progress').style.width=((current+1)/slides.length*100)+'%';
+  const activeSlide=slides[current];
+  activeSlide.querySelectorAll('iframe[data-replay-on-active="true"]').forEach(iframe=>{
+    const baseSrc=iframe.getAttribute('src').replace(/([?&])replay=\d+(&?)/,'$1').replace(/[?&]$/,'');
+    const separator=baseSrc.includes('?') ? '&' : '?';
+    iframe.setAttribute('src',`${baseSrc}${separator}replay=${Date.now()}`);
+  });
 }
 function nextSlide(){showSlide(current+1)}
 function prevSlide(){showSlide(current-1)}
