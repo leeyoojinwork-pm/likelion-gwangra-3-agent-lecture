@@ -5580,6 +5580,75 @@ h2{
   padding:24px 42px 28px;
   overflow:hidden;
 }
+.mentor-agent-board.with-vscode{
+  --flow-center:66%;
+  padding-left:34px;
+}
+.mentor-vscode{
+  position:absolute;
+  z-index:3;
+  left:34px;
+  top:28px;
+  bottom:28px;
+  width:286px;
+  background:#111827;
+  border:1px solid #2d3a4f;
+  color:#d7e1ef;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+  overflow:hidden;
+}
+.mentor-vscode-title{
+  height:34px;
+  display:flex;
+  align-items:center;
+  padding:0 14px;
+  background:#1f2937;
+  color:#aebcd0;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.04em;
+}
+.mentor-vscode-tree{
+  padding:14px 16px;
+  font-size:13px;
+  line-height:1.58;
+  white-space:pre-wrap;
+}
+.mentor-vscode-tree b{
+  color:#fff;
+  font-weight:900;
+}
+.mentor-vscode-tree span{
+  color:#82d6ff;
+}
+.mentor-agent-board.with-vscode:before,
+.mentor-agent-board.with-vscode:after,
+.mentor-agent-board.with-vscode .mentor-agent-lines span{
+  left:var(--flow-center);
+}
+.mentor-agent-board.with-vscode .mentor-agent-main{
+  width:330px;
+  margin-left:calc(var(--flow-center) - 165px);
+  margin-right:0;
+}
+.mentor-agent-board.with-vscode .mentor-agent-nodes{
+  margin-left:330px;
+  gap:16px;
+}
+.mentor-agent-board.with-vscode .mentor-agent-node{
+  padding:18px 16px;
+}
+.mentor-agent-board.with-vscode .mentor-agent-node b{
+  font-size:19px;
+}
+.mentor-agent-board.with-vscode .mentor-agent-node span{
+  font-size:13px;
+}
+.mentor-agent-board.with-vscode .mentor-agent-gate{
+  width:450px;
+  margin-left:calc(var(--flow-center) - 225px);
+  margin-right:0;
+}
 .mentor-agent-board:before,
 .mentor-agent-board:after{
   content:"";
@@ -6386,7 +6455,24 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
   <div class="eyebrow">멘토 케이스 스터디 · CASE STUDY</div>
   <h2>멘토링 피드백 운영 AGENT를<br>한 장으로 정리했습니다</h2>
   <p class="lead">메인 세션이 받고, 서브 Agent가 병렬 처리하고, 멘토 검수 게이트에서 멈춥니다. AGENT의 경계를 그대로 그림으로 봅니다.</p>
-  <div class="mentor-agent-board">
+  <div class="mentor-agent-board with-vscode">
+    <div class="mentor-vscode">
+      <div class="mentor-vscode-title">EXPLORER</div>
+      <div class="mentor-vscode-tree"><b>mentoring-feedback-agent/</b>
+├── <span>00_role_gate.md</span>
+├── <span>01_submissions/</span>
+│   ├── slack_links.md
+│   └── weekly_uploads.csv
+├── <span>02_feedback_types/</span>
+│   ├── type_rules.md
+│   └── examples.md
+├── <span>03_draft_feedback/</span>
+│   └── yujin_tone.md
+├── <span>04_next_steps/</span>
+│   └── scoring_rules.md
+└── <span>05_pdf_report/</span>
+    └── report_template.md</div>
+    </div>
     <div class="mentor-agent-lines"><span></span><span></span><span></span><span></span></div>
     <div class="mentor-agent-main">
       <i class="mentor-agent-dot"></i>
