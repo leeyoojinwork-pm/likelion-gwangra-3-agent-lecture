@@ -5571,6 +5571,119 @@ h2{
   min-height:72px;
   padding:12px 18px;
 }
+.mentor-agent-board{
+  margin-top:22px;
+  position:relative;
+  min-height:392px;
+  border:1px solid #d5e0ea;
+  background:linear-gradient(135deg,#eaf2fb 0%,#eef8ec 100%);
+  padding:24px 42px 28px;
+  overflow:hidden;
+}
+.mentor-agent-board:before,
+.mentor-agent-board:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  width:1px;
+  height:132px;
+  background:#9eb2ba;
+  transform-origin:top center;
+  opacity:.9;
+}
+.mentor-agent-board:before{top:102px;transform:rotate(76deg)}
+.mentor-agent-board:after{top:102px;transform:rotate(-76deg)}
+.mentor-agent-lines{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+.mentor-agent-lines span{
+  position:absolute;
+  left:50%;
+  top:102px;
+  width:1px;
+  height:150px;
+  background:#9eb2ba;
+  transform-origin:top center;
+}
+.mentor-agent-lines span:nth-child(1){transform:rotate(42deg)}
+.mentor-agent-lines span:nth-child(2){transform:rotate(-42deg)}
+.mentor-agent-lines span:nth-child(3){top:244px;height:112px;transform:rotate(58deg)}
+.mentor-agent-lines span:nth-child(4){top:244px;height:112px;transform:rotate(-58deg)}
+.mentor-agent-main{
+  position:relative;
+  z-index:2;
+  width:380px;
+  margin:0 auto;
+  padding:16px 28px;
+  border:1px solid #c5d1cb;
+  background:rgba(255,255,255,.94);
+  display:grid;
+  grid-template-columns:16px 1fr;
+  gap:12px;
+  align-items:center;
+}
+.mentor-agent-dot{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#ef412f;
+}
+.mentor-agent-main b,
+.mentor-agent-node b,
+.mentor-agent-gate b{
+  display:block;
+  color:#172033;
+  font-size:22px;
+  line-height:1.15;
+  font-weight:900;
+}
+.mentor-agent-main span,
+.mentor-agent-node span,
+.mentor-agent-gate span{
+  display:block;
+  margin-top:5px;
+  color:#526071;
+  font-size:15px;
+  line-height:1.3;
+  font-weight:760;
+}
+.mentor-agent-nodes{
+  position:relative;
+  z-index:2;
+  margin-top:78px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:28px;
+}
+.mentor-agent-node{
+  min-height:88px;
+  background:#112a20;
+  padding:20px 22px;
+  display:grid;
+  grid-template-columns:16px 1fr;
+  gap:14px;
+  align-items:start;
+}
+.mentor-agent-node .mentor-agent-dot{background:#35d0a0;margin-top:6px}
+.mentor-agent-node b{color:#fff;font-size:22px}
+.mentor-agent-node span{color:#a9d6c8}
+.mentor-agent-gate{
+  position:relative;
+  z-index:2;
+  width:520px;
+  margin:20px auto 0;
+  padding:18px 30px;
+  border:2px solid #ef412f;
+  background:#fff8f5;
+  display:grid;
+  grid-template-columns:16px 1fr;
+  gap:14px;
+  align-items:center;
+}
+.mentor-agent-gate b{color:#ef412f;font-size:25px}
+.mentor-agent-gate span{color:#9e4437}
 .mini-flow-step:last-child{border-right:0}
 .mini-flow-step:not(:last-child)::after{
   content:"→";
@@ -6267,6 +6380,29 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
 마지막에는 오늘 Agent로 만들기 가장 좋은 의사결정 1개를 추천해줘.</div>
   </div>
   <div class="key-sentence"><b>산출물</b><span>Agent가 맡을 의사결정 문장 1개를 남깁니다.</span></div>
+</section>
+
+<section class="slide">
+  <div class="eyebrow">멘토 케이스 스터디 · CASE STUDY</div>
+  <h2>멘토링 피드백 운영 AGENT를<br>한 장으로 정리했습니다</h2>
+  <p class="lead">메인 세션이 받고, 서브 Agent가 병렬 처리하고, 멘토 검수 게이트에서 멈춥니다. AGENT의 경계를 그대로 그림으로 봅니다.</p>
+  <div class="mentor-agent-board">
+    <div class="mentor-agent-lines"><span></span><span></span><span></span><span></span></div>
+    <div class="mentor-agent-main">
+      <i class="mentor-agent-dot"></i>
+      <div><b>메인 세션</b><span>제출물 접수 · 슬랙에서 수집</span></div>
+    </div>
+    <div class="mentor-agent-nodes">
+      <div class="mentor-agent-node"><i class="mentor-agent-dot"></i><div><b>유형 분류</b><span>6가지 피드백 유형</span></div></div>
+      <div class="mentor-agent-node"><i class="mentor-agent-dot"></i><div><b>피드백 초안</b><span>유진님 톤 재현</span></div></div>
+      <div class="mentor-agent-node"><i class="mentor-agent-dot"></i><div><b>넥스트 스텝</b><span>3가지 · 수치화</span></div></div>
+      <div class="mentor-agent-node"><i class="mentor-agent-dot"></i><div><b>PDF 리포트</b><span>발송 시 생성</span></div></div>
+    </div>
+    <div class="mentor-agent-gate">
+      <i class="mentor-agent-dot"></i>
+      <div><b>멘토 검수 게이트</b><span>사람이 직접 확인하고 발송 — AI는 여기서 멈춤</span></div>
+    </div>
+  </div>
 </section>
 
 <section class="slide method-divider">
