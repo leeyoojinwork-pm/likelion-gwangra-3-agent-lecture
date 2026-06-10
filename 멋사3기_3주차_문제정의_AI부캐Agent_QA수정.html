@@ -5897,10 +5897,18 @@ h2{
   display:block;
 }
 .data-processing-run-slide .vscode-run-embed{
-  height:420px;
+  height:500px;
+}
+.data-processing-run-slide .vscode-run-callout{
+  margin-top:8px;
+}
+.data-processing-run-slide .vscode-run-callout span{
+  padding:10px 18px;
+  font-size:18px;
+  line-height:1.25;
 }
 .data-run-workflow{
-  margin-top:10px;
+  margin-top:8px;
   display:grid;
   grid-template-columns:repeat(7,1fr);
   gap:0;
@@ -5910,8 +5918,8 @@ h2{
 }
 .data-run-step{
   position:relative;
-  min-height:64px;
-  padding:11px 12px 10px 18px;
+  min-height:54px;
+  padding:8px 10px 8px 16px;
   background:#fff;
   border-right:1px solid #d6dfeb;
   display:flex;
@@ -5929,9 +5937,9 @@ h2{
   font-weight:950;
 }
 .data-run-step span{
-  margin-top:5px;
+  margin-top:4px;
   color:#172033;
-  font-size:15px;
+  font-size:14px;
   line-height:1.18;
   font-weight:850;
 }
@@ -7154,9 +7162,9 @@ Agent를 만든다.</pre>
   <div class="eyebrow">데이터 처리 실습 · 실행 화면</div>
   <h2>호텔 리뷰 CSV도<br>읽기·분석·결과물 저장 흐름으로 처리합니다</h2>
   <div class="vscode-run-embed">
-    <iframe src="assets/vscode-data-demo.html?v=1" title="VS Code에서 호텔 리뷰 CSV를 감성분석하는 데이터 처리 애니메이션"></iframe>
+    <iframe src="assets/vscode-data-demo.html?v=2" title="VS Code에서 호텔 리뷰 CSV를 감성분석하는 데이터 처리 애니메이션"></iframe>
   </div>
-  <div class="vscode-run-callout"><b>보여줄 포인트</b><span>데이터 처리는 CSV를 올리는 것으로 끝나지 않고, 기준을 정하고 분석 결과를 파일로 남긴 뒤 사람이 검수하는 흐름입니다.</span></div>
+  <div class="vscode-run-callout"><b>데이터 포인트</b><span>데이터 처리는 CSV를 읽고, 기준에 맞춰 라벨링한 뒤 비율·키워드·개선 제안을 결과 파일로 남기는 흐름입니다.</span></div>
   <div class="data-run-workflow" aria-label="호텔 리뷰 감성분석 데이터 처리 워크플로우">
     <div class="data-run-step"><b>01</b><span>CSV 미리보기</span></div>
     <div class="data-run-step"><b>02</b><span>프롬프트 입력</span></div>
@@ -7164,41 +7172,10 @@ Agent를 만든다.</pre>
     <div class="data-run-step"><b>04</b><span>평점 라벨링</span></div>
     <div class="data-run-step"><b>05</b><span>비율·키워드 분석</span></div>
     <div class="data-run-step"><b>06</b><span>요약·개선안 저장</span></div>
-    <div class="data-run-step dark"><b>07</b><span>사람 검수</span></div>
+    <div class="data-run-step dark"><b>07</b><span>분석 결과 확인</span></div>
   </div>
 </section>
 
-<section class="slide agent-content sequence-file-slide">
-  <div class="eyebrow">04. 업무 폴더 설계</div>
-  <h2>작업 순서 파일은 다섯 줄부터 채우면 됩니다</h2>
-  <div class="workshop-map">
-    <div class="workshop-route">
-      <div class="workshop-step"><b>01</b><div><h3>목표</h3><p>끝났을 때 무엇이 만들어져야 하는지 씁니다.</p></div></div>
-      <div class="workshop-step"><b>02</b><div><h3>읽을 파일</h3><p>Agent가 먼저 읽어야 할 폴더와 자료 위치를 지정합니다.</p></div></div>
-      <div class="workshop-step"><b>03</b><div><h3>작업 순서</h3><p>사람이 머릿속으로 하던 판단 순서를 번호로 풀어냅니다.</p></div></div>
-      <div class="workshop-step"><b>04</b><div><h3>금지선</h3><p>확인 안 된 결론, 과장 표현, 확정하면 안 되는 내용을 막습니다.</p></div></div>
-      <div class="workshop-step"><b>05</b><div><h3>결과와 검수</h3><p>최종 결과물과 사람이 볼 검수표를 함께 요청합니다.</p></div></div>
-    </div>
-    <div class="skill-template-code"><strong>작업 순서 파일 초안</strong>
-목표:
-원본 데이터를 읽고 요약 보고서로 바꾼다.
-
-읽을 파일:
-00_역할과금지선, 01_이번재료,
-02_반복기준
-
-순서:
-읽기 → 분리 → 작성 → 교정
-
-금지:
-확인 안 된 결론 단정 금지
-
-결과:
-요약표 + 개선 제안 + 검수 질문</div>
-  </div>
-  <div class="lecture-note"><b>채용 비유로 이해하기</b><span>처음부터 채용 업무 전부를 맡기지 않듯이, 작업 순서도 JD 기준으로 이력서 1차 정리하기처럼 범위가 좁을수록 잘 작동합니다.</span></div>
-  <div class="key-sentence"><b>이 장의 결론</b><span>처음 작업 순서는 완벽한 문서가 아니라, 이 다섯 줄을 채우는 것부터 시작하면 됩니다.</span></div>
-</section>
 <section class="slide">
   <div class="eyebrow">1주차 연결 How-to</div>
   <h2>2 · 데이터 기준<br>참고 데이터와 판단 기준을 나눕니다</h2>
@@ -7389,27 +7366,6 @@ Agent를 만든다.</pre>
   </div>
   <div class="key-sentence"><b>산출물</b><span>사람이 확인할 체크 질문 3개와 실행 금지선을 얻습니다.</span></div>
 </section>
-<section class="slide section-kickoff" data-section="01">
-  <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
-  <h2>매번 같은 설명을 다시 하고 있지 않나요?</h2>
-  <div class="opening-focus">
-    <div class="opening-script">
-      <p>이거 내 <span class="key-red">말투</span>로 해줘.</p>
-      <p>아까 말한 <span class="key-red">양식</span>으로 해줘.</p>
-      <p><span class="key-red">예시</span>는 유지하고, <span class="key-red">최종본</span>은 따로 정리해줘.</p>
-    </div>
-    <div class="opening-diagnosis">
-      <h3>반복되는 설명은<br><span class="key-red">업무 기준</span>이 아직 밖으로 나오지 않았다는 신호입니다</h3>
-      <ul>
-        <li><b>01</b><span><span class="key-red">맥락</span>을 대화창에 다시 붙입니다.</span></li>
-        <li><b>02</b><span>좋은 예시와 <span class="key-red">금지 기준</span>이 흩어집니다.</span></li>
-        <li><b>03</b><span><span class="key-red">결과물 형식</span>이 매번 조금씩 흔들립니다.</span></li>
-      </ul>
-      <strong>Agent화는 설명을 더 길게 쓰는 일이 아니라, <span class="key-red">반복 기준</span>을 <span class="key-red">파일과 폴더</span>에 남기는 일입니다.</strong>
-    </div>
-  </div>
-</section>
-
 <section class="slide">
   <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
   <h2>의사결정 정의가 없으면<br>Agent는 답변은 해도 일을 끝내지 못합니다</h2>
