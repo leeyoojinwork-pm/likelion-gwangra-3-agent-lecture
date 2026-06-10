@@ -5883,6 +5883,19 @@ h2{
   line-height:1.32;
   font-weight:760;
 }
+.vscode-run-embed{
+  margin-top:18px;
+  height:500px;
+  border:1px solid #c6d2e3;
+  background:#1e1e1e;
+  overflow:hidden;
+}
+.vscode-run-embed iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
 .decision-definition-slide .workshop-map{
   margin-top:22px;
   gap:22px;
@@ -6027,6 +6040,145 @@ h2{
   color:#c43d32;
   font-style:normal;
   font-weight:950;
+}
+.data-two-modes.data-cases h2,
+.data-scope-slide h2,
+.data-prompt-cases h2{
+  max-width:1120px;
+}
+.data-two-modes.data-cases .data-mode-board{
+  margin-top:26px;
+  gap:30px;
+}
+.data-two-modes.data-cases .data-mode-row{
+  display:block;
+}
+.data-case-heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:10px;
+  color:#122348;
+  font-size:22px;
+  line-height:1.2;
+  font-weight:950;
+}
+.data-case-heading strong span{color:#244497}
+.data-case-heading.green strong span{color:#2f6f23}
+.data-case-chip{
+  padding:8px 14px;
+  border-radius:999px;
+  background:#e8f0ff;
+  color:#244497;
+  font-size:14px;
+  font-weight:900;
+}
+.data-case-heading.green .data-case-chip{
+  background:#e5f2dc;
+  color:#2f6f23;
+}
+.data-two-modes.data-cases .data-arrow{
+  min-height:104px;
+  padding-left:28px;
+}
+.data-scope-flow{
+  margin-top:46px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:0;
+}
+.scope-chevron{
+  position:relative;
+  min-height:134px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+  background:#29499a;
+  clip-path:polygon(0 0,calc(100% - 32px) 0,100% 50%,calc(100% - 32px) 100%,0 100%,32px 50%);
+}
+.scope-chevron:first-child{clip-path:polygon(0 0,calc(100% - 32px) 0,100% 50%,calc(100% - 32px) 100%,0 100%)}
+.scope-chevron.dark{background:#1f3d7c}
+.scope-chevron.muted{
+  background:#c8cfdd;
+  color:#747d8f;
+}
+.scope-chevron b{
+  display:block;
+  font-size:15px;
+  letter-spacing:.04em;
+  font-weight:950;
+  opacity:.9;
+}
+.scope-chevron span{
+  display:block;
+  margin-top:8px;
+  font-size:22px;
+  line-height:1.15;
+  font-weight:950;
+}
+.scope-legend{
+  margin-top:24px;
+  display:flex;
+  gap:34px;
+  color:#667085;
+  font-size:16px;
+  font-weight:800;
+}
+.scope-legend span:before{
+  content:"";
+  display:inline-block;
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  margin-right:8px;
+  vertical-align:-1px;
+  background:#29499a;
+}
+.scope-legend span.muted:before{background:#9aa3b2}
+.prompt-case-grid{
+  margin-top:32px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+}
+.prompt-card{
+  position:relative;
+  min-height:305px;
+  border:1px solid #c6d2e3;
+  background:#fff;
+  padding:34px 38px;
+  color:#172033;
+}
+.prompt-card strong{
+  display:block;
+  color:#c43d32;
+  font-size:21px;
+  line-height:1.2;
+  font-weight:950;
+  margin-bottom:30px;
+}
+.prompt-card pre{
+  margin:0;
+  white-space:pre-wrap;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:20px;
+  line-height:1.5;
+  font-weight:850;
+  color:#172033;
+}
+.prompt-card .copy-template-btn{
+  top:18px;
+  right:18px;
+}
+.prompt-case-grid.compact .prompt-card{
+  min-height:260px;
+}
+.prompt-case-grid.compact .prompt-card pre{
+  font-size:19px;
+  line-height:1.48;
 }
 .mini-flow-step:last-child{border-right:0}
 .mini-flow-step:not(:last-child)::after{
@@ -6840,52 +6992,8 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
 <section class="slide vscode-run-slide">
   <div class="eyebrow">멘토 케이스 스터디 · 실행 화면</div>
   <h2>VS Code에서는 Agent가<br>파일을 읽고 결과물을 쓰는 흐름으로 보입니다</h2>
-  <div class="vscode-run-window">
-    <div class="vscode-run-title"><i></i><i></i><i></i><span>blog-review-agent — Claude Code</span></div>
-    <div class="vscode-run-body">
-      <div class="vscode-run-side"><b>BLOG-REVIEW-AGENT/</b>
-├── <span>00_admin/</span>
-│   ├── 리뷰단_역할지침.md
-│   └── 절대_하지_말_것.md
-├── <span>01_이번재료/</span>
-│   ├── 업체_가이드라인.md
-│   ├── 방문_후기_메모.md
-│   └── 사진_목록.md
-├── <span>02_반복기준/</span>
-│   ├── 기존_블로그_말투.md
-│   ├── 좋은_제목_예시.md
-│   └── 금지표현_리스트.md
-├── <span>03_작업순서/</span>
-│   └── 발행패키지_만들기.md
-└── <span>04_결과물/</span>
-    ├── 블로그_원고.md
-    └── 발행전_검수표.md</div>
-      <div class="vscode-run-main">
-        <div>
-          <div class="vscode-run-tabs"><b>발행패키지_만들기.md</b></div>
-          <div class="vscode-run-editor"><span class="kw"># 발행패키지 만들기</span>
-
-목표: 후기 메모를 발행 패키지로 바꾼다
-
-읽을 파일:
-  - 00_admin, 01_이번재료, 02_반복기준
-
-순서:
-  <span class="ok">읽기 → 분리 → 작성 → 검수</span>
-
-금지: 없는 경험 생성 금지
-출력: 블로그 본문 + 캡션 + 검수표</div>
-        </div>
-        <div class="vscode-run-terminal"><span class="prompt">➜ blog-review-agent</span> claude
-❯ 후기 메모를 발행 패키지로 만들어줘. 03_작업순서 따라서.
-<span class="ok">●</span> Read <span class="dim">00_admin/리뷰단_역할지침.md</span>
-<span class="ok">●</span> Read <span class="dim">01_이번재료/방문_후기_메모.md</span>
-<span class="ok">●</span> Read <span class="dim">02_반복기준/기존_블로그_말투.md</span>
-<span class="ok">●</span> Write <span class="ok">04_결과물/블로그_원고.md</span> ✓
-<span class="ok">●</span> Write <span class="ok">04_결과물/발행전_검수표.md</span> ✓
-<span class="gate">⏸ 멘토 검수 게이트 — 사람이 확인 후 발송. AI는 여기서 멈춤.</span></div>
-      </div>
-    </div>
+  <div class="vscode-run-embed">
+    <iframe src="assets/vscode-run-demo.html?v=1" title="VS Code에서 Agent가 파일을 읽고 결과물을 쓰는 실행 화면 애니메이션"></iframe>
   </div>
   <div class="vscode-run-callout"><b>보여줄 포인트</b><span>Agent는 말로만 작동하는 것이 아니라, 폴더의 자료와 기준을 읽고 결과물 파일을 남기는 실행 흐름으로 운영됩니다.</span></div>
 </section>
@@ -6909,49 +7017,91 @@ p,.lead,.muted,li,.card p,.card li{color:#526071!important}
   </div>
 </section>
 
-<section class="slide data-two-modes">
-  <div class="eyebrow">데이터 수집 · TWO DATA TYPES</div>
-  <h2>업무에서 가져올 데이터는<br>두 가지로 나눠서 모읍니다</h2>
+<section class="slide data-two-modes data-cases">
+  <div class="eyebrow">데이터 상황 · TWO CASES</div>
+  <h2>데이터가 있느냐에 따라<br>Agent의 출발점이 갈립니다</h2>
   <div class="data-mode-board">
-    <div class="data-mode-row material">
-      <div class="data-mode-label"><b>1. 이번 재료</b><span>오늘 판단에 필요한 원본 데이터</span></div>
+    <div class="data-mode-row">
+      <div class="data-case-heading"><strong>1. 데이터가 많은 경우 <span>(CDA · 확증적)</span></strong><em class="data-case-chip">분석·검증부터 바로</em></div>
       <div class="data-arrow-flow">
-        <div class="data-arrow"><b>업무에서 발견</b><span>슬랙, 메일, 설문, 표, 캡처</span></div>
-        <div class="data-arrow dark"><b>그대로 수집</b><span>복사·다운로드·스크린샷</span></div>
-        <div class="data-arrow"><b>한곳에 붙이기</b><span>CSV, 메모, 링크, 이미지</span></div>
-        <div class="data-arrow dark"><b>01_이번재료</b><span>이번 실행에만 사용</span></div>
+        <div class="data-arrow"><b>기준 정의</b><span>무엇을 검증할지</span></div>
+        <div class="data-arrow dark"><b>데이터 점검</b><span>있는 자료 확인</span></div>
+        <div class="data-arrow"><b>분석·검증</b><span>가설을 데이터로</span></div>
+        <div class="data-arrow dark"><b>결과 판단</b><span>의사결정·결과물</span></div>
       </div>
     </div>
-    <div class="data-mode-row">
-      <div class="data-mode-label"><b>2. 반복 기준</b><span>다음에도 지킬 판단 규칙</span></div>
+    <div class="data-mode-row material">
+      <div class="data-case-heading green"><strong>2. 데이터가 없는 경우 <span>(EDA · 탐색적)</span></strong><em class="data-case-chip">수집·준비부터</em></div>
       <div class="data-arrow-flow">
-        <div class="data-arrow"><b>좋은 예시 찾기</b><span>잘 된 결과물, 말투, 양식</span></div>
-        <div class="data-arrow dark"><b>판단 기준 추출</b><span>우선순위, 금지선, 검수 질문</span></div>
-        <div class="data-arrow"><b>문장으로 고정</b><span>Agent가 읽을 규칙 파일</span></div>
-        <div class="data-arrow dark"><b>02_반복기준</b><span>매번 재사용</span></div>
+        <div class="data-arrow"><b>무엇이 필요한지</b><span>질문부터 정의</span></div>
+        <div class="data-arrow dark"><b>수집</b><span>후기·자료·사례</span></div>
+        <div class="data-arrow"><b>정리·준비</b><span>AI가 읽을 형태로</span></div>
+        <div class="data-arrow dark"><b>탐색·패턴</b><span>인사이트 발견</span></div>
       </div>
     </div>
   </div>
-  <div class="data-source-callout"><b>진짜 핵심</b><span>데이터 수집은 많이 모으는 일이 아니라, <em>이번에만 쓸 자료</em>와 <em>계속 지킬 기준</em>을 나눠 Agent가 읽을 위치에 넣는 일입니다.</span></div>
+  <div class="data-source-callout"><b>진짜 핵심</b><span>데이터가 있든 없든, 결국 Agent가 읽을 자료와 판단 기준을 먼저 정리하는 일로 모입니다.</span></div>
+</section>
+
+<section class="slide data-scope-slide">
+  <div class="eyebrow">데이터 분석 방법론 · SCOPE</div>
+  <h2>데이터 분석을 전부 할 필요는 없습니다<br>수집·준비·분석까지만 갖추면 됩니다</h2>
+  <div class="data-scope-flow">
+    <div class="scope-chevron"><b>PLANNING</b><span>분석 기획</span></div>
+    <div class="scope-chevron dark"><b>PREPARING</b><span>데이터 준비</span></div>
+    <div class="scope-chevron"><b>ANALYZING</b><span>데이터 분석</span></div>
+    <div class="scope-chevron muted"><b>DEVELOPING</b><span>시스템 구현</span></div>
+    <div class="scope-chevron muted"><b>DEPLOYING</b><span>평가·전개</span></div>
+  </div>
+  <div class="scope-legend"><span>여기까지 준비&nbsp;&nbsp; 수집 · 준비 · 분석</span><span class="muted">여기까진 불필요&nbsp;&nbsp; 모델 구현 · 배포</span></div>
+  <div class="data-source-callout"><b>핵심</b><span>모델 구현·배포까지 갈 필요는 없지만, 데이터를 모으고 정리해 <em>분석할 수 있는 상태</em>까지는 돼 있어야 Agent에게 맡길 수 있습니다.</span></div>
+</section>
+
+<section class="slide data-prompt-cases">
+  <div class="eyebrow">1주차 연결 HOW-TO</div>
+  <h2>데이터 상황별로<br>예시 프롬프트는 이렇게 시작합니다</h2>
+  <div class="prompt-case-grid compact">
+    <div class="prompt-card">
+      <strong>데이터가 많은 경우 · 확증적(CDA)</strong>
+      <pre>나는 [거래처별 매출·민원 표]를 근거로
+[이번 주 응대 우선순위]를 판단하고,
+[상위 5곳 응대 메일 초안]을 작성하며,
+외부 발송은 본인 승인 후 실행되는
+Agent를 만든다.</pre>
+    </div>
+    <div class="prompt-card">
+      <strong>데이터가 없는 경우 · 탐색적(EDA)</strong>
+      <pre>나는 먼저 [후기·경쟁사·키워드]를 수집·정리한 뒤,
+[정리된 자료]를 근거로 콘텐츠 방향을 잡고,
+초안을 만들며,
+사실·과장 여부를 사람이 검수하는
+Agent를 만든다.</pre>
+    </div>
+  </div>
+  <div class="data-source-callout"><b>공통</b><span>데이터가 있으면 판단부터, 없으면 수집부터 — 어느 쪽이든 Agent가 읽을 자료와 기준을 먼저 정리합니다.</span></div>
 </section>
 
 <section class="slide">
   <div class="eyebrow">1주차 연결 How-to</div>
   <h2>네 요소를 한 문장으로 묶으면<br>Agent 과제 정의가 됩니다</h2>
-  <div class="workshop-map">
-    <div class="skill-template-code"><strong>한 문장 과제 정의 템플릿</strong>
-나는 [참고 데이터]와 [판단 기준]을 근거로
+  <div class="prompt-case-grid">
+    <div class="prompt-card">
+      <strong>한 문장 과제 정의 템플릿</strong>
+      <pre>나는 [참고 데이터]와 [판단 기준]을 근거로
 [어떤 의사결정]을 내리고,
 [어떤 액션]을 실행하며,
 이때 [통제 — 사람이 검토할 지점] 아래에서
-작동하는 Agent를 만든다.</div>
-    <div class="skill-template-code"><strong>예시 · 영업 담당자</strong>
-나는 거래처별 매출·민원 표와
+작동하는 Agent를 만든다.</pre>
+    </div>
+    <div class="prompt-card">
+      <strong>예시 · 영업 담당자</strong>
+      <pre>나는 거래처별 매출·민원 표와
 민원 누적 상위 우선을 근거로
 이번 주 응대 우선순위를 정하고,
 상위 5곳에 응대 메일 초안을 작성하며,
 외부 발송은 본인 승인 후 실행되는
-Agent를 만든다.</div>
+Agent를 만든다.</pre>
+    </div>
   </div>
   <div class="key-sentence"><b>실습 시작 문장</b><span>지금부터는 이 한 문장을 먼저 만들고, 그다음 폴더와 작업 순서 파일로 옮깁니다.</span></div>
 </section>
@@ -7212,40 +7362,6 @@ Agent를 만든다.</div>
   </div>
   <div class="key-sentence"><b>산출물</b><span>사람이 확인할 체크 질문 3개와 실행 금지선을 얻습니다.</span></div>
 </section>
-
-
-
-
-
-<section class="slide">
-  <div class="eyebrow">데이터 분석 사례 · 이미지 준비 프롬프트</div>
-  <h2>Kaggle, Claude, 차트 이미지는<br>이렇게 만들어 넣으면 됩니다</h2>
-  <div class="workshop-map">
-    <div class="workshop-route">
-      <div class="workshop-step"><b>01</b><div><h3>Kaggle 데이터 화면</h3><p>데이터셋을 다운로드하는 장면을 보여줍니다.</p></div></div>
-      <div class="workshop-step"><b>02</b><div><h3>Claude 요청 화면</h3><p>CSV를 올리고 분석을 요청하는 장면을 보여줍니다.</p></div></div>
-      <div class="workshop-step"><b>03</b><div><h3>차트 결과 화면</h3><p>분석 결과가 표나 그래프로 바뀐 장면을 보여줍니다.</p></div></div>
-    </div>
-    <div class="skill-template-code"><strong>Claude에게 줄 이미지 제작 프롬프트</strong>
-강의자료에 넣을 예시 이미지 3장을 만들어줘.
-
-1. Kaggle에서 Trip Advisor Hotel Reviews
-   CSV 데이터를 다운로드하는 화면
-2. Claude에 hotel_reviews_50.csv를 업로드하고
-   긍정·부정 비율과 핵심 키워드 분석을
-   요청하는 화면
-3. 분석 결과가 긍정/부정 비율 그래프와
-   개선 제안 요약표로 정리된 화면
-
-스타일:
-- 실제 강의자료에 들어갈 캡처처럼 깔끔하게
-- 초보자가 어디서 무엇을 하는지 알 수 있게
-- 텍스트는 크게, 불필요한 장식은 줄이기</div>
-  </div>
-</section>
-
-
-
 <section class="slide section-kickoff" data-section="01">
   <div class="eyebrow">01. Agent에게 일을 맡긴다는 건</div>
   <h2>매번 같은 설명을 다시 하고 있지 않나요?</h2>
@@ -7664,7 +7780,7 @@ async function copyTemplateText(text){
   textarea.remove();
   return copied;
 }
-document.querySelectorAll('.skill-template-code').forEach(block=>{
+document.querySelectorAll('.skill-template-code,.prompt-card').forEach(block=>{
   const button=document.createElement('button');
   button.type='button';
   button.className='copy-template-btn';
